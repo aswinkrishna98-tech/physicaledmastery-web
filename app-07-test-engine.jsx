@@ -55,7 +55,7 @@ function ConceptBox({concept}){
 }
 
 function TestEngine({mode, questions:initialQuestions, title, examMeta, onExit, onFinish}){
-  const {recordAttempt, notify, toggleBookmark, bookmarks, goto} = useApp();
+  const {recordAttempt, notify, toggleBookmark, bookmarks, goto, isSubjectLocked, markRevealed} = useApp();
   const [questions,setQuestions] = useState(initialQuestions);
   const [idx,setIdx] = useState(0);
   const [responses,setResponses] = useState(()=>{
@@ -113,6 +113,11 @@ function TestEngine({mode, questions:initialQuestions, title, examMeta, onExit, 
     if(resp.selected==null) { notify("Select an option first"); return; }
     touchTime(q.id);
     recordAttempt(q, resp.selected, resp.timeSpent);
+    // Only spend a free-plan reveal if this subject isn't already at its
+    // quota — a question that's locked still gets marked right/wrong above
+    // (the basic practice mechanic stays free), it just won't unlock the
+    // explanation/concept notes below (see the render branch further down).
+    if(mode==="practice" && !isSubjectLocked(q.subject, q.id)){ markRevealed(q); }
     setResponses(prev=>({...prev, [q.id]:{...prev[q.id], checked:true}}));
   }
   function goNext(){ touchTime(q.id); setIdx(i=>Math.min(questions.length-1, i+1)); }
@@ -253,23 +258,27 @@ function TestEngine({mode, questions:initialQuestions, title, examMeta, onExit, 
               React.createElement("button",{className:"btn btn-primary btn-sm", onClick:()=>handleSubmit(false)}, isMock?"Submit Test":"Finish Practice")
           )
         ),
-        (!isMock && resp.checked) && React.createElement(React.Fragment,null,
-          React.createElement("div",{className:"explain-box"},
-            React.createElement("h4",{className:"h3"}, resp.selected===q.correctIndex ? "✅ Correct!" : "❌ Not quite — here's why"),
-            React.createElement("p",{className:"small", style:{marginTop:6}}, q.explanation),
-            React.createElement("p",{className:"tiny muted", style:{marginTop:8}}, "Source: "+q.source)
-          ),
-          React.createElement(ConceptBox,{concept:q.concept}),
-          q.relatedIds?.length>0 && React.createElement("div",{style:{marginTop:14}},
-            React.createElement("span",{className:"label"}, "Related Questions"),
-            React.createElement("div",{className:"flex gap-8 wrap", style:{marginTop:8}},
-              q.relatedIds.map(rid=>{
-                const rq = QUESTIONS_BY_ID[rid];
-                if(!rq) return null;
-                return React.createElement("button",{key:rid, className:"chip", onClick:()=>addRelated(rid)}, rq.topic);
-              })
-            )
-          )
+        (!isMock && resp.checked) && (
+          isSubjectLocked(q.subject, q.id)
+            ? React.createElement("div",{style:{marginTop:4}}, React.createElement(PracticeContentLock,{subject:q.subject}))
+            : React.createElement(React.Fragment,null,
+                React.createElement("div",{className:"explain-box"},
+                  React.createElement("h4",{className:"h3"}, resp.selected===q.correctIndex ? "✅ Correct!" : "❌ Not quite — here's why"),
+                  React.createElement("p",{className:"small", style:{marginTop:6}}, q.explanation),
+                  React.createElement("p",{className:"tiny muted", style:{marginTop:8}}, "Source: "+q.source)
+                ),
+                React.createElement(ConceptBox,{concept:q.concept}),
+                q.relatedIds?.length>0 && React.createElement("div",{style:{marginTop:14}},
+                  React.createElement("span",{className:"label"}, "Related Questions"),
+                  React.createElement("div",{className:"flex gap-8 wrap", style:{marginTop:8}},
+                    q.relatedIds.map(rid=>{
+                      const rq = QUESTIONS_BY_ID[rid];
+                      if(!rq) return null;
+                      return React.createElement("button",{key:rid, className:"chip", onClick:()=>addRelated(rid)}, rq.topic);
+                    })
+                  )
+                )
+              )
         )
       ),
       React.createElement(QuestionPalette,{questions, responses, idx, onJump:jump, groupBySubject:isMock})
