@@ -210,7 +210,7 @@ function PricingPage(){
   const {notify, profile, isPro, upgradePlan, freeMocksUsed, paymentsLive, checkoutBusy} = useApp();
   const plan = profile.plan||"free";
   const tiers = [
-    {id:"free",name:"Free",price:"₹0",period:"forever",features:["5 daily practice questions","1 full mock test, then upgrade for more","Basic short notes","Limited analytics"],highlight:false},
+    {id:"free",name:"Free",price:"₹0",period:"forever",features:["5 free explanations per subject","1 full mock test, then upgrade for more","Basic short notes","Limited analytics"],highlight:false},
     {id:"pro",name:"Pro",price:"₹499",period:"/month",features:["Unlimited practice questions","Unlimited full mock tests","Detailed performance analytics","All previous year papers","Full study material & flashcards","Personalized study planner"],highlight:true},
     {id:"proplus",name:"Pro+",price:"₹899",period:"/month",features:["Everything in Pro","Advanced AI preparation coach","Personalized adaptive plan","Exclusive live courses","Premium test series with rank prediction"],highlight:false},
   ];
