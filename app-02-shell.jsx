@@ -231,3 +231,22 @@ function MockPaywall({title}){
     !paymentsLive && React.createElement("p",{className:"tiny", style:{color:"rgba(255,255,255,.65)", marginTop:16}}, "Demo mode — no real payment gateway is connected yet.")
   );
 }
+
+// Compact inline paywall shown in place of a question's explanation/concept
+// notes once a free user has spent their per-subject practice quota. Kept
+// separate from MockPaywall (which is a full-page block) since this renders
+// inline, once per locked question, inside the practice runner.
+function PracticeContentLock({subject}){
+  const {goto, upgradePlan, paymentsLive, checkoutBusy} = useApp();
+  return React.createElement("div",{className:"card card-pad", style:{textAlign:"center", padding:"28px 22px", background:"linear-gradient(150deg, var(--ink) 0%, var(--info) 160%)", color:"#fff"}},
+    React.createElement("div",{style:{fontSize:26, marginBottom:6}}, "🔒"),
+    React.createElement("h4",{className:"h3", style:{color:"#fff"}}, "Free quota used in "+subject),
+    React.createElement("p",{className:"tiny", style:{color:"rgba(255,255,255,.8)", margin:"6px auto 16px", maxWidth:400}},
+      "You've unlocked the free explanation for 5 questions in this subject. Upgrade to Pro for unlimited detailed explanations, concept notes and related questions across all 40+ subjects."),
+    React.createElement("div",{className:"flex gap-10 wrap", style:{justifyContent:"center"}},
+      React.createElement("button",{className:"btn btn-primary btn-sm", disabled:checkoutBusy, onClick:()=>upgradePlan("pro")}, checkoutBusy?"Opening secure checkout…":"Upgrade to Pro"),
+      React.createElement("button",{className:"btn btn-outline btn-sm", style:{borderColor:"rgba(255,255,255,.5)", color:"#fff"}, onClick:()=>goto("/pricing")}, "Compare Plans")
+    ),
+    !paymentsLive && React.createElement("p",{className:"tiny", style:{color:"rgba(255,255,255,.65)", marginTop:10}}, "Demo mode — no real payment gateway is connected yet.")
+  );
+}
