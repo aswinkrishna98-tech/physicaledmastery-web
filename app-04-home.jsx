@@ -51,7 +51,7 @@ function Home(){
             React.createElement("button",{className:"btn btn-outline", onClick:()=>goto("/mock-tests")}, "Take a Free Mock Test")
           ),
           React.createElement("div",{className:"hero-stats"},
-            [["50,000+","Practice questions"],["8","Exams covered"],["40+","PE subjects mapped"],["12,400+","Aspirants preparing"]].map(([n,l])=>
+            [["50,000+","Practice questions"],["13","Exams covered"],["40+","PE subjects mapped"],["12,400+","Aspirants preparing"]].map(([n,l])=>
               React.createElement("div",{key:l,className:"hero-stat"}, React.createElement("b",null,n), React.createElement("span",{className:"small muted"},l))
             )
           )
@@ -147,7 +147,7 @@ function Home(){
 
 function ExamCard({exam}){
   const {goto} = useApp();
-  const colorMap = {navy:"var(--ink)",indigo:"var(--info)",teal:"#0E8F84",maroon:"#8A2A3B",forest:"#2F6B3C",amber:"var(--gold)",plum:"#6B3C7A",slate:"#4B5A70"};
+  const colorMap = {navy:"var(--ink)",indigo:"var(--info)",teal:"#0E8F84",maroon:"#8A2A3B",forest:"#2F6B3C",amber:"var(--gold)",plum:"#6B3C7A",slate:"#4B5A70",crimson:"#A6323F",steel:"#2E5E7E",olive:"#5C6B2F",coral:"#C2603E",violet:"#5B4B8A"};
   return React.createElement("div",{className:"card exam-card card-hover"},
     React.createElement("div",{className:"exam-card-top"},
       React.createElement("div",{className:"exam-swatch", style:{background:colorMap[exam.color]||"var(--ink)"}}, exam.short.slice(0,2)),

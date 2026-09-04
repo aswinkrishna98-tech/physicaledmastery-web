@@ -14,6 +14,11 @@ const EXAMS = [
   {id:"bped", name:"B.P.Ed Entrance", short:"B.P.Ed", body:"University / State-level Entrance", tests:18, questions:2800, difficulty:"Easy–Moderate", syllabus:["General PE Awareness","Sports Skill Knowledge","Basic Anatomy & Physiology","Aptitude"], pattern:"100 MCQs · 90 minutes", color:"amber"},
   {id:"mped", name:"M.P.Ed Entrance", short:"M.P.Ed", body:"University / State-level Entrance", tests:14, questions:2100, difficulty:"Moderate–Hard", syllabus:["Advanced Anatomy & Physiology","Research Methodology","Sports Training","Biomechanics"], pattern:"100 MCQs · 90 minutes", color:"plum"},
   {id:"university", name:"University Entrance Exams", short:"University PE", body:"Various Central & State Universities", tests:12, questions:1900, difficulty:"Moderate", syllabus:["Core PE Subjects","General Awareness","Sports Skill Test (practical)"], pattern:"Varies by university", color:"slate"},
+  {id:"set", name:"SET Physical Education", short:"SET PE", body:"State Eligibility Test — Various State Universities", tests:16, questions:2200, difficulty:"Hard", syllabus:["10 Units per UGC-aligned Syllabus","Research & Statistics","Biomechanics & Kinesiology","Sports Psychology & Sociology","State-specific Notification Rules"], pattern:"Paper 1 (50Q) + Paper 2 (100Q) · 3 hours · No negative marking", color:"crimson"},
+  {id:"ctet", name:"CTET Physical Education", short:"CTET PE", body:"Central Board of Secondary Education (CBSE)", tests:22, questions:2600, difficulty:"Moderate", syllabus:["Child Development & Pedagogy","PE Core Subjects","Language I & II","General Awareness"], pattern:"150 MCQs · 150 minutes · No negative marking", color:"steel"},
+  {id:"emrs", name:"EMRS TGT/PGT Physical Education", short:"EMRS PE", body:"National Education Society for Tribal Students (NESTS)", tests:18, questions:2400, difficulty:"Moderate", syllabus:["PE Core Subjects","General Awareness","Reasoning","Tribal Welfare & Education Policy"], pattern:"150 MCQs · 150 minutes · +1 / −0.25", color:"olive"},
+  {id:"sainik-school", name:"Sainik School PGT/TGT Physical Education", short:"Sainik School PE", body:"National Testing Agency (NTA)", tests:14, questions:1800, difficulty:"Moderate–Hard", syllabus:["PE Core Subjects","General Knowledge","Reasoning","Teaching Aptitude"], pattern:"150 MCQs · 150 minutes · +1 / −0.33", color:"coral"},
+  {id:"awes", name:"AWES PGT/TGT Physical Education", short:"AWES PE", body:"Army Welfare Education Society (Army Public Schools)", tests:16, questions:2000, difficulty:"Moderate", syllabus:["PE Core Subjects","General English","Reasoning & Numerical Ability","General Awareness"], pattern:"100 MCQs · 90 minutes · +1 / −0.25", color:"violet"},
 ];
 
 const SUBJECTS = [
@@ -134,6 +139,13 @@ const PYQ_PAPERS = [
   {id:"pyq-7",exam:"NVS PE",year:2024,questions:150,duration:150,attempted:0,tag:""},
   {id:"pyq-8",exam:"DSSSB PE",year:2023,questions:200,duration:150,attempted:0,tag:""},
   {id:"pyq-9",exam:"State PSC PE",year:2022,questions:120,duration:150,attempted:0,tag:""},
+  {id:"pyq-10",exam:"SET PE",year:2025,questions:150,duration:180,attempted:0,tag:"Latest"},
+  {id:"pyq-11",exam:"SET PE",year:2023,questions:150,duration:180,attempted:0,tag:""},
+  {id:"pyq-12",exam:"CTET PE",year:2025,questions:150,duration:150,attempted:0,tag:"Latest"},
+  {id:"pyq-13",exam:"CTET PE",year:2024,questions:150,duration:150,attempted:0,tag:""},
+  {id:"pyq-14",exam:"EMRS PE",year:2024,questions:150,duration:150,attempted:0,tag:""},
+  {id:"pyq-15",exam:"Sainik School PE",year:2023,questions:150,duration:150,attempted:0,tag:""},
+  {id:"pyq-16",exam:"AWES PE",year:2024,questions:100,duration:90,attempted:0,tag:""},
 ];
 
 // ---- Study Material (notes library) ----
