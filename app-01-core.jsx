@@ -99,7 +99,7 @@ const FREE_MOCK_LIMIT = 1; // free-plan aspirants get one full mock test before 
 // switch on the real Razorpay Checkout flow: create-order -> pay -> verify.
 // ---------------------------------------------------------------------------
 const PAYMENTS = {
-  backendUrl: "", // e.g. "https://pe-prep-api.onrender.com"
+  backendUrl: "https://pe-prep-payments.onrender.com", // e.g. "https://pe-prep-api.onrender.com"
 };
 const RAZORPAY_CHECKOUT_SRC = "https://checkout.razorpay.com/v1/checkout.js";
 const PLAN_LABELS = {pro:"Pro", proplus:"Pro+"};
