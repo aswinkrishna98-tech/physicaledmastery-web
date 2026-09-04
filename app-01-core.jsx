@@ -89,6 +89,7 @@ const DEFAULT_PROFILE = {
   mockTestsTaken: 24, joined: "2026-04-02", loggedIn: true, plan: "free",
 };
 const FREE_MOCK_LIMIT = 1; // free-plan aspirants get one full mock test before the paywall
+const FREE_PRACTICE_LIMIT_PER_SUBJECT = 5; // free-plan aspirants get 5 "quality content" reveals (explanation + concept notes) per subject before the paywall
 
 // ---------------------------------------------------------------------------
 // Real-payments config. Leave backendUrl empty to keep today's behavior: the
@@ -146,6 +147,13 @@ function AppProvider({children}){
   const [toast, setToast] = useState(null);
   const [dailyState, setDailyState] = usePersistentState("pep_daily", {lastCompleted:null, lastQOTD:null, qotdAnswer:null});
   const [studyPlan, setStudyPlan] = usePersistentState("pep_study_plan", null);
+  // qid -> subject, for every question whose full explanation/concept notes
+  // ("quality content") a free-plan user has unlocked by checking an answer
+  // in practice mode. Once a subject's count hits FREE_PRACTICE_LIMIT_PER_SUBJECT,
+  // newly-checked questions in that subject show a paywall instead of the
+  // explanation — but anything already in this map stays viewable, so a free
+  // user never loses access to content they've already seen.
+  const [revealedIds, setRevealedIds] = usePersistentState("pep_practice_revealed", {});
 
   useEffect(()=>{
     document.documentElement.setAttribute("data-theme", theme==="system" ? "" : theme);
@@ -224,6 +232,33 @@ function AppProvider({children}){
   const isPro = (profile.plan||"free") !== "free";
   const freeMocksUsed = mockHistory.length;
   const mockLocked = !isPro && freeMocksUsed >= FREE_MOCK_LIMIT;
+
+  // How many distinct questions per subject a free user has already unlocked
+  // the explanation/concept notes for (see revealedIds above).
+  const practicedBySubject = useMemo(()=>{
+    const m = {};
+    Object.values(revealedIds).forEach(subj=>{ if(subj) m[subj] = (m[subj]||0)+1; });
+    return m;
+  },[revealedIds]);
+
+  // A question's "quality content" (explanation, concept box, related
+  // questions) is locked for a free user once their subject quota is spent —
+  // unless this exact question was already unlocked earlier, which stays
+  // viewable forever (upgrading never takes away something already shown).
+  const isSubjectLocked = useCallback((subject, qid)=>{
+    if(isPro) return false;
+    if(qid && revealedIds[qid]) return false;
+    return (practicedBySubject[subject]||0) >= FREE_PRACTICE_LIMIT_PER_SUBJECT;
+  },[isPro, revealedIds, practicedBySubject]);
+
+  const freeQuestionsLeft = useCallback((subject)=>{
+    if(isPro) return Infinity;
+    return Math.max(0, FREE_PRACTICE_LIMIT_PER_SUBJECT - (practicedBySubject[subject]||0));
+  },[isPro, practicedBySubject]);
+
+  const markRevealed = useCallback((question)=>{
+    setRevealedIds(prev=> prev[question.id] ? prev : {...prev, [question.id]: question.subject});
+  },[setRevealedIds]);
   const [checkoutBusy, setCheckoutBusy] = useState(false);
   const paymentsLive = !!PAYMENTS.backendUrl;
 
@@ -351,6 +386,7 @@ function AppProvider({children}){
     dailyState, setDailyState,
     studyPlan, setStudyPlan,
     isPro, freeMocksUsed, mockLocked, upgradePlan, paymentsLive, checkoutBusy,
+    FREE_PRACTICE_LIMIT_PER_SUBJECT, practicedBySubject, isSubjectLocked, freeQuestionsLeft, markRevealed,
   };
   return React.createElement(AppCtx.Provider,{value}, children);
 }
