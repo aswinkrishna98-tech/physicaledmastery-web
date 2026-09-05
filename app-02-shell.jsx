@@ -1,5 +1,5 @@
 // ============================================================================
-// PE PREP — APP SHELL: TopNav, MobileNav, GlobalSearch, Toast, Layout
+// PE PREP â APP SHELL: TopNav, MobileNav, GlobalSearch, Toast, Layout
 // ============================================================================
 
 const NAV_ITEMS = [
@@ -8,6 +8,7 @@ const NAV_ITEMS = [
   {path:"/practice", label:"Practice", icon:"practice"},
   {path:"/mock-tests", label:"Mock Tests", icon:"mock"},
   {path:"/study-material", label:"Study Material", icon:"material"},
+  {path:"/school", label:"School (11/12)", icon:"book"},
   {path:"/current-affairs", label:"Current Affairs", icon:"affairs"},
   {path:"/dashboard", label:"Performance", icon:"performance"},
   {path:"/pricing", label:"Pricing", icon:"pricing"},
@@ -53,12 +54,12 @@ function GlobalSearchModal({open, onClose}){
     React.createElement("div",{className:"card", style:{width:"100%",maxWidth:560,padding:0,overflow:"hidden"}, onClick:e=>e.stopPropagation()},
       React.createElement("div",{style:{display:"flex",alignItems:"center",gap:10,padding:"14px 18px",borderBottom:"1px solid var(--border)"}},
         React.createElement(Icon,{name:"search",size:18}),
-        React.createElement("input",{ref:inputRef, className:"input", style:{border:"none",flex:1,padding:"6px 0"}, placeholder:"Search questions, notes, flashcards, sports rules, formulas…", value:q, onChange:e=>setQ(e.target.value)}),
+        React.createElement("input",{ref:inputRef, className:"input", style:{border:"none",flex:1,padding:"6px 0"}, placeholder:"Search questions, notes, flashcards, sports rules, formulasâ¦", value:q, onChange:e=>setQ(e.target.value)}),
         React.createElement("span",{className:"kbd"},"Esc")
       ),
       React.createElement("div",{style:{maxHeight:380,overflowY:"auto"}},
         results===null ? React.createElement("div",{className:"empty-state small"},"Type at least 2 characters to search across the whole platform.") :
-        results.length===0 ? React.createElement("div",{className:"empty-state small"},"No results found for “"+q+"”.") :
+        results.length===0 ? React.createElement("div",{className:"empty-state small"},"No results found for â"+q+"â.") :
         results.map((r,i)=>React.createElement("div",{key:i, onClick:()=>{r.action(); onClose();}, style:{padding:"12px 18px",display:"flex",justifyContent:"space-between",gap:12,cursor:"pointer",borderBottom:"1px solid var(--border)"},
           onMouseEnter:e=>e.currentTarget.style.background="var(--surface-2)", onMouseLeave:e=>e.currentTarget.style.background="transparent"},
           React.createElement("div",null,
@@ -160,7 +161,7 @@ function Footer(){
     ),
     React.createElement("div",{className:"container",style:{marginTop:28}},
       React.createElement("div",{className:"lane-divider",style:{marginBottom:18}}),
-      React.createElement("p",{className:"tiny muted"}, "Demo prototype. Question data, user stats and leaderboard rows are representative sample data. © 2026 PE Prep.")
+      React.createElement("p",{className:"tiny muted"}, "Demo prototype. Question data, user stats and leaderboard rows are representative sample data. Â© 2026 PE Prep.")
     )
   );
 }
@@ -212,7 +213,7 @@ function PlanBadge(){
 
 // Shown in place of a mock-test / full-paper attempt once a free-plan aspirant
 // has used their one free mock test. The caller doesn't need an onUpgrade
-// callback — `isPro`/`mockLocked` are derived from profile.plan, so once a
+// callback â `isPro`/`mockLocked` are derived from profile.plan, so once a
 // real payment (or the demo toggle) actually changes the plan, every screen
 // reading mockLocked re-renders unlocked on its own. That matters once real
 // payments are live: the paywall must NOT disappear until payment is
@@ -220,15 +221,15 @@ function PlanBadge(){
 function MockPaywall({title}){
   const {goto, upgradePlan, paymentsLive, checkoutBusy} = useApp();
   return React.createElement("div",{className:"card card-pad", style:{textAlign:"center", padding:"48px 28px", background:"linear-gradient(150deg, var(--ink) 0%, var(--info) 160%)", color:"#fff"}},
-    React.createElement("div",{style:{fontSize:34, marginBottom:10}}, "🔒"),
+    React.createElement("div",{style:{fontSize:34, marginBottom:10}}, "ð"),
     React.createElement("h3",{className:"h1", style:{color:"#fff"}}, title || "You've used your free mock test"),
     React.createElement("p",{className:"small", style:{color:"rgba(255,255,255,.8)", margin:"10px auto 24px", maxWidth:440}},
       "Free plan includes one full-length mock test to try the experience. Upgrade to Pro for unlimited mock tests, previous year papers, and full performance analytics."),
     React.createElement("div",{className:"flex gap-12 wrap", style:{justifyContent:"center"}},
-      React.createElement("button",{className:"btn btn-primary", disabled:checkoutBusy, onClick:()=>upgradePlan("pro")}, checkoutBusy?"Opening secure checkout…":"Upgrade to Pro"),
+      React.createElement("button",{className:"btn btn-primary", disabled:checkoutBusy, onClick:()=>upgradePlan("pro")}, checkoutBusy?"Opening secure checkoutâ¦":"Upgrade to Pro"),
       React.createElement("button",{className:"btn btn-outline", style:{borderColor:"rgba(255,255,255,.5)", color:"#fff"}, onClick:()=>goto("/pricing")}, "Compare Plans")
     ),
-    !paymentsLive && React.createElement("p",{className:"tiny", style:{color:"rgba(255,255,255,.65)", marginTop:16}}, "Demo mode — no real payment gateway is connected yet.")
+    !paymentsLive && React.createElement("p",{className:"tiny", style:{color:"rgba(255,255,255,.65)", marginTop:16}}, "Demo mode â no real payment gateway is connected yet.")
   );
 }
 
@@ -239,14 +240,14 @@ function MockPaywall({title}){
 function PracticeContentLock({subject}){
   const {goto, upgradePlan, paymentsLive, checkoutBusy} = useApp();
   return React.createElement("div",{className:"card card-pad", style:{textAlign:"center", padding:"28px 22px", background:"linear-gradient(150deg, var(--ink) 0%, var(--info) 160%)", color:"#fff"}},
-    React.createElement("div",{style:{fontSize:26, marginBottom:6}}, "🔒"),
+    React.createElement("div",{style:{fontSize:26, marginBottom:6}}, "ð"),
     React.createElement("h4",{className:"h3", style:{color:"#fff"}}, "Free quota used in "+subject),
     React.createElement("p",{className:"tiny", style:{color:"rgba(255,255,255,.8)", margin:"6px auto 16px", maxWidth:400}},
       "You've unlocked the free explanation for 5 questions in this subject. Upgrade to Pro for unlimited detailed explanations, concept notes and related questions across all 40+ subjects."),
     React.createElement("div",{className:"flex gap-10 wrap", style:{justifyContent:"center"}},
-      React.createElement("button",{className:"btn btn-primary btn-sm", disabled:checkoutBusy, onClick:()=>upgradePlan("pro")}, checkoutBusy?"Opening secure checkout…":"Upgrade to Pro"),
+      React.createElement("button",{className:"btn btn-primary btn-sm", disabled:checkoutBusy, onClick:()=>upgradePlan("pro")}, checkoutBusy?"Opening secure checkoutâ¦":"Upgrade to Pro"),
       React.createElement("button",{className:"btn btn-outline btn-sm", style:{borderColor:"rgba(255,255,255,.5)", color:"#fff"}, onClick:()=>goto("/pricing")}, "Compare Plans")
     ),
-    !paymentsLive && React.createElement("p",{className:"tiny", style:{color:"rgba(255,255,255,.65)", marginTop:10}}, "Demo mode — no real payment gateway is connected yet.")
+    !paymentsLive && React.createElement("p",{className:"tiny", style:{color:"rgba(255,255,255,.65)", marginTop:10}}, "Demo mode â no real payment gateway is connected yet.")
   );
 }
