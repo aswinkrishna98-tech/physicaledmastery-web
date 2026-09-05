@@ -8,7 +8,7 @@ def read(name):
 
 styles = read("styles.css")
 
-data_files = ["data-questions.js", "data-content.js"]
+data_files = ["data-questions.js", "data-content.js", "data-school.js"]
 app_files = [
     "app-01-core.jsx",
     "app-02-shell.jsx",
@@ -21,6 +21,7 @@ app_files = [
     "app-09-dashboard.jsx",
     "app-10-revision.jsx",
     "app-11-remaining.jsx",
+    "app-12-school.jsx",
     "app-13-root.jsx",
 ]
 
