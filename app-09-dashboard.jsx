@@ -8,7 +8,11 @@ function greeting(){
 }
 
 function DashboardPage(){
-  const {profile, accuracy, subjectStats, goto, wrongLog, bookmarks, mockHistory, isPro, mockLocked} = useApp();
+  const {profile, setProfile, accuracy, subjectStats, goto, wrongLog, bookmarks, mockHistory, isPro, mockLocked} = useApp();
+  const editName = ()=>{
+    const next = window.prompt("What should we call you?", profile.name);
+    if(next && next.trim()) setProfile(p=>({...p, name: next.trim().slice(0,40)}));
+  };
   const weak = subjectStats.slice(0,3);
   const strong = [...subjectStats].sort((a,b)=>b.accuracy-a.accuracy).slice(0,2);
   const mistakesCount = Object.keys(wrongLog).length;
@@ -25,7 +29,10 @@ function DashboardPage(){
   return React.createElement("div",{className:"container", style:{padding:"36px 24px 72px"}},
     React.createElement("div",{className:"flex justify-between wrap gap-16", style:{marginBottom:26, alignItems:"flex-end"}},
       React.createElement("div",null,
-        React.createElement("h1",{className:"h1"}, greeting()+", "+profile.name+" 👋"),
+        React.createElement("h1",{className:"h1", style:{display:"flex", alignItems:"center", gap:10}},
+          greeting()+", "+profile.name+" 👋",
+          React.createElement("button",{className:"btn btn-ghost btn-icon", title:"Change your name", onClick:editName, style:{width:28,height:28}}, React.createElement(Icon,{name:"edit",size:14}))
+        ),
         React.createElement("p",{className:"small muted", style:{marginTop:6}}, "Your Preparation Overview")
       ),
       React.createElement("div",{className:"flex items-center gap-10"},

@@ -85,8 +85,8 @@ const AppCtx = createContext(null);
 function useApp(){ return useContext(AppCtx); }
 
 const DEFAULT_PROFILE = {
-  name:"Aswin", xp: 8450, streak: 12, lastActiveDate: null, questionsSolved: 2450, accuracySum: 0,
-  mockTestsTaken: 24, joined: "2026-04-02", loggedIn: true, plan: "free",
+  name:"Aspirant", xp: 0, streak: 0, lastActiveDate: null, questionsSolved: 0, accuracySum: 0,
+  mockTestsTaken: 0, joined: todayStr(), loggedIn: true, plan: "free",
 };
 const FREE_MOCK_LIMIT = 1; // free-plan aspirants get one full mock test before the paywall
 const FREE_PRACTICE_LIMIT_PER_SUBJECT = 5; // free-plan aspirants get 5 "quality content" reveals (explanation + concept notes) per subject before the paywall
