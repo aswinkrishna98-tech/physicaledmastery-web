@@ -22,6 +22,7 @@ app_files = [
     "app-10-revision.jsx",
     "app-11-remaining.jsx",
     "app-12-school.jsx",
+    "app-14-auth.jsx",
     "app-13-root.jsx",
 ]
 

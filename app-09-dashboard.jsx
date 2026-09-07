@@ -8,7 +8,7 @@ function greeting(){
 }
 
 function DashboardPage(){
-  const {profile, setProfile, accuracy, subjectStats, goto, wrongLog, bookmarks, mockHistory, isPro, mockLocked} = useApp();
+  const {profile, setProfile, accuracy, subjectStats, goto, wrongLog, bookmarks, mockHistory, isPro, mockLocked, isLoggedIn, logout} = useApp();
   const editName = ()=>{
     const next = window.prompt("What should we call you?", profile.name);
     if(next && next.trim()) setProfile(p=>({...p, name: next.trim().slice(0,40)}));
@@ -33,7 +33,14 @@ function DashboardPage(){
           greeting()+", "+profile.name+" 👋",
           React.createElement("button",{className:"btn btn-ghost btn-icon", title:"Change your name", onClick:editName, style:{width:28,height:28}}, React.createElement(Icon,{name:"edit",size:14}))
         ),
-        React.createElement("p",{className:"small muted", style:{marginTop:6}}, "Your Preparation Overview")
+        React.createElement("p",{className:"small muted", style:{marginTop:6}}, "Your Preparation Overview"),
+        isLoggedIn
+          ? React.createElement("p",{className:"small muted", style:{marginTop:4}},
+              "Signed in — your progress follows you to any device. ",
+              React.createElement("a",{href:"#", onClick:e=>{e.preventDefault(); logout();}}, "Sign out"))
+          : React.createElement("p",{className:"small muted", style:{marginTop:4}},
+              "Browsing as a guest — progress stays on this device only. ",
+              React.createElement("a",{href:"#/login", onClick:e=>{e.preventDefault(); goto("/login");}}, "Sign in to save it"))
       ),
       React.createElement("div",{className:"flex items-center gap-10"},
         React.createElement(PlanBadge,null),

@@ -105,6 +105,38 @@ const PAYMENTS = {
 const RAZORPAY_CHECKOUT_SRC = "https://checkout.razorpay.com/v1/checkout.js";
 const PLAN_LABELS = {pro:"Pro", proplus:"Pro+"};
 
+// ---------------------------------------------------------------------------
+// Real accounts config. AUTH_API reuses the same backend as payments (it now
+// also serves /api/auth/*). Set GOOGLE_CLIENT_ID to a Google OAuth Web
+// Client ID (from Google Cloud Console) to turn on "Continue with Google" on
+// the sign-in page — until then, only email + password accounts are offered.
+// Signing in is optional: a guest can keep using the app exactly as before,
+// with progress kept in this browser only.
+// ---------------------------------------------------------------------------
+const AUTH_API = PAYMENTS.backendUrl;
+const GOOGLE_CLIENT_ID = ""; // e.g. "1234567890-abc...apps.googleusercontent.com"
+const GOOGLE_GSI_SRC = "https://accounts.google.com/gsi/client";
+
+function loadGoogleScript(){
+  return new Promise((resolve, reject)=>{
+    if(window.google?.accounts?.id){ resolve(); return; }
+    const existing = document.querySelector('script[data-google-gsi]');
+    if(existing){
+      existing.addEventListener("load", ()=>resolve());
+      existing.addEventListener("error", ()=>reject(new Error("script-blocked")));
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = GOOGLE_GSI_SRC;
+    script.setAttribute("data-google-gsi","1");
+    script.async = true;
+    script.onload = ()=>resolve();
+    script.onerror = ()=>reject(new Error("script-blocked"));
+    document.head.appendChild(script);
+    setTimeout(()=>{ if(!window.google?.accounts?.id) reject(new Error("script-timeout")); }, 6000);
+  });
+}
+
 function getOrCreateUserId(){
   let id = safeGet("pep_user_id", null);
   if(!id){
@@ -154,6 +186,10 @@ function AppProvider({children}){
   // explanation — but anything already in this map stays viewable, so a free
   // user never loses access to content they've already seen.
   const [revealedIds, setRevealedIds] = usePersistentState("pep_practice_revealed", {});
+  const [authToken, setAuthToken] = usePersistentState("pep_auth_token", null);
+  const [authAccountId, setAuthAccountId] = useState(null);
+  const [authBusy, setAuthBusy] = useState(false);
+  const skipNextSync = useRef(false);
 
   useEffect(()=>{
     document.documentElement.setAttribute("data-theme", theme==="system" ? "" : theme);
@@ -264,15 +300,113 @@ function AppProvider({children}){
 
   // If a real backend is configured, sync the locally-cached plan with the
   // server's actual entitlement on load — the server, not localStorage, is
-  // the source of truth once real payments are switched on.
+  // the source of truth once real payments are switched on. Signed-in users
+  // get their plan from /api/auth/me instead (see below), so this only runs
+  // for guests.
   useEffect(()=>{
-    if(!paymentsLive) return;
+    if(!paymentsLive || authToken) return;
     const userId = getOrCreateUserId();
     fetch(`${PAYMENTS.backendUrl}/api/plan/${userId}`)
       .then(r=>r.ok ? r.json() : null)
       .then(data=>{ if(data?.plan) setProfile(p=>({...p, plan: data.plan})); })
       .catch(()=>{ /* backend unreachable — keep whatever plan is cached locally */ });
-  },[paymentsLive,setProfile]);
+  },[paymentsLive,authToken,setProfile]);
+
+  // ------------------------------- Real accounts -------------------------------
+  // A signed-in user's identity (and payment userId) is their account id from
+  // the server, not the random localStorage-generated one guests get.
+  const applyAccount = useCallback((user)=>{
+    skipNextSync.current = true;
+    setAuthAccountId(user.id);
+    setProfile(p=>({...p,
+      name: user.name ?? p.name,
+      xp: user.xp ?? p.xp,
+      streak: user.streak ?? p.streak,
+      lastActiveDate: user.lastActiveDate ?? p.lastActiveDate,
+      questionsSolved: user.questionsSolved ?? p.questionsSolved,
+      accuracySum: user.accuracySum ?? p.accuracySum,
+      mockTestsTaken: user.mockTestsTaken ?? p.mockTestsTaken,
+      plan: user.plan ?? p.plan,
+    }));
+    if(user.revealedIds) setRevealedIds(user.revealedIds);
+  },[setProfile,setRevealedIds]);
+
+  // Restore the session on load / whenever the token changes (login, logout).
+  useEffect(()=>{
+    if(!paymentsLive || !authToken){ setAuthAccountId(null); return; }
+    fetch(`${AUTH_API}/api/auth/me`, {headers:{Authorization:`Bearer ${authToken}`}})
+      .then(r=>{ if(!r.ok) throw new Error("session-invalid"); return r.json(); })
+      .then(data=>{ if(data?.user) applyAccount(data.user); })
+      .catch(()=>{ setAuthToken(null); setAuthAccountId(null); });
+  },[authToken,paymentsLive]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Push local profile changes up to the server for a signed-in user, so
+  // progress genuinely follows them to their next device — debounced so a
+  // burst of quick actions (e.g. finishing a mock test) sends one request.
+  useEffect(()=>{
+    if(!paymentsLive || !authToken || !authAccountId) return;
+    if(skipNextSync.current){ skipNextSync.current = false; return; }
+    const t = setTimeout(()=>{
+      fetch(`${AUTH_API}/api/profile`, {
+        method:"PUT",
+        headers:{"Content-Type":"application/json", Authorization:`Bearer ${authToken}`},
+        body: JSON.stringify({
+          name: profile.name, xp: profile.xp, streak: profile.streak, lastActiveDate: profile.lastActiveDate,
+          questionsSolved: profile.questionsSolved, accuracySum: profile.accuracySum, mockTestsTaken: profile.mockTestsTaken,
+          revealedIds,
+        }),
+      }).catch(()=>{ /* offline or backend unreachable — local copy stays authoritative until next sync */ });
+    }, 800);
+    return ()=>clearTimeout(t);
+  },[profile,revealedIds,authToken,authAccountId,paymentsLive]);
+
+  const authRequest = useCallback(async (path, body)=>{
+    const res = await fetch(`${AUTH_API}${path}`, {
+      method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(body),
+    });
+    const data = await res.json().catch(()=>({}));
+    if(!res.ok) throw new Error(data.error || "Something went wrong — please try again.");
+    return data;
+  },[]);
+
+  const signup = useCallback(async (email, password, name)=>{
+    setAuthBusy(true);
+    try{
+      const data = await authRequest("/api/auth/signup", {email, password, name});
+      setAuthToken(data.token);
+      applyAccount(data.user);
+      notify("Welcome to PE Prep, "+data.user.name+"! Your progress will now follow you across devices.", 4000);
+    } finally { setAuthBusy(false); }
+  },[authRequest,applyAccount,notify,setAuthToken]);
+
+  const login = useCallback(async (email, password)=>{
+    setAuthBusy(true);
+    try{
+      const data = await authRequest("/api/auth/login", {email, password});
+      setAuthToken(data.token);
+      applyAccount(data.user);
+      notify("Welcome back, "+data.user.name+"!", 3000);
+    } finally { setAuthBusy(false); }
+  },[authRequest,applyAccount,notify,setAuthToken]);
+
+  const googleSignIn = useCallback(async (credential)=>{
+    setAuthBusy(true);
+    try{
+      const data = await authRequest("/api/auth/google", {credential});
+      setAuthToken(data.token);
+      applyAccount(data.user);
+      notify("Welcome, "+data.user.name+"!", 3000);
+    } finally { setAuthBusy(false); }
+  },[authRequest,applyAccount,notify,setAuthToken]);
+
+  const logout = useCallback(()=>{
+    setAuthToken(null);
+    setAuthAccountId(null);
+    setProfile(DEFAULT_PROFILE);
+    notify("Signed out — your progress on this device is cleared. Sign in again anytime to get it back.", 3400);
+  },[setAuthToken,setProfile,notify]);
+
+  const isLoggedIn = !!authToken;
 
   const upgradePlanDemo = useCallback((plan)=>{
     setProfile(p=>({...p, plan}));
@@ -280,7 +414,7 @@ function AppProvider({children}){
   },[setProfile,notify]);
 
   const upgradePlanReal = useCallback(async (plan)=>{
-    const userId = getOrCreateUserId();
+    const userId = authAccountId || getOrCreateUserId();
     setCheckoutBusy(true);
     try{
       const orderRes = await fetch(`${PAYMENTS.backendUrl}/api/create-order`,{
@@ -340,7 +474,7 @@ function AppProvider({children}){
         notify(e.message || "Couldn't start checkout — please try again.", 4000);
       }
     }
-  },[setProfile,notify,profile.name]);
+  },[setProfile,notify,profile.name,authAccountId]);
 
   const upgradePlan = paymentsLive ? upgradePlanReal : upgradePlanDemo;
 
@@ -387,6 +521,7 @@ function AppProvider({children}){
     studyPlan, setStudyPlan,
     isPro, freeMocksUsed, mockLocked, upgradePlan, paymentsLive, checkoutBusy,
     FREE_PRACTICE_LIMIT_PER_SUBJECT, practicedBySubject, isSubjectLocked, freeQuestionsLeft, markRevealed,
+    isLoggedIn, authBusy, signup, login, googleSignIn, logout,
   };
   return React.createElement(AppCtx.Provider,{value}, children);
 }

@@ -39,6 +39,8 @@ const ROUTES = {
   "/my-mistakes": MyMistakesPage,
   "/bookmarks": BookmarksPage,
   "/admin": AdminPage,
+  "/login": AuthPage,
+  "/signup": AuthPage,
 };
 
 function RouterView(){

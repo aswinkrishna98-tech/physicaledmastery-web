@@ -82,7 +82,7 @@ function ThemeToggle(){
 }
 
 function TopNav(){
-  const {route, goto, profile} = useApp();
+  const {route, goto, profile, isLoggedIn} = useApp();
   const [searchOpen,setSearchOpen] = useState(false);
   useEffect(()=>{
     function onKey(e){
@@ -107,8 +107,11 @@ function TopNav(){
           React.createElement("button",{className:"btn btn-ghost btn-icon", title:"Search (Ctrl+K)", onClick:()=>setSearchOpen(true)}, React.createElement(Icon,{name:"search"})),
           React.createElement(ThemeToggle,null),
           React.createElement("button",{className:"btn btn-ghost btn-icon", title:"Bookmarks", onClick:()=>goto("/bookmarks")}, React.createElement(Icon,{name:"bookmark"})),
-          React.createElement("button",{className:"btn btn-outline btn-sm", onClick:()=>goto("/dashboard")},
-            React.createElement(Icon,{name:"user",size:15}), profile.name)
+          isLoggedIn
+            ? React.createElement("button",{className:"btn btn-outline btn-sm", onClick:()=>goto("/dashboard")},
+                React.createElement(Icon,{name:"user",size:15}), profile.name)
+            : React.createElement("button",{className:"btn btn-outline btn-sm", onClick:()=>goto("/login")},
+                React.createElement(Icon,{name:"user",size:15}), "Sign In")
         )
       )
     ),
