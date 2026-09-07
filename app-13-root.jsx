@@ -21,6 +21,8 @@ const ROUTES = {
   "/mock-test-setup": MockTestSetupPage,
   "/mock-result": MockResultPage,
   "/study-material": StudyMaterialPage,
+  "/school": SchoolPage,
+  "/school-grade": SchoolGradePage,
   "/current-affairs": CurrentAffairsPage,
   "/previous-papers": PreviousYearPapersPage,
   "/dashboard": DashboardPage,
