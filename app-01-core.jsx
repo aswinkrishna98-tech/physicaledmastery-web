@@ -86,7 +86,7 @@ function useApp(){ return useContext(AppCtx); }
 
 const DEFAULT_PROFILE = {
   name:"Aspirant", xp: 0, streak: 0, lastActiveDate: null, questionsSolved: 0, accuracySum: 0,
-  mockTestsTaken: 0, joined: todayStr(), loggedIn: true, plan: "free", preferredExam: null,
+  mockTestsTaken: 0, joined: todayStr(), loggedIn: true, plan: "free", preferredExam: null, examPasses: [],
 };
 const FREE_MOCK_LIMIT = 1; // free-plan aspirants get one full mock test before the paywall
 const FREE_PRACTICE_LIMIT_PER_SUBJECT = 5; // free-plan aspirants get 5 "quality content" reveals (explanation + concept notes) per subject before the paywall
@@ -104,6 +104,11 @@ const PAYMENTS = {
 };
 const RAZORPAY_CHECKOUT_SRC = "https://checkout.razorpay.com/v1/checkout.js";
 const PLAN_LABELS = {pro:"Pro", proplus:"Pro+"};
+// A single-exam pass — full Pro-level access (unlimited mock tests, full
+// result analysis, previous year papers) for ONE exam only, priced well
+// below the flat Pro tier. Display-only on the frontend; the backend's own
+// EXAM_PASS_PRICE_INR in razorpay.js is what's actually charged.
+const EXAM_PASS_PRICE_INR = 149;
 
 // ---------------------------------------------------------------------------
 // Real accounts config. AUTH_API reuses the same backend as payments (it now
@@ -269,6 +274,15 @@ function AppProvider({children}){
   const freeMocksUsed = mockHistory.length;
   const mockLocked = !isPro && freeMocksUsed >= FREE_MOCK_LIMIT;
 
+  // True for a full Pro/Pro+ member, OR a free-plan user who bought a
+  // cheaper single-exam pass for this specific exam — either way unlocks
+  // unlimited mock tests, full result analysis and PYQs for that exam.
+  const hasExamAccess = useCallback((examId)=>{
+    if(isPro) return true;
+    if(!examId) return false;
+    return (profile.examPasses||[]).includes(examId);
+  },[isPro, profile.examPasses]);
+
   // How many distinct questions per subject a free user has already unlocked
   // the explanation/concept notes for (see revealedIds above).
   const practicedBySubject = useMemo(()=>{
@@ -308,7 +322,7 @@ function AppProvider({children}){
     const userId = getOrCreateUserId();
     fetch(`${PAYMENTS.backendUrl}/api/plan/${userId}`)
       .then(r=>r.ok ? r.json() : null)
-      .then(data=>{ if(data?.plan) setProfile(p=>({...p, plan: data.plan})); })
+      .then(data=>{ if(data?.plan) setProfile(p=>({...p, plan: data.plan, examPasses: data.examPasses||p.examPasses||[]})); })
       .catch(()=>{ /* backend unreachable — keep whatever plan is cached locally */ });
   },[paymentsLive,authToken,setProfile]);
 
@@ -328,6 +342,7 @@ function AppProvider({children}){
       mockTestsTaken: user.mockTestsTaken ?? p.mockTestsTaken,
       plan: user.plan ?? p.plan,
       preferredExam: user.preferredExam ?? p.preferredExam,
+      examPasses: user.examPasses ?? p.examPasses ?? [],
     }));
     if(user.revealedIds) setRevealedIds(user.revealedIds);
   },[setProfile,setRevealedIds]);
@@ -414,18 +429,25 @@ function AppProvider({children}){
 
   const isLoggedIn = !!authToken;
 
-  const upgradePlanDemo = useCallback((plan)=>{
+  const upgradePlanDemo = useCallback((plan, examId)=>{
+    if(plan === "exampass"){
+      const examShort = EXAMS.find(e=>e.id===examId)?.short || "This exam";
+      setProfile(p=>({...p, examPasses: p.examPasses?.includes(examId) ? p.examPasses : [...(p.examPasses||[]), examId]}));
+      notify(examShort+" Pass unlocked — payment isn't wired up in this prototype, but this exam's mock tests, results and PYQs are now open.", 3800);
+      return;
+    }
     setProfile(p=>({...p, plan}));
     notify((PLAN_LABELS[plan]||plan)+" unlocked — payment isn't wired up in this prototype, but every gated feature is now open.", 3600);
   },[setProfile,notify]);
 
-  const upgradePlanReal = useCallback(async (plan)=>{
+  const upgradePlanReal = useCallback(async (plan, examId)=>{
     const userId = authAccountId || getOrCreateUserId();
+    const examShort = examId ? (EXAMS.find(e=>e.id===examId)?.short || "Exam") : null;
     setCheckoutBusy(true);
     try{
       const orderRes = await fetch(`${PAYMENTS.backendUrl}/api/create-order`,{
         method:"POST", headers:{"Content-Type":"application/json"},
-        body: JSON.stringify({userId, plan}),
+        body: JSON.stringify({userId, plan, examId}),
       });
       if(!orderRes.ok){
         const err = await orderRes.json().catch(()=>({}));
@@ -441,7 +463,7 @@ function AppProvider({children}){
         currency: order.currency,
         order_id: order.orderId,
         name: "PE Prep",
-        description: (PLAN_LABELS[plan]||plan)+" subscription",
+        description: plan==="exampass" ? (examShort+" Pass") : (PLAN_LABELS[plan]||plan)+" subscription",
         prefill: { name: profile.name || "" },
         theme: { color: "#FF5A36" },
         handler: async (response)=>{
@@ -449,7 +471,7 @@ function AppProvider({children}){
             const verifyRes = await fetch(`${PAYMENTS.backendUrl}/api/verify-payment`,{
               method:"POST", headers:{"Content-Type":"application/json"},
               body: JSON.stringify({
-                userId, plan,
+                userId, plan, examId,
                 razorpay_order_id: response.razorpay_order_id,
                 razorpay_payment_id: response.razorpay_payment_id,
                 razorpay_signature: response.razorpay_signature,
@@ -457,8 +479,13 @@ function AppProvider({children}){
             });
             if(!verifyRes.ok) throw new Error("Payment could not be verified");
             const result = await verifyRes.json();
-            setProfile(p=>({...p, plan: result.plan}));
-            notify((PLAN_LABELS[plan]||plan)+" unlocked — payment verified.", 3600);
+            if(plan === "exampass"){
+              setProfile(p=>({...p, examPasses: result.examPasses || p.examPasses || []}));
+              notify(examShort+" Pass unlocked — payment verified.", 3600);
+            } else {
+              setProfile(p=>({...p, plan: result.plan}));
+              notify((PLAN_LABELS[plan]||plan)+" unlocked — payment verified.", 3600);
+            }
           }catch(e){
             notify("Payment succeeded but verification failed — please contact support before retrying.", 5000);
           }finally{
@@ -520,7 +547,7 @@ function AppProvider({children}){
     toast, notify,
     dailyState, setDailyState,
     studyPlan, setStudyPlan,
-    isPro, freeMocksUsed, mockLocked, upgradePlan, paymentsLive, checkoutBusy,
+    isPro, freeMocksUsed, mockLocked, upgradePlan, paymentsLive, checkoutBusy, hasExamAccess,
     FREE_PRACTICE_LIMIT_PER_SUBJECT, practicedBySubject, isSubjectLocked, freeQuestionsLeft, markRevealed,
     isLoggedIn, authBusy, signup, login, googleSignIn, logout, setPreferredExam,
   };

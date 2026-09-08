@@ -4,12 +4,12 @@
 // ============================================================================
 
 function PreviousYearPapersPage(){
-  const {routeParams, goto, mockLocked, isPro} = useApp();
+  const {routeParams, goto, mockLocked, isPro, hasExamAccess} = useApp();
   const [examFilter,setExamFilter] = useState(routeParams.exam || "All");
   const exams = ["All", ...new Set(PYQ_PAPERS.map(p=>p.exam))];
   const filtered = examFilter==="All" ? PYQ_PAPERS : PYQ_PAPERS.filter(p=>p.exam===examFilter);
   const [engine,setEngine] = useState(null);
-  const [showPaywall,setShowPaywall] = useState(false);
+  const [paywallPaper,setPaywallPaper] = useState(null);
   if(engine) return React.createElement(TestEngine,{mode:"mock", questions:engine.questions, title:engine.title,
     examMeta:{duration:engine.duration, negativeMarking:0.25}, onFinish:(r)=>goto("/mock-result",{result:{...r, examShort:engine.title}})});
 
@@ -17,28 +17,37 @@ function PreviousYearPapersPage(){
     React.createElement(SectionHeading,{eyebrow:"Previous Year Papers", title:"Attempt Real Exam Papers", lede:"Select an exam and year to attempt the paper online, view solutions, and get a detailed analysis.", right:
       !isPro && React.createElement("span",{className:"pill "+(mockLocked?"pill-danger":"pill-warning")}, mockLocked?"Free mock test used":"Free Plan · 1 free attempt")
     }),
-    // Gated on mockLocked too (not just showPaywall) so the card auto-hides
-    // the moment a real payment is verified, rather than waiting on a
-    // manual dismiss that could fire before payment actually completes.
-    showPaywall && mockLocked && React.createElement("div",{style:{marginBottom:24}}, React.createElement(MockPaywall,{title:"Unlock unlimited previous year papers"})),
+    // Gated per-paper (not per-page): a free-plan user might already hold a
+    // single-exam Pass that unlocks only some of these papers, or might have
+    // spent their one global free mock elsewhere. Auto-hides the moment a
+    // real payment is verified, rather than waiting on a manual dismiss.
+    paywallPaper && !isPro && !hasExamAccess(EXAMS.find(e=>e.short===paywallPaper.exam)?.id) && mockLocked &&
+      React.createElement("div",{style:{marginBottom:24}}, React.createElement(MockPaywall,{
+        title:"Unlock unlimited previous year papers",
+        examId: EXAMS.find(e=>e.short===paywallPaper.exam)?.id, examShort: paywallPaper.exam,
+      })),
     React.createElement("div",{className:"chip-select", style:{marginBottom:20}}, exams.map(e=>React.createElement("button",{key:e,className:"chip"+(examFilter===e?" active":""),onClick:()=>setExamFilter(e)},e))),
     React.createElement("div",{className:"grid grid-3"},
-      filtered.map(p=>React.createElement("div",{key:p.id, className:"card card-pad"},
-        React.createElement("div",{className:"flex justify-between", style:{marginBottom:8}},
-          React.createElement("span",{className:"pill pill-info"}, p.exam), p.tag && React.createElement("span",{className:"pill pill-gold"}, p.tag)),
-        React.createElement("h3",{className:"h3"}, p.exam+" — "+p.year),
-        React.createElement("p",{className:"tiny muted", style:{margin:"6px 0 14px"}}, p.questions+" Questions · "+p.duration+" minutes"),
-        React.createElement("div",{className:"flex-col gap-8"},
-          React.createElement("button",{className:"btn btn-primary btn-sm", onClick:()=>{
-            if(mockLocked){ setShowPaywall(true); window.scrollTo({top:0,behavior:"smooth"}); return; }
-            setEngine({questions: pick(QUESTION_BANK, Math.min(20, QUESTION_BANK.length)), title:p.exam+" "+p.year, duration:Math.min(p.duration,30)});
-          }}, mockLocked ? "Unlock to Attempt" : "Attempt Online", mockLocked && React.createElement(Icon,{name:"lock",size:13})),
-          React.createElement("div",{className:"flex gap-8"},
-            React.createElement("button",{className:"btn btn-outline btn-sm", style:{flex:1}, onClick:()=>goto("/question-bank",{exam:p.exam})}, "View Questions"),
-            React.createElement("button",{className:"btn btn-ghost btn-sm", style:{flex:1}}, "Download PDF")
+      filtered.map(p=>{
+        const examId = EXAMS.find(e=>e.short===p.exam)?.id;
+        const unlocked = isPro || hasExamAccess(examId) || !mockLocked;
+        return React.createElement("div",{key:p.id, className:"card card-pad"},
+          React.createElement("div",{className:"flex justify-between", style:{marginBottom:8}},
+            React.createElement("span",{className:"pill pill-info"}, p.exam), p.tag && React.createElement("span",{className:"pill pill-gold"}, p.tag)),
+          React.createElement("h3",{className:"h3"}, p.exam+" — "+p.year),
+          React.createElement("p",{className:"tiny muted", style:{margin:"6px 0 14px"}}, p.questions+" Questions · "+p.duration+" minutes"),
+          React.createElement("div",{className:"flex-col gap-8"},
+            React.createElement("button",{className:"btn btn-primary btn-sm", onClick:()=>{
+              if(!unlocked){ setPaywallPaper(p); window.scrollTo({top:0,behavior:"smooth"}); return; }
+              setEngine({questions: pick(QUESTION_BANK, Math.min(20, QUESTION_BANK.length)), title:p.exam+" "+p.year, duration:Math.min(p.duration,30)});
+            }}, unlocked ? "Attempt Online" : "Unlock to Attempt", !unlocked && React.createElement(Icon,{name:"lock",size:13})),
+            React.createElement("div",{className:"flex gap-8"},
+              React.createElement("button",{className:"btn btn-outline btn-sm", style:{flex:1}, onClick:()=>goto("/question-bank",{exam:p.exam})}, "View Questions"),
+              React.createElement("button",{className:"btn btn-ghost btn-sm", style:{flex:1}}, "Download PDF")
+            )
           )
-        )
-      ))
+        );
+      })
     )
   );
 }
@@ -207,10 +216,10 @@ function BookmarksPage(){
 
 /* --------------------------------- Pricing --------------------------------- */
 function PricingPage(){
-  const {notify, profile, isPro, upgradePlan, freeMocksUsed, paymentsLive, checkoutBusy} = useApp();
+  const {notify, profile, isPro, upgradePlan, freeMocksUsed, paymentsLive, checkoutBusy, hasExamAccess} = useApp();
   const plan = profile.plan||"free";
   const tiers = [
-    {id:"free",name:"Free",price:"₹0",period:"forever",features:["5 free explanations per subject","1 full mock test, then upgrade for more","Basic short notes","Limited analytics"],highlight:false},
+    {id:"free",name:"Free",price:"₹0",period:"forever",features:["5 free explanations per subject","1 full mock test, then upgrade for more","Basic short notes","Limited analytics","Or buy a single-exam Pass below — cheaper than full Pro"],highlight:false},
     {id:"pro",name:"Pro",price:"₹499",period:"/month",features:["Unlimited practice questions","Unlimited full mock tests","Detailed performance analytics","All previous year papers","Full study material & flashcards","Personalized study planner"],highlight:true},
     {id:"proplus",name:"Pro+",price:"₹899",period:"/month",features:["Everything in Pro","Advanced AI preparation coach","Personalized adaptive plan","Exclusive live courses","Premium test series with rank prediction"],highlight:false},
   ];
@@ -245,7 +254,27 @@ function PricingPage(){
       })
     ),
     React.createElement("p",{className:"tiny muted", style:{marginTop:18, textAlign:"center"}},
-      paymentsLive ? "Secured by Razorpay. Cancel anytime." : "Real payment gateway not connected in this deployment — see server/README.md to enable one.")
+      paymentsLive ? "Secured by Razorpay. Cancel anytime." : "Real payment gateway not connected in this deployment — see server/README.md to enable one."),
+
+    React.createElement("div",{style:{marginTop:56}},
+      React.createElement(SectionHeading,{eyebrow:"Prepare For Just One Exam?", title:"Single-exam passes", lede:"Most aspirants only prepare for one exam at a time. A Pass unlocks unlimited mock tests, full result analysis and previous year papers for that one exam only — at a fraction of full Pro's price."}),
+      React.createElement("div",{className:"grid grid-4"},
+        EXAMS.map(ex=>{
+          const owned = isPro || hasExamAccess(ex.id);
+          return React.createElement("div",{key:ex.id, className:"card card-pad"},
+            React.createElement("div",{className:"flex justify-between items-center", style:{marginBottom:12}},
+              React.createElement("div",{className:"exam-swatch", style:{background:"var(--ink)"}}, ex.short.slice(0,2)),
+              owned && React.createElement("span",{className:"pill pill-success"}, "Owned")
+            ),
+            React.createElement("h3",{className:"h3"}, ex.short),
+            React.createElement("p",{className:"tiny muted", style:{margin:"6px 0 14px"}}, ex.body),
+            React.createElement("div",{style:{margin:"0 0 14px"}}, React.createElement("span",{className:"h1 num"}, "₹"+EXAM_PASS_PRICE_INR), React.createElement("span",{className:"small muted"}, " one-time")),
+            React.createElement("button",{className:"btn btn-outline btn-sm btn-block", disabled:owned||checkoutBusy, onClick:()=>upgradePlan("exampass", ex.id)},
+              owned ? "Unlocked" : checkoutBusy ? "Opening secure checkout…" : "Get "+ex.short+" Pass")
+          );
+        })
+      )
+    )
   );
 }
 

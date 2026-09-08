@@ -47,7 +47,7 @@ function MockTestSetupPage(){
     return React.createElement(TestEngine,{
       mode:"mock", questions:engineConfig.questions, title:exam.short+" Mock Test",
       examMeta:{duration:length.minutes, negativeMarking:0.25, examName:exam.short},
-      onFinish:(result)=>goto("/mock-result",{result:{...result, examShort:exam.short}})
+      onFinish:(result)=>goto("/mock-result",{result:{...result, examShort:exam.short, examId:exam.id}})
     });
   }
 
@@ -58,7 +58,7 @@ function MockTestSetupPage(){
         React.createElement("div",{className:"exam-swatch", style:{width:52,height:52,background:"var(--ink)"}}, exam.short.slice(0,2)),
         React.createElement("div",null, React.createElement("h2",{className:"h1"}, exam.short+" Mock Test"), React.createElement("p",{className:"small muted"}, exam.pattern))
       ),
-      !isPro && React.createElement("div",{className:"pill pill-warning", style:{marginBottom:18}}, "Free Plan · your score is always free — full result analysis needs Pro"),
+      !isPro && React.createElement("div",{className:"pill pill-warning", style:{marginBottom:18}}, "Free Plan · your score is always free — full analysis needs Pro or the "+exam.short+" Pass"),
       React.createElement("div",{className:"field", style:{marginBottom:20}},
         React.createElement("span",{className:"label"}, "Test Length"),
         React.createElement("div",{className:"chip-select", style:{marginTop:8}},
@@ -103,7 +103,7 @@ function MockResultPage(){
   // Everything past that (rank, percentile, subject/difficulty breakdowns,
   // accuracy trend, coach insights, "what to study next") is a Pro-only
   // detailed analysis, gated here rather than before the test begins.
-  const {routeParams, goto, mockHistory, saveMockResult, isPro} = useApp();
+  const {routeParams, goto, mockHistory, saveMockResult, isPro, hasExamAccess, upgradePlan, paymentsLive, checkoutBusy} = useApp();
   const result = routeParams.result;
   const savedRef = useRef(false);
   useEffect(()=>{
@@ -115,6 +115,10 @@ function MockResultPage(){
     React.createElement("div",{className:"empty-state"}, "No recent mock test result found.",
       React.createElement("div",{style:{marginTop:14}}, React.createElement("button",{className:"btn btn-primary", onClick:()=>goto("/mock-tests")}, "Take a Mock Test"))));
 
+  // Full Pro unlocks every exam's results; a cheaper single-exam Pass (see
+  // Pricing) unlocks the same detailed analysis but only for this exam.
+  const unlocked = isPro || hasExamAccess(result.examId);
+  const examShort = result.examShort || "this exam";
   const sorted = [...result.subjectPerf].sort((a,b)=>a.accuracy-b.accuracy);
   const weakest = sorted[0], strongest = sorted[sorted.length-1];
   const percentile = clamp(Math.round(40 + result.accuracy*0.5 + (result.score/result.maxScore)*10), 5, 99);
@@ -131,11 +135,12 @@ function MockResultPage(){
       React.createElement("p",{className:"small muted"}, result.attempted+" of "+result.totalQuestions+" questions attempted · "+result.accuracy+"% accuracy")
     ),
 
-    !isPro
+    !unlocked
       ? React.createElement("div",{style:{marginBottom:24}},
           React.createElement(MockPaywall,{
             title:"Unlock Your Full Result Analysis",
-            desc:"Your score is always free to see. Upgrade to Pro to unlock your rank, percentile, subject-wise and difficulty-wise breakdowns, accuracy trend and personalized coaching insights for every mock test you take.",
+            desc:"Your score is always free to see. Upgrade to Pro (unlocks every exam) or get the "+examShort+" Pass — ₹"+EXAM_PASS_PRICE_INR+" for unlimited "+examShort+" mock tests, rank, percentile, subject/difficulty breakdowns, accuracy trend and coaching insights for this exam only.",
+            examId: result.examId, examShort,
           })
         )
       : React.createElement(React.Fragment,null,
