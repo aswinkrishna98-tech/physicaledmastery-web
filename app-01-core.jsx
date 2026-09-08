@@ -86,7 +86,7 @@ function useApp(){ return useContext(AppCtx); }
 
 const DEFAULT_PROFILE = {
   name:"Aspirant", xp: 0, streak: 0, lastActiveDate: null, questionsSolved: 0, accuracySum: 0,
-  mockTestsTaken: 0, joined: todayStr(), loggedIn: true, plan: "free",
+  mockTestsTaken: 0, joined: todayStr(), loggedIn: true, plan: "free", preferredExam: null,
 };
 const FREE_MOCK_LIMIT = 1; // free-plan aspirants get one full mock test before the paywall
 const FREE_PRACTICE_LIMIT_PER_SUBJECT = 5; // free-plan aspirants get 5 "quality content" reveals (explanation + concept notes) per subject before the paywall
@@ -327,6 +327,7 @@ function AppProvider({children}){
       accuracySum: user.accuracySum ?? p.accuracySum,
       mockTestsTaken: user.mockTestsTaken ?? p.mockTestsTaken,
       plan: user.plan ?? p.plan,
+      preferredExam: user.preferredExam ?? p.preferredExam,
     }));
     if(user.revealedIds) setRevealedIds(user.revealedIds);
   },[setProfile,setRevealedIds]);
@@ -353,6 +354,7 @@ function AppProvider({children}){
         body: JSON.stringify({
           name: profile.name, xp: profile.xp, streak: profile.streak, lastActiveDate: profile.lastActiveDate,
           questionsSolved: profile.questionsSolved, accuracySum: profile.accuracySum, mockTestsTaken: profile.mockTestsTaken,
+          preferredExam: profile.preferredExam,
           revealedIds,
         }),
       }).catch(()=>{ /* offline or backend unreachable — local copy stays authoritative until next sync */ });
@@ -369,15 +371,19 @@ function AppProvider({children}){
     return data;
   },[]);
 
-  const signup = useCallback(async (email, password, name)=>{
+  const signup = useCallback(async (email, password, name, preferredExam)=>{
     setAuthBusy(true);
     try{
-      const data = await authRequest("/api/auth/signup", {email, password, name});
+      const data = await authRequest("/api/auth/signup", {email, password, name, preferredExam: preferredExam || null});
       setAuthToken(data.token);
       applyAccount(data.user);
       notify("Welcome to PE Prep, "+data.user.name+"! Your progress will now follow you across devices.", 4000);
     } finally { setAuthBusy(false); }
   },[authRequest,applyAccount,notify,setAuthToken]);
+
+  const setPreferredExam = useCallback((examId)=>{
+    setProfile(p=>({...p, preferredExam: examId || null}));
+  },[setProfile]);
 
   const login = useCallback(async (email, password)=>{
     setAuthBusy(true);
@@ -478,15 +484,19 @@ function AppProvider({children}){
 
   const upgradePlan = paymentsLive ? upgradePlanReal : upgradePlanDemo;
 
-  // derived accuracy across attempts
+  // derived accuracy across attempts — an honest null (not a fabricated
+  // baseline) until the user has actually attempted something, so a brand
+  // new account never appears to already have progress.
   const accuracy = useMemo(()=>{
     const list = Object.values(attempts);
-    if(list.length===0) return 78; // demo baseline before any activity
+    if(list.length===0) return null;
     const correct = list.filter(a=>a.correct).length;
     return Math.round((correct/list.length)*100);
   },[attempts]);
 
-  // derived weak/strong subjects from real attempts, seeded with demo baseline if empty
+  // derived weak/strong subjects from real attempts only — no demo rows are
+  // mixed in, so a new user honestly sees an empty state instead of
+  // fabricated "weak areas" they never actually got wrong.
   const subjectStats = useMemo(()=>{
     const stats = {};
     Object.values(attempts).forEach(a=>{
@@ -495,16 +505,7 @@ function AppProvider({children}){
       stats[a.subject].total++;
       if(a.correct) stats[a.subject].correct++;
     });
-    let rows = Object.entries(stats).map(([subject,s])=>({subject, accuracy: Math.round((s.correct/s.total)*100), total:s.total}));
-    if(rows.length < 3){
-      const demo = [
-        {subject:"Anatomy",accuracy:82,total:40},{subject:"Physiology",accuracy:76,total:35},
-        {subject:"Biomechanics",accuracy:52,total:18},{subject:"Test, Measurement & Evaluation",accuracy:58,total:22},
-        {subject:"Sports Psychology",accuracy:61,total:26},{subject:"Sports Training",accuracy:71,total:30},
-      ];
-      const have = new Set(rows.map(r=>r.subject));
-      demo.forEach(d=>{ if(!have.has(d.subject)) rows.push(d); });
-    }
+    const rows = Object.entries(stats).map(([subject,s])=>({subject, accuracy: Math.round((s.correct/s.total)*100), total:s.total}));
     return rows.sort((a,b)=>a.accuracy-b.accuracy);
   },[attempts]);
 
@@ -521,7 +522,7 @@ function AppProvider({children}){
     studyPlan, setStudyPlan,
     isPro, freeMocksUsed, mockLocked, upgradePlan, paymentsLive, checkoutBusy,
     FREE_PRACTICE_LIMIT_PER_SUBJECT, practicedBySubject, isSubjectLocked, freeQuestionsLeft, markRevealed,
-    isLoggedIn, authBusy, signup, login, googleSignIn, logout,
+    isLoggedIn, authBusy, signup, login, googleSignIn, logout, setPreferredExam,
   };
   return React.createElement(AppCtx.Provider,{value}, children);
 }

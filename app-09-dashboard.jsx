@@ -8,7 +8,7 @@ function greeting(){
 }
 
 function DashboardPage(){
-  const {profile, setProfile, accuracy, subjectStats, goto, wrongLog, bookmarks, mockHistory, isPro, mockLocked, isLoggedIn, logout} = useApp();
+  const {profile, setProfile, setPreferredExam, accuracy, subjectStats, goto, wrongLog, bookmarks, mockHistory, isPro, isLoggedIn, logout} = useApp();
   const editName = ()=>{
     const next = window.prompt("What should we call you?", profile.name);
     if(next && next.trim()) setProfile(p=>({...p, name: next.trim().slice(0,40)}));
@@ -18,10 +18,11 @@ function DashboardPage(){
   const mistakesCount = Object.keys(wrongLog).length;
   const level = Math.floor(profile.xp/1000)+1;
   const levelProgress = (profile.xp%1000)/10;
+  const recommendedExam = EXAMS.find(e=>e.id===profile.preferredExam) || EXAMS.find(e=>e.id==="kvs-pgt") || EXAMS[0];
 
   const recommended = [
     weak[0] && {t:weak[0].subject+" Practice Set", d:"20 questions targeting your weakest area", action:()=>goto("/question-bank",{subject:weak[0].subject})},
-    {t:"KVS PE Mock Test", d:"Full-length simulation with negative marking", action:()=>goto("/mock-test-setup",{examId:"kvs-pgt"})},
+    {t:recommendedExam.short+" Mock Test", d:"Full-length simulation with negative marking", action:()=>goto("/mock-test-setup",{examId:recommendedExam.id})},
     weak[1] && {t:weak[1].subject+" Revision", d:"Quick facts and flashcards", action:()=>goto("/flashcards")},
     {t:"Today's PE Challenge", d:"10 questions · 5 minutes", action:()=>goto("/daily-challenge")},
   ].filter(Boolean);
@@ -40,7 +41,15 @@ function DashboardPage(){
               React.createElement("a",{href:"#", onClick:e=>{e.preventDefault(); logout();}}, "Sign out"))
           : React.createElement("p",{className:"small muted", style:{marginTop:4}},
               "Browsing as a guest — progress stays on this device only. ",
-              React.createElement("a",{href:"#/login", onClick:e=>{e.preventDefault(); goto("/login");}}, "Sign in to save it"))
+              React.createElement("a",{href:"#/login", onClick:e=>{e.preventDefault(); goto("/login");}}, "Sign in to save it")),
+        React.createElement("div",{className:"flex items-center gap-8", style:{marginTop:8}},
+          React.createElement("span",{className:"small muted"}, "Preparing for:"),
+          React.createElement("select",{className:"select", style:{padding:"6px 10px", fontSize:13}, value: profile.preferredExam||"",
+            onChange:e=>setPreferredExam(e.target.value)},
+            React.createElement("option",{value:""}, "Not set — showing general content"),
+            EXAMS.map(ex=>React.createElement("option",{key:ex.id, value:ex.id}, ex.short))
+          )
+        )
       ),
       React.createElement("div",{className:"flex items-center gap-10"},
         React.createElement(PlanBadge,null),
@@ -48,15 +57,15 @@ function DashboardPage(){
         !isPro && React.createElement("button",{className:"btn btn-primary btn-sm", onClick:()=>goto("/pricing")}, "Upgrade")
       )
     ),
-    !isPro && mockLocked && React.createElement("div",{className:"card card-pad", style:{marginBottom:20, borderColor:"var(--warning)", display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:12}},
+    !isPro && mockHistory.length>0 && React.createElement("div",{className:"card card-pad", style:{marginBottom:20, borderColor:"var(--warning)", display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:12}},
       React.createElement("div",null,
-        React.createElement("span",{className:"pill pill-warning", style:{marginBottom:6}}, "Free mock test used"),
-        React.createElement("p",{className:"small muted"}, "Upgrade to Pro to take unlimited mock tests and unlock full previous-year papers.")),
+        React.createElement("span",{className:"pill pill-warning", style:{marginBottom:6}}, "Free Plan"),
+        React.createElement("p",{className:"small muted"}, "Your mock test scores are always free. Upgrade to Pro to unlock rank, percentile, subject-wise breakdowns and full previous-year papers.")),
       React.createElement("button",{className:"btn btn-outline btn-sm", onClick:()=>goto("/pricing")}, "View Plans")
     ),
     React.createElement("div",{className:"grid grid-4", style:{marginBottom:12}},
       React.createElement(StatTile,{label:"Questions Solved", value:profile.questionsSolved.toLocaleString()}),
-      React.createElement(StatTile,{label:"Accuracy", value:accuracy+"%"}),
+      React.createElement(StatTile,{label:"Accuracy", value: accuracy==null ? "—" : accuracy+"%"}),
       React.createElement(StatTile,{label:"Mock Tests", value:profile.mockTestsTaken}),
       React.createElement(StatTile,{label:"Study Streak", value:profile.streak+" days", sub:"🔥 keep it going", subClass:"pill-warning"})
     ),
@@ -102,11 +111,14 @@ function DashboardPage(){
         React.createElement("button",{className:"btn btn-ghost btn-sm", onClick:()=>goto("/leaderboard")}, "View Leaderboard", React.createElement(Icon,{name:"chevronRight",size:14}))
       ),
       React.createElement("div",{className:"grid grid-4"},
-        BADGES.map(b=>React.createElement("div",{key:b.id, className:"badge-tile"+(b.earned?"":" locked")},
-          React.createElement("div",{className:"badge-icon"}, b.icon),
-          React.createElement("div",{className:"small", style:{fontWeight:600, marginTop:6}}, b.name),
-          React.createElement("div",{className:"tiny muted"}, b.desc)
-        ))
+        BADGES.map(b=>{
+          const earned = isBadgeEarned(b.id, {profile, mockHistory});
+          return React.createElement("div",{key:b.id, className:"badge-tile"+(earned?"":" locked")},
+            React.createElement("div",{className:"badge-icon"}, b.icon),
+            React.createElement("div",{className:"small", style:{fontWeight:600, marginTop:6}}, b.name),
+            React.createElement("div",{className:"tiny muted"}, b.desc)
+          );
+        })
       )
     )
   );

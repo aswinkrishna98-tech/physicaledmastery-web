@@ -9,31 +9,36 @@ const TEST_LENGTHS = [
 ];
 
 function MockTestsPage(){
-  const {goto, mockLocked, isPro} = useApp();
+  const {goto, isPro, profile} = useApp();
+  const examsSorted = useMemo(()=>{
+    if(!profile.preferredExam) return EXAMS;
+    const idx = EXAMS.findIndex(e=>e.id===profile.preferredExam);
+    if(idx<=0) return EXAMS;
+    const copy = [...EXAMS]; const [pref] = copy.splice(idx,1); copy.unshift(pref); return copy;
+  },[profile.preferredExam]);
   return React.createElement("div",{className:"container", style:{padding:"36px 24px 64px"}},
     React.createElement(SectionHeading,{eyebrow:"Mock Tests", title:"Realistic, timed exam simulations", lede:"Full-screen test mode with timer, question palette, negative marking and auto-submit — built to mirror the real exam experience.", right:
-      !isPro && React.createElement("span",{className:"pill "+(mockLocked?"pill-danger":"pill-warning")}, mockLocked?"Free mock test used — upgrade for more":"Free Plan · 1 free mock test")
+      !isPro && React.createElement("span",{className:"pill pill-warning"}, "Free Plan · full result analysis needs Pro")
     }),
     React.createElement("div",{className:"grid grid-4"},
-      EXAMS.map(ex=>React.createElement("div",{key:ex.id,className:"card card-pad card-hover"},
-        React.createElement("div",{className:"flex justify-between", style:{marginBottom:12}},
+      examsSorted.map(ex=>React.createElement("div",{key:ex.id,className:"card card-pad card-hover"},
+        React.createElement("div",{className:"flex justify-between items-center", style:{marginBottom:12}},
           React.createElement("div",{className:"exam-swatch", style:{background:"var(--ink)"}}, ex.short.slice(0,2)),
-          mockLocked && React.createElement(Icon,{name:"lock",size:16,style:{color:"var(--muted-2)"}})
+          ex.id===profile.preferredExam && React.createElement("span",{className:"pill pill-gold", style:{fontSize:10}}, "Your Exam")
         ),
         React.createElement("h3",{className:"h3"}, ex.short),
         React.createElement("p",{className:"tiny muted", style:{margin:"6px 0 12px"}}, ex.pattern),
-        React.createElement("button",{className:"btn btn-outline btn-sm btn-block", onClick:()=>goto("/mock-test-setup",{examId:ex.id})}, mockLocked?"Unlock Mock Test":"Configure Mock Test")
+        React.createElement("button",{className:"btn btn-outline btn-sm btn-block", onClick:()=>goto("/mock-test-setup",{examId:ex.id})}, "Configure Mock Test")
       ))
     )
   );
 }
 
 function MockTestSetupPage(){
-  // mockLocked is derived live from profile.plan (see AppProvider), so this
-  // page re-renders unlocked automatically the moment a real payment is
-  // verified (or the demo toggle flips the plan) — no local "unlocked" flag
-  // to keep in sync, and nothing a user can trigger just by clicking a button.
-  const {routeParams, goto, mockLocked, isPro, freeMocksUsed} = useApp();
+  // Anyone — free or Pro — can start and complete any mock test. The plan
+  // only affects how much of the RESULT they see afterwards (see
+  // MockResultPage) — there's no pre-test paywall any more.
+  const {routeParams, goto, isPro} = useApp();
   const exam = EXAMS.find(e=>e.id===routeParams.examId) || EXAMS[0];
   const [length,setLength] = useState(TEST_LENGTHS[1]);
   const [engineConfig,setEngineConfig] = useState(null);
@@ -46,14 +51,6 @@ function MockTestSetupPage(){
     });
   }
 
-  if(mockLocked){
-    return React.createElement("div",{className:"container", style:{padding:"36px 24px 64px", maxWidth:760}},
-      React.createElement("button",{className:"btn btn-ghost btn-sm", onClick:()=>goto("/mock-tests")}, React.createElement(Icon,{name:"chevronLeft",size:14}),"All Mock Tests"),
-      React.createElement("div",{style:{marginTop:16}},
-        React.createElement(MockPaywall,{title:"Unlock "+exam.short+" Mock Tests"}))
-    );
-  }
-
   return React.createElement("div",{className:"container", style:{padding:"36px 24px 64px", maxWidth:760}},
     React.createElement("button",{className:"btn btn-ghost btn-sm", onClick:()=>goto("/mock-tests")}, React.createElement(Icon,{name:"chevronLeft",size:14}),"All Mock Tests"),
     React.createElement("div",{className:"card card-pad", style:{marginTop:16}},
@@ -61,7 +58,7 @@ function MockTestSetupPage(){
         React.createElement("div",{className:"exam-swatch", style:{width:52,height:52,background:"var(--ink)"}}, exam.short.slice(0,2)),
         React.createElement("div",null, React.createElement("h2",{className:"h1"}, exam.short+" Mock Test"), React.createElement("p",{className:"small muted"}, exam.pattern))
       ),
-      !isPro && React.createElement("div",{className:"pill pill-warning", style:{marginBottom:18}}, freeMocksUsed>0 ? "Free mock test already used" : "Free Plan · this is your 1 free full mock test"),
+      !isPro && React.createElement("div",{className:"pill pill-warning", style:{marginBottom:18}}, "Free Plan · your score is always free — full result analysis needs Pro"),
       React.createElement("div",{className:"field", style:{marginBottom:20}},
         React.createElement("span",{className:"label"}, "Test Length"),
         React.createElement("div",{className:"chip-select", style:{marginTop:8}},
@@ -101,7 +98,12 @@ function CoachInsights({result, weakest, strongest}){
 }
 
 function MockResultPage(){
-  const {routeParams, goto, mockHistory, saveMockResult} = useApp();
+  // "Let them finish, then lock results": every user — free or Pro — can
+  // start and complete any mock test. The score is always shown for free.
+  // Everything past that (rank, percentile, subject/difficulty breakdowns,
+  // accuracy trend, coach insights, "what to study next") is a Pro-only
+  // detailed analysis, gated here rather than before the test begins.
+  const {routeParams, goto, mockHistory, saveMockResult, isPro} = useApp();
   const result = routeParams.result;
   const savedRef = useRef(false);
   useEffect(()=>{
@@ -122,56 +124,69 @@ function MockResultPage(){
 
   return React.createElement("div",{className:"container", style:{padding:"36px 24px 72px"}},
     React.createElement(SectionHeading,{eyebrow:result.examShort||"Mock Test", title:"Your Result", lede: new Date(result.date).toLocaleString()}),
-    React.createElement("div",{className:"grid grid-4", style:{marginBottom:24}},
-      React.createElement("div",{className:"card card-pad", style:{textAlign:"center"}},
-        React.createElement("div",{className:"stat-label"}, "Your Score"),
-        React.createElement("div",{className:"num", style:{fontSize:34, fontWeight:700, margin:"6px 0"}}, result.score+" / "+result.maxScore)
-      ),
-      React.createElement("div",{className:"card card-pad", style:{textAlign:"center"}},
-        React.createElement(DonutChart,{value:result.accuracy, size:90, color:"var(--info)", label:result.accuracy+"%"}),
-        React.createElement("div",{className:"tiny muted", style:{marginTop:6}}, "Accuracy")
-      ),
-      React.createElement(StatTile,{label:"Rank (demo)", value:"#"+rank, sub:"Top "+(100-percentile)+"%", subClass:"pill-gold"}),
-      React.createElement(StatTile,{label:"Percentile", value:percentile+"ile"})
+
+    React.createElement("div",{className:"card card-pad", style:{textAlign:"center", marginBottom:24, padding:"40px 24px"}},
+      React.createElement("div",{className:"stat-label"}, "Your Score"),
+      React.createElement("div",{className:"num", style:{fontSize:44, fontWeight:700, margin:"10px 0"}}, result.score+" / "+result.maxScore),
+      React.createElement("p",{className:"small muted"}, result.attempted+" of "+result.totalQuestions+" questions attempted · "+result.accuracy+"% accuracy")
     ),
-    React.createElement("div",{className:"grid grid-4", style:{marginBottom:28}},
-      React.createElement(StatTile,{label:"Attempted", value:result.attempted+"/"+result.totalQuestions}),
-      React.createElement(StatTile,{label:"Correct", value:result.correct, subClass:"pill-success", sub:"correct"}),
-      React.createElement(StatTile,{label:"Incorrect", value:result.incorrect, subClass:"pill-danger", sub:"incorrect"}),
-      React.createElement(StatTile,{label:"Unattempted", value:result.unattempted})
-    ),
-    React.createElement("div",{className:"grid grid-2", style:{marginBottom:24}},
-      React.createElement("div",{className:"card card-pad"},
-        React.createElement("h3",{className:"h3", style:{marginBottom:14}}, "Subject-wise Performance"),
-        React.createElement(BarChart,{data: result.subjectPerf.map(s=>({label:s.subject,value:s.accuracy}))})
-      ),
-      React.createElement("div",{className:"card card-pad"},
-        React.createElement("h3",{className:"h3", style:{marginBottom:14}}, "Difficulty-wise Performance"),
-        React.createElement(BarChart,{data: result.diffPerf.map(s=>({label:s.difficulty,value:s.accuracy})), colorFn:()=>"var(--info)"})
-      )
-    ),
-    React.createElement("div",{className:"grid grid-2", style:{marginBottom:24}},
-      React.createElement("div",{className:"card card-pad"},
-        React.createElement("h3",{className:"h3", style:{marginBottom:14}}, "Accuracy Trend (recent mocks)"),
-        React.createElement(LineChart,{points:trend})
-      ),
-      React.createElement("div",{className:"card card-pad"},
-        React.createElement("h3",{className:"h3", style:{marginBottom:6}}, "Time Analysis"),
-        React.createElement("div",{className:"grid grid-2", style:{marginTop:12}},
-          React.createElement(StatTile,{label:"Total Time", value:fmtTime(result.totalTime)}),
-          React.createElement(StatTile,{label:"Avg Time / Question", value:result.avgTimePerQ+"s"})
+
+    !isPro
+      ? React.createElement("div",{style:{marginBottom:24}},
+          React.createElement(MockPaywall,{
+            title:"Unlock Your Full Result Analysis",
+            desc:"Your score is always free to see. Upgrade to Pro to unlock your rank, percentile, subject-wise and difficulty-wise breakdowns, accuracy trend and personalized coaching insights for every mock test you take.",
+          })
         )
-      )
-    ),
-    React.createElement("div",{className:"grid grid-2", style:{marginBottom:24}},
-      React.createElement(CoachInsights,{result, weakest, strongest}),
-      weakest && React.createElement("div",{className:"card card-pad"},
-        React.createElement("div",{className:"eyebrow", style:{marginBottom:8}}, "What should you study next?"),
-        React.createElement("h3",{className:"h1", style:{fontSize:22}}, weakest.subject+" — Needs Improvement"),
-        React.createElement("p",{className:"small muted", style:{margin:"8px 0 16px"}}, "Accuracy: "+weakest.accuracy+"%"),
-        React.createElement("button",{className:"btn btn-primary", onClick:()=>goto("/question-bank",{subject:weakest.subject})}, "Practice "+weakest.subject)
-      )
-    ),
+      : React.createElement(React.Fragment,null,
+          React.createElement("div",{className:"grid grid-3", style:{marginBottom:24}},
+            React.createElement("div",{className:"card card-pad", style:{textAlign:"center"}},
+              React.createElement(DonutChart,{value:result.accuracy, size:90, color:"var(--info)", label:result.accuracy+"%"}),
+              React.createElement("div",{className:"tiny muted", style:{marginTop:6}}, "Accuracy")
+            ),
+            React.createElement(StatTile,{label:"Rank (demo)", value:"#"+rank, sub:"Top "+(100-percentile)+"%", subClass:"pill-gold"}),
+            React.createElement(StatTile,{label:"Percentile", value:percentile+"ile"})
+          ),
+          React.createElement("div",{className:"grid grid-4", style:{marginBottom:28}},
+            React.createElement(StatTile,{label:"Attempted", value:result.attempted+"/"+result.totalQuestions}),
+            React.createElement(StatTile,{label:"Correct", value:result.correct, subClass:"pill-success", sub:"correct"}),
+            React.createElement(StatTile,{label:"Incorrect", value:result.incorrect, subClass:"pill-danger", sub:"incorrect"}),
+            React.createElement(StatTile,{label:"Unattempted", value:result.unattempted})
+          ),
+          React.createElement("div",{className:"grid grid-2", style:{marginBottom:24}},
+            React.createElement("div",{className:"card card-pad"},
+              React.createElement("h3",{className:"h3", style:{marginBottom:14}}, "Subject-wise Performance"),
+              React.createElement(BarChart,{data: result.subjectPerf.map(s=>({label:s.subject,value:s.accuracy}))})
+            ),
+            React.createElement("div",{className:"card card-pad"},
+              React.createElement("h3",{className:"h3", style:{marginBottom:14}}, "Difficulty-wise Performance"),
+              React.createElement(BarChart,{data: result.diffPerf.map(s=>({label:s.difficulty,value:s.accuracy})), colorFn:()=>"var(--info)"})
+            )
+          ),
+          React.createElement("div",{className:"grid grid-2", style:{marginBottom:24}},
+            React.createElement("div",{className:"card card-pad"},
+              React.createElement("h3",{className:"h3", style:{marginBottom:14}}, "Accuracy Trend (recent mocks)"),
+              React.createElement(LineChart,{points:trend})
+            ),
+            React.createElement("div",{className:"card card-pad"},
+              React.createElement("h3",{className:"h3", style:{marginBottom:6}}, "Time Analysis"),
+              React.createElement("div",{className:"grid grid-2", style:{marginTop:12}},
+                React.createElement(StatTile,{label:"Total Time", value:fmtTime(result.totalTime)}),
+                React.createElement(StatTile,{label:"Avg Time / Question", value:result.avgTimePerQ+"s"})
+              )
+            )
+          ),
+          React.createElement("div",{className:"grid grid-2", style:{marginBottom:24}},
+            React.createElement(CoachInsights,{result, weakest, strongest}),
+            weakest && React.createElement("div",{className:"card card-pad"},
+              React.createElement("div",{className:"eyebrow", style:{marginBottom:8}}, "What should you study next?"),
+              React.createElement("h3",{className:"h1", style:{fontSize:22}}, weakest.subject+" — Needs Improvement"),
+              React.createElement("p",{className:"small muted", style:{margin:"8px 0 16px"}}, "Accuracy: "+weakest.accuracy+"%"),
+              React.createElement("button",{className:"btn btn-primary", onClick:()=>goto("/question-bank",{subject:weakest.subject})}, "Practice "+weakest.subject)
+            )
+          )
+        ),
+
     React.createElement("div",{className:"flex gap-12 wrap"},
       React.createElement("button",{className:"btn btn-primary", onClick:()=>goto("/mock-tests")}, "Take Another Mock Test"),
       React.createElement("button",{className:"btn btn-outline", onClick:()=>goto("/dashboard")}, "View Full Dashboard"),

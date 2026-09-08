@@ -163,16 +163,40 @@ const STUDY_NOTES = [
 ];
 
 // ---- Badges / Gamification ----
+// `earned` here is just a fallback shape — nobody starts with any badge
+// earned. The real, live earned/locked state is computed per-user by
+// isBadgeEarned() below, from that user's own profile and mock history, so a
+// brand new account never shows pre-earned badges.
 const BADGES = [
-  {id:"b1",icon:"🏆",name:"PE Master",desc:"Complete 10 full mock tests",earned:true},
+  {id:"b1",icon:"🏆",name:"PE Master",desc:"Complete 10 full mock tests",earned:false},
   {id:"b2",icon:"🔥",name:"30-Day Streak",desc:"Practice for 30 consecutive days",earned:false},
-  {id:"b3",icon:"🎯",name:"90% Accuracy",desc:"Achieve 90%+ accuracy in a mock test",earned:true},
+  {id:"b3",icon:"🎯",name:"90% Accuracy",desc:"Achieve 90%+ accuracy in a mock test",earned:false},
   {id:"b4",icon:"📚",name:"10,000 Questions",desc:"Attempt 10,000 practice questions",earned:false},
-  {id:"b5",icon:"⚡",name:"Speed Demon",desc:"Average under 40 sec/question in a mock",earned:true},
+  {id:"b5",icon:"⚡",name:"Speed Demon",desc:"Average under 40 sec/question in a mock",earned:false},
   {id:"b6",icon:"🥇",name:"Mock Test Champion",desc:"Rank #1 on a weekly mock leaderboard",earned:false},
-  {id:"b7",icon:"🧠",name:"Concept Collector",desc:"Complete 50 'Learn the Concept' modules",earned:true},
+  {id:"b7",icon:"🧠",name:"Concept Collector",desc:"Complete 50 'Learn the Concept' modules",earned:false},
   {id:"b8",icon:"🌅",name:"Early Bird",desc:"Complete the Daily Challenge before 8 AM, 10 times",earned:false},
 ];
+
+// Real unlock criteria, evaluated against the current user's own profile and
+// mock history (never against demo/global data). Badges b6-b8 track activity
+// (weekly leaderboard rank history, "Learn the Concept" module completions,
+// early-morning Daily Challenge timestamps) that this MVP doesn't record yet,
+// so they honestly stay locked for everyone until that tracking is built.
+const BADGE_CRITERIA = {
+  b1: ({profile}) => (profile.mockTestsTaken||0) >= 10,
+  b2: ({profile}) => (profile.streak||0) >= 30,
+  b3: ({mockHistory}) => (mockHistory||[]).some(m => m.accuracy >= 90),
+  b4: ({profile}) => (profile.questionsSolved||0) >= 10000,
+  b5: ({mockHistory}) => (mockHistory||[]).some(m => m.avgTimePerQ != null && m.avgTimePerQ < 40),
+  b6: () => false,
+  b7: () => false,
+  b8: () => false,
+};
+function isBadgeEarned(badgeId, ctx){
+  const fn = BADGE_CRITERIA[badgeId];
+  return fn ? !!fn(ctx) : false;
+}
 
 // ---- Leaderboard demo rows ----
 function makeLeaderboard(seedNames){

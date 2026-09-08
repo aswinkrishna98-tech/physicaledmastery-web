@@ -9,6 +9,7 @@ function AuthPage(){
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [preferredExam, setPreferredExam] = useState("");
   const [error, setError] = useState("");
   const googleBtnRef = useRef(null);
 
@@ -36,7 +37,7 @@ function AuthPage(){
     e.preventDefault();
     setError("");
     try{
-      if(mode === "signup") await signup(email, password, name);
+      if(mode === "signup") await signup(email, password, name, preferredExam);
       else await login(email, password);
       goto("/dashboard");
     }catch(err){
@@ -64,6 +65,12 @@ function AuthPage(){
         React.createElement("input",{className:"input", type:"password", required:true, minLength:6,
           placeholder:"Password (min. 6 characters)", value:password, onChange:e=>setPassword(e.target.value),
           style:{marginBottom:14, width:"100%"}}),
+        mode==="signup" && React.createElement("div",{style:{marginBottom:14}},
+          React.createElement("select",{className:"select", style:{width:"100%"}, value:preferredExam, onChange:e=>setPreferredExam(e.target.value)},
+            React.createElement("option",{value:""}, "Which exam are you preparing for? (optional)"),
+            EXAMS.map(ex=>React.createElement("option",{key:ex.id, value:ex.id}, ex.short))
+          )
+        ),
         error && React.createElement("p",{className:"small", style:{color:"var(--danger)", marginBottom:12}}, error),
         React.createElement("button",{className:"btn btn-primary", type:"submit", disabled:authBusy, style:{width:"100%"}},
           authBusy ? "Please wait…" : (mode==="signup" ? "Create account" : "Sign in"))

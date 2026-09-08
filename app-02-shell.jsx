@@ -221,13 +221,13 @@ function PlanBadge(){
 // reading mockLocked re-renders unlocked on its own. That matters once real
 // payments are live: the paywall must NOT disappear until payment is
 // verified, which is asynchronous.
-function MockPaywall({title}){
+function MockPaywall({title, desc}){
   const {goto, upgradePlan, paymentsLive, checkoutBusy} = useApp();
   return React.createElement("div",{className:"card card-pad", style:{textAlign:"center", padding:"48px 28px", background:"linear-gradient(150deg, var(--ink) 0%, var(--info) 160%)", color:"#fff"}},
     React.createElement("div",{style:{fontSize:34, marginBottom:10}}, "🔒"),
     React.createElement("h3",{className:"h1", style:{color:"#fff"}}, title || "You've used your free mock test"),
     React.createElement("p",{className:"small", style:{color:"rgba(255,255,255,.8)", margin:"10px auto 24px", maxWidth:440}},
-      "Free plan includes one full-length mock test to try the experience. Upgrade to Pro for unlimited mock tests, previous year papers, and full performance analytics."),
+      desc || "Free plan includes one full-length mock test to try the experience. Upgrade to Pro for unlimited mock tests, previous year papers, and full performance analytics."),
     React.createElement("div",{className:"flex gap-12 wrap", style:{justifyContent:"center"}},
       React.createElement("button",{className:"btn btn-primary", disabled:checkoutBusy, onClick:()=>upgradePlan("pro")}, checkoutBusy?"Opening secure checkout…":"Upgrade to Pro"),
       React.createElement("button",{className:"btn btn-outline", style:{borderColor:"rgba(255,255,255,.5)", color:"#fff"}, onClick:()=>goto("/pricing")}, "Compare Plans")

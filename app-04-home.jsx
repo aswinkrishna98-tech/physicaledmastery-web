@@ -35,7 +35,12 @@ function HeroPreviewCard(){
 }
 
 function Home(){
-  const {goto} = useApp();
+  const {goto, profile} = useApp();
+  const preferredExam = EXAMS.find(e=>e.id===profile.preferredExam) || null;
+  const featuredExams = useMemo(()=>{
+    if(!preferredExam) return EXAMS.slice(0,4);
+    return [preferredExam, ...EXAMS.filter(e=>e.id!==preferredExam.id)].slice(0,4);
+  },[preferredExam]);
   return React.createElement(React.Fragment,null,
     // ---- HERO ----
     React.createElement("section",{className:"hero"},
@@ -50,6 +55,9 @@ function Home(){
             React.createElement("button",{className:"btn btn-primary", onClick:()=>goto("/question-bank")}, "Start Practising", React.createElement(Icon,{name:"chevronRight",size:16})),
             React.createElement("button",{className:"btn btn-outline", onClick:()=>goto("/mock-tests")}, "Take a Free Mock Test")
           ),
+          preferredExam && React.createElement("p",{className:"small", style:{marginTop:16}},
+            "🎯 Preparing for ", React.createElement("b",null, preferredExam.short), " — ",
+            React.createElement("a",{href:"#", onClick:e=>{e.preventDefault(); goto("/mock-test-setup",{examId:preferredExam.id});}}, "jump into a mock test")),
           React.createElement("div",{className:"hero-stats"},
             [["50,000+","Practice questions"],["13","Exams covered"],["40+","PE subjects mapped"],["12,400+","Aspirants preparing"]].map(([n,l])=>
               React.createElement("div",{key:l,className:"hero-stat"}, React.createElement("b",null,n), React.createElement("span",{className:"small muted"},l))
@@ -79,11 +87,11 @@ function Home(){
 
     // ---- EXAM SELECTION ----
     React.createElement("section",{className:"container", style:{padding:"48px 24px 8px"}},
-      React.createElement(SectionHeading,{eyebrow:"Choose Your Exam", title:"A tailored dashboard for every PE exam", right:
+      React.createElement(SectionHeading,{eyebrow:"Choose Your Exam", title: preferredExam ? "Picking up where you left off" : "A tailored dashboard for every PE exam", right:
         React.createElement("button",{className:"btn btn-ghost btn-sm", onClick:()=>goto("/exams")},"View all exams", React.createElement(Icon,{name:"chevronRight",size:14}))
       }),
       React.createElement("div",{className:"grid grid-4"},
-        EXAMS.slice(0,4).map(ex=>React.createElement(ExamCard,{key:ex.id, exam:ex}))
+        featuredExams.map(ex=>React.createElement(ExamCard,{key:ex.id, exam:ex}))
       )
     ),
 
