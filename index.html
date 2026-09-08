@@ -5238,8 +5238,44 @@ function ThemeToggle(){
     React.createElement(Icon,{name:icon,size:17}));
 }
 
+// Account button + dropdown shown at the right of the top nav. A guest sees
+// a plain "Sign In" button (unchanged); a signed-in user sees their name
+// with a small menu (Dashboard / Sign Out) so signing out is reachable from
+// any page, not just by opening the dashboard and finding the text link.
+function AccountMenu(){
+  const {isLoggedIn, profile, goto, logout} = useApp();
+  const [open, setOpen] = useState(false);
+  const boxRef = useRef(null);
+
+  useEffect(()=>{
+    if(!open) return;
+    function onDocClick(e){ if(boxRef.current && !boxRef.current.contains(e.target)) setOpen(false); }
+    function onKey(e){ if(e.key==="Escape") setOpen(false); }
+    document.addEventListener("mousedown", onDocClick);
+    document.addEventListener("keydown", onKey);
+    return ()=>{ document.removeEventListener("mousedown", onDocClick); document.removeEventListener("keydown", onKey); };
+  },[open]);
+
+  if(!isLoggedIn){
+    return React.createElement("button",{className:"btn btn-outline btn-sm", onClick:()=>goto("/login")},
+      React.createElement(Icon,{name:"user",size:15}), "Sign In");
+  }
+
+  return React.createElement("div",{ref:boxRef, style:{position:"relative"}},
+    React.createElement("button",{className:"btn btn-outline btn-sm", onClick:()=>setOpen(o=>!o), "aria-expanded":open},
+      React.createElement(Icon,{name:"user",size:15}), profile.name, React.createElement(Icon,{name:"chevronDown",size:13})),
+    open && React.createElement("div",{className:"card", style:{position:"absolute", right:0, top:"calc(100% + 8px)", minWidth:200, padding:8, zIndex:150}},
+      React.createElement("div",{className:"tiny muted", style:{padding:"4px 10px 8px", marginBottom:4, borderBottom:"1px solid var(--border)"}}, profile.name),
+      React.createElement("button",{className:"btn btn-ghost btn-sm btn-block", style:{justifyContent:"flex-start", gap:8},
+        onClick:()=>{ setOpen(false); goto("/dashboard"); }}, React.createElement(Icon,{name:"performance",size:14}), "Dashboard"),
+      React.createElement("button",{className:"btn btn-ghost btn-sm btn-block", style:{justifyContent:"flex-start", gap:8, color:"var(--danger)"},
+        onClick:()=>{ setOpen(false); logout(); }}, React.createElement(Icon,{name:"close",size:14}), "Sign Out")
+    )
+  );
+}
+
 function TopNav(){
-  const {route, goto, profile, isLoggedIn} = useApp();
+  const {route, goto} = useApp();
   const [searchOpen,setSearchOpen] = useState(false);
   useEffect(()=>{
     function onKey(e){
@@ -5264,11 +5300,7 @@ function TopNav(){
           React.createElement("button",{className:"btn btn-ghost btn-icon", title:"Search (Ctrl+K)", onClick:()=>setSearchOpen(true)}, React.createElement(Icon,{name:"search"})),
           React.createElement(ThemeToggle,null),
           React.createElement("button",{className:"btn btn-ghost btn-icon", title:"Bookmarks", onClick:()=>goto("/bookmarks")}, React.createElement(Icon,{name:"bookmark"})),
-          isLoggedIn
-            ? React.createElement("button",{className:"btn btn-outline btn-sm", onClick:()=>goto("/dashboard")},
-                React.createElement(Icon,{name:"user",size:15}), profile.name)
-            : React.createElement("button",{className:"btn btn-outline btn-sm", onClick:()=>goto("/login")},
-                React.createElement(Icon,{name:"user",size:15}), "Sign In")
+          React.createElement(AccountMenu,null)
         )
       )
     ),
@@ -5276,15 +5308,54 @@ function TopNav(){
   );
 }
 
+// The "Profile" tab in the mobile bottom bar: a guest taps straight through
+// to the dashboard (unchanged) since it already shows a "Sign in" link for
+// guests; a signed-in user instead gets a small menu (Dashboard / Sign Out)
+// that opens upward from the bar, so signing out doesn't require opening the
+// dashboard page first.
+function MobileAccountItem({item, active}){
+  const {goto, isLoggedIn, logout} = useApp();
+  const [open, setOpen] = useState(false);
+  const boxRef = useRef(null);
+
+  useEffect(()=>{
+    if(!open) return;
+    function onDocClick(e){ if(boxRef.current && !boxRef.current.contains(e.target)) setOpen(false); }
+    document.addEventListener("mousedown", onDocClick);
+    return ()=>document.removeEventListener("mousedown", onDocClick);
+  },[open]);
+
+  if(!isLoggedIn){
+    return React.createElement("a",{href:"#"+item.path, className:active?"active":"",
+      onClick:e=>{e.preventDefault(); goto(item.path);}},
+      React.createElement(Icon,{name:item.icon,size:20}), React.createElement("span",null,item.label));
+  }
+
+  return React.createElement("div",{ref:boxRef, style:{position:"relative"}},
+    React.createElement("a",{href:"#"+item.path, className:active?"active":"",
+      onClick:e=>{e.preventDefault(); setOpen(o=>!o);}},
+      React.createElement(Icon,{name:item.icon,size:20}), React.createElement("span",null,item.label)),
+    open && React.createElement("div",{className:"card", style:{position:"absolute", bottom:"calc(100% + 12px)", right:-10, minWidth:170, padding:8, zIndex:150}},
+      React.createElement("button",{className:"btn btn-ghost btn-sm btn-block", style:{justifyContent:"flex-start", gap:8},
+        onClick:()=>{ setOpen(false); goto("/dashboard"); }}, React.createElement(Icon,{name:"performance",size:14}), "Dashboard"),
+      React.createElement("button",{className:"btn btn-ghost btn-sm btn-block", style:{justifyContent:"flex-start", gap:8, color:"var(--danger)"},
+        onClick:()=>{ setOpen(false); logout(); }}, React.createElement(Icon,{name:"close",size:14}), "Sign Out")
+    )
+  );
+}
+
 function MobileNav(){
   const {route, goto} = useApp();
   return React.createElement("div",{className:"mobilebar"},
     React.createElement("div",{className:"mobilebar-inner"},
-      MOBILE_NAV.map(item=>React.createElement("a",{key:item.path, href:"#"+item.path, className:isActive(route,item.path)?"active":"",
-        onClick:e=>{e.preventDefault(); goto(item.path);}},
-        React.createElement(Icon,{name:item.icon,size:20}),
-        React.createElement("span",null,item.label)
-      ))
+      MOBILE_NAV.map(item=> item.path==="/dashboard"
+        ? React.createElement(MobileAccountItem,{key:item.path, item, active:isActive(route,item.path)})
+        : React.createElement("a",{key:item.path, href:"#"+item.path, className:isActive(route,item.path)?"active":"",
+            onClick:e=>{e.preventDefault(); goto(item.path);}},
+            React.createElement(Icon,{name:item.icon,size:20}),
+            React.createElement("span",null,item.label)
+          )
+      )
     )
   );
 }
