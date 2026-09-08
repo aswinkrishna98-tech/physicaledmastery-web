@@ -182,6 +182,19 @@ input,select,textarea{font-family:var(--font-body);}
 
 /* ---- App shell / nav ---- */
 .app-shell{min-height:100vh; display:flex; flex-direction:column;}
+
+/* ---- Promo banner (dismissible strip above the top nav) ---- */
+.promo-banner{background:linear-gradient(90deg, var(--accent) 0%, var(--accent-hover) 100%); color:#fff;}
+.promo-banner-inner{max-width:1360px; margin:0 auto; padding:9px 44px; display:flex; align-items:center; justify-content:center;
+  gap:14px; flex-wrap:wrap; text-align:center; position:relative;}
+.promo-banner-live{background:rgba(255,255,255,.22); color:#fff; font-weight:800; font-size:11px; letter-spacing:.06em;
+  padding:3px 9px; border-radius:var(--radius-pill); flex:none;}
+.promo-banner-cta{background:#fff; color:var(--accent-ink); font-weight:700; flex:none;}
+.promo-banner-cta:hover{background:#fff; opacity:.92;}
+.promo-banner-close{position:absolute; right:10px; top:50%; transform:translateY(-50%); background:transparent; border:none;
+  color:#fff; opacity:.8; cursor:pointer; padding:6px; display:flex; border-radius:6px;}
+.promo-banner-close:hover{opacity:1; background:rgba(255,255,255,.15);}
+@media (max-width:640px){ .promo-banner-inner{font-size:12.5px; padding:8px 40px;} }
 .topnav{position:sticky; top:0; z-index:40; background:color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--border);}
 .topnav-inner{max-width:1360px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; gap:18px;}
 .brand{display:flex; align-items:center; gap:9px; font-family:var(--font-display); font-weight:800; font-size:20px; letter-spacing:.01em; flex:none;}
@@ -235,6 +248,24 @@ input,select,textarea{font-family:var(--font-body);}
 .chip-select{display:flex; flex-wrap:wrap; gap:8px;}
 .chip{padding:8px 14px; border-radius:var(--radius-pill); border:1px solid var(--border-strong); font-size:13px; font-weight:600; color:var(--muted); background:var(--surface);}
 .chip.active{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+
+/* ---- Auth (sign in / sign up) split card ---- */
+.auth-shell{max-width:960px; margin:0 auto; padding:40px 24px 96px;}
+.auth-card{display:grid; grid-template-columns:1fr 1fr; background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius-lg); box-shadow:var(--shadow-md); overflow:hidden; align-items:stretch;}
+.auth-card-form{padding:44px 40px;}
+.auth-card-promo{padding:44px 36px; background:linear-gradient(155deg, var(--ink) 0%, var(--info) 170%); color:#fff;
+  display:flex; flex-direction:column; justify-content:center; gap:22px; position:relative; overflow:hidden;}
+.auth-bullets{display:flex; flex-direction:column; gap:14px; position:relative;}
+.auth-bullet{display:flex; align-items:flex-start; gap:10px; font-size:13.5px; color:rgba(255,255,255,.92);}
+.auth-bullet svg{flex:none; margin-top:2px; color:var(--gold);}
+.auth-stats{display:flex; gap:22px; flex-wrap:wrap; margin-top:6px; position:relative;}
+.auth-stats b{display:block; font-family:var(--font-display); font-size:22px;}
+.auth-stats span{display:block; font-size:11px; color:rgba(255,255,255,.7);}
+@media (max-width:820px){
+  .auth-card{grid-template-columns:1fr;}
+  .auth-card-promo{order:-1; padding:32px 28px;}
+}
 
 /* ---- Exam / Subject cards ---- */
 .exam-card{padding:20px; display:flex; flex-direction:column; gap:12px;}
@@ -5238,6 +5269,27 @@ function ThemeToggle(){
     React.createElement(Icon,{name:icon,size:17}));
 }
 
+// Dismissible promotional strip shown above the top nav for non-Pro visitors
+// (guests and free-plan users alike) — the "LIVE / N+ exams / CTA" banner
+// pattern used by the big Indian exam-prep platforms. Dismissal is
+// remembered per-browser via usePersistentState so it doesn't reappear on
+// every page load once closed, but a fresh browser/device sees it again.
+function PromoBanner(){
+  const {goto, isPro} = useApp();
+  const [dismissed, setDismissed] = usePersistentState("pep_promo_dismissed_v1", false);
+  if(dismissed || isPro) return null;
+  return React.createElement("div",{className:"promo-banner"},
+    React.createElement("div",{className:"promo-banner-inner"},
+      React.createElement("span",{className:"promo-banner-live"}, "🔴 LIVE"),
+      React.createElement("span",{className:"small", style:{fontWeight:600}},
+        "50,000+ questions, full mock tests & previous year papers for 13+ PE exams — go Pro today."),
+      React.createElement("button",{className:"btn btn-sm promo-banner-cta", onClick:()=>goto("/pricing")}, "Explore Plans"),
+      React.createElement("button",{className:"promo-banner-close", "aria-label":"Dismiss", onClick:()=>setDismissed(true)},
+        React.createElement(Icon,{name:"close", size:16}))
+    )
+  );
+}
+
 // Account button + dropdown shown at the right of the top nav. A guest sees
 // a plain "Sign In" button (unchanged); a signed-in user sees their name
 // with a small menu (Dashboard / Sign Out) so signing out is reachable from
@@ -5257,8 +5309,8 @@ function AccountMenu(){
   },[open]);
 
   if(!isLoggedIn){
-    return React.createElement("button",{className:"btn btn-outline btn-sm", onClick:()=>goto("/login")},
-      React.createElement(Icon,{name:"user",size:15}), "Sign In");
+    return React.createElement("button",{className:"btn btn-primary btn-sm", onClick:()=>goto("/login")},
+      "Get Started");
   }
 
   return React.createElement("div",{ref:boxRef, style:{position:"relative"}},
@@ -5399,6 +5451,7 @@ function Footer(){
 
 function Layout({children}){
   return React.createElement("div",{className:"app-shell"},
+    React.createElement(PromoBanner,null),
     React.createElement(TopNav,null),
     React.createElement("main",{className:"app-main", style:{flex:1}}, children),
     React.createElement(Footer,null),
@@ -7394,43 +7447,66 @@ function AuthPage(){
     }
   };
 
-  return React.createElement("div",{className:"container", style:{maxWidth:420, margin:"0 auto", padding:"64px 24px 96px"}},
-    React.createElement("div",{className:"card card-pad"},
-      React.createElement("h1",{className:"h2", style:{marginBottom:6}}, mode==="signup" ? "Create your account" : "Welcome back"),
-      React.createElement("p",{className:"small muted", style:{marginBottom:22}},
-        mode==="signup"
-          ? "Save your XP, streak and progress so they follow you to any device."
-          : "Sign in to pick up right where you left off."
-      ),
-      GOOGLE_CLIENT_ID && React.createElement(React.Fragment,null,
-        React.createElement("div",{ref:googleBtnRef, style:{display:"flex", justifyContent:"center", marginBottom:16}}),
-        React.createElement("div",{className:"small muted", style:{textAlign:"center", margin:"4px 0 18px"}}, "or")
-      ),
-      React.createElement("form",{onSubmit:submit},
-        mode==="signup" && React.createElement("input",{className:"input", placeholder:"Your name", value:name,
-          onChange:e=>setName(e.target.value), style:{marginBottom:10, width:"100%"}}),
-        React.createElement("input",{className:"input", type:"email", required:true, placeholder:"Email", value:email,
-          onChange:e=>setEmail(e.target.value), style:{marginBottom:10, width:"100%"}}),
-        React.createElement("input",{className:"input", type:"password", required:true, minLength:6,
-          placeholder:"Password (min. 6 characters)", value:password, onChange:e=>setPassword(e.target.value),
-          style:{marginBottom:14, width:"100%"}}),
-        mode==="signup" && React.createElement("div",{style:{marginBottom:14}},
-          React.createElement("select",{className:"select", style:{width:"100%"}, value:preferredExam, onChange:e=>setPreferredExam(e.target.value)},
-            React.createElement("option",{value:""}, "Which exam are you preparing for? (optional)"),
-            EXAMS.map(ex=>React.createElement("option",{key:ex.id, value:ex.id}, ex.short))
-          )
+  return React.createElement("div",{className:"auth-shell"},
+    React.createElement("div",{className:"auth-card"},
+      // ---- Left: the actual form ----
+      React.createElement("div",{className:"auth-card-form"},
+        React.createElement("a",{href:"#/", className:"brand", style:{marginBottom:26}, onClick:e=>{e.preventDefault(); goto("/");}},
+          React.createElement("span",{className:"brand-mark"},"PE"), React.createElement("span",null,"PE Prep")),
+        React.createElement("h1",{className:"h2", style:{marginBottom:6}}, mode==="signup" ? "Get started with PE Prep" : "Welcome back"),
+        React.createElement("p",{className:"small muted", style:{marginBottom:22}},
+          mode==="signup"
+            ? "Create a free account to save your XP, streak and progress so they follow you to any device."
+            : "Sign in to pick up right where you left off."
         ),
-        error && React.createElement("p",{className:"small", style:{color:"var(--danger)", marginBottom:12}}, error),
-        React.createElement("button",{className:"btn btn-primary", type:"submit", disabled:authBusy, style:{width:"100%"}},
-          authBusy ? "Please wait…" : (mode==="signup" ? "Create account" : "Sign in"))
+        GOOGLE_CLIENT_ID && React.createElement(React.Fragment,null,
+          React.createElement("div",{ref:googleBtnRef, style:{display:"flex", justifyContent:"center", marginBottom:16}}),
+          React.createElement("div",{className:"small muted", style:{textAlign:"center", margin:"4px 0 18px"}}, "or")
+        ),
+        React.createElement("form",{onSubmit:submit},
+          mode==="signup" && React.createElement("input",{className:"input", placeholder:"Your name", value:name,
+            onChange:e=>setName(e.target.value), style:{marginBottom:10, width:"100%"}}),
+          React.createElement("input",{className:"input", type:"email", required:true, placeholder:"Email", value:email,
+            onChange:e=>setEmail(e.target.value), style:{marginBottom:10, width:"100%"}}),
+          React.createElement("input",{className:"input", type:"password", required:true, minLength:6,
+            placeholder:"Password (min. 6 characters)", value:password, onChange:e=>setPassword(e.target.value),
+            style:{marginBottom:14, width:"100%"}}),
+          mode==="signup" && React.createElement("div",{style:{marginBottom:14}},
+            React.createElement("select",{className:"select", style:{width:"100%"}, value:preferredExam, onChange:e=>setPreferredExam(e.target.value)},
+              React.createElement("option",{value:""}, "Which exam are you preparing for? (optional)"),
+              EXAMS.map(ex=>React.createElement("option",{key:ex.id, value:ex.id}, ex.short))
+            )
+          ),
+          error && React.createElement("p",{className:"small", style:{color:"var(--danger)", marginBottom:12}}, error),
+          React.createElement("button",{className:"btn btn-primary", type:"submit", disabled:authBusy, style:{width:"100%"}},
+            authBusy ? "Please wait…" : (mode==="signup" ? "Create account" : "Sign in"))
+        ),
+        React.createElement("p",{className:"small muted", style:{marginTop:18, textAlign:"center"}},
+          mode==="signup" ? "Already have an account? " : "New here? ",
+          React.createElement("a",{href:"#", onClick:e=>{ e.preventDefault(); setError(""); goto(mode==="signup" ? "/login" : "/signup"); }},
+            mode==="signup" ? "Sign in" : "Create one")
+        ),
+        React.createElement("p",{className:"small muted", style:{marginTop:8, textAlign:"center"}},
+          React.createElement("a",{href:"#/", onClick:e=>{ e.preventDefault(); goto("/"); }}, "Continue as guest")
+        )
       ),
-      React.createElement("p",{className:"small muted", style:{marginTop:18, textAlign:"center"}},
-        mode==="signup" ? "Already have an account? " : "New here? ",
-        React.createElement("a",{href:"#", onClick:e=>{ e.preventDefault(); setError(""); goto(mode==="signup" ? "/login" : "/signup"); }},
-          mode==="signup" ? "Sign in" : "Create one")
-      ),
-      React.createElement("p",{className:"small muted", style:{marginTop:8, textAlign:"center"}},
-        React.createElement("a",{href:"#/", onClick:e=>{ e.preventDefault(); goto("/"); }}, "Continue as guest")
+      // ---- Right: value-prop panel (Testbook-style colored side panel) ----
+      React.createElement("div",{className:"auth-card-promo"},
+        React.createElement(TrackCurves,null),
+        React.createElement("div",{className:"eyebrow", style:{color:"var(--gold)", position:"relative"}}, "JOIN 12,400+ ASPIRANTS"),
+        React.createElement("h2",{className:"h2", style:{color:"#fff", position:"relative"}}, "Everything you need to crack your PE exam"),
+        React.createElement("div",{className:"auth-bullets"},
+          [
+            "50,000+ Physical Education practice questions",
+            "13 exams covered — KVS, NET, DSSSB, NVS, PSC & more",
+            "Full-length mock tests with detailed performance analysis",
+            "Sports current affairs, updated every week",
+          ].map(t=>React.createElement("div",{key:t, className:"auth-bullet"}, React.createElement(Icon,{name:"check", size:16}), t))
+        ),
+        React.createElement("div",{className:"auth-stats"},
+          [["50,000+","Questions"],["13","Exams"],["40+","Subjects"]].map(([n,l])=>
+            React.createElement("div",{key:l}, React.createElement("b",null,n), React.createElement("span",null,l)))
+        )
       )
     )
   );

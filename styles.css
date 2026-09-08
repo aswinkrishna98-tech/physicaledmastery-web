@@ -178,6 +178,19 @@ input,select,textarea{font-family:var(--font-body);}
 
 /* ---- App shell / nav ---- */
 .app-shell{min-height:100vh; display:flex; flex-direction:column;}
+
+/* ---- Promo banner (dismissible strip above the top nav) ---- */
+.promo-banner{background:linear-gradient(90deg, var(--accent) 0%, var(--accent-hover) 100%); color:#fff;}
+.promo-banner-inner{max-width:1360px; margin:0 auto; padding:9px 44px; display:flex; align-items:center; justify-content:center;
+  gap:14px; flex-wrap:wrap; text-align:center; position:relative;}
+.promo-banner-live{background:rgba(255,255,255,.22); color:#fff; font-weight:800; font-size:11px; letter-spacing:.06em;
+  padding:3px 9px; border-radius:var(--radius-pill); flex:none;}
+.promo-banner-cta{background:#fff; color:var(--accent-ink); font-weight:700; flex:none;}
+.promo-banner-cta:hover{background:#fff; opacity:.92;}
+.promo-banner-close{position:absolute; right:10px; top:50%; transform:translateY(-50%); background:transparent; border:none;
+  color:#fff; opacity:.8; cursor:pointer; padding:6px; display:flex; border-radius:6px;}
+.promo-banner-close:hover{opacity:1; background:rgba(255,255,255,.15);}
+@media (max-width:640px){ .promo-banner-inner{font-size:12.5px; padding:8px 40px;} }
 .topnav{position:sticky; top:0; z-index:40; background:color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--border);}
 .topnav-inner{max-width:1360px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; gap:18px;}
 .brand{display:flex; align-items:center; gap:9px; font-family:var(--font-display); font-weight:800; font-size:20px; letter-spacing:.01em; flex:none;}
@@ -231,6 +244,24 @@ input,select,textarea{font-family:var(--font-body);}
 .chip-select{display:flex; flex-wrap:wrap; gap:8px;}
 .chip{padding:8px 14px; border-radius:var(--radius-pill); border:1px solid var(--border-strong); font-size:13px; font-weight:600; color:var(--muted); background:var(--surface);}
 .chip.active{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+
+/* ---- Auth (sign in / sign up) split card ---- */
+.auth-shell{max-width:960px; margin:0 auto; padding:40px 24px 96px;}
+.auth-card{display:grid; grid-template-columns:1fr 1fr; background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius-lg); box-shadow:var(--shadow-md); overflow:hidden; align-items:stretch;}
+.auth-card-form{padding:44px 40px;}
+.auth-card-promo{padding:44px 36px; background:linear-gradient(155deg, var(--ink) 0%, var(--info) 170%); color:#fff;
+  display:flex; flex-direction:column; justify-content:center; gap:22px; position:relative; overflow:hidden;}
+.auth-bullets{display:flex; flex-direction:column; gap:14px; position:relative;}
+.auth-bullet{display:flex; align-items:flex-start; gap:10px; font-size:13.5px; color:rgba(255,255,255,.92);}
+.auth-bullet svg{flex:none; margin-top:2px; color:var(--gold);}
+.auth-stats{display:flex; gap:22px; flex-wrap:wrap; margin-top:6px; position:relative;}
+.auth-stats b{display:block; font-family:var(--font-display); font-size:22px;}
+.auth-stats span{display:block; font-size:11px; color:rgba(255,255,255,.7);}
+@media (max-width:820px){
+  .auth-card{grid-template-columns:1fr;}
+  .auth-card-promo{order:-1; padding:32px 28px;}
+}
 
 /* ---- Exam / Subject cards ---- */
 .exam-card{padding:20px; display:flex; flex-direction:column; gap:12px;}

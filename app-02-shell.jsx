@@ -81,6 +81,27 @@ function ThemeToggle(){
     React.createElement(Icon,{name:icon,size:17}));
 }
 
+// Dismissible promotional strip shown above the top nav for non-Pro visitors
+// (guests and free-plan users alike) — the "LIVE / N+ exams / CTA" banner
+// pattern used by the big Indian exam-prep platforms. Dismissal is
+// remembered per-browser via usePersistentState so it doesn't reappear on
+// every page load once closed, but a fresh browser/device sees it again.
+function PromoBanner(){
+  const {goto, isPro} = useApp();
+  const [dismissed, setDismissed] = usePersistentState("pep_promo_dismissed_v1", false);
+  if(dismissed || isPro) return null;
+  return React.createElement("div",{className:"promo-banner"},
+    React.createElement("div",{className:"promo-banner-inner"},
+      React.createElement("span",{className:"promo-banner-live"}, "🔴 LIVE"),
+      React.createElement("span",{className:"small", style:{fontWeight:600}},
+        "50,000+ questions, full mock tests & previous year papers for 13+ PE exams — go Pro today."),
+      React.createElement("button",{className:"btn btn-sm promo-banner-cta", onClick:()=>goto("/pricing")}, "Explore Plans"),
+      React.createElement("button",{className:"promo-banner-close", "aria-label":"Dismiss", onClick:()=>setDismissed(true)},
+        React.createElement(Icon,{name:"close", size:16}))
+    )
+  );
+}
+
 // Account button + dropdown shown at the right of the top nav. A guest sees
 // a plain "Sign In" button (unchanged); a signed-in user sees their name
 // with a small menu (Dashboard / Sign Out) so signing out is reachable from
@@ -100,8 +121,8 @@ function AccountMenu(){
   },[open]);
 
   if(!isLoggedIn){
-    return React.createElement("button",{className:"btn btn-outline btn-sm", onClick:()=>goto("/login")},
-      React.createElement(Icon,{name:"user",size:15}), "Sign In");
+    return React.createElement("button",{className:"btn btn-primary btn-sm", onClick:()=>goto("/login")},
+      "Get Started");
   }
 
   return React.createElement("div",{ref:boxRef, style:{position:"relative"}},
@@ -242,6 +263,7 @@ function Footer(){
 
 function Layout({children}){
   return React.createElement("div",{className:"app-shell"},
+    React.createElement(PromoBanner,null),
     React.createElement(TopNav,null),
     React.createElement("main",{className:"app-main", style:{flex:1}}, children),
     React.createElement(Footer,null),
