@@ -117,7 +117,7 @@ function TestEngine({mode, questions:initialQuestions, title, examMeta, onExit, 
     // quota — a question that's locked still gets marked right/wrong above
     // (the basic practice mechanic stays free), it just won't unlock the
     // explanation/concept notes below (see the render branch further down).
-    if(mode==="practice" && !isSubjectLocked(q.subject, q.id)){ markRevealed(q); }
+    if(mode==="practice" && !isSubjectLocked(q.subject, q.id, q.exam)){ markRevealed(q); }
     setResponses(prev=>({...prev, [q.id]:{...prev[q.id], checked:true}}));
   }
   function goNext(){ touchTime(q.id); setIdx(i=>Math.min(questions.length-1, i+1)); }
@@ -259,7 +259,7 @@ function TestEngine({mode, questions:initialQuestions, title, examMeta, onExit, 
           )
         ),
         (!isMock && resp.checked) && (
-          isSubjectLocked(q.subject, q.id)
+          isSubjectLocked(q.subject, q.id, q.exam)
             ? React.createElement("div",{style:{marginTop:4}}, React.createElement(PracticeContentLock,{subject:q.subject}))
             : React.createElement(React.Fragment,null,
                 React.createElement("div",{className:"explain-box"},

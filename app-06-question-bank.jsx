@@ -21,7 +21,7 @@ function FilterChipGroup({label, options, value, onChange, multi}){
 }
 
 function QuestionBankPage(){
-  const {routeParams, goto, isPro, isSubjectLocked, freeQuestionsLeft, FREE_PRACTICE_LIMIT_PER_SUBJECT} = useApp();
+  const {routeParams, goto, isPro, hasExamAccess} = useApp();
   const [exam,setExam] = useState(routeParams.exam || null);
   const [subject,setSubject] = useState(routeParams.subject || null);
   const [difficulty,setDifficulty] = useState([]);
@@ -42,17 +42,13 @@ function QuestionBankPage(){
     });
   },[exam,subject,difficulty,qtype]);
 
-  // Free-plan gating is per subject: once a subject's free quota (see
-  // FREE_PRACTICE_LIMIT_PER_SUBJECT) is spent, a single-subject filter shows
-  // a paywall here instead of a practice set. Browsing "All Subjects" stays
-  // open — the same per-subject quota is still enforced live inside the
-  // practice runner itself (TestEngine), so it can't be dodged by never
-  // picking a subject filter.
-  const subjectRemaining = subject ? freeQuestionsLeft(subject) : null;
-  const subjectFullyLocked = !!subject && !isPro && subjectRemaining<=0;
-  const sliderMax = (subject && !isPro && subjectRemaining!=null && subjectRemaining < Math.max(5,filtered.length))
-    ? Math.max(1, Math.min(filtered.length, subjectRemaining))
-    : Math.max(5,filtered.length);
+  // Question Bank / Practice is Pro-only. A free-plan user with a single-exam
+  // pass still gets in, but only once they've filtered down to that exam —
+  // otherwise there's no way to keep "some questions" out of a bank that
+  // isn't itself exam-partitioned. Mock Tests (a separate page) are the one
+  // feature that stays available to everyone on the free plan.
+  const examObj = exam ? EXAMS.find(e=>e.name===exam) : null;
+  const unlocked = isPro || (examObj && hasExamAccess(examObj.id));
 
   if(engine){
     return React.createElement(TestEngine,{
@@ -61,22 +57,28 @@ function QuestionBankPage(){
     });
   }
 
-  return React.createElement("div",{className:"container", style:{padding:"36px 24px 64px"}},
-    React.createElement(SectionHeading,{eyebrow:"Question Bank", title:"Build your own practice set", lede:"Filter by exam, subject, difficulty and question type — then start practising with instant explanations."+(!isPro?" Free plan: detailed explanations & concept notes are limited to "+FREE_PRACTICE_LIMIT_PER_SUBJECT+" questions per subject — upgrade to Pro for unlimited depth.":"")}),
-    subject && !isPro && !subjectFullyLocked && React.createElement("div",{style:{marginBottom:16}},
-      React.createElement("span",{className:"pill pill-warning"}, subjectRemaining+" of "+FREE_PRACTICE_LIMIT_PER_SUBJECT+" free explanations left in "+subject)
-    ),
-    subjectFullyLocked && React.createElement("div",{style:{marginBottom:20}},
-      React.createElement(MockPaywall,{title:"Unlock unlimited practice in "+subject}),
+  if(!unlocked){
+    return React.createElement("div",{className:"container", style:{padding:"36px 24px 64px"}},
+      React.createElement(SectionHeading,{eyebrow:"Question Bank", title:"Build your own practice set", lede:"Question Bank and Practice are a Pro feature — Mock Tests stay free to try."}),
+      React.createElement(MockPaywall,{
+        title:"Practice is a Pro feature",
+        desc:"Upgrade to Pro for unlimited practice across every subject and exam, or grab a single-exam pass for just the exam you're preparing for. Mock tests remain free to try.",
+      }),
       React.createElement("div",{className:"card card-pad", style:{marginTop:16}},
-        React.createElement("span",{className:"label"}, "Try a different subject instead"),
-        React.createElement("select",{className:"select", style:{marginTop:8}, value:"", onChange:e=>setSubject(e.target.value||null)},
-          React.createElement("option",{value:""},"Choose another subject…"),
-          subjectNames.filter(n=>n!==subject).map(n=>React.createElement("option",{key:n,value:n},n))
+        React.createElement("span",{className:"label"}, "Already hold a single-exam pass? Pick your exam to unlock it"),
+        React.createElement("select",{className:"select", style:{marginTop:8}, value:exam||"", onChange:e=>setExam(e.target.value||null)},
+          React.createElement("option",{value:""},"Choose your exam…"),
+          examNames.map(n=>React.createElement("option",{key:n,value:n},n))
         )
       )
-    ),
-    !subjectFullyLocked && React.createElement("div",{className:"practice-shell", style:{gridTemplateColumns:"300px 1fr"}},
+    );
+  }
+
+  const sliderMax = Math.max(5,filtered.length);
+
+  return React.createElement("div",{className:"container", style:{padding:"36px 24px 64px"}},
+    React.createElement(SectionHeading,{eyebrow:"Question Bank", title:"Build your own practice set", lede:"Filter by exam, subject, difficulty and question type — then start practising with instant explanations."}),
+    React.createElement("div",{className:"practice-shell", style:{gridTemplateColumns:"300px 1fr"}},
       React.createElement("div",{className:"card card-pad", style:{position:"sticky", top:88}},
         React.createElement("h3",{className:"h3", style:{marginBottom:16}}, "Filters"),
         React.createElement("div",{className:"flex-col gap-16"},

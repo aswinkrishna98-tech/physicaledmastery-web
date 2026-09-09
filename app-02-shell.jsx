@@ -250,7 +250,7 @@ function Footer(){
         ),
         React.createElement("div",{className:"flex-col gap-8"},
           React.createElement("span",{className:"small",style:{fontWeight:700}},"Company"),
-          ["Pricing","Admin"].map((t,i)=>React.createElement("a",{key:t,className:"small muted",href:"#/",onClick:e=>{e.preventDefault();goto(["/pricing","/admin"][i]);}},t))
+          ["Pricing","Contact Us"].map((t,i)=>React.createElement("a",{key:t,className:"small muted",href:"#/",onClick:e=>{e.preventDefault();goto(["/pricing","/contact"][i]);}},t))
         )
       )
     ),

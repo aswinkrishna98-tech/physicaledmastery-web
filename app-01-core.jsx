@@ -91,6 +91,21 @@ const DEFAULT_PROFILE = {
 const FREE_MOCK_LIMIT = 1; // free-plan aspirants get one full mock test before the paywall
 const FREE_PRACTICE_LIMIT_PER_SUBJECT = 5; // free-plan aspirants get 5 "quality content" reveals (explanation + concept notes) per subject before the paywall
 
+// The Admin Dashboard (question-bank CRUD, contact inbox) is restricted to
+// these signed-in accounts only — everyone else is bounced off the /admin
+// route the moment they land on it. Match by the email used to sign in.
+const ADMIN_EMAILS = ["aswinkrishna98@gmail.com"];
+
+// Question records store exam membership as display names (see AdminPage's
+// "Add Question" form), not ids — this bridges that back to an EXAMS id so
+// per-exam single-exam-pass access can be checked against a question or a
+// Question Bank filter value.
+function examIdForName(name){
+  if(!name) return null;
+  const hit = EXAMS.find(e=>e.name===name || e.short===name);
+  return hit ? hit.id : null;
+}
+
 // ---------------------------------------------------------------------------
 // Real-payments config. Leave backendUrl empty to keep today's behavior: the
 // Pricing page's "Upgrade" buttons instantly flip the plan locally with an
@@ -102,6 +117,12 @@ const FREE_PRACTICE_LIMIT_PER_SUBJECT = 5; // free-plan aspirants get 5 "quality
 const PAYMENTS = {
   backendUrl: "https://pe-prep-payments.onrender.com", // e.g. "https://pe-prep-api.onrender.com"
 };
+// Shared secret the Admin Dashboard's "Messages" tab sends as the x-admin-key
+// header when reading contact-form submissions — must match ADMIN_API_KEY on
+// the backend. This is client-side gating layered on top of the isAdmin
+// email check (see ADMIN_EMAILS above); it keeps the endpoint from being
+// scraped by a random visitor, not a substitute for real server-side auth.
+const ADMIN_API_KEY = "pep_admin_k7m2x9qz4vw8";
 const RAZORPAY_CHECKOUT_SRC = "https://checkout.razorpay.com/v1/checkout.js";
 const PLAN_LABELS = {pro:"Pro", proplus:"Pro+"};
 // A single-exam pass — full Pro-level access (unlimited mock tests, full
@@ -193,6 +214,7 @@ function AppProvider({children}){
   const [revealedIds, setRevealedIds] = usePersistentState("pep_practice_revealed", {});
   const [authToken, setAuthToken] = usePersistentState("pep_auth_token", null);
   const [authAccountId, setAuthAccountId] = useState(null);
+  const [authEmail, setAuthEmail] = useState(null);
   const [authBusy, setAuthBusy] = useState(false);
   const skipNextSync = useRef(false);
 
@@ -295,11 +317,15 @@ function AppProvider({children}){
   // questions) is locked for a free user once their subject quota is spent —
   // unless this exact question was already unlocked earlier, which stays
   // viewable forever (upgrading never takes away something already shown).
-  const isSubjectLocked = useCallback((subject, qid)=>{
+  const isSubjectLocked = useCallback((subject, qid, examNames)=>{
     if(isPro) return false;
+    // A single-exam pass unlocks full explanations for that exam's
+    // questions too — same "Full Pro access, one exam only" promise the
+    // exam pass makes everywhere else.
+    if(examNames && examNames.some(n=>hasExamAccess(examIdForName(n)))) return false;
     if(qid && revealedIds[qid]) return false;
     return (practicedBySubject[subject]||0) >= FREE_PRACTICE_LIMIT_PER_SUBJECT;
-  },[isPro, revealedIds, practicedBySubject]);
+  },[isPro, revealedIds, practicedBySubject, hasExamAccess]);
 
   const freeQuestionsLeft = useCallback((subject)=>{
     if(isPro) return Infinity;
@@ -332,6 +358,7 @@ function AppProvider({children}){
   const applyAccount = useCallback((user)=>{
     skipNextSync.current = true;
     setAuthAccountId(user.id);
+    setAuthEmail(user.email || null);
     setProfile(p=>({...p,
       name: user.name ?? p.name,
       xp: user.xp ?? p.xp,
@@ -349,11 +376,11 @@ function AppProvider({children}){
 
   // Restore the session on load / whenever the token changes (login, logout).
   useEffect(()=>{
-    if(!paymentsLive || !authToken){ setAuthAccountId(null); return; }
+    if(!paymentsLive || !authToken){ setAuthAccountId(null); setAuthEmail(null); return; }
     fetch(`${AUTH_API}/api/auth/me`, {headers:{Authorization:`Bearer ${authToken}`}})
       .then(r=>{ if(!r.ok) throw new Error("session-invalid"); return r.json(); })
       .then(data=>{ if(data?.user) applyAccount(data.user); })
-      .catch(()=>{ setAuthToken(null); setAuthAccountId(null); });
+      .catch(()=>{ setAuthToken(null); setAuthAccountId(null); setAuthEmail(null); });
   },[authToken,paymentsLive]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Push local profile changes up to the server for a signed-in user, so
@@ -423,11 +450,13 @@ function AppProvider({children}){
   const logout = useCallback(()=>{
     setAuthToken(null);
     setAuthAccountId(null);
+    setAuthEmail(null);
     setProfile(DEFAULT_PROFILE);
     notify("Signed out — your progress on this device is cleared. Sign in again anytime to get it back.", 3400);
   },[setAuthToken,setProfile,notify]);
 
   const isLoggedIn = !!authToken;
+  const isAdmin = !!authEmail && ADMIN_EMAILS.includes(authEmail.toLowerCase());
 
   const upgradePlanDemo = useCallback((plan, examId)=>{
     if(plan === "exampass"){
@@ -550,6 +579,7 @@ function AppProvider({children}){
     isPro, freeMocksUsed, mockLocked, upgradePlan, paymentsLive, checkoutBusy, hasExamAccess,
     FREE_PRACTICE_LIMIT_PER_SUBJECT, practicedBySubject, isSubjectLocked, freeQuestionsLeft, markRevealed,
     isLoggedIn, authBusy, signup, login, googleSignIn, logout, setPreferredExam,
+    authEmail, isAdmin,
   };
   return React.createElement(AppCtx.Provider,{value}, children);
 }

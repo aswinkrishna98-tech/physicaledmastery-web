@@ -278,9 +278,83 @@ function PricingPage(){
   );
 }
 
+/* --------------------------------- Contact ---------------------------------- */
+// A support channel for visitors that doesn't publish any personal name,
+// phone number or address — just a form. Submissions are stored server-side
+// (see POST /api/contact) and read back only from the admin-gated dashboard.
+function ContactPage(){
+  const {notify} = useApp();
+  const [form,setForm] = useState({name:"", email:"", message:""});
+  const [sending,setSending] = useState(false);
+  const [sent,setSent] = useState(false);
+
+  function submit(e){
+    e.preventDefault();
+    if(!form.message.trim()){ notify("Please write a message before sending."); return; }
+    if(!AUTH_API){ notify("Contact form isn't connected to a backend in this environment yet."); return; }
+    setSending(true);
+    fetch(`${AUTH_API}/api/contact`, {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({name: form.name.trim()||null, email: form.email.trim()||null, message: form.message.trim()}),
+    })
+      .then(r=>{ if(!r.ok) throw new Error(); return r.json(); })
+      .then(()=>{ setSent(true); setForm({name:"",email:"",message:""}); })
+      .catch(()=>notify("Couldn't send your message — please try again in a moment."))
+      .finally(()=>setSending(false));
+  }
+
+  return React.createElement("div",{className:"container", style:{padding:"48px 24px 72px", maxWidth:640, margin:"0 auto"}},
+    React.createElement(SectionHeading,{eyebrow:"Support", title:"Contact Us", lede:"Questions, feedback, or something not working? Send us a message and we'll get back to you by email."}),
+    sent
+      ? React.createElement("div",{className:"card card-pad", style:{textAlign:"center"}},
+          React.createElement("div",{style:{fontSize:30, marginBottom:8}}, "✅"),
+          React.createElement("h3",{className:"h3"}, "Message sent"),
+          React.createElement("p",{className:"small muted", style:{marginTop:6}}, "Thanks — we'll get back to you soon, especially if you left an email address."),
+          React.createElement("button",{className:"btn btn-outline btn-sm", style:{marginTop:16}, onClick:()=>setSent(false)}, "Send another message")
+        )
+      : React.createElement("form",{className:"card card-pad", onSubmit:submit},
+          React.createElement("div",{className:"flex-col gap-14"},
+            React.createElement("div",{className:"field"}, React.createElement("span",{className:"label"},"Name (optional)"),
+              React.createElement("input",{className:"input", value:form.name, onChange:e=>setForm({...form,name:e.target.value})})),
+            React.createElement("div",{className:"field"}, React.createElement("span",{className:"label"},"Your email (optional — so we can reply)"),
+              React.createElement("input",{type:"email", className:"input", value:form.email, onChange:e=>setForm({...form,email:e.target.value})})),
+            React.createElement("div",{className:"field"}, React.createElement("span",{className:"label"},"Message"),
+              React.createElement("textarea",{className:"input", rows:5, value:form.message, onChange:e=>setForm({...form,message:e.target.value})})),
+            React.createElement("button",{className:"btn btn-primary", type:"submit", disabled:sending}, sending?"Sending…":"Send Message")
+          )
+        )
+  );
+}
+
 /* --------------------------------- Admin ----------------------------------- */
 const emptyQForm = {question:"",optionA:"",optionB:"",optionC:"",optionD:"",correct:"A",explanation:"",subject:SUBJECTS[0].name,topic:"",difficulty:"Easy",exam:EXAMS[0].name,year:new Date().getFullYear(),negativeMarking:0.25,source:"",tags:""};
 function AdminPage(){
+  const {notify, isLoggedIn, isAdmin, goto} = useApp();
+
+  // The admin dashboard used to be reachable by anyone who typed /admin into
+  // the address bar — no check at all. It's now restricted to the site's
+  // designated admin account (see ADMIN_EMAILS in app-01-core.jsx); anyone
+  // else is bounced straight back to the home page.
+  useEffect(()=>{
+    if(!isAdmin){
+      notify("That page is restricted to the site admin.", 3200);
+      goto("/");
+    }
+  },[isAdmin]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if(!isAdmin){
+    return React.createElement("div",{className:"container", style:{padding:"80px 24px", textAlign:"center"}},
+      React.createElement("div",{style:{fontSize:34, marginBottom:10}}, "🔒"),
+      React.createElement("h2",{className:"h2"}, "Restricted"),
+      React.createElement("p",{className:"small muted", style:{marginTop:8}},
+        isLoggedIn ? "This account doesn't have admin access." : "Sign in with the admin account to view this page."),
+    );
+  }
+
+  return React.createElement(AdminDashboard,null);
+}
+
+function AdminDashboard(){
   const {notify} = useApp();
   const [tab,setTab] = useState("questions");
   const [adminQuestions,setAdminQuestions] = usePersistentState("pep_admin_questions", []);
@@ -288,6 +362,16 @@ function AdminPage(){
   const [search,setSearch] = useState("");
   const allQuestions = [...adminQuestions, ...QUESTION_BANK];
   const filtered = allQuestions.filter(q=>q.question.toLowerCase().includes(search.toLowerCase()));
+
+  const [messages,setMessages] = useState(null); // null = not loaded yet
+  const [messagesError,setMessagesError] = useState(null);
+  useEffect(()=>{
+    if(tab!=="messages" || messages!==null || !AUTH_API) return;
+    fetch(`${AUTH_API}/api/contact`, {headers:{"x-admin-key": ADMIN_API_KEY}})
+      .then(r=>{ if(!r.ok) throw new Error("Could not load messages"); return r.json(); })
+      .then(data=>setMessages(data.messages||[]))
+      .catch(e=>setMessagesError(e.message));
+  },[tab,messages]);
 
   function submitForm(e){
     e.preventDefault();
@@ -313,7 +397,7 @@ function AdminPage(){
       React.createElement(StatTile,{label:"Added This Session", value:adminQuestions.length})
     ),
     React.createElement("div",{className:"tabs", style:{marginBottom:20}},
-      [["questions","Manage Questions"],["add","Add Question"],["content","Notes & Current Affairs"]].map(([id,l])=>
+      [["questions","Manage Questions"],["add","Add Question"],["content","Notes & Current Affairs"],["messages","Contact Messages"]].map(([id,l])=>
         React.createElement("div",{key:id,className:"tab"+(tab===id?" active":""), onClick:()=>setTab(id)}, l))
     ),
     tab==="questions" && React.createElement("div",{className:"card card-pad"},
@@ -359,6 +443,22 @@ function AdminPage(){
     tab==="content" && React.createElement("div",{className:"grid grid-2"},
       React.createElement("div",{className:"card card-pad"}, React.createElement("h3",{className:"h3",style:{marginBottom:10}},"Study Notes"), React.createElement("p",{className:"small muted"}, STUDY_NOTES.length+" notes published across "+new Set(STUDY_NOTES.map(n=>n.subject)).size+" subjects.")),
       React.createElement("div",{className:"card card-pad"}, React.createElement("h3",{className:"h3",style:{marginBottom:10}},"Current Affairs"), React.createElement("p",{className:"small muted"}, CURRENT_AFFAIRS.length+" capsules published this month across "+new Set(CURRENT_AFFAIRS.map(n=>n.category)).size+" categories."))
+    ),
+    tab==="messages" && React.createElement("div",{className:"card card-pad"},
+      !AUTH_API && React.createElement("p",{className:"small muted"}, "No backend configured — contact messages have nowhere to be stored yet."),
+      AUTH_API && messagesError && React.createElement("p",{className:"small", style:{color:"var(--danger, #c0392b)"}}, messagesError),
+      AUTH_API && !messagesError && messages===null && React.createElement("p",{className:"small muted"}, "Loading messages…"),
+      AUTH_API && !messagesError && messages!==null && messages.length===0 && React.createElement("p",{className:"small muted"}, "No messages yet."),
+      AUTH_API && !messagesError && messages!==null && messages.length>0 && React.createElement("div",{className:"flex-col gap-12"},
+        messages.map(m=>React.createElement("div",{key:m.id, className:"card card-pad", style:{background:"var(--surface-2, #f7f7f8)"}},
+          React.createElement("div",{className:"flex justify-between wrap gap-8", style:{marginBottom:6}},
+            React.createElement("span",{className:"small", style:{fontWeight:700}}, m.name||"Anonymous"),
+            React.createElement("span",{className:"tiny muted"}, new Date(m.createdAt).toLocaleString())
+          ),
+          m.email && React.createElement("p",{className:"tiny muted", style:{marginBottom:6}}, m.email),
+          React.createElement("p",{className:"small"}, m.message)
+        ))
+      )
     )
   );
 }
