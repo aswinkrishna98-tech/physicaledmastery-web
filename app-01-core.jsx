@@ -117,12 +117,6 @@ function examIdForName(name){
 const PAYMENTS = {
   backendUrl: "https://pe-prep-payments.onrender.com", // e.g. "https://pe-prep-api.onrender.com"
 };
-// Shared secret the Admin Dashboard's "Messages" tab sends as the x-admin-key
-// header when reading contact-form submissions — must match ADMIN_API_KEY on
-// the backend. This is client-side gating layered on top of the isAdmin
-// email check (see ADMIN_EMAILS above); it keeps the endpoint from being
-// scraped by a random visitor, not a substitute for real server-side auth.
-const ADMIN_API_KEY = "pep_admin_k7m2x9qz4vw8";
 const RAZORPAY_CHECKOUT_SRC = "https://checkout.razorpay.com/v1/checkout.js";
 const PLAN_LABELS = {pro:"Pro", proplus:"Pro+"};
 // A single-exam pass — full Pro-level access (unlimited mock tests, full
@@ -579,7 +573,7 @@ function AppProvider({children}){
     isPro, freeMocksUsed, mockLocked, upgradePlan, paymentsLive, checkoutBusy, hasExamAccess,
     FREE_PRACTICE_LIMIT_PER_SUBJECT, practicedBySubject, isSubjectLocked, freeQuestionsLeft, markRevealed,
     isLoggedIn, authBusy, signup, login, googleSignIn, logout, setPreferredExam,
-    authEmail, isAdmin,
+    authEmail, isAdmin, authToken,
   };
   return React.createElement(AppCtx.Provider,{value}, children);
 }

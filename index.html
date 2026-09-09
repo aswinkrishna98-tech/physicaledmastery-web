@@ -4773,12 +4773,6 @@ function examIdForName(name){
 const PAYMENTS = {
   backendUrl: "https://pe-prep-payments.onrender.com", // e.g. "https://pe-prep-api.onrender.com"
 };
-// Shared secret the Admin Dashboard's "Messages" tab sends as the x-admin-key
-// header when reading contact-form submissions — must match ADMIN_API_KEY on
-// the backend. This is client-side gating layered on top of the isAdmin
-// email check (see ADMIN_EMAILS above); it keeps the endpoint from being
-// scraped by a random visitor, not a substitute for real server-side auth.
-const ADMIN_API_KEY = "pep_admin_k7m2x9qz4vw8";
 const RAZORPAY_CHECKOUT_SRC = "https://checkout.razorpay.com/v1/checkout.js";
 const PLAN_LABELS = {pro:"Pro", proplus:"Pro+"};
 // A single-exam pass — full Pro-level access (unlimited mock tests, full
@@ -5235,7 +5229,7 @@ function AppProvider({children}){
     isPro, freeMocksUsed, mockLocked, upgradePlan, paymentsLive, checkoutBusy, hasExamAccess,
     FREE_PRACTICE_LIMIT_PER_SUBJECT, practicedBySubject, isSubjectLocked, freeQuestionsLeft, markRevealed,
     isLoggedIn, authBusy, signup, login, googleSignIn, logout, setPreferredExam,
-    authEmail, isAdmin,
+    authEmail, isAdmin, authToken,
   };
   return React.createElement(AppCtx.Provider,{value}, children);
 }
@@ -7381,7 +7375,7 @@ function AdminPage(){
 }
 
 function AdminDashboard(){
-  const {notify} = useApp();
+  const {notify, authToken} = useApp();
   const [tab,setTab] = useState("questions");
   const [adminQuestions,setAdminQuestions] = usePersistentState("pep_admin_questions", []);
   const [form,setForm] = useState(emptyQForm);
@@ -7393,11 +7387,15 @@ function AdminDashboard(){
   const [messagesError,setMessagesError] = useState(null);
   useEffect(()=>{
     if(tab!=="messages" || messages!==null || !AUTH_API) return;
-    fetch(`${AUTH_API}/api/contact`, {headers:{"x-admin-key": ADMIN_API_KEY}})
+    // Real server-side check: the backend verifies this signed-in session's
+    // JWT and confirms the account's email is on its own admin allowlist —
+    // reaching this tab in the UI isn't what gates the data, the backend
+    // call is (see requireAdmin in the backend's index.js).
+    fetch(`${AUTH_API}/api/contact`, {headers:{Authorization:`Bearer ${authToken}`}})
       .then(r=>{ if(!r.ok) throw new Error("Could not load messages"); return r.json(); })
       .then(data=>setMessages(data.messages||[]))
       .catch(e=>setMessagesError(e.message));
-  },[tab,messages]);
+  },[tab,messages,authToken]);
 
   function submitForm(e){
     e.preventDefault();

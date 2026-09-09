@@ -355,7 +355,7 @@ function AdminPage(){
 }
 
 function AdminDashboard(){
-  const {notify} = useApp();
+  const {notify, authToken} = useApp();
   const [tab,setTab] = useState("questions");
   const [adminQuestions,setAdminQuestions] = usePersistentState("pep_admin_questions", []);
   const [form,setForm] = useState(emptyQForm);
@@ -367,11 +367,15 @@ function AdminDashboard(){
   const [messagesError,setMessagesError] = useState(null);
   useEffect(()=>{
     if(tab!=="messages" || messages!==null || !AUTH_API) return;
-    fetch(`${AUTH_API}/api/contact`, {headers:{"x-admin-key": ADMIN_API_KEY}})
+    // Real server-side check: the backend verifies this signed-in session's
+    // JWT and confirms the account's email is on its own admin allowlist —
+    // reaching this tab in the UI isn't what gates the data, the backend
+    // call is (see requireAdmin in the backend's index.js).
+    fetch(`${AUTH_API}/api/contact`, {headers:{Authorization:`Bearer ${authToken}`}})
       .then(r=>{ if(!r.ok) throw new Error("Could not load messages"); return r.json(); })
       .then(data=>setMessages(data.messages||[]))
       .catch(e=>setMessagesError(e.message));
-  },[tab,messages]);
+  },[tab,messages,authToken]);
 
   function submitForm(e){
     e.preventDefault();
