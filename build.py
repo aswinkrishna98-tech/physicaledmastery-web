@@ -33,7 +33,9 @@ for name in data_files + app_files:
 
 scripts_html = "\n\n".join(script_blocks)
 
-html = f"""<title>PE Prep</title>
+html = f"""<!DOCTYPE html>
+<meta charset="utf-8">
+<title>PE Prep</title>
 <meta name="description" content="India's dedicated preparation platform for Physical Education examinations.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders:wght@400;500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>

@@ -49,6 +49,10 @@ const ROUTES = {
   "/bookmarks": BookmarksPage,
   "/admin": AdminPage,
   "/contact": ContactPage,
+  "/terms": TermsPage,
+  "/privacy": PrivacyPage,
+  "/refund-policy": RefundPolicyPage,
+  "/about": AboutPage,
   "/login": AuthPage,
   "/signup": AuthPage,
 };

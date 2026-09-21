@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
 <title>PE Prep</title>
 <meta name="description" content="India's dedicated preparation platform for Physical Education examinations.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders:wght@400;500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
@@ -5489,7 +5491,7 @@ function Footer(){
         ),
         React.createElement("div",{className:"flex-col gap-8"},
           React.createElement("span",{className:"small",style:{fontWeight:700}},"Company"),
-          ["Pricing","Contact Us"].map((t,i)=>React.createElement("a",{key:t,className:"small muted",href:"#/",onClick:e=>{e.preventDefault();goto(["/pricing","/contact"][i]);}},t))
+          ["Pricing","About Us","Contact Us","Terms of Service","Privacy Policy","Refund Policy"].map((t,i)=>React.createElement("a",{key:t,className:"small muted",href:"#/",onClick:e=>{e.preventDefault();goto(["/pricing","/about","/contact","/terms","/privacy","/refund-policy"][i]);}},t))
         )
       )
     ),
@@ -7298,6 +7300,182 @@ function PricingPage(){
   );
 }
 
+/* ------------------------------ Legal / policy pages ------------------------------ */
+// Shared renderer for Terms, Privacy, Refund & Cancellation, and About — kept
+// generic (no personal name, address or phone anywhere, consistent with
+// keeping the operator's identity undisclosed) and routed through the
+// Contact page for anything that needs a real person to answer.
+function LegalPage({eyebrow, title, updated, sections}){
+  return React.createElement("div",{className:"container", style:{padding:"48px 24px 80px", maxWidth:760, margin:"0 auto"}},
+    React.createElement(SectionHeading,{eyebrow, title, lede:"Last updated: "+updated}),
+    React.createElement("div",{className:"card card-pad", style:{display:"flex", flexDirection:"column", gap:26}},
+      sections.map((s,i)=>React.createElement("div",{key:i},
+        React.createElement("h3",{className:"h3", style:{marginBottom:10}}, s.h),
+        s.body.map((p,j)=> Array.isArray(p)
+          ? React.createElement("ul",{key:j, style:{margin:"0 0 10px", paddingLeft:20}},
+              p.map((li,k)=>React.createElement("li",{key:k, className:"small muted", style:{lineHeight:1.7, marginBottom:4}}, li)))
+          : React.createElement("p",{key:j, className:"small muted", style:{lineHeight:1.7, marginBottom:10}}, p)
+        )
+      ))
+    )
+  );
+}
+
+const LEGAL_UPDATED = "21 September 2026";
+
+function TermsPage(){
+  return React.createElement(LegalPage,{
+    eyebrow:"Legal", title:"Terms of Service", updated:LEGAL_UPDATED,
+    sections:[
+      {h:"1. Acceptance of these Terms", body:[
+        "By creating an account, purchasing a plan, or otherwise using PE Prep (\"PE Prep\", \"the Platform\", \"we\", \"us\"), you agree to these Terms of Service. If you do not agree, please do not use the Platform."
+      ]},
+      {h:"2. What PE Prep is", body:[
+        "PE Prep is an exam-preparation platform focused exclusively on Physical Education competitive exams (including KVS, NVS, DSSSB, UGC NET, SET, State PSC, B.P.Ed and M.P.Ed), offering practice questions, mock tests, previous year papers, study material and performance analytics."
+      ]},
+      {h:"3. Eligibility", body:[
+        "PE Prep is intended for users aged 18 and above who are preparing for the exams it covers. By using the Platform you confirm that you meet this age requirement."
+      ]},
+      {h:"4. Your account", body:[
+        "You are responsible for keeping your login credentials confidential and for all activity under your account. Let us know immediately via the Contact page if you suspect unauthorised access.",
+        "You agree to provide accurate information when creating an account and to keep it up to date."
+      ]},
+      {h:"5. Plans and payments", body:[
+        "PE Prep offers a Free plan and paid upgrades: Pro, Pro+, and single-exam passes scoped to one exam. All paid plans are one-time purchases that unlock access — they are not recurring subscriptions, and you will not be auto-charged again for the same plan.",
+        "Prices are shown in Indian Rupees (INR) and are inclusive of applicable taxes unless stated otherwise. Payments are processed by Razorpay; see our Refund & Cancellation Policy for how refunds are handled."
+      ]},
+      {h:"6. Acceptable use", body:[
+        [
+          "Share your account credentials with others, or access an account that isn't yours",
+          "Copy, scrape, redistribute or resell PE Prep's question bank, mock tests or study material",
+          "Use automated tools to extract content from the Platform",
+          "Attempt to disrupt, reverse-engineer or gain unauthorised access to the Platform's systems"
+        ]
+      ]},
+      {h:"7. Intellectual property", body:[
+        "All questions, explanations, study material, branding and software on PE Prep belong to PE Prep or its licensors. Your paid plan gives you a personal, non-transferable licence to use this content for your own exam preparation — it does not transfer ownership or any right to redistribute it."
+      ]},
+      {h:"8. Educational content — no outcome guarantee", body:[
+        "PE Prep's content is prepared to help you practice and prepare. It is not a substitute for official exam notifications, syllabi or answer keys published by the conducting bodies (NTA, KVS, NVS, DSSSB, State PSCs, universities, etc.) — always cross-check exam-critical details against the official source. We do not guarantee any particular exam result, rank or outcome from using the Platform."
+      ]},
+      {h:"9. Limitation of liability", body:[
+        "PE Prep is provided \"as is\". To the extent permitted by law, we are not liable for indirect or consequential loss arising from your use of the Platform, including reliance on its content for exam-related decisions."
+      ]},
+      {h:"10. Termination", body:[
+        "We may suspend or terminate access for accounts that violate these Terms, including the acceptable-use rules above. You may stop using the Platform, or ask us to delete your account, at any time via the Contact page."
+      ]},
+      {h:"11. Changes to these Terms", body:[
+        "We may update these Terms from time to time; the \"Last updated\" date above will reflect the latest revision. Continued use of the Platform after a change means you accept the updated Terms."
+      ]},
+      {h:"12. Governing law", body:[
+        "These Terms are governed by the laws of India, and any disputes are subject to the jurisdiction of Indian courts."
+      ]},
+      {h:"13. Contact", body:[
+        "Questions about these Terms can be sent through the Contact page."
+      ]},
+    ]
+  });
+}
+
+function PrivacyPage(){
+  return React.createElement(LegalPage,{
+    eyebrow:"Legal", title:"Privacy Policy", updated:LEGAL_UPDATED,
+    sections:[
+      {h:"1. Introduction", body:[
+        "This Privacy Policy explains what information PE Prep collects, how it's used, and the choices you have. Using the Platform means you agree to this Policy."
+      ]},
+      {h:"2. Information we collect", body:[
+        "Account information: your name, email address and a securely hashed password (we never store your password in plain text) when you sign up.",
+        "Usage and progress data: mock test scores, accuracy, streaks, bookmarks, and the questions you've attempted, so the Platform can show your progress and unlock free-tier previews correctly.",
+        "Payment information: handled entirely by Razorpay, our payment processor. PE Prep never sees or stores your card, UPI or bank account details — we only receive confirmation that a payment succeeded and a reference ID.",
+        "Standard technical logs (such as IP address and browser type) generated automatically by our hosting provider."
+      ]},
+      {h:"3. How we use this information", body:[
+        [
+          "To provide your account, track your progress, and apply the correct plan/entitlements",
+          "To respond to messages sent via the Contact page",
+          "To maintain and improve the Platform's reliability and content",
+          "To meet legal or tax obligations where applicable"
+        ]
+      ]},
+      {h:"4. Cookies and local storage", body:[
+        "PE Prep uses your browser's local storage to keep you signed in and to remember preferences (such as theme and dismissed banners) on your device. We do not use this for cross-site advertising tracking."
+      ]},
+      {h:"5. Third-party services", body:[
+        "Razorpay processes all payments under its own privacy policy and PCI-compliant security standards.",
+        "Render hosts our servers and database. Google sign-in, where used, is handled directly by Google's own authentication flow."
+      ]},
+      {h:"6. Data retention", body:[
+        "We keep your account and progress data for as long as your account is active. If you ask us to delete your account via the Contact page, we will delete your personal information within a reasonable time, except where we're required to keep transaction records for legal or tax reasons."
+      ]},
+      {h:"7. Your rights", body:[
+        "You can ask to access, correct, or delete your personal data at any time by reaching out through the Contact page."
+      ]},
+      {h:"8. Data security", body:[
+        "We use industry-standard measures (including password hashing and encrypted connections) to protect your information, but no online service can guarantee absolute security."
+      ]},
+      {h:"9. Changes to this Policy", body:[
+        "We may update this Privacy Policy from time to time; the \"Last updated\" date above reflects the latest revision."
+      ]},
+      {h:"10. Contact", body:[
+        "Questions about this Policy, or requests to access/delete your data, can be sent through the Contact page."
+      ]},
+    ]
+  });
+}
+
+function RefundPolicyPage(){
+  return React.createElement(LegalPage,{
+    eyebrow:"Legal", title:"Refund & Cancellation Policy", updated:LEGAL_UPDATED,
+    sections:[
+      {h:"1. One-time purchases, not subscriptions", body:[
+        "PE Prep's Pro, Pro+ and single-exam pass plans are one-time payments that unlock access immediately — none of them auto-renew or charge you again, so there is nothing to \"cancel\" in the subscription sense."
+      ]},
+      {h:"2. General policy", body:[
+        "Because paid plans unlock digital content and access immediately on successful payment, purchases are generally non-refundable once access has been granted — this is standard practice for digital educational products."
+      ]},
+      {h:"3. When a refund applies", body:[
+        "We will refund a payment if:",
+        [
+          "You were charged more than once for the same purchase (a duplicate charge)",
+          "Your payment was debited but your plan or exam pass was not activated within 24 hours due to a technical error on our end",
+          "The transaction was unauthorised or fraudulent"
+        ]
+      ]},
+      {h:"4. How to request a refund", body:[
+        "Contact us through the Contact page within 7 days of the transaction, including your registered email, the approximate date of payment, and (if available) the payment/order ID from your Razorpay receipt or bank/UPI app."
+      ]},
+      {h:"5. Refund timeline", body:[
+        "Approved refunds are processed within 5–7 business days back to the original payment method, though your bank or UPI app may take a few additional days to reflect it."
+      ]},
+      {h:"6. Failed or pending payments", body:[
+        "If a payment shows as \"failed\" or \"pending\" but an amount was debited from your account, this is usually auto-reversed by your bank or Razorpay within standard banking timelines without any action needed. If it isn't reversed within 7 days, contact us and we'll help track it down."
+      ]},
+      {h:"7. Contact", body:[
+        "For anything refund-related, reach us through the Contact page."
+      ]},
+    ]
+  });
+}
+
+function AboutPage(){
+  return React.createElement(LegalPage,{
+    eyebrow:"About", title:"About PE Prep", updated:LEGAL_UPDATED,
+    sections:[
+      {h:"What we're building", body:[
+        "PE Prep is India's dedicated exam-preparation platform for Physical Education — built for aspirants preparing for KVS, NVS, DSSSB, UGC NET, SET, State PSC, B.P.Ed, M.P.Ed and other PE-specific exams.",
+        "Every other major exam-prep platform treats Physical Education as one subject among dozens. PE Prep exists because this syllabus — Kinesiology, Biomechanics, Sports Psychology, Sports Training, Yoga, Olympic Movement and more — deserves the same depth of practice questions, mock tests, previous year papers and analytics that a full syllabus gets everywhere else."
+      ]},
+      {h:"How it works", body:[
+        "Learn through structured study material, practice topic-wise questions with instant explanations, take full-length mock tests under real exam conditions, and track accuracy and progress over time — all built around one continuous loop: Learn, Practice, Test, Analyze, Revise, Improve."
+      ]},
+      {h:"Get in touch", body:[
+        "Questions, feedback, or a correction to report on a question? Reach us through the Contact page — we read every message."
+      ]},
+    ]
+  });
+}
+
 /* --------------------------------- Contact ---------------------------------- */
 // A support channel for visitors that doesn't publish any personal name,
 // phone number or address — just a form. Submissions are stored server-side
@@ -7762,6 +7940,10 @@ const ROUTES = {
   "/bookmarks": BookmarksPage,
   "/admin": AdminPage,
   "/contact": ContactPage,
+  "/terms": TermsPage,
+  "/privacy": PrivacyPage,
+  "/refund-policy": RefundPolicyPage,
+  "/about": AboutPage,
   "/login": AuthPage,
   "/signup": AuthPage,
 };
