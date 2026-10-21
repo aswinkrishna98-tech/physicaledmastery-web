@@ -1,0 +1,32 @@
+[
+  {
+    "questionId": "PHY-006",
+    "field": "relatedIds",
+    "change": "removed dangling reference FML-002 (no such question exists)",
+    "line": 180
+  },
+  {
+    "questionId": "PHY-012",
+    "field": "relatedIds",
+    "change": "removed dangling reference FML-003 (no such question exists)",
+    "line": 222
+  },
+  {
+    "questionId": "TRN-008",
+    "field": "relatedIds",
+    "change": "removed dangling reference FML-005 (no such question exists)",
+    "line": 293
+  },
+  {
+    "questionId": "TME-001",
+    "field": "relatedIds",
+    "change": "removed dangling reference FML-001 (no such question exists)",
+    "line": 393
+  },
+  {
+    "questionId": "OLY-004",
+    "field": "relatedIds",
+    "change": "removed dangling reference CA-003 (no such question exists)",
+    "line": 514
+  }
+]

@@ -201,6 +201,13 @@ input,select,textarea{font-family:var(--font-body);}
 .navlink.active{color:var(--ink); background:var(--surface-3);}
 .navcta{display:flex; align-items:center; gap:6px; flex:none;}
 @media (max-width:1080px){ .navlinks{display:none;} }
+/* Phones: keep brand + actions inside the viewport (was 404px wide at 375px). */
+@media (max-width:480px){
+  .brand{font-size:17px; gap:7px;}
+  .navcta{gap:2px;}
+  .navcta .btn-icon{width:32px; height:32px; padding:0;}
+  .navcta .btn-sm{max-width:132px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+}
 
 .mobilebar{position:fixed; bottom:0; left:0; right:0; z-index:50; background:var(--surface); border-top:1px solid var(--border); display:none;
   padding:6px 6px calc(6px + env(safe-area-inset-bottom));}
@@ -239,7 +246,7 @@ input,select,textarea{font-family:var(--font-body);}
 /* ---- Forms ---- */
 .field{display:flex; flex-direction:column; gap:6px;}
 .label{font-size:12.5px; font-weight:600; color:var(--muted);}
-.input,.select{padding:10px 13px; border-radius:var(--radius-sm); border:1px solid var(--border-strong); background:var(--surface); color:var(--ink); font-size:14px;}
+.input,.select{padding:10px 13px; border-radius:var(--radius-sm); border:1px solid var(--border-strong); background:var(--surface); color:var(--ink); font-size:14px; max-width:100%; min-width:0;}
 .input:focus,.select:focus{outline:2px solid var(--info); outline-offset:0; border-color:var(--info);}
 .chip-select{display:flex; flex-wrap:wrap; gap:8px;}
 .chip{padding:8px 14px; border-radius:var(--radius-pill); border:1px solid var(--border-strong); font-size:13px; font-weight:600; color:var(--muted); background:var(--surface);}

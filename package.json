@@ -2,11 +2,17 @@
   "name": "pe-prep",
   "version": "1.0.0",
   "description": "",
-  "main": "data-content.js",
+  "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "bundle": "node scripts/compile-bundle.js",
+    "build": "python3 build.py",
+    "test": "node --test tests/scoring.test.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@babel/preset-react": "^7.24.0"
+  }
 }

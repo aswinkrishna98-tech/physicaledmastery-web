@@ -27,7 +27,8 @@ function QuestionPalette({questions, responses, idx, onJump, groupBySubject}){
         g.items.map(i=>{
           const st = statusOf(i);
           const cls = "pnode "+(st.includes("review")?"review":st.includes("answered")?"answered":st.includes("notvisited")&&!st.includes("visited ")?"notvisited":"")+(i===idx?" current":"");
-          return React.createElement("button",{key:i, className:cls, onClick:()=>onJump(i)}, i+1);
+          const label = "Question "+(i+1)+": "+(st.includes("review")?(st.includes("answered")?"answered and marked for review":"marked for review"):st.includes("answered")?"answered":"not answered");
+          return React.createElement("button",{key:i, className:cls, onClick:()=>onJump(i), "aria-label":label, "aria-current": i===idx ? "true" : undefined, title:label}, i+1);
         })
       )
     )),
@@ -54,9 +55,18 @@ function ConceptBox({concept}){
   );
 }
 
-function TestEngine({mode, questions:initialQuestions, title, examMeta, onExit, onFinish}){
+function TestEngine(props){
+  if(!props.questions || props.questions.length===0){
+    return React.createElement("div",{className:"container", style:{padding:"60px 24px"}},
+      React.createElement("div",{className:"empty-state"}, "There are no questions available for this selection yet.",
+        React.createElement("div",{style:{marginTop:14}}, React.createElement("button",{className:"btn btn-primary", onClick:props.onExit || (()=>history.back())}, "Go back"))));
+  }
+  return React.createElement(TestEngineInner, props);
+}
+
+function TestEngineInner({mode, questions:initialQuestions, title, examMeta, onExit, onFinish}){
   const {recordAttempt, notify, toggleBookmark, bookmarks, goto, isSubjectLocked, markRevealed} = useApp();
-  const [questions,setQuestions] = useState(initialQuestions);
+  const [questions,setQuestions] = useState(()=>initialQuestions.map(shuffleQuestionOptions));
   const [idx,setIdx] = useState(0);
   const [responses,setResponses] = useState(()=>{
     const r = {}; initialQuestions.forEach(q=>r[q.id]={selected:null, checked:false, marked:false, visited:false, timeSpent:0}); return r;
@@ -68,6 +78,12 @@ function TestEngine({mode, questions:initialQuestions, title, examMeta, onExit, 
   const [secondsElapsed,setSecondsElapsed] = useState(0);
   const startRef = useRef(Date.now());
   const submittedRef = useRef(false);
+  const [confirmSubmit,setConfirmSubmit] = useState(false);
+  // Always points at the CURRENT handleSubmit. The countdown below is created
+  // once, so calling handleSubmit directly from it would use the first
+  // render's empty `responses` and score an auto-submitted test as all
+  // unanswered. Going through this ref fixes that.
+  const submitRef = useRef(null);
 
   const q = questions[idx];
   const resp = responses[q.id] || {selected:null, checked:false, marked:false, visited:false, timeSpent:0};
@@ -82,7 +98,7 @@ function TestEngine({mode, questions:initialQuestions, title, examMeta, onExit, 
     const t = setInterval(()=>{
       if(isMock){
         setSecondsLeft(s=>{
-          if(s<=1){ clearInterval(t); if(!submittedRef.current){ submittedRef.current=true; setTimeout(()=>handleSubmit(true),0); } return 0; }
+          if(s<=1){ clearInterval(t); setTimeout(()=>submitRef.current && submitRef.current(true),0); return 0; }
           return s-1;
         });
       } else {
@@ -92,6 +108,14 @@ function TestEngine({mode, questions:initialQuestions, title, examMeta, onExit, 
     return ()=>clearInterval(t);
     // eslint-disable-next-line
   },[]);
+
+  // Don't let people lose a running mock by accident (refresh/close tab).
+  useEffect(()=>{
+    if(!isMock) return;
+    const warn = (e)=>{ if(!submittedRef.current){ e.preventDefault(); e.returnValue=""; } };
+    window.addEventListener("beforeunload", warn);
+    return ()=>window.removeEventListener("beforeunload", warn);
+  },[isMock]);
 
   function touchTime(qid){
     const spent = (Date.now()-startRef.current)/1000;
@@ -107,6 +131,7 @@ function TestEngine({mode, questions:initialQuestions, title, examMeta, onExit, 
     setResponses(prev=>({...prev, [q.id]:{...prev[q.id], marked: !prev[q.id].marked}}));
   }
   function clearResponse(){
+    if(!isMock && resp.checked) return; // answer already revealed + recorded: can't be redone for XP
     setResponses(prev=>({...prev, [q.id]:{...prev[q.id], selected:null, checked:false}}));
   }
   function checkAnswer(){
@@ -128,7 +153,7 @@ function TestEngine({mode, questions:initialQuestions, title, examMeta, onExit, 
     if(!rq) return;
     let targetIdx = questions.findIndex(x=>x.id===rid);
     if(targetIdx===-1){
-      setQuestions(prev=>[...prev, rq]);
+      setQuestions(prev=>[...prev, shuffleQuestionOptions(rq)]);
       setResponses(prev=>({...prev, [rq.id]: prev[rq.id]||{selected:null,checked:false,marked:false,visited:false,timeSpent:0}}));
       targetIdx = questions.length;
       notify("Added related question to this set");
@@ -138,17 +163,21 @@ function TestEngine({mode, questions:initialQuestions, title, examMeta, onExit, 
   }
 
   function handleSubmit(auto){
+    if(submittedRef.current) return;          // idempotent: timer + button can't double-submit
+    submittedRef.current = true;
+    setConfirmSubmit(false);
     if(mode==="practice"){
       setShowSummary(true);
       return;
     }
-    // Mock scoring
+    // Mock scoring — uses the latest `responses` (see submitRef above).
     touchTime(q.id);
-    const neg = examMeta?.negativeMarking ?? 0.25;
-    let correct=0, incorrect=0, unattempted=0;
+    const neg = Number.isFinite(examMeta?.negativeMarking) ? examMeta.negativeMarking : 0;
+    const tally = computeMockScore(questions, responses, neg);
     const subjectMap = {};
     const diffMap = {};
     let totalTime = 0;
+    const review = [];
     questions.forEach(qq=>{
       const r = responses[qq.id] || {};
       totalTime += r.timeSpent||0;
@@ -156,23 +185,26 @@ function TestEngine({mode, questions:initialQuestions, title, examMeta, onExit, 
       subjectMap[qq.subject].total++;
       diffMap[qq.difficulty] = diffMap[qq.difficulty] || {correct:0,total:0};
       diffMap[qq.difficulty].total++;
-      if(r.selected==null){ unattempted++; }
-      else if(r.selected===qq.correctIndex){ correct++; subjectMap[qq.subject].correct++; diffMap[qq.difficulty].correct++; recordAttempt(qq, r.selected, r.timeSpent); }
-      else { incorrect++; recordAttempt(qq, r.selected, r.timeSpent); }
+      if(r.selected!=null){
+        if(r.selected===qq.correctIndex){ subjectMap[qq.subject].correct++; diffMap[qq.difficulty].correct++; }
+        recordAttempt(qq, r.selected, r.timeSpent);
+      }
+      review.push({id:qq.id, selectedText: r.selected==null?null:qq.options[r.selected], correctText: qq.options[qq.correctIndex]});
     });
-    const score = Math.max(0, correct*1 - incorrect*neg);
-    const attempted = correct+incorrect;
-    const accuracy = attempted>0 ? Math.round((correct/attempted)*100) : 0;
+    totalTime += (Date.now()-startRef.current)/1000; // time on the question that was open at submit
+    const accuracy = tally.attempted>0 ? Math.round((tally.correct/tally.attempted)*100) : 0;
     const subjectPerf = Object.entries(subjectMap).map(([subject,s])=>({subject, accuracy: s.total? Math.round((s.correct/s.total)*100):0, total:s.total}));
     const diffPerf = Object.entries(diffMap).map(([difficulty,s])=>({difficulty, accuracy: s.total? Math.round((s.correct/s.total)*100):0, total:s.total}));
     const result = {
       id:"mock-"+Date.now(), title: title||"Mock Test", date: new Date().toISOString(),
-      totalQuestions: questions.length, correct, incorrect, unattempted, attempted, score: Math.round(score*100)/100,
-      maxScore: questions.length, accuracy, totalTime: Math.round(totalTime), avgTimePerQ: attempted? Math.round(totalTime/attempted):0,
-      subjectPerf, diffPerf, negativeMarking:neg, auto: !!auto,
+      totalQuestions: questions.length, correct: tally.correct, incorrect: tally.incorrect, unattempted: tally.unattempted, attempted: tally.attempted,
+      score: tally.score, maxScore: tally.maxScore, marksLost: tally.marksLost,
+      accuracy, totalTime: Math.round(totalTime), avgTimePerQ: tally.attempted? Math.round(totalTime/tally.attempted):0,
+      subjectPerf, diffPerf, negativeMarking:neg, auto: !!auto, review,
     };
     onFinish(result);
   }
+  submitRef.current = handleSubmit;
 
   if(showSummary && mode==="practice"){
     const answered = Object.values(responses).filter(r=>r.selected!=null);
@@ -215,11 +247,11 @@ function TestEngine({mode, questions:initialQuestions, title, examMeta, onExit, 
     React.createElement("div",{className:"flex justify-between items-center wrap gap-12", style:{marginBottom:18}},
       React.createElement("div",null,
         React.createElement("h2",{className:"h2"}, title || (isMock ? "Mock Test" : "Practice Session")),
-        React.createElement("p",{className:"tiny muted"}, isMock ? "Full-screen exam mode · Negative marking: -"+(examMeta?.negativeMarking??0.25) : "Practice mode · instant explanations")
+        React.createElement("p",{className:"tiny muted"}, isMock ? "Timed exam mode · "+(examMeta?.negativeMarking>0 ? "Negative marking: −"+(Math.round(examMeta.negativeMarking*100)/100)+" per wrong answer" : "No negative marking") : "Practice mode · instant explanations")
       ),
       React.createElement("div",{className:"flex items-center gap-10"},
-        React.createElement("span",{className:"timer-badge"+(low?" low":"")}, React.createElement(Icon,{name:"clock",size:14}), timeDisplay),
-        React.createElement("button",{className:"btn btn-outline btn-sm", onClick:()=>{ if(confirm(isMock?"Submit the test now?":"End this practice session?")) handleSubmit(false); }}, isMock?"Submit Test":"End Practice")
+        React.createElement("span",{className:"timer-badge"+(low?" low":""), role: isMock ? "timer" : undefined, "aria-label": (isMock?"Time left ":"Time elapsed ")+timeDisplay}, React.createElement(Icon,{name:"clock",size:14}), timeDisplay),
+        React.createElement("button",{className:"btn btn-outline btn-sm", onClick:()=>setConfirmSubmit(true)}, isMock?"Submit Test":"End Practice")
       )
     ),
     React.createElement("div",{className:"practice-shell"},
@@ -232,14 +264,15 @@ function TestEngine({mode, questions:initialQuestions, title, examMeta, onExit, 
           !isMock && React.createElement("span",{style:{marginLeft:"auto"}}, React.createElement(BookmarkButton,{type:"questions",id:q.id}))
         ),
         React.createElement("p",{className:"qtext"}, q.question),
-        React.createElement("div",{className:"options"},
+        React.createElement("div",{className:"options", role:"radiogroup", "aria-label":"Answer options"},
           q.options.map((opt,i)=>{
             let cls="option";
             if(!isMock && resp.checked){
               if(i===q.correctIndex) cls+=" correct";
               else if(i===resp.selected) cls+=" incorrect";
             } else if(resp.selected===i) cls+=" selected";
-            return React.createElement("div",{key:i, className:cls, onClick:()=>selectOption(i)},
+            return React.createElement("div",{key:i, className:cls, onClick:()=>selectOption(i), role:"radio", "aria-checked": resp.selected===i, tabIndex:0,
+              onKeyDown:(e)=>{ if(e.key==="Enter" || e.key===" "){ e.preventDefault(); selectOption(i); } else if(e.key>="1" && e.key<="4" && Number(e.key)-1===i){ selectOption(i); } }},
               React.createElement("span",{className:"option-letter"}, letters(i)),
               React.createElement("span",null, opt)
             );
@@ -255,7 +288,7 @@ function TestEngine({mode, questions:initialQuestions, title, examMeta, onExit, 
             !isMock && !resp.checked && React.createElement("button",{className:"btn btn-dark btn-sm", onClick:checkAnswer}, "Check Answer"),
             idx<questions.length-1 ?
               React.createElement("button",{className:"btn btn-primary btn-sm", onClick:goNext}, "Next", React.createElement(Icon,{name:"chevronRight",size:14})) :
-              React.createElement("button",{className:"btn btn-primary btn-sm", onClick:()=>handleSubmit(false)}, isMock?"Submit Test":"Finish Practice")
+              React.createElement("button",{className:"btn btn-primary btn-sm", onClick:()=>setConfirmSubmit(true)}, isMock?"Submit Test":"Finish Practice")
           )
         ),
         (!isMock && resp.checked) && (
@@ -282,6 +315,20 @@ function TestEngine({mode, questions:initialQuestions, title, examMeta, onExit, 
         )
       ),
       React.createElement(QuestionPalette,{questions, responses, idx, onJump:jump, groupBySubject:isMock})
-    )
+    ),
+    confirmSubmit && (()=>{
+      const answeredN = questions.filter(x=>responses[x.id]?.selected!=null).length;
+      const markedN = questions.filter(x=>responses[x.id]?.marked).length;
+      return React.createElement("div",{className:"modal-backdrop", role:"dialog", "aria-modal":"true", "aria-label":"Confirm submit",
+          style:{position:"fixed", inset:0, background:"rgba(0,0,0,.5)", display:"flex", alignItems:"center", justifyContent:"center", zIndex:1000, padding:16},
+          onKeyDown:(e)=>{ if(e.key==="Escape") setConfirmSubmit(false); }},
+        React.createElement("div",{className:"card card-pad", style:{maxWidth:420, width:"100%"}},
+          React.createElement("h3",{className:"h2"}, isMock ? "Submit the test?" : "End this practice session?"),
+          React.createElement("p",{className:"small muted", style:{margin:"10px 0 16px"}},
+            "You have answered "+answeredN+" of "+questions.length+" questions"+(markedN? " · "+markedN+" marked for review":"")+(isMock && answeredN<questions.length ? ". Unanswered questions score 0." : ".")),
+          React.createElement("div",{className:"flex gap-10", style:{justifyContent:"flex-end"}},
+            React.createElement("button",{className:"btn btn-outline btn-sm", autoFocus:true, onClick:()=>setConfirmSubmit(false)}, "Keep going"),
+            React.createElement("button",{className:"btn btn-primary btn-sm", onClick:()=>handleSubmit(false)}, isMock?"Submit now":"End session"))));
+    })()
   );
 }

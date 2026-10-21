@@ -59,7 +59,7 @@ function Home(){
             "🎯 Preparing for ", React.createElement("b",null, preferredExam.short), " — ",
             React.createElement("a",{href:"#", onClick:e=>{e.preventDefault(); goto("/mock-test-setup",{examId:preferredExam.id});}}, "jump into a mock test")),
           React.createElement("div",{className:"hero-stats"},
-            [["50,000+","Practice questions"],["13","Exams covered"],["40+","PE subjects mapped"],["12,400+","Aspirants preparing"]].map(([n,l])=>
+            [[QUESTION_BANK.length.toLocaleString(),"Practice questions (and growing)"],[String(EXAMS.length),"Exams covered"],[String(SUBJECTS.length),"Subjects & units mapped"],["Free","First full mock test"]].map(([n,l])=>
               React.createElement("div",{key:l,className:"hero-stat"}, React.createElement("b",null,n), React.createElement("span",{className:"small muted"},l))
             )
           )
@@ -70,10 +70,10 @@ function Home(){
 
     // ---- WHY CHOOSE US ----
     React.createElement("section",{className:"container", style:{padding:"36px 24px 8px"}},
-      React.createElement(SectionHeading,{eyebrow:"Why PE Aspirants Choose Us", title:"Built exclusively for Physical Education exams", lede:"Not a generic quiz app — a specialized ecosystem covering every PE competitive exam in India. (Figures below are illustrative demo data.)"}),
+      React.createElement(SectionHeading,{eyebrow:"Why PE Aspirants Choose Us", title:"Built exclusively for Physical Education exams", lede:"Not a generic quiz app — focused entirely on Physical Education competitive exams in India."}),
       React.createElement("div",{className:"grid grid-4"},
         [
-          {icon:"bank", t:"50,000+ Questions", d:"Curated PE-only question bank, tagged by exam, subject, topic and difficulty."},
+          {icon:"bank", t:QUESTION_BANK.length.toLocaleString()+" Questions", d:"PE-only question bank, tagged by exam, subject, topic and difficulty — growing steadily, with explanations on every question."},
           {icon:"target", t:"Exam-Focused Content", d:"Every module maps directly to KVS, NET, DSSSB, NVS, PSC and university syllabi."},
           {icon:"brain", t:"Detailed Explanations", d:"Concept breakdowns, memory tricks and sports relevance for every question."},
           {icon:"performance", t:"Smart Analytics", d:"Track accuracy, speed, and topic-wise strength with your Preparation Coach."},
@@ -133,7 +133,7 @@ function Home(){
         React.createElement("div",null,
           React.createElement("div",{className:"eyebrow", style:{color:"var(--gold)"}},"🔥 Today's PE Challenge"),
           React.createElement("h3",{className:"h1", style:{color:"#fff", marginTop:6}}, "10 Questions · 5 Minutes · Mixed Difficulty"),
-          React.createElement("p",{className:"small", style:{color:"rgba(255,255,255,.75)", marginTop:6}}, "Keep your streak alive — thousands of aspirants complete this every morning.")
+          React.createElement("p",{className:"small", style:{color:"rgba(255,255,255,.75)", marginTop:6}}, "Keep your streak alive with a quick daily practice habit.")
         ),
         React.createElement("button",{className:"btn btn-primary", onClick:()=>goto("/daily-challenge")}, "Start Challenge")
       )
@@ -142,8 +142,8 @@ function Home(){
     // ---- SOCIAL PROOF / FINAL CTA ----
     React.createElement("section",{className:"container", style:{padding:"48px 24px 72px"}},
       React.createElement("div",{className:"card card-pad", style:{textAlign:"center", padding:"48px 24px"}},
-        React.createElement("h2",{className:"display-2"}, "The world's most focused prep platform for Physical Education"),
-        React.createElement("p",{className:"lede", style:{margin:"14px auto 0"}}, "Join aspirants preparing for KVS, NET, NVS, DSSSB, State PSC, B.P.Ed and M.P.Ed exams."),
+        React.createElement("h2",{className:"display-2"}, "A prep platform focused only on Physical Education"),
+        React.createElement("p",{className:"lede", style:{margin:"14px auto 0"}}, "Practice for KVS, NET, NVS, DSSSB, State PSC, B.P.Ed and M.P.Ed exams."),
         React.createElement("div",{className:"flex gap-16", style:{justifyContent:"center", marginTop:24, flexWrap:"wrap"}},
           React.createElement("button",{className:"btn btn-primary", onClick:()=>goto("/question-bank")}, "Start Practising Free"),
           React.createElement("button",{className:"btn btn-outline", onClick:()=>goto("/pricing")}, "See Pricing")
@@ -164,8 +164,7 @@ function ExamCard({exam}){
     React.createElement("h3",{className:"h3"}, exam.name),
     React.createElement("p",{className:"tiny muted"}, exam.body),
     React.createElement("div",{className:"flex gap-16 small", style:{margin:"4px 0"}},
-      React.createElement("span",null, React.createElement("b",{className:"num"},exam.tests)," tests"),
-      React.createElement("span",null, React.createElement("b",{className:"num"},exam.questions.toLocaleString())," Qs")
+      React.createElement("span",null, React.createElement("b",{className:"num"},exam.questions.toLocaleString())," tagged Qs")
     ),
     React.createElement("button",{className:"btn btn-outline btn-sm btn-block", onClick:()=>goto("/exam-detail",{id:exam.id})}, "Explore Exam")
   );

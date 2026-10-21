@@ -198,14 +198,5 @@ function isBadgeEarned(badgeId, ctx){
   return fn ? !!fn(ctx) : false;
 }
 
-// ---- Leaderboard demo rows ----
-function makeLeaderboard(seedNames){
-  return seedNames.map((n,i)=>({
-    rank:i+1, name:n.name, xp: Math.round(12800 - i*310 - (i%3)*40), accuracy: Math.round(94 - i*1.1), streak: Math.max(1, 41 - i*2), tests: Math.max(3, 58 - i*2)
-  }));
-}
-const LEADERBOARD_ALLTIME = makeLeaderboard([
-  {name:"Rahul Menon"},{name:"Anjali Sharma"},{name:"Arjun Verma"},{name:"Sneha Reddy"},{name:"Vikram Singh"},
-  {name:"Pooja Nair"},{name:"Karthik Iyer"},{name:"Divya Pillai"},{name:"Rohit Yadav"},{name:"Meera Joshi"},
-  {name:"You"},{name:"Aman Gupta"},{name:"Priya Das"},{name:"Suresh Kumar"},{name:"Neha Kapoor"}
-]);
+// (Leaderboard demo rows removed: they were invented names. A real leaderboard needs server-side XP.)
+

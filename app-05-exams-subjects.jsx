@@ -23,10 +23,10 @@ function ExamDetailPage(){
       )
     ),
     React.createElement("div",{className:"grid grid-4", style:{marginBottom:28}},
-      React.createElement(StatTile,{label:"Mock Tests", value:exam.tests}),
-      React.createElement(StatTile,{label:"Question Bank", value:exam.questions.toLocaleString()+"+"}),
+      React.createElement(StatTile,{label:"Mock Tests", value:"Unlimited*", sub:"*generated from the bank"}),
+      React.createElement(StatTile,{label:"Tagged Questions", value:exam.questions.toLocaleString()}),
       React.createElement(StatTile,{label:"Difficulty", value:exam.difficulty}),
-      React.createElement(StatTile,{label:"Pattern", value:exam.pattern.split("·")[0].trim()})
+      React.createElement(StatTile,{label:"Pattern", value:"See below", sub:"verify officially"})
     ),
     React.createElement("div",{className:"grid grid-2"},
       React.createElement("div",{className:"card card-pad"},
@@ -41,7 +41,7 @@ function ExamDetailPage(){
         React.createElement("div",{className:"flex-col gap-12"},
           React.createElement("button",{className:"btn btn-primary btn-block", onClick:()=>goto("/question-bank",{exam:exam.name})}, "Practice "+exam.short+" Questions"),
           React.createElement("button",{className:"btn btn-outline btn-block", onClick:()=>goto("/mock-test-setup",{examId:exam.id})}, "Take a Full Mock Test"),
-          React.createElement("button",{className:"btn btn-ghost btn-block", onClick:()=>goto("/previous-papers",{exam:exam.short})}, "View Previous Year Papers")
+          React.createElement("button",{className:"btn btn-ghost btn-block", onClick:()=>goto("/previous-papers",{exam:exam.short})}, "Exam-style Practice Sets")
         )
       )
     ),

@@ -17,7 +17,7 @@ function MockTestsPage(){
     const copy = [...EXAMS]; const [pref] = copy.splice(idx,1); copy.unshift(pref); return copy;
   },[profile.preferredExam]);
   return React.createElement("div",{className:"container", style:{padding:"36px 24px 64px"}},
-    React.createElement(SectionHeading,{eyebrow:"Mock Tests", title:"Realistic, timed exam simulations", lede:"Full-screen test mode with timer, question palette, negative marking and auto-submit — built to mirror the real exam experience.", right:
+    React.createElement(SectionHeading,{eyebrow:"Mock Tests", title:"Realistic, timed exam simulations", lede:"Timed test mode with a question palette, configurable negative marking and auto-submit. Check each exam's current official pattern — ours is a practice simulation.", right:
       !isPro && React.createElement("span",{className:"pill pill-warning"}, "Free Plan · full result analysis needs Pro")
     }),
     React.createElement("div",{className:"grid grid-4"},
@@ -42,11 +42,20 @@ function MockTestSetupPage(){
   const exam = EXAMS.find(e=>e.id===routeParams.examId) || EXAMS[0];
   const [length,setLength] = useState(TEST_LENGTHS[1]);
   const [engineConfig,setEngineConfig] = useState(null);
+  const cfg = EXAM_CONFIG[exam.id] || {negative:0, negativeKnown:false};
+  const defaultMarking = (MARKING_OPTIONS.find(m=>Math.abs(m.negative-cfg.negative)<0.001) || MARKING_OPTIONS[0]).id;
+  const [markingId,setMarkingId] = useState(defaultMarking);
+  const marking = MARKING_OPTIONS.find(m=>m.id===markingId) || MARKING_OPTIONS[0];
+  const examPool = useMemo(()=>questionsForExam(exam.id),[exam.id]);
+  const generalPool = useMemo(()=>QUESTION_BANK.filter(q=>!isSchoolQuestion(q)),[]);
+  const taggedCount = examPool.length;
+  const effectiveCount = Math.min(length.questions, generalPool.length);
+  const topUp = Math.max(0, effectiveCount - taggedCount);
 
   if(engineConfig){
     return React.createElement(TestEngine,{
       mode:"mock", questions:engineConfig.questions, title:exam.short+" Mock Test",
-      examMeta:{duration:length.minutes, negativeMarking:0.25, examName:exam.short},
+      examMeta:{duration:length.minutes, negativeMarking:marking.negative, examName:exam.short},
       onFinish:(result)=>goto("/mock-result",{result:{...result, examShort:exam.short, examId:exam.id}})
     });
   }
@@ -66,17 +75,32 @@ function MockTestSetupPage(){
             l.label+" · "+l.questions+"Q / "+l.minutes+"min"))
         )
       ),
-      React.createElement("div",{className:"grid grid-3", style:{marginBottom:22}},
-        React.createElement(StatTile,{label:"Questions", value:length.questions}),
-        React.createElement(StatTile,{label:"Duration", value:length.minutes+" min"}),
-        React.createElement(StatTile,{label:"Negative Marking", value:"−0.25"})
+      React.createElement("div",{className:"field", style:{marginBottom:12}},
+        React.createElement("span",{className:"label"}, "Negative marking"),
+        React.createElement("div",{className:"chip-select", style:{marginTop:8}},
+          MARKING_OPTIONS.map(m=>React.createElement("button",{key:m.id, className:"chip"+(markingId===m.id?" active":""), onClick:()=>setMarkingId(m.id), "aria-pressed": markingId===m.id}, m.label))
+        ),
+        React.createElement("p",{className:"tiny muted", style:{marginTop:8}}, cfg.negativeKnown
+          ? "Default set from reported "+exam.short+" pattern — confirm in the official notification."
+          : "The official scheme for "+exam.short+" isn't confirmed here. Pick the one your notification specifies.")
       ),
-      React.createElement("p",{className:"tiny muted", style:{marginBottom:18}}, "This demo mock samples from the platform's current question bank ("+QUESTION_BANK.length+" questions). In production, each exam draws from its own dedicated pool of thousands of exam-calibrated questions."),
+      React.createElement("div",{className:"grid grid-3", style:{marginBottom:22}},
+        React.createElement(StatTile,{label:"Questions", value:effectiveCount}),
+        React.createElement(StatTile,{label:"Duration", value:length.minutes+" min"}),
+        React.createElement(StatTile,{label:"Negative Marking", value: marking.negative>0 ? "−"+(Math.round(marking.negative*100)/100) : "None"})
+      ),
+      React.createElement("p",{className:"tiny muted", style:{marginBottom:18}},
+        taggedCount===0
+          ? "No questions are tagged specifically for "+exam.short+" yet, so this test uses general Physical Education questions ("+generalPool.length+" in the bank)."
+          : taggedCount>=effectiveCount
+            ? "Questions are drawn from the "+taggedCount+" "+exam.short+"-tagged questions in the bank."
+            : "Only "+taggedCount+" questions in the bank are tagged for "+exam.short+"; the other "+topUp+" are general Physical Education questions to fill the test."),
       React.createElement("button",{className:"btn btn-primary btn-block", onClick:()=>{
-        const pool = QUESTION_BANK.filter(q=>q.exam.some(e=>exam.name.toLowerCase().includes(e.toLowerCase().split(" ")[0])));
-        const source = pool.length >= length.questions ? pool : QUESTION_BANK;
-        setEngineConfig({questions: pick(source, Math.min(length.questions, source.length))});
-      }}, "Begin Full-Screen Mock Test", React.createElement(Icon,{name:"chevronRight",size:16}))
+        const chosen = pick(examPool, Math.min(effectiveCount, examPool.length));
+        const have = new Set(chosen.map(q=>q.id));
+        const fill = pick(generalPool.filter(q=>!have.has(q.id)), Math.max(0, effectiveCount - chosen.length));
+        setEngineConfig({questions: [...chosen, ...fill]});
+      }}, "Begin Mock Test", React.createElement(Icon,{name:"chevronRight",size:16}))
     )
   );
 }
@@ -94,6 +118,31 @@ function CoachInsights({result, weakest, strongest}){
       React.createElement("h3",{className:"h3"}, "Your Preparation Coach")
     ),
     React.createElement("div",{className:"flex-col gap-10"}, lines.map((l,i)=>React.createElement("p",{key:i,className:"small"}, "• "+l)))
+  );
+}
+
+function AnswerReview({review}){
+  const [filter,setFilter] = useState("wrong");
+  const rows = review.map((r,i)=>({...r, n:i+1, q:QUESTIONS_BY_ID[r.id]})).filter(r=>r.q);
+  const status = r => r.selectedText==null ? "skipped" : (r.selectedText===r.correctText ? "right" : "wrong");
+  const shown = rows.filter(r=> filter==="all" ? true : filter==="wrong" ? status(r)!=="right" : status(r)===filter);
+  return React.createElement("div",{className:"card card-pad", style:{marginBottom:24}},
+    React.createElement("div",{className:"flex justify-between items-center wrap gap-12", style:{marginBottom:12}},
+      React.createElement("h3",{className:"h3"}, "Answer Review"),
+      React.createElement("div",{className:"chip-select"},
+        [["wrong","Wrong & skipped"],["right","Correct"],["all","All"]].map(([id,l])=>
+          React.createElement("button",{key:id, className:"chip"+(filter===id?" active":""), onClick:()=>setFilter(id), "aria-pressed":filter===id}, l)))
+    ),
+    shown.length===0 && React.createElement("p",{className:"small muted"}, "Nothing to show for this filter."),
+    React.createElement("div",{className:"flex-col gap-10"},
+      shown.map(r=>React.createElement("div",{key:r.id, style:{padding:"12px 0", borderBottom:"1px solid var(--border)"}},
+        React.createElement("div",{className:"small", style:{fontWeight:600}}, "Q"+r.n+". "+r.q.question.split("\n")[0]),
+        React.createElement("div",{className:"tiny", style:{marginTop:6}},
+          React.createElement("span",{className:"pill "+(status(r)==="right"?"pill-success":status(r)==="wrong"?"pill-danger":"")}, status(r)==="right"?"Correct":status(r)==="wrong"?"Wrong":"Not attempted"),
+          " ", r.selectedText!=null && ("Your answer: "+r.selectedText+" · "), "Correct: "+r.correctText),
+        React.createElement("p",{className:"tiny muted", style:{marginTop:6}}, r.q.explanation)
+      ))
+    )
   );
 }
 
@@ -121,8 +170,7 @@ function MockResultPage(){
   const examShort = result.examShort || "this exam";
   const sorted = [...result.subjectPerf].sort((a,b)=>a.accuracy-b.accuracy);
   const weakest = sorted[0], strongest = sorted[sorted.length-1];
-  const percentile = clamp(Math.round(40 + result.accuracy*0.5 + (result.score/result.maxScore)*10), 5, 99);
-  const rank = clamp(Math.round(2000 - percentile*19), 1, 5000);
+  const pctScore = result.maxScore ? Math.round((result.score/result.maxScore)*1000)/10 : 0;
   const trend = [...mockHistory].slice(0,6).reverse().map((m,i)=>({label:"T"+(i+1), value:m.accuracy}));
   if(trend.length===0) trend.push({label:"T1",value:result.accuracy});
 
@@ -139,7 +187,7 @@ function MockResultPage(){
       ? React.createElement("div",{style:{marginBottom:24}},
           React.createElement(MockPaywall,{
             title:"Unlock Your Full Result Analysis",
-            desc:"Your score is always free to see. Upgrade to Pro (unlocks every exam) or get the "+examShort+" Pass — ₹"+EXAM_PASS_PRICE_INR+" for unlimited "+examShort+" mock tests, rank, percentile, subject/difficulty breakdowns, accuracy trend and coaching insights for this exam only.",
+            desc:"Your score is always free to see. Upgrade to Pro (unlocks every exam) or get the "+examShort+" Pass — ₹"+EXAM_PASS_PRICE_INR+" for unlimited "+examShort+" mock tests, answer review, subject/difficulty breakdowns, accuracy trend and coaching insights for this exam only.",
             examId: result.examId, examShort,
           })
         )
@@ -149,8 +197,8 @@ function MockResultPage(){
               React.createElement(DonutChart,{value:result.accuracy, size:90, color:"var(--info)", label:result.accuracy+"%"}),
               React.createElement("div",{className:"tiny muted", style:{marginTop:6}}, "Accuracy")
             ),
-            React.createElement(StatTile,{label:"Rank (demo)", value:"#"+rank, sub:"Top "+(100-percentile)+"%", subClass:"pill-gold"}),
-            React.createElement(StatTile,{label:"Percentile", value:percentile+"ile"})
+            React.createElement(StatTile,{label:"Score %", value:pctScore+"%", sub: result.negativeMarking>0 ? "after −"+(Math.round(result.negativeMarking*100)/100)+" negative marking" : "no negative marking"}),
+            React.createElement(StatTile,{label:"Marks lost to wrong answers", value: result.marksLost!=null ? result.marksLost : "—", sub:"Rank & percentile need real cohort data — coming once enough aspirants have tested", subClass:""})
           ),
           React.createElement("div",{className:"grid grid-4", style:{marginBottom:28}},
             React.createElement(StatTile,{label:"Attempted", value:result.attempted+"/"+result.totalQuestions}),
@@ -189,7 +237,8 @@ function MockResultPage(){
               React.createElement("p",{className:"small muted", style:{margin:"8px 0 16px"}}, "Accuracy: "+weakest.accuracy+"%"),
               React.createElement("button",{className:"btn btn-primary", onClick:()=>goto("/question-bank",{subject:weakest.subject})}, "Practice "+weakest.subject)
             )
-          )
+          ),
+          result.review && React.createElement(AnswerReview,{review:result.review})
         ),
 
     React.createElement("div",{className:"flex gap-12 wrap"},

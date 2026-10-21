@@ -159,28 +159,23 @@ function DashboardAnalyticsPage(){
 
 /* ------------------------------- Leaderboard ------------------------------ */
 function LeaderboardPage(){
-  const [tab,setTab] = useState("alltime");
-  const tabs = [["daily","Daily"],["weekly","Weekly"],["monthly","Monthly"],["alltime","All Time"]];
-  const rows = useMemo(()=>{
-    const jitter = {daily:0.3, weekly:0.6, monthly:0.85, alltime:1}[tab];
-    return LEADERBOARD_ALLTIME.map(r=>({...r, xp: Math.round(r.xp*jitter)})).sort((a,b)=>b.xp-a.xp).map((r,i)=>({...r,rank:i+1}));
-  },[tab]);
-  const medal = i=>i===0?"🥇":i===1?"🥈":i===2?"🥉":null;
-  return React.createElement("div",{className:"container", style:{padding:"36px 24px 72px"}},
-    React.createElement(SectionHeading,{eyebrow:"Leaderboard", title:"Compete With Aspirants Nationwide", lede:"Ranked by XP earned through practice, mock tests, accuracy and daily streaks."}),
-    React.createElement("div",{className:"tabs", style:{marginBottom:20}},
-      tabs.map(([id,label])=>React.createElement("div",{key:id, className:"tab"+(tab===id?" active":""), onClick:()=>setTab(id)}, label))
+  // HONESTY NOTE: the previous version ranked invented names with made-up XP.
+  // A real leaderboard needs every learner's XP stored on the server (only a
+  // few counters sync today), so until that exists we show the learner's own
+  // real numbers and say plainly that rankings are not live yet.
+  const {profile, accuracy, isLoggedIn, goto} = useApp();
+  return React.createElement("div",{className:"container", style:{padding:"36px 24px 72px", maxWidth:760}},
+    React.createElement(SectionHeading,{eyebrow:"Leaderboard", title:"Your progress", lede:"Nationwide rankings are not live yet — we only show a leaderboard once it is based on real learners. Here are your own numbers."}),
+    React.createElement("div",{className:"grid grid-4", style:{marginBottom:24}},
+      React.createElement(StatTile,{label:"XP", value:(profile.xp||0).toLocaleString()}),
+      React.createElement(StatTile,{label:"Study streak", value:(profile.streak||0)+" days"}),
+      React.createElement(StatTile,{label:"Questions solved", value:(profile.questionsSolved||0).toLocaleString()}),
+      React.createElement(StatTile,{label:"Accuracy", value:(accuracy||0)+"%"})
     ),
     React.createElement("div",{className:"card card-pad"},
-      React.createElement("div",{className:"lb-row small muted", style:{fontWeight:700}},
-        React.createElement("span",null,"#"), React.createElement("span",null,"Aspirant"), React.createElement("span",null,"XP"), React.createElement("span",null,"Accuracy"), React.createElement("span",null,"Streak")),
-      rows.map((r,i)=>React.createElement("div",{key:r.name, className:"lb-row"+(r.name==="You"?" me":"")},
-        React.createElement("span",{className:"lb-rank"}, medal(i)||("#"+r.rank)),
-        React.createElement("span",{style:{fontWeight:r.name==="You"?700:500}}, r.name),
-        React.createElement("span",{className:"num"}, r.xp.toLocaleString()+" XP"),
-        React.createElement("span",{className:"num small"}, r.accuracy+"%"),
-        React.createElement("span",{className:"small"}, "🔥 "+r.streak)
-      ))
+      React.createElement("h3",{className:"h3", style:{marginBottom:8}}, "When will rankings appear?"),
+      React.createElement("p",{className:"small muted"}, "Once enough signed-in aspirants are practising, daily / weekly / all-time boards will be switched on, ranked by XP, accuracy and streak. Sign in so your progress counts from day one."),
+      !isLoggedIn && React.createElement("button",{className:"btn btn-primary btn-sm", style:{marginTop:14}, onClick:()=>goto("/login")}, "Sign in")
     )
   );
 }
@@ -212,16 +207,6 @@ function QuestionOfTheDayPage(){
   const qotd = QUESTION_BANK[seedIndexForDate(QUESTION_BANK.length)];
   const answered = dailyState.lastQOTD===todayStr();
   const [selected,setSelected] = useState(answered ? dailyState.qotdAnswer : null);
-  const distribution = useMemo(()=>{
-    // deterministic demo distribution of what % chose each option
-    let seed = seedIndexForDate(97);
-    return qotd.options.map((_,i)=>{
-      seed = (seed*9301+49297)%233280;
-      return i===qotd.correctIndex ? 45+Math.floor((seed%20)) : Math.floor((seed%20));
-    });
-  },[qotd]);
-  const total = distribution.reduce((a,b)=>a+b,0)||1;
-
   function submit(i){
     setSelected(i);
     recordAttempt(qotd, i, 0);
@@ -235,22 +220,16 @@ function QuestionOfTheDayPage(){
       React.createElement("p",{className:"qtext"}, qotd.question),
       React.createElement("div",{className:"options"},
         qotd.options.map((opt,i)=>{
-          const pct = Math.round((distribution[i]/total)*100);
           let cls="option";
           if(selected!=null){ if(i===qotd.correctIndex) cls+=" correct"; else if(i===selected) cls+=" incorrect"; }
           return React.createElement("div",{key:i, className:cls, style:{position:"relative",overflow:"hidden"}, onClick:()=>selected==null && submit(i)},
-            selected!=null && React.createElement("div",{style:{position:"absolute",inset:0,background:"var(--surface-3)",width:pct+"%",zIndex:0,opacity:.5}}),
             React.createElement("span",{className:"option-letter",style:{position:"relative"}}, letters(i)),
             React.createElement("span",{style:{position:"relative",flex:1}}, opt),
-            selected!=null && React.createElement("span",{className:"num small",style:{position:"relative",fontWeight:700}}, pct+"%")
+            null
           );
         })
       ),
       selected!=null && React.createElement("div",{className:"explain-box"}, React.createElement("p",{className:"small"}, qotd.explanation)),
-      React.createElement("div",{className:"flex gap-10 wrap", style:{marginTop:16}},
-        React.createElement("button",{className:"btn btn-outline btn-sm"}, "Share Question"),
-        React.createElement("button",{className:"btn btn-outline btn-sm"}, "Challenge a Friend")
-      )
     )
   );
 }

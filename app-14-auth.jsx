@@ -91,18 +91,18 @@ function AuthPage(){
       // ---- Right: value-prop panel (Testbook-style colored side panel) ----
       React.createElement("div",{className:"auth-card-promo"},
         React.createElement(TrackCurves,null),
-        React.createElement("div",{className:"eyebrow", style:{color:"var(--gold)", position:"relative"}}, "JOIN 12,400+ ASPIRANTS"),
+        React.createElement("div",{className:"eyebrow", style:{color:"var(--gold)", position:"relative"}}, "FOR PHYSICAL EDUCATION ASPIRANTS"),
         React.createElement("h2",{className:"h2", style:{color:"#fff", position:"relative"}}, "Everything you need to crack your PE exam"),
         React.createElement("div",{className:"auth-bullets"},
           [
-            "50,000+ Physical Education practice questions",
+            QUESTION_BANK.length.toLocaleString()+" Physical Education practice questions",
             "13 exams covered — KVS, NET, DSSSB, NVS, PSC & more",
             "Full-length mock tests with detailed performance analysis",
             "Sports current affairs, updated every week",
           ].map(t=>React.createElement("div",{key:t, className:"auth-bullet"}, React.createElement(Icon,{name:"check", size:16}), t))
         ),
         React.createElement("div",{className:"auth-stats"},
-          [["50,000+","Questions"],["13","Exams"],["40+","Subjects"]].map(([n,l])=>
+          [[QUESTION_BANK.length.toLocaleString(),"Questions"],[String(EXAMS.length),"Exams"],[String(SUBJECTS.length),"Subjects"]].map(([n,l])=>
             React.createElement("div",{key:l}, React.createElement("b",null,n), React.createElement("span",null,l)))
         )
       )

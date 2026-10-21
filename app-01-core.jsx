@@ -102,8 +102,26 @@ const ADMIN_EMAILS = ["aswinkrishna98@gmail.com"];
 // Question Bank filter value.
 function examIdForName(name){
   if(!name) return null;
-  const hit = EXAMS.find(e=>e.name===name || e.short===name);
+  const hit = EXAMS.find(e=>e.name===name || e.short===name || (EXAM_CONFIG[e.id] && EXAM_CONFIG[e.id].tag===name));
   return hit ? hit.id : null;
+}
+
+// ---------------------------------------------------------------------------
+// Option shuffling. In the stored bank ~63% of correct answers sit in slot B
+// and ~3% in slot D, so "always pick B" scores far above chance. Test flows
+// therefore present options in a random order and remap the correct index.
+// Not shuffled: non-MCQ types (Assertion-Reason, Match) and any question
+// whose options refer to other options ("All of the above", "A and B").
+// IDs and stored answers are untouched; this only changes what is shown.
+// ---------------------------------------------------------------------------
+const OPTION_REFERENCE_RE = /\b(all|none|neither|both)\s+of\s+(the\s+)?(above|these|them)\b|\babove\b|\b[a-d]\s*(and|&)\s*[a-d]\b/i;
+function shuffleQuestionOptions(q){
+  if(!q || !Array.isArray(q.options) || q.options.length<2) return q;
+  if(q.type && q.type!=="MCQ") return q;
+  if(q.options.some(o=>OPTION_REFERENCE_RE.test(String(o)))) return q;
+  const order = q.options.map((_,i)=>i);
+  for(let i=order.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [order[i],order[j]]=[order[j],order[i]]; }
+  return {...q, options: order.map(i=>q.options[i]), correctIndex: order.indexOf(q.correctIndex)};
 }
 
 // ---------------------------------------------------------------------------
@@ -193,6 +211,7 @@ function AppProvider({children}){
   const [theme, setTheme] = usePersistentState("pep_theme","system");
   const [profile, setProfile] = usePersistentState("pep_profile", DEFAULT_PROFILE);
   const [attempts, setAttempts] = usePersistentState("pep_attempts", {}); // qid -> {correct, ts, timeSpent, count}
+  const attemptsRef = useRef(attempts); attemptsRef.current = attempts;
   const [bookmarks, setBookmarks] = usePersistentState("pep_bookmarks", {questions:[], notes:[], flashcards:[], tests:[]});
   const [wrongLog, setWrongLog] = usePersistentState("pep_wrong", {}); // qid -> count
   const [mockHistory, setMockHistory] = usePersistentState("pep_mock_history", []);
@@ -251,6 +270,10 @@ function AppProvider({children}){
 
   const recordAttempt = useCallback((question, selectedIndex, timeSpent)=>{
     const correct = selectedIndex === question.correctIndex;
+    // Re-attempting a question you've already done updates accuracy data but
+    // doesn't inflate "questions solved" or farm XP.
+    const firstTime = !attemptsRef.current[question.id];
+    attemptsRef.current = {...attemptsRef.current, [question.id]: true};
     setAttempts(prev=>{
       const existing = prev[question.id];
       return {...prev, [question.id]: {correct, ts: Date.now(), timeSpent: timeSpent||0, count:(existing?.count||0)+1, subject: question.subject, difficulty: question.difficulty}};
@@ -263,8 +286,10 @@ function AppProvider({children}){
         const cp = {...prev}; delete cp[question.id]; return cp;
       });
     }
-    setProfile(p=>({...p, questionsSolved: p.questionsSolved + 1}));
-    addXp(correct ? 10 : 2);
+    if(firstTime){
+      setProfile(p=>({...p, questionsSolved: p.questionsSolved + 1}));
+      addXp(correct ? 10 : 2);
+    }
     touchStreak();
     return correct;
   },[setAttempts,setWrongLog,setProfile,addXp,touchStreak]);
@@ -469,7 +494,8 @@ function AppProvider({children}){
     setCheckoutBusy(true);
     try{
       const orderRes = await fetch(`${PAYMENTS.backendUrl}/api/create-order`,{
-        method:"POST", headers:{"Content-Type":"application/json"},
+        method:"POST",
+        headers:{"Content-Type":"application/json", ...(authToken ? {Authorization:"Bearer "+authToken} : {})},
         body: JSON.stringify({userId, plan, examId}),
       });
       if(!orderRes.ok){
@@ -486,7 +512,7 @@ function AppProvider({children}){
         currency: order.currency,
         order_id: order.orderId,
         name: "PE Prep",
-        description: plan==="exampass" ? (examShort+" Pass") : (PLAN_LABELS[plan]||plan)+" subscription",
+        description: plan==="exampass" ? (examShort+" Pass") : (PLAN_LABELS[plan]||plan)+" (one-time)",
         prefill: { name: profile.name || "" },
         theme: { color: "#FF5A36" },
         handler: async (response)=>{
@@ -530,7 +556,7 @@ function AppProvider({children}){
         notify(e.message || "Couldn't start checkout — please try again.", 4000);
       }
     }
-  },[setProfile,notify,profile.name,authAccountId]);
+  },[setProfile,notify,profile.name,authAccountId,authToken]);
 
   const upgradePlan = paymentsLive ? upgradePlanReal : upgradePlanDemo;
 

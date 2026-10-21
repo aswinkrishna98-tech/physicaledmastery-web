@@ -94,7 +94,7 @@ function PromoBanner(){
     React.createElement("div",{className:"promo-banner-inner"},
       React.createElement("span",{className:"promo-banner-live"}, "🔴 LIVE"),
       React.createElement("span",{className:"small", style:{fontWeight:600}},
-        "50,000+ questions, full mock tests & previous year papers for 13+ PE exams — go Pro today."),
+        "Unlimited mock tests, full result analysis and practice sets for "+EXAMS.length+" PE exams — go Pro today."),
       React.createElement("button",{className:"btn btn-sm promo-banner-cta", onClick:()=>goto("/pricing")}, "Explore Plans"),
       React.createElement("button",{className:"promo-banner-close", "aria-label":"Dismiss", onClick:()=>setDismissed(true)},
         React.createElement(Icon,{name:"close", size:16}))
@@ -242,7 +242,7 @@ function Footer(){
       React.createElement("div",{className:"flex gap-24 wrap"},
         React.createElement("div",{className:"flex-col gap-8"},
           React.createElement("span",{className:"small",style:{fontWeight:700}},"Platform"),
-          ["Exams","Question Bank","Mock Tests","Previous Year Papers","Leaderboard"].map((t,i)=>React.createElement("a",{key:t,className:"small muted",href:"#/",onClick:e=>{e.preventDefault();goto(["/exams","/question-bank","/mock-tests","/previous-papers","/leaderboard"][i]);}},t))
+          ["Exams","Question Bank","Mock Tests","Practice Sets","Leaderboard"].map((t,i)=>React.createElement("a",{key:t,className:"small muted",href:"#/",onClick:e=>{e.preventDefault();goto(["/exams","/question-bank","/mock-tests","/previous-papers","/leaderboard"][i]);}},t))
         ),
         React.createElement("div",{className:"flex-col gap-8"},
           React.createElement("span",{className:"small",style:{fontWeight:700}},"Resources"),
@@ -256,7 +256,7 @@ function Footer(){
     ),
     React.createElement("div",{className:"container",style:{marginTop:28}},
       React.createElement("div",{className:"lane-divider",style:{marginBottom:18}}),
-      React.createElement("p",{className:"tiny muted"}, "Demo prototype. Question data, user stats and leaderboard rows are representative sample data. © 2026 PE Prep.")
+      React.createElement("p",{className:"tiny muted"}, "PE Prep is an independent practice platform. Exam patterns are indicative — always confirm against the official notification. © 2026 PE Prep.")
     )
   );
 }
@@ -323,7 +323,7 @@ function MockPaywall({title, desc, examId, examShort}){
     React.createElement("div",{style:{fontSize:34, marginBottom:10}}, "🔒"),
     React.createElement("h3",{className:"h1", style:{color:"#fff"}}, title || "You've used your free mock test"),
     React.createElement("p",{className:"small", style:{color:"rgba(255,255,255,.8)", margin:"10px auto 24px", maxWidth:440}},
-      desc || "Free plan includes one full-length mock test to try the experience. Upgrade to Pro for unlimited mock tests, previous year papers, and full performance analytics."),
+      desc || "Free plan includes one full-length mock test to try the experience. Upgrade to Pro for unlimited mock tests, practice sets, and full performance analytics."),
     React.createElement("div",{className:"flex gap-12 wrap", style:{justifyContent:"center"}},
       React.createElement("button",{className:"btn btn-primary", disabled:checkoutBusy, onClick:()=>upgradePlan("pro")}, checkoutBusy?"Opening secure checkout…":"Upgrade to Pro"),
       examId && React.createElement("button",{className:"btn btn-outline", style:{borderColor:"rgba(255,255,255,.5)", color:"#fff"}, disabled:checkoutBusy,
@@ -344,7 +344,7 @@ function PracticeContentLock({subject}){
     React.createElement("div",{style:{fontSize:26, marginBottom:6}}, "🔒"),
     React.createElement("h4",{className:"h3", style:{color:"#fff"}}, "Free quota used in "+subject),
     React.createElement("p",{className:"tiny", style:{color:"rgba(255,255,255,.8)", margin:"6px auto 16px", maxWidth:400}},
-      "You've unlocked the free explanation for 5 questions in this subject. Upgrade to Pro for unlimited detailed explanations, concept notes and related questions across all 40+ subjects."),
+      "You've unlocked the free explanation for 5 questions in this subject. Upgrade to Pro for unlimited detailed explanations, concept notes and related questions across all subjects."),
     React.createElement("div",{className:"flex gap-10 wrap", style:{justifyContent:"center"}},
       React.createElement("button",{className:"btn btn-primary btn-sm", disabled:checkoutBusy, onClick:()=>upgradePlan("pro")}, checkoutBusy?"Opening secure checkout…":"Upgrade to Pro"),
       React.createElement("button",{className:"btn btn-outline btn-sm", style:{borderColor:"rgba(255,255,255,.5)", color:"#fff"}, onClick:()=>goto("/pricing")}, "Compare Plans")

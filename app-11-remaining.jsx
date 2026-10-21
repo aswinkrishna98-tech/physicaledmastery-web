@@ -4,47 +4,44 @@
 // ============================================================================
 
 function PreviousYearPapersPage(){
+  // HONESTY NOTE: this bank does not (yet) contain verified official past
+  // papers, so this page offers exam-style practice sets built from the
+  // exam-tagged questions we do have, and says so. Official PYQ papers should
+  // only be added with their source/year verified (see CONTENT_AUDIT.md).
   const {routeParams, goto, mockLocked, isPro, hasExamAccess} = useApp();
-  const [examFilter,setExamFilter] = useState(routeParams.exam || "All");
-  const exams = ["All", ...new Set(PYQ_PAPERS.map(p=>p.exam))];
-  const filtered = examFilter==="All" ? PYQ_PAPERS : PYQ_PAPERS.filter(p=>p.exam===examFilter);
+  const [paywallExam,setPaywallExam] = useState(null);
   const [engine,setEngine] = useState(null);
-  const [paywallPaper,setPaywallPaper] = useState(null);
   if(engine) return React.createElement(TestEngine,{mode:"mock", questions:engine.questions, title:engine.title,
-    examMeta:{duration:engine.duration, negativeMarking:0.25}, onFinish:(r)=>goto("/mock-result",{result:{...r, examShort:engine.title}})});
-
+    examMeta:{duration:engine.duration, negativeMarking:engine.negative, examName:engine.title}, onFinish:(r)=>goto("/mock-result",{result:{...r, examShort:engine.short, examId:engine.examId}})});
+  const general = QUESTION_BANK.filter(q=>!isSchoolQuestion(q));
   return React.createElement("div",{className:"container", style:{padding:"36px 24px 72px"}},
-    React.createElement(SectionHeading,{eyebrow:"Previous Year Papers", title:"Attempt Real Exam Papers", lede:"Select an exam and year to attempt the paper online, view solutions, and get a detailed analysis.", right:
+    React.createElement(SectionHeading,{eyebrow:"Previous Year Papers", title:"Exam-style practice sets", lede:"Official past papers are not in the bank yet — we only publish a paper once its source and year are verified. Until then, attempt timed practice sets built from questions tagged for each exam.", right:
       !isPro && React.createElement("span",{className:"pill "+(mockLocked?"pill-danger":"pill-warning")}, mockLocked?"Free mock test used":"Free Plan · 1 free attempt")
     }),
-    // Gated per-paper (not per-page): a free-plan user might already hold a
-    // single-exam Pass that unlocks only some of these papers, or might have
-    // spent their one global free mock elsewhere. Auto-hides the moment a
-    // real payment is verified, rather than waiting on a manual dismiss.
-    paywallPaper && !isPro && !hasExamAccess(EXAMS.find(e=>e.short===paywallPaper.exam)?.id) && mockLocked &&
+    paywallExam && !isPro && !hasExamAccess(paywallExam.id) && mockLocked &&
       React.createElement("div",{style:{marginBottom:24}}, React.createElement(MockPaywall,{
-        title:"Unlock unlimited previous year papers",
-        examId: EXAMS.find(e=>e.short===paywallPaper.exam)?.id, examShort: paywallPaper.exam,
+        title:"Unlock unlimited practice sets", examId: paywallExam.id, examShort: paywallExam.short,
       })),
-    React.createElement("div",{className:"chip-select", style:{marginBottom:20}}, exams.map(e=>React.createElement("button",{key:e,className:"chip"+(examFilter===e?" active":""),onClick:()=>setExamFilter(e)},e))),
     React.createElement("div",{className:"grid grid-3"},
-      filtered.map(p=>{
-        const examId = EXAMS.find(e=>e.short===p.exam)?.id;
-        const unlocked = isPro || hasExamAccess(examId) || !mockLocked;
-        return React.createElement("div",{key:p.id, className:"card card-pad"},
+      EXAMS.map(ex=>{
+        const tagged = questionsForExam(ex.id);
+        const n = Math.min(20, general.length);
+        const unlocked = isPro || hasExamAccess(ex.id) || !mockLocked;
+        const cfg = EXAM_CONFIG[ex.id] || {negative:0};
+        return React.createElement("div",{key:ex.id, className:"card card-pad"},
           React.createElement("div",{className:"flex justify-between", style:{marginBottom:8}},
-            React.createElement("span",{className:"pill pill-info"}, p.exam), p.tag && React.createElement("span",{className:"pill pill-gold"}, p.tag)),
-          React.createElement("h3",{className:"h3"}, p.exam+" — "+p.year),
-          React.createElement("p",{className:"tiny muted", style:{margin:"6px 0 14px"}}, p.questions+" Questions · "+p.duration+" minutes"),
+            React.createElement("span",{className:"pill pill-info"}, ex.short), React.createElement("span",{className:"pill"}, "Practice set")),
+          React.createElement("h3",{className:"h3"}, ex.short+" — exam-style set"),
+          React.createElement("p",{className:"tiny muted", style:{margin:"6px 0 14px"}}, n+" questions · 30 minutes · "+tagged.length+" "+ex.short+"-tagged question"+(tagged.length===1?"":"s")+" in the bank"),
           React.createElement("div",{className:"flex-col gap-8"},
             React.createElement("button",{className:"btn btn-primary btn-sm", onClick:()=>{
-              if(!unlocked){ setPaywallPaper(p); window.scrollTo({top:0,behavior:"smooth"}); return; }
-              setEngine({questions: pick(QUESTION_BANK, Math.min(20, QUESTION_BANK.length)), title:p.exam+" "+p.year, duration:Math.min(p.duration,30)});
+              if(!unlocked){ setPaywallExam(ex); window.scrollTo({top:0,behavior:"smooth"}); return; }
+              const chosen = pick(tagged, Math.min(n, tagged.length));
+              const have = new Set(chosen.map(q=>q.id));
+              const fill = pick(general.filter(q=>!have.has(q.id)), Math.max(0, n - chosen.length));
+              setEngine({questions:[...chosen, ...fill], title:ex.short+" practice set", short:ex.short, examId:ex.id, duration:30, negative:cfg.negative});
             }}, unlocked ? "Attempt Online" : "Unlock to Attempt", !unlocked && React.createElement(Icon,{name:"lock",size:13})),
-            React.createElement("div",{className:"flex gap-8"},
-              React.createElement("button",{className:"btn btn-outline btn-sm", style:{flex:1}, onClick:()=>goto("/question-bank",{exam:p.exam})}, "View Questions"),
-              React.createElement("button",{className:"btn btn-ghost btn-sm", style:{flex:1}}, "Download PDF")
-            )
+            React.createElement("button",{className:"btn btn-outline btn-sm", onClick:()=>goto("/question-bank",{exam:ex.short})}, "View Questions")
           )
         );
       })
@@ -220,8 +217,8 @@ function PricingPage(){
   const plan = profile.plan||"free";
   const tiers = [
     {id:"free",name:"Free",price:"₹0",period:"forever",features:["5 free explanations per subject","1 full mock test, then upgrade for more","Basic short notes","Limited analytics","Or buy a single-exam Pass below — cheaper than full Pro"],highlight:false},
-    {id:"pro",name:"Pro",price:"₹499",period:"/month",features:["Unlimited practice questions","Unlimited full mock tests","Detailed performance analytics","All previous year papers","Full study material & flashcards","Personalized study planner"],highlight:true},
-    {id:"proplus",name:"Pro+",price:"₹899",period:"/month",features:["Everything in Pro","Advanced AI preparation coach","Personalized adaptive plan","Exclusive live courses","Premium test series with rank prediction"],highlight:false},
+    {id:"pro",name:"Pro",price:"₹499",period:"one-time",features:["Unlimited practice questions","Unlimited mock tests","Detailed performance analytics & answer review","Exam-style practice sets for every exam","Full study material & flashcards","Study planner"],highlight:true},
+    {id:"proplus",name:"Pro+",price:"₹899",period:"one-time",features:["Everything in Pro today","Supporter tier: also gets upcoming features as they ship (AI coach, adaptive plans, live classes) — these are in development and not available yet"],highlight:false},
   ];
   const lede = paymentsLive
     ? "Take one full mock test free. Upgrade to Pro for unlimited mock tests and full analytics. Payments are processed securely via Razorpay — your plan unlocks the moment payment is verified."
@@ -230,7 +227,7 @@ function PricingPage(){
     React.createElement(SectionHeading,{eyebrow:"Pricing", title:"Simple, transparent plans", lede}),
     !isPro && freeMocksUsed>0 && React.createElement("div",{className:"card card-pad", style:{marginBottom:24, borderColor:"var(--warning)"}},
       React.createElement("span",{className:"pill pill-warning", style:{marginBottom:8}}, "Free mock test used"),
-      React.createElement("p",{className:"small muted"}, "You've used your one free full mock test. Upgrade to Pro below for unlimited mock tests and previous year papers.")
+      React.createElement("p",{className:"small muted"}, "You've used your one free full mock test. Upgrade to Pro below for unlimited mock tests and practice sets.")
     ),
     React.createElement("div",{className:"grid grid-3"},
       tiers.map(t=>{
@@ -254,10 +251,10 @@ function PricingPage(){
       })
     ),
     React.createElement("p",{className:"tiny muted", style:{marginTop:18, textAlign:"center"}},
-      paymentsLive ? "Secured by Razorpay. Cancel anytime." : "Real payment gateway not connected in this deployment — see server/README.md to enable one."),
+      paymentsLive ? "Secured by Razorpay. One-time payment, no subscription — see the Refund Policy." : "Real payment gateway not connected in this deployment — see server/README.md to enable one."),
 
     React.createElement("div",{style:{marginTop:56}},
-      React.createElement(SectionHeading,{eyebrow:"Prepare For Just One Exam?", title:"Single-exam passes", lede:"Most aspirants only prepare for one exam at a time. A Pass unlocks unlimited mock tests, full result analysis and previous year papers for that one exam only — at a fraction of full Pro's price."}),
+      React.createElement(SectionHeading,{eyebrow:"Prepare For Just One Exam?", title:"Single-exam passes", lede:"Most aspirants only prepare for one exam at a time. A Pass unlocks unlimited mock tests, full result analysis and practice sets for that one exam only — at a fraction of full Pro's price."}),
       React.createElement("div",{className:"grid grid-4"},
         EXAMS.map(ex=>{
           const owned = isPro || hasExamAccess(ex.id);
@@ -309,7 +306,7 @@ function TermsPage(){
         "By creating an account, purchasing a plan, or otherwise using PE Prep (\"PE Prep\", \"the Platform\", \"we\", \"us\"), you agree to these Terms of Service. If you do not agree, please do not use the Platform."
       ]},
       {h:"2. What PE Prep is", body:[
-        "PE Prep is an exam-preparation platform focused exclusively on Physical Education competitive exams (including KVS, NVS, DSSSB, UGC NET, SET, State PSC, B.P.Ed and M.P.Ed), offering practice questions, mock tests, previous year papers, study material and performance analytics."
+        "PE Prep is an exam-preparation platform focused exclusively on Physical Education competitive exams (including KVS, NVS, DSSSB, UGC NET, SET, State PSC, B.P.Ed and M.P.Ed), offering practice questions, mock tests, exam-style practice sets, study material and performance analytics."
       ]},
       {h:"3. Eligibility", body:[
         "PE Prep is intended for users aged 18 and above who are preparing for the exams it covers. By using the Platform you confirm that you meet this age requirement."

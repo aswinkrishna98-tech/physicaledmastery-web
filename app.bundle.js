@@ -1,0 +1,16237 @@
+/* src-hash:51296b37d32a5b23aa9397596aa30b23d424dceb791f7adc02fe3d14868a3093 */
+
+/* ---- data-questions.js ---- */
+const QUESTION_BANK = [{
+  id: "ANA-001",
+  exam: ["UGC NET", "KVS PGT", "DSSSB", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Anatomy",
+  topic: "Skeletal System",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "Which is the longest bone in the human body?",
+  options: ["Tibia", "Femur", "Humerus", "Fibula"],
+  correctIndex: 1,
+  explanation: "The femur (thigh bone) is the longest and strongest bone in the human body, extending from the hip to the knee. It comprises roughly 26% of a person's height.",
+  concept: {
+    title: "Long Bones of the Lower Limb",
+    definition: "Long bones have a shaft (diaphysis) and two ends (epiphyses) and function primarily in movement and weight-bearing.",
+    points: ["Femur — longest & strongest bone", "Tibia — second longest, weight-bearing shin bone", "Fibula — thin, non-weight-bearing, lateral to tibia"],
+    memoryTrick: "'Femur = First' — it's the biggest bone, first to be named in most anatomy lists.",
+    sportsRelevance: "Femur fractures and stress fractures are common in high-impact sports like sprinting and long jump."
+  },
+  relatedIds: ["ANA-002", "ANA-014"],
+  source: "NCERT Human Anatomy",
+  tags: ["skeletal", "bones"]
+}, {
+  id: "ANA-002",
+  exam: ["UGC NET", "NVS", "SET", "EMRS", "AWES", "Sainik School", "CTET"],
+  subject: "Anatomy",
+  topic: "Skeletal System",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "How many bones are present in the adult human skeleton?",
+  options: ["196", "206", "216", "226"],
+  correctIndex: 1,
+  explanation: "An adult human skeleton has 206 bones. Infants are born with about 270-300 bones/cartilage pieces, many of which fuse together during growth.",
+  concept: {
+    title: "Total Bone Count",
+    definition: "206 bones split into axial skeleton (80 bones: skull, vertebral column, ribcage) and appendicular skeleton (126 bones: limbs, girdles).",
+    points: ["Axial skeleton — 80 bones", "Appendicular skeleton — 126 bones", "Smallest bone: Stapes (ear)", "Largest bone: Femur"],
+    memoryTrick: "80 + 126 = 206 — split the skeleton into 'trunk' (axial) and 'limbs' (appendicular).",
+    sportsRelevance: "Understanding bone classification helps in identifying injury-prone joints in different sports."
+  },
+  relatedIds: ["ANA-001", "ANA-003"],
+  source: "Gray's Anatomy for Students",
+  tags: ["skeletal", "bones"]
+}, {
+  id: "ANA-003",
+  exam: ["KVS PGT", "State PSC", "EMRS", "AWES", "Sainik School"],
+  subject: "Anatomy",
+  topic: "Joints",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2021,
+  question: "The shoulder joint is an example of which type of joint?",
+  options: ["Hinge joint", "Pivot joint", "Ball and socket joint", "Saddle joint"],
+  correctIndex: 2,
+  explanation: "The shoulder (glenohumeral) joint is a ball-and-socket joint, allowing movement in almost all planes — flexion, extension, abduction, adduction, and rotation.",
+  concept: {
+    title: "Classification of Synovial Joints",
+    definition: "Synovial joints are classified by shape and movement permitted.",
+    points: ["Ball & socket — shoulder, hip (multiaxial)", "Hinge — elbow, knee (uniaxial)", "Pivot — atlas-axis (rotation only)", "Saddle — thumb carpometacarpal"],
+    memoryTrick: "'Shoulder shrugs in every direction' — ball & socket = maximum freedom.",
+    sportsRelevance: "The shoulder's mobility makes it prone to dislocation in contact and throwing sports."
+  },
+  relatedIds: ["ANA-004", "BIO-005"],
+  source: "Essentials of Anatomy & Physiology",
+  tags: ["joints"]
+}, {
+  id: "ANA-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Anatomy",
+  topic: "Joints",
+  difficulty: "Hard",
+  type: "Assertion & Reason",
+  year: 2024,
+  question: "Assertion (A): The knee joint is more stable than the shoulder joint.\nReason (R): The knee joint has strong ligamentous support and menisci, while the shoulder relies mainly on the rotator cuff muscles.",
+  options: ["Both A and R are true, and R is the correct explanation of A", "Both A and R are true, but R is not the correct explanation of A", "A is true, R is false", "A is false, R is true"],
+  correctIndex: 0,
+  explanation: "The knee's stability comes from collateral/cruciate ligaments and menisci, whereas the shoulder trades stability for mobility, relying on soft-tissue (rotator cuff) support — making R a correct and direct explanation of A.",
+  concept: {
+    title: "Stability vs Mobility Trade-off",
+    definition: "Joints are built along a mobility-stability spectrum; the shoulder favours mobility, the knee/hip favour stability.",
+    points: ["Knee: ACL, PCL, MCL, LCL, menisci", "Shoulder: rotator cuff (SITS muscles) as dynamic stabilizers", "More mobile joints = higher dislocation risk"],
+    memoryTrick: "'Stable at the base (hip/knee), mobile at the ends (shoulder/ankle)'.",
+    sportsRelevance: "ACL injuries in football/basketball and rotator cuff injuries in swimming/throwing sports stem from this trade-off."
+  },
+  relatedIds: ["ANA-003", "INJ-002"],
+  source: "Kinesiology text",
+  tags: ["joints", "injury"]
+}, {
+  id: "ANA-005",
+  exam: ["DSSSB", "KVS PGT", "EMRS", "AWES", "Sainik School"],
+  subject: "Anatomy",
+  topic: "Muscular System",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "Which is the largest muscle in the human body?",
+  options: ["Deltoid", "Gluteus Maximus", "Latissimus Dorsi", "Trapezius"],
+  correctIndex: 1,
+  explanation: "The Gluteus Maximus is the largest and heaviest muscle in the human body. It is a primary hip extensor crucial for running, jumping and climbing stairs.",
+  concept: {
+    title: "Largest & Smallest Muscles",
+    definition: "Muscle size is generally measured by mass/cross-sectional area.",
+    points: ["Largest: Gluteus Maximus", "Smallest: Stapedius (middle ear)", "Longest: Sartorius (thigh)"],
+    memoryTrick: "'Glutes get you going' — biggest muscle, biggest propulsion.",
+    sportsRelevance: "Gluteal strength is central to sprinting speed and jump height."
+  },
+  relatedIds: ["ANA-006"],
+  source: "NCERT Human Anatomy",
+  tags: ["muscles"]
+}, {
+  id: "ANA-006",
+  exam: ["UGC NET", "SET"],
+  subject: "Anatomy",
+  topic: "Muscular System",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "Which type of muscle fibre is best suited for endurance activities like marathon running?",
+  options: ["Type IIx (Fast Glycolytic)", "Type IIa (Fast Oxidative Glycolytic)", "Type I (Slow Oxidative)", "Cardiac fibres"],
+  correctIndex: 2,
+  explanation: "Type I (Slow-Twitch/Slow Oxidative) fibres are fatigue-resistant, rely on aerobic metabolism, and are recruited for prolonged, low-intensity activity — ideal for marathon running.",
+  concept: {
+    title: "Skeletal Muscle Fibre Types",
+    definition: "Muscle fibres differ in contraction speed, fatigue resistance and metabolic pathway.",
+    points: ["Type I: slow, aerobic, fatigue-resistant — endurance", "Type IIa: fast, intermediate — middle distance", "Type IIx: fast, anaerobic, fatigues quickly — sprint/power"],
+    memoryTrick: "'I is for endurance (Iron-man), II is for speed'.",
+    sportsRelevance: "Elite marathoners often show 70-80% Type I fibres; sprinters show a higher proportion of Type II."
+  },
+  relatedIds: ["ANA-005", "PHY-009"],
+  source: "Exercise Physiology - McArdle",
+  tags: ["muscles", "fibre-type"]
+}, {
+  id: "ANA-007",
+  exam: ["KVS PGT", "NVS", "EMRS", "AWES", "Sainik School", "CTET"],
+  subject: "Anatomy",
+  topic: "Circulatory System",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2021,
+  question: "The human heart has how many chambers?",
+  options: ["Two", "Three", "Four", "Six"],
+  correctIndex: 2,
+  explanation: "The human heart has four chambers — two atria (upper) and two ventricles (lower) — enabling separate pulmonary and systemic circulation.",
+  concept: {
+    title: "Chambers of the Heart",
+    definition: "Right atrium & ventricle handle deoxygenated blood; left atrium & ventricle handle oxygenated blood.",
+    points: ["Right side: pulmonary circuit", "Left side: systemic circuit", "Septum divides the two sides"],
+    memoryTrick: "'2 receiving rooms (atria), 2 pumping rooms (ventricles)'.",
+    sportsRelevance: "Cardiac output (heart rate × stroke volume) is central to aerobic sports performance."
+  },
+  relatedIds: ["PHY-001"],
+  source: "NCERT Human Anatomy",
+  tags: ["circulatory"]
+}, {
+  id: "ANA-008",
+  exam: ["UGC NET", "SET"],
+  subject: "Anatomy",
+  topic: "Respiratory System",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "The exchange of oxygen and carbon dioxide takes place in which structure of the lungs?",
+  options: ["Bronchi", "Bronchioles", "Alveoli", "Trachea"],
+  correctIndex: 2,
+  explanation: "Alveoli are tiny air sacs surrounded by capillaries where gaseous exchange (O2 in, CO2 out) occurs via diffusion across a thin membrane.",
+  concept: {
+    title: "Site of Gas Exchange",
+    definition: "Alveoli provide a huge surface area (~70m²) for efficient diffusion.",
+    points: ["Thin, moist alveolar walls aid diffusion", "Surrounded by pulmonary capillaries", "Surfactant prevents alveolar collapse"],
+    memoryTrick: "'Alveoli = Air-exchange-oli' — the last stop for air.",
+    sportsRelevance: "Altitude training increases alveolar efficiency and red blood cell count."
+  },
+  relatedIds: ["PHY-002"],
+  source: "Guyton's Physiology",
+  tags: ["respiratory"]
+}, {
+  id: "ANA-009",
+  exam: ["State PSC", "B.P.Ed"],
+  subject: "Anatomy",
+  topic: "Nervous System",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "Which part of the brain is primarily responsible for coordination of voluntary movements and balance?",
+  options: ["Cerebrum", "Cerebellum", "Medulla Oblongata", "Hypothalamus"],
+  correctIndex: 1,
+  explanation: "The cerebellum ('little brain') coordinates voluntary movements such as posture, balance, and speech, ensuring smooth and accurate motor control.",
+  concept: {
+    title: "Functional Brain Regions",
+    definition: "Each brain region governs specific functions relevant to movement and cognition.",
+    points: ["Cerebrum: thought, voluntary action initiation", "Cerebellum: balance & coordination", "Medulla: involuntary functions (heartbeat, breathing)", "Hypothalamus: temperature & hormone regulation"],
+    memoryTrick: "'Cerebellum = balance beam' — think gymnastics balance.",
+    sportsRelevance: "Cerebellar function is critical in gymnastics, diving and balance-dependent sports."
+  },
+  relatedIds: ["ANA-010"],
+  source: "NCERT Human Anatomy",
+  tags: ["nervous-system"]
+}, {
+  id: "ANA-010",
+  exam: ["UGC NET", "M.P.Ed", "SET"],
+  subject: "Anatomy",
+  topic: "Nervous System",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2022,
+  question: "Proprioceptors located in muscles that detect changes in muscle length are called:",
+  options: ["Golgi Tendon Organs", "Muscle Spindles", "Pacinian Corpuscles", "Ruffini Endings"],
+  correctIndex: 1,
+  explanation: "Muscle spindles are stretch receptors within the muscle belly that detect changes in muscle length and the rate of that change, triggering the stretch reflex.",
+  concept: {
+    title: "Proprioceptors",
+    definition: "Sensory receptors providing information about body position and movement.",
+    points: ["Muscle spindles: detect length/stretch changes", "Golgi Tendon Organs: detect tension at musculotendinous junction", "Both protect muscles from overstretching/overloading"],
+    memoryTrick: "'Spindle = length, Golgi = tension (at joint-tendon)'.",
+    sportsRelevance: "Proprioception training reduces ankle/knee injury risk in agility sports."
+  },
+  relatedIds: ["ANA-009", "BIO-007"],
+  source: "Kinesiology text",
+  tags: ["nervous-system", "proprioception"]
+}, {
+  id: "ANA-011",
+  exam: ["KVS PGT", "EMRS", "AWES", "Sainik School"],
+  subject: "Anatomy",
+  topic: "Skeletal System",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2020,
+  question: "Which is the smallest bone in the human body?",
+  options: ["Stapes", "Malleus", "Incus", "Coccyx"],
+  correctIndex: 0,
+  explanation: "The stapes, located in the middle ear, is the smallest bone in the human body, roughly the size of a grain of rice, and transmits sound vibrations to the inner ear.",
+  concept: {
+    title: "Ear Ossicles",
+    definition: "Three tiny bones — malleus, incus, stapes — transmit sound from the eardrum to the inner ear.",
+    points: ["Malleus (hammer)", "Incus (anvil)", "Stapes (stirrup) — smallest bone"],
+    memoryTrick: "'MIS' order from eardrum inward: Malleus-Incus-Stapes.",
+    sportsRelevance: "Relevant in sports like diving/swimming where ear barotrauma can occur."
+  },
+  relatedIds: ["ANA-002"],
+  source: "NCERT Human Anatomy",
+  tags: ["skeletal", "ear"]
+}, {
+  id: "ANA-012",
+  exam: ["DSSSB", "UGC NET", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Anatomy",
+  topic: "Muscular System",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "Isometric muscle contraction is best described as:",
+  options: ["Muscle shortens while generating tension", "Muscle lengthens while generating tension", "Muscle generates tension without changing length", "Muscle relaxes completely"],
+  correctIndex: 2,
+  explanation: "In an isometric contraction, muscle tension is generated without a visible change in muscle length or joint angle — e.g., holding a plank position.",
+  concept: {
+    title: "Types of Muscle Contraction",
+    definition: "Contractions are classified by whether/how muscle length changes.",
+    points: ["Isometric: no length change (plank, wall-sit)", "Concentric: muscle shortens (lifting a weight up)", "Eccentric: muscle lengthens under tension (lowering a weight)"],
+    memoryTrick: "'Iso = same' (length stays same).",
+    sportsRelevance: "Isometric holds are used in rehab and core-stability training for athletes."
+  },
+  relatedIds: ["ANA-005", "TRN-004"],
+  source: "Exercise Physiology - McArdle",
+  tags: ["muscles", "contraction"]
+}, {
+  id: "ANA-013",
+  exam: ["UGC NET", "SET"],
+  subject: "Anatomy",
+  topic: "Circulatory System",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "Which blood vessel carries oxygenated blood away from the heart but is technically classified as an exception among arteries?",
+  options: ["Aorta", "Pulmonary Artery", "Coronary Artery", "Renal Artery"],
+  correctIndex: 1,
+  explanation: "Although arteries typically carry oxygenated blood, the pulmonary artery is an exception — it carries deoxygenated blood from the right ventricle to the lungs.",
+  concept: {
+    title: "Artery vs Vein Exceptions",
+    definition: "Vessel classification (artery/vein) depends on direction of flow (away/toward heart), not oxygen content.",
+    points: ["Pulmonary artery: deoxygenated blood, heart → lungs", "Pulmonary vein: oxygenated blood, lungs → heart", "This is the key exception tested repeatedly in exams"],
+    memoryTrick: "'Pulmonary is opposite' — remember this one exception and the rule holds everywhere else.",
+    sportsRelevance: "Understanding circulation aids in explaining VO2 max and oxygen delivery during exercise."
+  },
+  relatedIds: ["ANA-007", "PHY-003"],
+  source: "Guyton's Physiology",
+  tags: ["circulatory"]
+}, {
+  id: "ANA-014",
+  exam: ["KVS PGT", "NVS", "EMRS", "AWES", "Sainik School", "CTET"],
+  subject: "Anatomy",
+  topic: "Skeletal System",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2021,
+  question: "The vertebral column in an adult human typically consists of how many vertebrae?",
+  options: ["24", "26", "33", "30"],
+  correctIndex: 1,
+  explanation: "An adult vertebral column has 26 bones: 7 cervical + 12 thoracic + 5 lumbar + 1 sacrum (fused from 5) + 1 coccyx (fused from 3-5). At birth there are 33 separate segments before fusion.",
+  concept: {
+    title: "Vertebral Column Regions",
+    definition: "The spine is divided into 5 regions from top to bottom.",
+    points: ["Cervical (7) — neck", "Thoracic (12) — mid-back, rib attachment", "Lumbar (5) — lower back", "Sacrum (5 fused) and Coccyx (4 fused)"],
+    memoryTrick: "'Breakfast at 7, Lunch at 12, Dinner at 5' — 7 cervical, 12 thoracic, 5 lumbar.",
+    sportsRelevance: "Lumbar spine injuries are common in weightlifting and gymnastics due to excessive flexion/extension loads."
+  },
+  relatedIds: ["ANA-002"],
+  source: "NCERT Human Anatomy",
+  tags: ["skeletal", "spine"]
+}, {
+  id: "ANA-015",
+  exam: ["UGC NET", "SET"],
+  subject: "Anatomy",
+  topic: "Muscular System",
+  difficulty: "Hard",
+  type: "Match the Following",
+  year: 2023,
+  question: "Match the muscle (Column A) with its primary action (Column B):\nA) Biceps Brachii  B) Quadriceps  C) Gastrocnemius  D) Hamstrings\n1) Knee flexion  2) Elbow flexion  3) Plantar flexion  4) Knee extension",
+  options: ["A-2, B-4, C-3, D-1", "A-1, B-2, C-4, D-3", "A-2, B-1, C-3, D-4", "A-4, B-2, C-1, D-3"],
+  correctIndex: 0,
+  explanation: "Biceps Brachii flexes the elbow (2); Quadriceps extends the knee (4); Gastrocnemius plantar-flexes the ankle (3); Hamstrings flex the knee (1).",
+  concept: {
+    title: "Prime Movers of Major Joints",
+    definition: "Each major joint action has an associated 'prime mover' muscle group.",
+    points: ["Elbow flexion — Biceps Brachii", "Knee extension — Quadriceps (Rectus Femoris + Vasti)", "Ankle plantar flexion — Gastrocnemius/Soleus", "Knee flexion — Hamstrings (Biceps Femoris, Semitendinosus, Semimembranosus)"],
+    memoryTrick: "Pair opposite joint actions with opposite muscle groups (agonist-antagonist).",
+    sportsRelevance: "Hamstring-to-quadriceps strength ratio is a key injury-prevention metric in sprinting."
+  },
+  relatedIds: ["ANA-005", "ANA-012"],
+  source: "Kinesiology text",
+  tags: ["muscles", "match"]
+}, {
+  id: "ANA-016",
+  exam: ["State PSC", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Anatomy",
+  topic: "Digestive System",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2020,
+  question: "Bile, which helps in the digestion of fats, is produced by the:",
+  options: ["Pancreas", "Liver", "Gall Bladder", "Stomach"],
+  correctIndex: 1,
+  explanation: "Bile is produced by the liver and stored/concentrated in the gall bladder before being released into the small intestine to emulsify fats.",
+  concept: {
+    title: "Accessory Digestive Organs",
+    definition: "Liver, gall bladder and pancreas support digestion without food passing through them.",
+    points: ["Liver: produces bile", "Gall bladder: stores bile", "Pancreas: produces digestive enzymes + insulin"],
+    memoryTrick: "'Liver makes, gall bladder keeps'.",
+    sportsRelevance: "Fat metabolism efficiency matters in ultra-endurance sports nutrition."
+  },
+  relatedIds: ["NUT-002"],
+  source: "NCERT Human Anatomy",
+  tags: ["digestive"]
+}, {
+  id: "ANA-017",
+  exam: ["UGC NET", "M.P.Ed", "SET"],
+  subject: "Anatomy",
+  topic: "Joints",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "Which movement describes moving a limb away from the midline of the body?",
+  options: ["Adduction", "Abduction", "Circumduction", "Rotation"],
+  correctIndex: 1,
+  explanation: "Abduction is movement away from the body's midline (e.g., raising the arm sideways). Adduction is the opposite — movement toward the midline.",
+  concept: {
+    title: "Anatomical Movement Terms",
+    definition: "Standard terminology describes joint movements relative to anatomical position.",
+    points: ["Abduction: away from midline", "Adduction: toward midline", "Flexion: decreases joint angle", "Extension: increases joint angle"],
+    memoryTrick: "'ABduct = taken AWAY' (like a kidnapping, moved away).",
+    sportsRelevance: "Used constantly in coaching cues, e.g., 'abduct the hip' in agility drills."
+  },
+  relatedIds: ["ANA-003"],
+  source: "Essentials of Anatomy & Physiology",
+  tags: ["joints", "terminology"]
+}, {
+  id: "ANA-018",
+  exam: ["KVS PGT", "UGC NET", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Anatomy",
+  topic: "Circulatory System",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "The average resting heart rate of a healthy adult is:",
+  options: ["40-60 beats/min", "60-100 beats/min", "100-120 beats/min", "120-140 beats/min"],
+  correctIndex: 1,
+  explanation: "A normal resting heart rate for adults ranges from 60-100 beats per minute. Well-trained endurance athletes often have lower resting rates (40-60 bpm) due to cardiac adaptation.",
+  concept: {
+    title: "Resting Heart Rate (RHR)",
+    definition: "The number of heartbeats per minute while at complete rest.",
+    points: ["Normal adult range: 60-100 bpm", "Trained athletes: often 40-60 bpm (bradycardia of fitness)", "Measured best first thing in the morning"],
+    memoryTrick: "'60 to 100 is the norm for the everyday form'.",
+    sportsRelevance: "RHR is a simple marker coaches use to monitor cardiovascular fitness and overtraining."
+  },
+  relatedIds: ["ANA-007", "PHY-001"],
+  source: "ACSM Guidelines",
+  tags: ["circulatory", "heart-rate"]
+}, {
+  id: "PHY-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Physiology",
+  topic: "Cardiovascular Physiology",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "Cardiac output is the product of:",
+  options: ["Heart rate × Blood pressure", "Stroke volume × Blood pressure", "Heart rate × Stroke volume", "Stroke volume × Respiratory rate"],
+  correctIndex: 2,
+  explanation: "Cardiac Output (Q) = Heart Rate (HR) × Stroke Volume (SV). It represents the total volume of blood pumped by the heart per minute.",
+  concept: {
+    title: "Cardiac Output",
+    definition: "Q = HR × SV, typically ~5L/min at rest, can rise to 20-40L/min during maximal exercise in trained athletes.",
+    points: ["Resting CO: ~5 L/min", "Elite endurance athletes: up to 40 L/min at max effort", "Trained hearts increase CO mainly via higher stroke volume"],
+    memoryTrick: "'Q = HR × SV' — remember Q for Quantity of blood pumped.",
+    sportsRelevance: "Higher stroke volume (bigger, more efficient heart) is a hallmark of endurance-trained athletes."
+  },
+  relatedIds: ["ANA-007", "PHY-006"],
+  source: "Exercise Physiology - McArdle",
+  tags: ["cardiovascular"]
+}, {
+  id: "PHY-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Physiology",
+  topic: "Respiratory Physiology",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "VO2 Max is best defined as:",
+  options: ["The volume of air inhaled per breath", "The maximum rate of oxygen consumption during intense exercise", "The total lung capacity", "The oxygen saturation of blood"],
+  correctIndex: 1,
+  explanation: "VO2 Max is the maximum rate at which the body can consume and utilize oxygen during incremental exercise, widely regarded as the best single indicator of cardiorespiratory/aerobic fitness.",
+  concept: {
+    title: "VO2 Max",
+    definition: "Maximal oxygen uptake, measured in ml/kg/min, reflecting the combined efficiency of lungs, heart, blood and muscles.",
+    points: ["Elite endurance athletes: 70-85 ml/kg/min", "Average untrained adult: 35-45 ml/kg/min", "Measured via graded exercise tests (e.g., Bruce Protocol)", "Estimated indirectly via Cooper 12-min run test"],
+    memoryTrick: "'VO2 Max = engine size' — bigger aerobic engine, better endurance.",
+    sportsRelevance: "Central selection/testing metric for endurance sports like distance running, cycling, cross-country skiing."
+  },
+  relatedIds: ["TME-004", "ANA-006"],
+  source: "ACSM Guidelines",
+  tags: ["aerobic-capacity"]
+}, {
+  id: "PHY-003",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Physiology",
+  topic: "Energy Systems",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "Which energy system is primarily used during a 100m sprint?",
+  options: ["Aerobic system", "ATP-PC (Phosphagen) system", "Anaerobic Glycolytic system", "Beta-oxidation"],
+  correctIndex: 1,
+  explanation: "The ATP-PC (phosphagen) system provides immediate, high-power energy for activities lasting up to ~10 seconds, such as a 100m sprint, without needing oxygen.",
+  concept: {
+    title: "Three Energy Systems",
+    definition: "The body uses three interacting systems depending on exercise duration/intensity.",
+    points: ["ATP-PC: 0-10 sec, explosive (100m sprint, shot put)", "Anaerobic Glycolysis: 10sec-2min (400m run)", "Aerobic system: 2min+ (marathon, endurance sports)"],
+    memoryTrick: "'PC = Phosphocreatine = Power & quiCk'.",
+    sportsRelevance: "Training design (interval length/rest ratios) is built around targeting the right energy system."
+  },
+  relatedIds: ["ANA-006", "TRN-002"],
+  source: "Exercise Physiology - McArdle",
+  tags: ["energy-systems"]
+}, {
+  id: "PHY-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Physiology",
+  topic: "Energy Systems",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2023,
+  question: "Lactate threshold refers to the point during exercise at which:",
+  options: ["Muscle glycogen is fully depleted", "Blood lactate begins to accumulate faster than it can be cleared", "The heart reaches maximum heart rate", "Oxygen consumption plateaus (VO2 Max is reached)"],
+  correctIndex: 1,
+  explanation: "The lactate threshold (or anaerobic threshold) marks the exercise intensity at which blood lactate accumulates faster than the body can clear it, causing a sharp rise in blood lactate concentration.",
+  concept: {
+    title: "Lactate Threshold",
+    definition: "A key marker of endurance performance, often more predictive of race performance than VO2 Max alone.",
+    points: ["Untrained individuals: ~50-60% of VO2 Max", "Elite endurance athletes: 80-90% of VO2 Max", "Training at/near threshold improves fat utilization and delays fatigue"],
+    memoryTrick: "'Threshold = the tipping point where lactate piles up faster than it clears'.",
+    sportsRelevance: "Marathon pacing strategy is built around staying just under lactate threshold."
+  },
+  relatedIds: ["PHY-002", "PHY-003"],
+  source: "Exercise Physiology - McArdle",
+  tags: ["lactate", "endurance"]
+}, {
+  id: "PHY-005",
+  exam: ["KVS PGT", "NVS", "EMRS", "AWES", "Sainik School", "CTET"],
+  subject: "Physiology",
+  topic: "Thermoregulation",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2021,
+  question: "The primary mechanism the body uses to dissipate heat during intense exercise is:",
+  options: ["Shivering", "Vasoconstriction", "Sweating (evaporative cooling)", "Piloerection"],
+  correctIndex: 2,
+  explanation: "During exercise, sweating is the body's main cooling mechanism — as sweat evaporates from the skin, it removes heat, helping maintain core temperature.",
+  concept: {
+    title: "Thermoregulation During Exercise",
+    definition: "The body balances heat production (from muscle work) with heat loss mechanisms.",
+    points: ["Evaporation (sweating) — primary mechanism during exercise", "Radiation & Convection — secondary, less effective in humid heat", "Dehydration impairs sweating efficiency and raises injury/heat-illness risk"],
+    memoryTrick: "'Sweat it out' — evaporation is the exercise-specific cooling method.",
+    sportsRelevance: "Hydration strategy and heat acclimatization are critical for endurance events in hot climates."
+  },
+  relatedIds: ["NUT-003", "FA-001"],
+  source: "ACSM Guidelines",
+  tags: ["thermoregulation"]
+}, {
+  id: "PHY-006",
+  exam: ["UGC NET", "SET"],
+  subject: "Physiology",
+  topic: "Cardiovascular Physiology",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "The Karvonen formula is used to calculate:",
+  options: ["Body Mass Index", "Target Heart Rate using Heart Rate Reserve", "Basal Metabolic Rate", "VO2 Max directly"],
+  correctIndex: 1,
+  explanation: "The Karvonen formula calculates Target Heart Rate as: THR = ((HRmax − HRrest) × %Intensity) + HRrest, using Heart Rate Reserve (HRR) for more individualized training zones.",
+  concept: {
+    title: "Karvonen Formula",
+    definition: "THR = ((HRmax − HRrest) × Intensity%) + HRrest",
+    points: ["HRmax commonly estimated as 220 − age", "Uses Heart Rate Reserve (HRmax − HRrest) rather than HRmax alone", "More accurate for individualized training zones than % of HRmax alone"],
+    memoryTrick: "'Karvonen adds back the Resting rate' — reserve method, not straight percentage.",
+    sportsRelevance: "Used by coaches to prescribe personalized cardio training zones."
+  },
+  relatedIds: ["PHY-001"],
+  source: "ACSM Guidelines",
+  tags: ["formula", "heart-rate"]
+}, {
+  id: "PHY-007",
+  exam: ["DSSSB", "State PSC", "EMRS", "AWES", "Sainik School"],
+  subject: "Physiology",
+  topic: "Muscle Physiology",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2020,
+  question: "Delayed Onset Muscle Soreness (DOMS) typically peaks:",
+  options: ["Immediately after exercise", "6-12 hours after exercise", "24-72 hours after exercise", "One week after exercise"],
+  correctIndex: 2,
+  explanation: "DOMS is caused by microtrauma to muscle fibres (especially from eccentric contractions) and typically peaks 24-72 hours post-exercise before subsiding.",
+  concept: {
+    title: "DOMS",
+    definition: "Muscle soreness resulting from unfamiliar or high-intensity eccentric exercise.",
+    points: ["Peaks at 24-72 hours", "Caused by microscopic muscle fibre damage & inflammation", "Different from acute muscle fatigue (which is immediate)"],
+    memoryTrick: "'DOMS = Delayed' — the clue is in the name, not immediate.",
+    sportsRelevance: "Coaches schedule recovery/light sessions 1-3 days after heavy eccentric training to manage DOMS."
+  },
+  relatedIds: ["ANA-012", "INJ-001"],
+  source: "Exercise Physiology - McArdle",
+  tags: ["recovery"]
+}, {
+  id: "PHY-008",
+  exam: ["UGC NET", "SET"],
+  subject: "Physiology",
+  topic: "Respiratory Physiology",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "The volume of air that can be forcibly exhaled after a maximal inhalation is called:",
+  options: ["Tidal Volume", "Residual Volume", "Vital Capacity", "Total Lung Capacity"],
+  correctIndex: 2,
+  explanation: "Vital Capacity is the maximum amount of air that can be exhaled after a maximal inhalation. It equals Total Lung Capacity minus Residual Volume.",
+  concept: {
+    title: "Lung Volumes & Capacities",
+    definition: "Lung function is measured using standard volumes and capacities.",
+    points: ["Tidal Volume: normal breath in/out (~500ml)", "Vital Capacity: max exhale after max inhale", "Residual Volume: air remaining after max exhale (cannot be measured by spirometry alone)", "Total Lung Capacity: Vital Capacity + Residual Volume"],
+    memoryTrick: "'Vital = everything you CAN breathe out'.",
+    sportsRelevance: "Swimmers and divers train to maximize vital capacity for breath control."
+  },
+  relatedIds: ["ANA-008"],
+  source: "Guyton's Physiology",
+  tags: ["respiratory"]
+}, {
+  id: "PHY-009",
+  exam: ["KVS PGT", "UGC NET", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Physiology",
+  topic: "Energy Systems",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "Which of the following best describes 'EPOC' (Excess Post-exercise Oxygen Consumption)?",
+  options: ["Oxygen deficit at the start of exercise", "Elevated oxygen consumption after exercise ends, to restore the body to resting state", "The amount of oxygen inhaled during exercise", "Oxygen consumed during warm-up"],
+  correctIndex: 1,
+  explanation: "EPOC, often called the 'afterburn effect', is the elevated oxygen consumption following exercise as the body restores ATP-PC stores, clears lactate, and returns to homeostasis.",
+  concept: {
+    title: "EPOC (Afterburn Effect)",
+    definition: "The metabolic cost of recovery after exercise, contributing to post-workout calorie expenditure.",
+    points: ["Fast component: replenish ATP-PC, myoglobin oxygen stores", "Slow component: lactate removal, elevated body temp/hormones", "HIIT produces greater EPOC than steady-state cardio"],
+    memoryTrick: "'EPOC = the bill you pay after the workout'.",
+    sportsRelevance: "A key rationale behind HIIT programming for fat loss."
+  },
+  relatedIds: ["PHY-003", "TRN-006"],
+  source: "Exercise Physiology - McArdle",
+  tags: ["energy-systems", "recovery"]
+}, {
+  id: "PHY-010",
+  exam: ["UGC NET", "M.P.Ed", "SET"],
+  subject: "Physiology",
+  topic: "Cardiovascular Physiology",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2022,
+  question: "Bradycardia commonly observed in highly trained endurance athletes is primarily due to:",
+  options: ["Weakened heart muscle", "Increased stroke volume and parasympathetic (vagal) dominance", "Reduced blood volume", "Dehydration"],
+  correctIndex: 1,
+  explanation: "Chronic endurance training increases stroke volume (more blood pumped per beat) and enhances parasympathetic (vagal) tone, allowing a lower resting heart rate to maintain the same cardiac output — a normal, healthy adaptation called 'athlete's heart'.",
+  concept: {
+    title: "Athlete's Bradycardia",
+    definition: "A benign training adaptation, not a pathology, seen in well-conditioned endurance athletes.",
+    points: ["Resting HR can drop to 40-50 bpm or lower", "Caused by larger, more efficient heart + higher vagal tone", "Distinct from pathological bradycardia"],
+    memoryTrick: "'Efficient heart = fewer, stronger beats needed'.",
+    sportsRelevance: "Common in marathoners, cyclists, and cross-country skiers; monitored to distinguish fitness from illness."
+  },
+  relatedIds: ["ANA-018", "PHY-001"],
+  source: "ACSM Guidelines",
+  tags: ["cardiovascular", "adaptation"]
+}, {
+  id: "PHY-011",
+  exam: ["DSSSB", "KVS PGT", "EMRS", "AWES", "Sainik School"],
+  subject: "Physiology",
+  topic: "Muscle Physiology",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2021,
+  question: "The 'all-or-none law' in muscle physiology states that:",
+  options: ["A muscle either contracts fully or not at all in response to a stimulus of adequate strength", "All muscles contract simultaneously", "Muscles either grow or atrophy, with no middle ground", "A muscle fibre can partially contract depending on stimulus strength"],
+  correctIndex: 0,
+  explanation: "The all-or-none law applies to individual muscle fibres: once a stimulus reaches threshold, the fibre contracts maximally; below threshold, there is no contraction at all — intensity of overall muscle force is instead controlled by recruiting more/fewer motor units.",
+  concept: {
+    title: "All-or-None Law",
+    definition: "Applies at the level of a single muscle fibre or motor unit, not the whole muscle.",
+    points: ["Sub-threshold stimulus = no contraction", "Threshold or supra-threshold = full contraction of that fibre", "Overall force is graded by recruiting more motor units, not partial fibre contraction"],
+    memoryTrick: "'All or none' = one fibre never contracts 'a little bit'.",
+    sportsRelevance: "Explains why heavier resistance training recruits more motor units for greater force output."
+  },
+  relatedIds: ["ANA-010"],
+  source: "Guyton's Physiology",
+  tags: ["muscle-physiology"]
+}, {
+  id: "PHY-012",
+  exam: ["UGC NET", "SET"],
+  subject: "Physiology",
+  topic: "Basal Metabolism",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "Basal Metabolic Rate (BMR) refers to:",
+  options: ["Energy expended during vigorous exercise", "The minimum energy required to maintain basic physiological functions at rest", "The total daily energy expenditure including activity", "The energy used in digesting food"],
+  correctIndex: 1,
+  explanation: "BMR is the amount of energy (calories) the body needs to maintain basic life-sustaining functions (breathing, circulation, cell production) while at complete rest.",
+  concept: {
+    title: "Basal Metabolic Rate",
+    definition: "BMR typically accounts for 60-75% of total daily energy expenditure.",
+    points: ["Measured under strict resting, fasting, thermoneutral conditions", "Affected by age, sex, muscle mass, hormones", "Muscle mass raises BMR (metabolically active tissue)"],
+    memoryTrick: "'Basal = baseline, just to stay alive'.",
+    sportsRelevance: "Athletes with higher muscle mass generally have a higher BMR, affecting nutrition planning."
+  },
+  relatedIds: ["NUT-001"],
+  source: "ACSM Guidelines",
+  tags: ["metabolism", "formula"]
+}, {
+  id: "PHY-013",
+  exam: ["KVS PGT", "UGC NET", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Physiology",
+  topic: "Respiratory Physiology",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2020,
+  question: "Which gas makes up approximately 78% of atmospheric air?",
+  options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Argon"],
+  correctIndex: 1,
+  explanation: "Nitrogen makes up about 78% of the atmosphere, with oxygen at ~21% and the remainder being trace gases like argon and CO2.",
+  concept: {
+    title: "Composition of Atmospheric Air",
+    definition: "Understanding air composition is basic to respiratory and altitude physiology.",
+    points: ["Nitrogen: ~78%", "Oxygen: ~21%", "Carbon Dioxide & other trace gases: ~1%"],
+    memoryTrick: "'78-21-1' — Nitrogen, Oxygen, Others.",
+    sportsRelevance: "At altitude, the percentage stays the same but partial pressure of oxygen drops, affecting performance."
+  },
+  relatedIds: ["PHY-002"],
+  source: "Guyton's Physiology",
+  tags: ["respiratory"]
+}, {
+  id: "PHY-014",
+  exam: ["UGC NET", "SET"],
+  subject: "Physiology",
+  topic: "Energy Systems",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2023,
+  question: "During prolonged low-to-moderate intensity exercise (e.g., a 3-hour cycling ride), the body predominantly relies on which fuel source as duration increases?",
+  options: ["Muscle glycogen throughout", "ATP-PC system", "Fat (free fatty acid) oxidation", "Protein exclusively"],
+  correctIndex: 2,
+  explanation: "As exercise duration increases at low-to-moderate intensity, the body shifts increasingly toward fat oxidation to spare limited glycogen stores, a key principle behind endurance fuelling strategy.",
+  concept: {
+    title: "Fuel Utilization & Duration",
+    definition: "The crossover concept: as intensity rises, carbohydrate use dominates; as duration rises at sub-maximal intensity, fat use increases.",
+    points: ["Short/high-intensity: carbohydrate (glycolysis) dominant", "Long/low-intensity: fat oxidation dominant", "Training increases the body's capacity to use fat at higher intensities ('glycogen sparing')"],
+    memoryTrick: "'Fat burns slow and steady, carbs burn fast and hot'.",
+    sportsRelevance: "Basis for carbohydrate-loading and fat-adaptation strategies in ultra-endurance sports."
+  },
+  relatedIds: ["PHY-003", "NUT-004"],
+  source: "Exercise Physiology - McArdle",
+  tags: ["energy-systems", "nutrition"]
+}, {
+  id: "TRN-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Training",
+  topic: "Training Principles",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "The training principle stating that the body adapts specifically to the type of demand placed on it is called:",
+  options: ["Overload", "Specificity (SAID Principle)", "Reversibility", "Individual Differences"],
+  correctIndex: 1,
+  explanation: "The SAID Principle (Specific Adaptation to Imposed Demand) states that the body adapts specifically to the type, intensity and pattern of training stress applied — e.g., swimming training primarily improves swimming performance.",
+  concept: {
+    title: "SAID Principle",
+    definition: "Training adaptations are specific to the muscles used, energy systems trained, and movement patterns practiced.",
+    points: ["Also called 'Specificity'", "Applies to muscle groups, energy systems, and skill patterns", "Basis for sport-specific conditioning"],
+    memoryTrick: "'SAID: Specific Adaptation to Imposed Demand' — you get what you train for.",
+    sportsRelevance: "A footballer's training should mimic football's movement demands more than generic gym work."
+  },
+  relatedIds: ["TRN-002", "TRN-003"],
+  source: "Principles of Sports Training - Uppal",
+  tags: ["training-principles"]
+}, {
+  id: "TRN-002",
+  exam: ["UGC NET", "DSSSB", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Training",
+  topic: "Training Methods",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "'Fartlek' training is best described as:",
+  options: ["A strict interval training with fixed rest periods", "A form of continuous training with random changes in speed/terrain ('speed play')", "A method exclusively for strength training", "A tapering strategy before competition"],
+  correctIndex: 1,
+  explanation: "Fartlek (Swedish for 'speed play') is a training method combining continuous running with unstructured variations in pace and terrain, blending aerobic and anaerobic training.",
+  concept: {
+    title: "Fartlek Training",
+    definition: "An unstructured, intuitive endurance training method developed in Sweden in the 1930s.",
+    points: ["Combines fast bursts with slower recovery jogs, without fixed intervals", "Trains both aerobic and anaerobic systems", "Often done on varied natural terrain"],
+    memoryTrick: "'Fartlek = Speed Play' — literal Swedish translation.",
+    sportsRelevance: "Popular among middle/long-distance runners and football players for race-pace variability training."
+  },
+  relatedIds: ["TRN-003", "PHY-003"],
+  source: "Principles of Sports Training - Uppal",
+  tags: ["training-methods"]
+}, {
+  id: "TRN-003",
+  exam: ["KVS PGT", "UGC NET", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Training",
+  topic: "Training Methods",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2021,
+  question: "Interval training is characterized primarily by:",
+  options: ["Continuous exercise without rest", "Alternating periods of high-intensity work with planned rest/recovery intervals", "Only low-intensity long-duration work", "Exclusive use of weights"],
+  correctIndex: 1,
+  explanation: "Interval training alternates work bouts (high intensity) with structured recovery periods, allowing greater total high-intensity work than continuous training alone.",
+  concept: {
+    title: "Interval Training",
+    definition: "A method manipulating work:rest ratios to target specific energy systems.",
+    points: ["Variables: work duration, intensity, rest duration, number of reps/sets", "Short intervals (<30s) target ATP-PC system", "Longer intervals (2-5 min) target aerobic/anaerobic glycolytic systems"],
+    memoryTrick: "'Interval = interruption' — work is interrupted by planned rest.",
+    sportsRelevance: "Widely used across nearly all sports to build both speed and endurance simultaneously."
+  },
+  relatedIds: ["TRN-002", "PHY-003"],
+  source: "Principles of Sports Training - Uppal",
+  tags: ["training-methods"]
+}, {
+  id: "TRN-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Sports Training",
+  topic: "Strength Training",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "Plyometric training primarily develops which quality?",
+  options: ["Flexibility", "Explosive power via the stretch-shortening cycle", "Aerobic endurance", "Balance only"],
+  correctIndex: 1,
+  explanation: "Plyometric training uses the stretch-shortening cycle (rapid eccentric stretch immediately followed by a concentric contraction) to develop explosive power, as in bounding, depth jumps and hopping drills.",
+  concept: {
+    title: "Plyometric Training",
+    definition: "Exercises that exploit the stretch-shortening cycle to maximize force production in minimal time.",
+    points: ["Stretch-Shortening Cycle: eccentric phase → amortization phase → concentric phase", "Examples: depth jumps, bounding, medicine ball throws", "Requires adequate strength base before introduction to reduce injury risk"],
+    memoryTrick: "'Plyo = explosive rebound' — like a spring loading and releasing.",
+    sportsRelevance: "Central to improving vertical jump in basketball/volleyball and sprint start power."
+  },
+  relatedIds: ["TRN-001", "BIO-003"],
+  source: "Principles of Sports Training - Uppal",
+  tags: ["strength", "power"]
+}, {
+  id: "TRN-005",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Training",
+  topic: "Periodization",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2023,
+  question: "In periodization, the phase focused on peaking performance for a major competition is called the:",
+  options: ["Preparatory Phase", "Transition Phase", "Competition Phase (Peaking)", "General Conditioning Phase"],
+  correctIndex: 2,
+  explanation: "The Competition (or Peaking) Phase is designed to maximize performance readiness for competition through reduced volume, maintained/increased intensity, and tapering.",
+  concept: {
+    title: "Periodization Phases",
+    definition: "A long-term training plan divided into macro/meso/microcycles to manage training load and peak at the right time.",
+    points: ["Preparatory Phase: build general & specific fitness base", "Competition Phase: taper volume, sharpen intensity, peak", "Transition Phase: active recovery after competition season"],
+    memoryTrick: "'Prepare, Peak, Pause' — the 3-phase cycle.",
+    sportsRelevance: "Coaches use periodization to ensure athletes peak for Olympics/Nationals, not mid-season."
+  },
+  relatedIds: ["TRN-001", "TRN-006"],
+  source: "Principles of Sports Training - Uppal",
+  tags: ["periodization"]
+}, {
+  id: "TRN-006",
+  exam: ["UGC NET", "SET"],
+  subject: "Sports Training",
+  topic: "Training Principles",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "Which principle explains the loss of fitness gains when training stops or is significantly reduced?",
+  options: ["Overload", "Reversibility (Detraining)", "Progression", "Specificity"],
+  correctIndex: 1,
+  explanation: "The Reversibility principle ('use it or lose it') states that training adaptations are lost when training stops or intensity/volume drops significantly, typically within weeks.",
+  concept: {
+    title: "Reversibility / Detraining",
+    definition: "Fitness gains regress toward baseline without continued training stimulus.",
+    points: ["Cardiovascular fitness can decline noticeably within 2-4 weeks of inactivity", "Strength is generally lost more slowly than aerobic fitness", "Relevant to injury layoffs and off-season planning"],
+    memoryTrick: "'Reversibility reverses your results'.",
+    sportsRelevance: "Explains why athletes need maintenance training even during rest/injury periods."
+  },
+  relatedIds: ["TRN-001", "TRN-005"],
+  source: "Principles of Sports Training - Uppal",
+  tags: ["training-principles"]
+}, {
+  id: "TRN-007",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Training",
+  topic: "Fitness Components",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2021,
+  question: "Which of the following is NOT one of the five health-related components of physical fitness?",
+  options: ["Cardiorespiratory Endurance", "Muscular Strength", "Agility", "Body Composition"],
+  correctIndex: 2,
+  explanation: "Agility is a skill-related (motor) fitness component, not health-related. The five health-related components are cardiorespiratory endurance, muscular strength, muscular endurance, flexibility, and body composition.",
+  concept: {
+    title: "Health-Related vs Skill-Related Fitness",
+    definition: "Fitness components split into those affecting health outcomes vs those affecting sports performance.",
+    points: ["Health-related: cardio endurance, strength, muscular endurance, flexibility, body composition", "Skill-related: agility, balance, coordination, speed, power, reaction time"],
+    memoryTrick: "'Health = 5, Skill = 6' — different lists, don't mix them.",
+    sportsRelevance: "Fitness test batteries (like AAHPERD) are built around these two categories."
+  },
+  relatedIds: ["TME-001"],
+  source: "Uppal - Physical Fitness & Wellness",
+  tags: ["fitness-components"]
+}, {
+  id: "TRN-008",
+  exam: ["UGC NET", "SET"],
+  subject: "Sports Training",
+  topic: "Strength Training",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "To develop maximum strength, training programs typically prescribe:",
+  options: ["Low load (40-50% 1RM), high reps (20+)", "High load (85%+ 1RM), low reps (1-6)", "Bodyweight only exercises", "Continuous low-intensity cardio"],
+  correctIndex: 1,
+  explanation: "Maximum strength development is best achieved with high loads (85%+ of 1-Rep Max) and low repetitions (typically 1-6), allowing near-maximal neuromuscular recruitment.",
+  concept: {
+    title: "Strength Training Zones",
+    definition: "Different load/rep ranges target different adaptations.",
+    points: ["1-6 reps @ 85%+ 1RM: maximum strength", "6-12 reps @ 67-85% 1RM: hypertrophy", "12+ reps @ <67% 1RM: muscular endurance"],
+    memoryTrick: "'Low reps, heavy weight = raw strength'.",
+    sportsRelevance: "Powerlifters and throwers train in the low-rep/high-load range; bodybuilders in the moderate range."
+  },
+  relatedIds: ["TRN-004"],
+  source: "NSCA Essentials of Strength Training",
+  tags: ["strength"]
+}, {
+  id: "TRN-009",
+  exam: ["KVS PGT", "UGC NET", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Training",
+  topic: "Flexibility Training",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "Which stretching method involves a contract-relax sequence, often with a partner, to improve range of motion?",
+  options: ["Static Stretching", "Ballistic Stretching", "Proprioceptive Neuromuscular Facilitation (PNF)", "Dynamic Stretching"],
+  correctIndex: 2,
+  explanation: "PNF stretching uses alternating contraction and relaxation of the target muscle (often with partner-assisted resistance) to achieve greater range of motion than static stretching alone.",
+  concept: {
+    title: "Stretching Methods",
+    definition: "Different stretching techniques suit different training goals and timing.",
+    points: ["Static: hold a stretch position (post-workout/cool-down)", "Dynamic: controlled movement through range of motion (warm-up)", "Ballistic: bouncing movements (higher injury risk)", "PNF: contract-relax, most effective for ROM gains but needs a partner/coach"],
+    memoryTrick: "'PNF = Partner-Needed Flexibility' (informal memory aid).",
+    sportsRelevance: "PNF is commonly used by gymnasts and martial artists needing extreme flexibility."
+  },
+  relatedIds: ["TRN-007"],
+  source: "NSCA Essentials of Strength Training",
+  tags: ["flexibility"]
+}, {
+  id: "TRN-010",
+  exam: ["UGC NET", "SET"],
+  subject: "Sports Training",
+  topic: "Training Load",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "The 10% Rule in training load management suggests:",
+  options: ["Never increase training volume", "Weekly training volume/intensity should not increase by more than ~10% to avoid overuse injury", "Athletes should rest 10% of the year", "Only 10% of training should be sport-specific"],
+  correctIndex: 1,
+  explanation: "The 10% Rule is a guideline suggesting that weekly training load (distance, volume, or intensity) should not increase by more than approximately 10% from the previous week, to minimize overuse injury risk.",
+  concept: {
+    title: "10% Rule",
+    definition: "A conservative load-progression guideline, particularly popular in running and endurance sports.",
+    points: ["Applies to volume, distance, or intensity increases", "Helps prevent overuse injuries like stress fractures and tendinopathies", "Should be combined with adequate recovery weeks"],
+    memoryTrick: "'10% - not 100%' — gradual, not aggressive jumps.",
+    sportsRelevance: "Widely taught to prevent overtraining syndrome and stress injuries in distance runners."
+  },
+  relatedIds: ["TRN-006", "INJ-003"],
+  source: "Principles of Sports Training - Uppal",
+  tags: ["training-load", "injury-prevention"]
+}, {
+  id: "TRN-011",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Training",
+  topic: "Warm-up & Cool-down",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2020,
+  question: "The primary purpose of a cool-down after intense exercise is to:",
+  options: ["Increase heart rate further", "Gradually return heart rate and blood pressure to resting levels and aid recovery", "Build muscle mass", "Improve maximum strength"],
+  correctIndex: 1,
+  explanation: "A cool-down (light activity + stretching) helps gradually lower heart rate and blood pressure, assists in clearing metabolic byproducts like lactate, and reduces the risk of blood pooling.",
+  concept: {
+    title: "Cool-Down",
+    definition: "A structured wind-down period following the main exercise bout.",
+    points: ["Prevents venous blood pooling (which can cause dizziness)", "Gradually normalizes heart rate/breathing", "Often includes light aerobic activity + static stretching"],
+    memoryTrick: "'Cool down = bring it down slowly, not a sudden stop'.",
+    sportsRelevance: "Essential after competitive matches to begin the recovery process for the next session."
+  },
+  relatedIds: ["TRN-009", "PHY-007"],
+  source: "Uppal - Physical Fitness & Wellness",
+  tags: ["warm-up", "recovery"]
+}, {
+  id: "TRN-012",
+  exam: ["UGC NET", "M.P.Ed", "SET"],
+  subject: "Sports Training",
+  topic: "Training Principles",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "Progressive Overload refers to:",
+  options: ["Keeping training load constant for long periods", "Gradually and systematically increasing training demands to continue adaptation", "Reducing training load every session", "Training different muscle groups randomly"],
+  correctIndex: 1,
+  explanation: "Progressive Overload means systematically increasing training stress (volume, intensity, frequency, or complexity) over time to continue driving physiological adaptation, since the body adapts to a constant stimulus and improvement plateaus.",
+  concept: {
+    title: "Progressive Overload",
+    definition: "A foundational training principle — without increasing demand over time, adaptation stalls.",
+    points: ["Can be manipulated via load, reps, sets, frequency, or reduced rest", "Must be applied gradually to avoid overtraining/injury", "Works alongside the 10% Rule for safe progression"],
+    memoryTrick: "'Progressive = step by step, not a leap'.",
+    sportsRelevance: "The core principle behind all long-term athletic development programs."
+  },
+  relatedIds: ["TRN-010", "TRN-001"],
+  source: "NSCA Essentials of Strength Training",
+  tags: ["training-principles"]
+}, {
+  id: "PSY-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Psychology",
+  topic: "Motivation",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "Motivation that comes from internal satisfaction (enjoyment, mastery) rather than external rewards is called:",
+  options: ["Extrinsic Motivation", "Intrinsic Motivation", "Achievement Motivation", "Social Motivation"],
+  correctIndex: 1,
+  explanation: "Intrinsic motivation arises from internal factors — enjoyment, personal satisfaction, love of the activity — rather than external rewards like medals or money (extrinsic motivation).",
+  concept: {
+    title: "Intrinsic vs Extrinsic Motivation",
+    definition: "Two broad categories describing the source of an athlete's drive to participate.",
+    points: ["Intrinsic: enjoyment, mastery, self-improvement", "Extrinsic: trophies, money, praise, scholarships", "Over-reliance on extrinsic rewards can undermine intrinsic motivation ('overjustification effect')"],
+    memoryTrick: "'Intrinsic = INside you'.",
+    sportsRelevance: "Long-term athlete development models emphasize building intrinsic motivation for sustained participation."
+  },
+  relatedIds: ["PSY-002"],
+  source: "Sports Psychology - Weinberg & Gould",
+  tags: ["motivation"]
+}, {
+  id: "PSY-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Sports Psychology",
+  topic: "Arousal & Anxiety",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "The Inverted-U Hypothesis in sports psychology suggests that:",
+  options: ["Performance improves linearly as arousal increases", "Performance is best at low arousal only", "Performance is optimal at a moderate level of arousal; too little or too much impairs performance", "Arousal has no effect on performance"],
+  correctIndex: 2,
+  explanation: "The Inverted-U Hypothesis (Yerkes-Dodson Law) proposes that performance improves with increasing arousal up to an optimal point, beyond which further arousal causes performance to decline — forming an inverted U-shaped curve.",
+  concept: {
+    title: "Inverted-U Hypothesis",
+    definition: "Also known as the Yerkes-Dodson Law, relating arousal level to performance quality.",
+    points: ["Low arousal: under-motivated, sluggish performance", "Optimal arousal: peak performance zone", "High arousal: anxiety, tension, decreased performance", "Optimal point varies by task complexity and individual"],
+    memoryTrick: "Picture an upside-down 'U' — performance peaks in the middle, not at the extremes.",
+    sportsRelevance: "Coaches manage pre-competition arousal (via psyching-up or calming techniques) to hit the athlete's optimal zone."
+  },
+  relatedIds: ["PSY-003", "PSY-001"],
+  source: "Sports Psychology - Weinberg & Gould",
+  tags: ["arousal", "anxiety"]
+}, {
+  id: "PSY-003",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Psychology",
+  topic: "Personality",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "Which personality trait theory suggests behavior is consistent across situations due to stable inner traits?",
+  options: ["Situation Theory", "Trait Theory", "Interactional Theory", "Social Learning Theory"],
+  correctIndex: 1,
+  explanation: "Trait Theory holds that personality is composed of relatively stable, enduring characteristics that predict behavior consistently across different situations, including sport settings.",
+  concept: {
+    title: "Approaches to Personality",
+    definition: "Sports psychology draws on several theoretical models to explain athlete personality and behavior.",
+    points: ["Trait Theory: stable traits predict behavior", "Situation Theory: behavior driven by the environment/situation", "Interactional Theory: behavior results from trait × situation interaction (most widely accepted today)"],
+    memoryTrick: "'Trait = Terrain stays the same' — consistent regardless of situation.",
+    sportsRelevance: "Talent identification programs sometimes use personality profiling based on these theories."
+  },
+  relatedIds: ["PSY-001"],
+  source: "Sports Psychology - Weinberg & Gould",
+  tags: ["personality"]
+}, {
+  id: "PSY-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Sports Psychology",
+  topic: "Goal Setting",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "In goal-setting theory, which type of goal focuses on personal improvement rather than beating others?",
+  options: ["Outcome Goal", "Performance Goal", "Social Goal", "Competitive Goal"],
+  correctIndex: 1,
+  explanation: "Performance goals focus on an athlete's own standards and personal improvement (e.g., improving personal best time), as opposed to outcome goals which focus on results relative to others (winning/losing).",
+  concept: {
+    title: "Types of Goals",
+    definition: "Goal-setting in sport is generally categorized into three types.",
+    points: ["Outcome goals: winning, beating opponents (less controllable)", "Performance goals: personal standards, times, scores (more controllable)", "Process goals: technique/execution focus during performance"],
+    memoryTrick: "'Performance = Personal', 'Outcome = Opponent'.",
+    sportsRelevance: "Sport psychologists encourage athletes to prioritize performance/process goals to manage competition anxiety."
+  },
+  relatedIds: ["PSY-002"],
+  source: "Sports Psychology - Weinberg & Gould",
+  tags: ["goal-setting"]
+}, {
+  id: "PSY-005",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Psychology",
+  topic: "Group Dynamics",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2021,
+  question: "The phenomenon where individual effort decreases when working in a group (e.g., tug-of-war) compared to working alone is called:",
+  options: ["Social Facilitation", "Social Loafing", "Group Cohesion", "Groupthink"],
+  correctIndex: 1,
+  explanation: "Social Loafing is the tendency for individuals to exert less effort when working collectively in a group than when working individually, often due to reduced accountability.",
+  concept: {
+    title: "Social Loafing",
+    definition: "A team-dynamics phenomenon relevant to coaching group/team-based training.",
+    points: ["More likely in larger groups and unclear individual roles", "Reduced by assigning clear, identifiable individual responsibilities", "Opposite concept: Social Facilitation (performing better in the presence of others)"],
+    memoryTrick: "'Loafing = lazing off' in a crowd.",
+    sportsRelevance: "Relay and team-sport coaches design drills to counter social loafing by tracking individual contributions."
+  },
+  relatedIds: ["PSY-001"],
+  source: "Sports Psychology - Weinberg & Gould",
+  tags: ["group-dynamics"]
+}, {
+  id: "PSY-006",
+  exam: ["UGC NET", "SET"],
+  subject: "Sports Psychology",
+  topic: "Mental Training",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "Rehearsing a skill mentally, without physical movement, to improve performance is known as:",
+  options: ["Progressive Muscle Relaxation", "Imagery / Visualization", "Autogenic Training", "Biofeedback"],
+  correctIndex: 1,
+  explanation: "Imagery (mental rehearsal/visualization) involves creating or recreating an experience in the mind to enhance skill learning, confidence and performance, without actual physical practice.",
+  concept: {
+    title: "Psychological Skills Training (PST)",
+    definition: "A set of mental techniques athletes use to enhance performance and manage pressure.",
+    points: ["Imagery: mental rehearsal of skills/scenarios", "Self-talk: internal dialogue management", "Relaxation techniques: manage pre-competition anxiety", "Goal-setting: direct effort and focus"],
+    memoryTrick: "'Imagery = imagining it before doing it'.",
+    sportsRelevance: "Widely used by elite athletes (e.g., divers, gymnasts) to rehearse routines mentally before competition."
+  },
+  relatedIds: ["PSY-002", "PSY-004"],
+  source: "Sports Psychology - Weinberg & Gould",
+  tags: ["mental-training"]
+}, {
+  id: "PSY-007",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Psychology",
+  topic: "Aggression",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "Aggression that is a means to an end (e.g., a hard tackle to gain possession, without intent to injure) is called:",
+  options: ["Hostile Aggression", "Instrumental Aggression", "Assertive Behavior", "Reactive Aggression"],
+  correctIndex: 1,
+  explanation: "Instrumental aggression is goal-directed aggression used as a means to achieve a non-aggressive objective (like winning the ball), distinct from hostile aggression which aims to cause harm.",
+  concept: {
+    title: "Types of Aggression in Sport",
+    definition: "Sport psychology distinguishes aggression from assertiveness based on intent to harm.",
+    points: ["Hostile Aggression: intent to harm is the primary goal", "Instrumental Aggression: harm is a byproduct of pursuing another goal (winning)", "Assertive Behavior: high-intensity, legal, within-rules effort — not aggression at all"],
+    memoryTrick: "'Instrumental = a tool/instrument toward winning, not harming'.",
+    sportsRelevance: "Referees and coaches distinguish these types when addressing foul play and discipline."
+  },
+  relatedIds: ["PSY-005"],
+  source: "Sports Psychology - Weinberg & Gould",
+  tags: ["aggression"]
+}, {
+  id: "PSY-008",
+  exam: ["UGC NET", "SET"],
+  subject: "Sports Psychology",
+  topic: "Learning",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2023,
+  question: "According to Fitts and Posner's model of motor learning, the final stage where movements become automatic is called:",
+  options: ["Cognitive Stage", "Associative Stage", "Autonomous Stage", "Motivational Stage"],
+  correctIndex: 2,
+  explanation: "In Fitts and Posner's three-stage model, the Autonomous Stage is the final stage where skill execution becomes largely automatic, requiring minimal conscious attention, freeing the athlete to focus on strategy/environment.",
+  concept: {
+    title: "Fitts & Posner's Stages of Learning",
+    definition: "A widely-cited model describing the progression of motor skill acquisition.",
+    points: ["Cognitive Stage: understanding the task, many errors", "Associative Stage: refining technique, fewer errors", "Autonomous Stage: automatic execution, minimal conscious thought"],
+    memoryTrick: "'C-A-A: Cognitive → Associative → Autonomous' — think, refine, automate.",
+    sportsRelevance: "Coaching cues shift from technical instruction (cognitive stage) to strategic feedback (autonomous stage) as athletes progress."
+  },
+  relatedIds: ["PSY-006"],
+  source: "Motor Learning & Control - Schmidt",
+  tags: ["motor-learning"]
+}, {
+  id: "PSY-009",
+  exam: ["KVS PGT", "UGC NET", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Psychology",
+  topic: "Personality",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2020,
+  question: "Sports psychology is defined as the scientific study of:",
+  options: ["Only the physical training of athletes", "People and their behaviors in sport and exercise contexts, and the practical application of that knowledge", "Sports equipment design", "Nutrition science for athletes"],
+  correctIndex: 1,
+  explanation: "Sports psychology is the scientific study of people and their behaviors in sport/exercise contexts, applying psychological knowledge to enhance performance and well-being.",
+  concept: {
+    title: "Definition of Sports Psychology",
+    definition: "A sub-discipline of psychology applied specifically to sport, exercise, and physical activity settings.",
+    points: ["Studies both performance enhancement and participant well-being", "Two broad roles: academic/research and applied (practitioner) sports psychology", "Overlaps with exercise psychology (motivation to be physically active)"],
+    memoryTrick: "'Sport Psych = mind + movement'.",
+    sportsRelevance: "Foundational definition frequently tested in NET/SET exams."
+  },
+  relatedIds: ["PSY-001"],
+  source: "Sports Psychology - Weinberg & Gould",
+  tags: ["definitions"]
+}, {
+  id: "TME-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Test, Measurement & Evaluation",
+  topic: "Fitness Testing",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "The Cooper 12-Minute Run Test is primarily used to estimate:",
+  options: ["Muscular Strength", "Flexibility", "Cardiorespiratory Endurance (VO2 Max)", "Agility"],
+  correctIndex: 2,
+  explanation: "The Cooper 12-Minute Run Test measures the maximum distance covered in 12 minutes and uses a formula to estimate VO2 Max, serving as a field-based cardiorespiratory endurance test.",
+  concept: {
+    title: "Cooper 12-Minute Run Test",
+    definition: "A widely used field test developed by Dr. Kenneth Cooper in 1968.",
+    points: ["Formula: VO2 Max = (Distance in meters − 504.9) / 44.73", "Requires only a track/measured distance and a stopwatch", "Widely used in military, police, and school fitness assessments"],
+    memoryTrick: "'Cooper = Cardio' — always about aerobic capacity.",
+    sportsRelevance: "Commonly used as a low-cost fitness screening tool for team selection and training benchmarking."
+  },
+  relatedIds: ["PHY-002"],
+  source: "Measurement & Evaluation in PE - Barrow & McGee",
+  tags: ["fitness-testing"]
+}, {
+  id: "TME-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Test, Measurement & Evaluation",
+  topic: "Test Criteria",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "A test that consistently produces the same results under similar conditions is said to have high:",
+  options: ["Validity", "Reliability", "Objectivity", "Norm-referencing"],
+  correctIndex: 1,
+  explanation: "Reliability refers to the consistency or repeatability of a test's results. A test can be reliable without being valid, but a valid test must also be reliable.",
+  concept: {
+    title: "Criteria of a Good Test",
+    definition: "Four key criteria determine whether a fitness/skill test is well-constructed.",
+    points: ["Validity: does the test measure what it claims to measure?", "Reliability: consistency of results on repeated testing", "Objectivity: consistency of scoring across different testers", "Norms/Standards: comparison reference points for interpreting scores"],
+    memoryTrick: "'Reliable = Repeatable'.",
+    sportsRelevance: "Coaches must trust the reliability of a test before using it to track athlete progress over a season."
+  },
+  relatedIds: ["TME-003"],
+  source: "Measurement & Evaluation in PE - Barrow & McGee",
+  tags: ["test-criteria"]
+}, {
+  id: "TME-003",
+  exam: ["UGC NET", "SET"],
+  subject: "Test, Measurement & Evaluation",
+  topic: "Test Criteria",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2022,
+  question: "When a test measures exactly what it is intended to measure, it is said to possess:",
+  options: ["Reliability", "Objectivity", "Validity", "Practicability"],
+  correctIndex: 2,
+  explanation: "Validity is the degree to which a test measures what it is designed/claims to measure. It is considered the single most important criterion of a good test.",
+  concept: {
+    title: "Validity",
+    definition: "The most critical test criterion — a test can be reliable yet invalid, but not valid without also being reliable.",
+    points: ["Content Validity: covers the full content domain", "Criterion Validity: correlates with an established gold-standard measure", "Construct Validity: measures the underlying theoretical trait"],
+    memoryTrick: "'Valid = measures what it's SUPPOSED to'.",
+    sportsRelevance: "A vertical jump test is valid for leg power but not for measuring aerobic endurance."
+  },
+  relatedIds: ["TME-002"],
+  source: "Measurement & Evaluation in PE - Barrow & McGee",
+  tags: ["test-criteria"]
+}, {
+  id: "TME-004",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Test, Measurement & Evaluation",
+  topic: "Fitness Testing",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2021,
+  question: "The Harvard Step Test is used to assess:",
+  options: ["Flexibility", "Cardiovascular fitness/efficiency", "Reaction time", "Muscular power"],
+  correctIndex: 1,
+  explanation: "The Harvard Step Test evaluates cardiovascular fitness by measuring heart rate recovery after a standardized bout of stepping exercise; faster recovery indicates better cardiovascular efficiency.",
+  concept: {
+    title: "Harvard Step Test",
+    definition: "A classic cardiovascular fitness field test developed at Harvard in 1943.",
+    points: ["Step up/down on a platform for 5 minutes at a fixed cadence", "Recovery heart rate is measured at set intervals post-exercise", "Physical Efficiency Index (PEI) is calculated from recovery pulse counts"],
+    memoryTrick: "'Step Test = check how fast your heart calms down'.",
+    sportsRelevance: "Simple field alternative to lab-based VO2 Max testing when equipment is limited."
+  },
+  relatedIds: ["TME-001", "PHY-001"],
+  source: "Measurement & Evaluation in PE - Barrow & McGee",
+  tags: ["fitness-testing"]
+}, {
+  id: "TME-005",
+  exam: ["UGC NET", "SET"],
+  subject: "Test, Measurement & Evaluation",
+  topic: "Statistics",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "Which measure of central tendency is most affected by extreme outlier scores?",
+  options: ["Median", "Mode", "Mean", "Range"],
+  correctIndex: 2,
+  explanation: "The Mean (arithmetic average) is calculated using every score, so it is heavily influenced by extreme outliers, unlike the Median (middle value) or Mode (most frequent value).",
+  concept: {
+    title: "Measures of Central Tendency",
+    definition: "Three main statistics summarize the 'center' of a data distribution.",
+    points: ["Mean: sum of scores ÷ number of scores (sensitive to outliers)", "Median: middle value when data is ordered (resistant to outliers)", "Mode: most frequently occurring value"],
+    memoryTrick: "'Mean gets Moved by extremes; Median stays in the Middle'.",
+    sportsRelevance: "Used to analyze team performance data, e.g., average points scored, resistant to one freak high/low game."
+  },
+  relatedIds: ["TME-006"],
+  source: "Statistics in Physical Education",
+  tags: ["statistics"]
+}, {
+  id: "TME-006",
+  exam: ["UGC NET", "SET"],
+  subject: "Test, Measurement & Evaluation",
+  topic: "Statistics",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "A statistical technique used to determine the relationship (strength & direction) between two variables (e.g., height and vertical jump) is:",
+  options: ["Standard Deviation", "Correlation Coefficient", "Percentile Rank", "T-Test"],
+  correctIndex: 1,
+  explanation: "The Correlation Coefficient (r) quantifies the strength and direction of a linear relationship between two variables, ranging from -1 (perfect negative) to +1 (perfect positive).",
+  concept: {
+    title: "Correlation",
+    definition: "Measures association, not causation, between two variables.",
+    points: ["+1: perfect positive relationship", "-1: perfect negative relationship", "0: no linear relationship", "Common formula: Pearson's Product-Moment Correlation"],
+    memoryTrick: "'Correlation ≠ Causation' — classic exam trap.",
+    sportsRelevance: "Used in sports science research, e.g., correlating training load with injury rates."
+  },
+  relatedIds: ["TME-005"],
+  source: "Statistics in Physical Education",
+  tags: ["statistics"]
+}, {
+  id: "TME-007",
+  exam: ["KVS PGT", "UGC NET", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Test, Measurement & Evaluation",
+  topic: "Fitness Testing",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2020,
+  question: "The Sit and Reach Test primarily measures flexibility of which region?",
+  options: ["Shoulder joint", "Lower back and hamstrings", "Ankle joint", "Neck"],
+  correctIndex: 1,
+  explanation: "The Sit and Reach Test assesses the flexibility of the lower back and hamstring muscles by measuring how far a person can reach forward while seated with legs extended.",
+  concept: {
+    title: "Sit and Reach Test",
+    definition: "A standard field test for lower-body posterior chain flexibility.",
+    points: ["Uses a sit-and-reach box with a measuring scale", "Widely included in school/national fitness test batteries (e.g., AAHPERD, SAI Khelo India)", "Poor scores linked to increased lower-back injury risk"],
+    memoryTrick: "'Sit, reach, and stretch the back & hams'.",
+    sportsRelevance: "Included in the Khelo India fitness assessment for school students."
+  },
+  relatedIds: ["TRN-009"],
+  source: "Measurement & Evaluation in PE - Barrow & McGee",
+  tags: ["fitness-testing", "flexibility"]
+}, {
+  id: "TME-008",
+  exam: ["UGC NET", "M.P.Ed", "SET"],
+  subject: "Test, Measurement & Evaluation",
+  topic: "Evaluation",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "Judging the value or worth of test data by comparing it against a standard/objective is called:",
+  options: ["Measurement", "Testing", "Evaluation", "Statistics"],
+  correctIndex: 2,
+  explanation: "Evaluation is the process of interpreting and judging the value/worth of collected data against a set standard or objective, going a step beyond mere measurement (data collection) or testing (a tool/instrument used to collect data).",
+  concept: {
+    title: "Test vs Measurement vs Evaluation",
+    definition: "Three related but distinct concepts often confused in exams.",
+    points: ["Test: the tool/instrument (e.g., a 50m dash)", "Measurement: the process of collecting quantitative data (the recorded time)", "Evaluation: judging the data's worth against a standard (pass/fail, grade)"],
+    memoryTrick: "'Test → Measure → Evaluate' — tool, data, judgment, in that order.",
+    sportsRelevance: "A coach doesn't just record a 100m time (measurement) — they evaluate if it meets a selection standard."
+  },
+  relatedIds: ["TME-002"],
+  source: "Measurement & Evaluation in PE - Barrow & McGee",
+  tags: ["definitions"]
+}, {
+  id: "YOG-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Yoga",
+  topic: "Foundations of Yoga",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "According to Patanjali's Ashtanga Yoga, how many limbs (steps) of yoga are described?",
+  options: ["Four", "Six", "Eight", "Ten"],
+  correctIndex: 2,
+  explanation: "Patanjali's Yoga Sutras describe Ashtanga Yoga (Eight-Limbed Yoga): Yama, Niyama, Asana, Pranayama, Pratyahara, Dharana, Dhyana, and Samadhi.",
+  concept: {
+    title: "Ashtanga Yoga (Eight Limbs)",
+    definition: "A systematic path toward self-realization as codified by Sage Patanjali.",
+    points: ["Yama (self-restraint), Niyama (observances)", "Asana (posture), Pranayama (breath control)", "Pratyahara (withdrawal of senses), Dharana (concentration)", "Dhyana (meditation), Samadhi (union/bliss)"],
+    memoryTrick: "'Yoga Needs A Path, Practiced Daily, Deeply, Steadily' — Y-N-A-P-P-D-D-S.",
+    sportsRelevance: "Asana and Pranayama limbs are most directly applied in athletic flexibility and breath-control training."
+  },
+  relatedIds: ["YOG-002"],
+  source: "Patanjali Yoga Sutras",
+  tags: ["ashtanga-yoga"]
+}, {
+  id: "YOG-002",
+  exam: ["UGC NET", "NVS", "SET", "EMRS", "AWES", "Sainik School", "CTET"],
+  subject: "Yoga",
+  topic: "Asanas",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "Which asana is also known as the 'Corpse Pose' and is typically used for deep relaxation at the end of a yoga session?",
+  options: ["Bhujangasana", "Shavasana", "Vrikshasana", "Halasana"],
+  correctIndex: 1,
+  explanation: "Shavasana (Corpse Pose) involves lying flat and completely relaxing the body and mind, typically practiced at the end of a yoga session to promote relaxation and recovery.",
+  concept: {
+    title: "Common Yoga Asanas",
+    definition: "Yoga postures serve varied purposes — strength, flexibility, relaxation, or balance.",
+    points: ["Shavasana: relaxation (corpse pose)", "Bhujangasana: backbend (cobra pose), strengthens spine", "Vrikshasana: balance (tree pose)", "Halasana: forward fold/inversion (plough pose)"],
+    memoryTrick: "'Shavasana = Shhh...relax' — the quietest pose.",
+    sportsRelevance: "Shavasana is used post-training for parasympathetic recovery and mental relaxation."
+  },
+  relatedIds: ["YOG-001", "YOG-003"],
+  source: "Light on Yoga - B.K.S. Iyengar",
+  tags: ["asanas"]
+}, {
+  id: "YOG-003",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Yoga",
+  topic: "Pranayama",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2021,
+  question: "'Anulom Vilom' is a type of:",
+  options: ["Asana (posture)", "Pranayama (breathing technique) - alternate nostril breathing", "Mudra (hand gesture)", "Bandha (body lock)"],
+  correctIndex: 1,
+  explanation: "Anulom Vilom is an alternate nostril breathing technique (Pranayama) that helps balance the nervous system, improve concentration, and reduce stress.",
+  concept: {
+    title: "Pranayama Techniques",
+    definition: "Breath-control practices forming the 4th limb of Ashtanga Yoga.",
+    points: ["Anulom Vilom: alternate nostril breathing, balances nervous system", "Kapalbhati: forceful exhalation, cleansing technique", "Bhramari: humming bee breath, calms the mind", "Ujjayi: victorious/ocean breath, often used during asana practice"],
+    memoryTrick: "'Anulom Vilom = Alternate' — alternating nostrils.",
+    sportsRelevance: "Breathing techniques are increasingly integrated into athlete recovery and pre-competition calming routines."
+  },
+  relatedIds: ["YOG-001"],
+  source: "Light on Yoga - B.K.S. Iyengar",
+  tags: ["pranayama"]
+}, {
+  id: "YOG-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Yoga",
+  topic: "Foundations of Yoga",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "The word 'Yoga' is derived from the Sanskrit root 'Yuj', which means:",
+  options: ["To breathe", "To stretch", "To unite / join", "To meditate"],
+  correctIndex: 2,
+  explanation: "'Yoga' comes from the Sanskrit root 'Yuj', meaning 'to unite' or 'to join' — referring to the union of individual consciousness with universal consciousness, or mind-body-spirit integration.",
+  concept: {
+    title: "Etymology & Philosophy of Yoga",
+    definition: "Understanding yoga's philosophical roots beyond its physical (asana) practice.",
+    points: ["'Yuj' = to unite/join", "Yoga is a holistic discipline (physical, mental, spiritual), not just exercise", "Referenced in the Bhagavad Gita, Upanishads, and Patanjali's Yoga Sutras"],
+    memoryTrick: "'Yuj = Union' — yoga unites body, mind, and spirit.",
+    sportsRelevance: "Frames yoga as a philosophy relevant to holistic athlete wellness, not merely a flexibility routine."
+  },
+  relatedIds: ["YOG-001"],
+  source: "Patanjali Yoga Sutras",
+  tags: ["philosophy"]
+}, {
+  id: "YOG-005",
+  exam: ["KVS PGT", "UGC NET", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Yoga",
+  topic: "Asanas",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2020,
+  question: "Which asana is known for improving balance and is named after a tree?",
+  options: ["Tadasana", "Vrikshasana", "Padmasana", "Dhanurasana"],
+  correctIndex: 1,
+  explanation: "Vrikshasana (Tree Pose) is a standing balance posture where the practitioner stands on one leg, improving balance, focus, and lower-limb stability.",
+  concept: {
+    title: "Balance Asanas",
+    definition: "Postures specifically designed to challenge and develop static/dynamic balance.",
+    points: ["Vrikshasana (Tree Pose): single-leg balance", "Garudasana (Eagle Pose): balance + flexibility combined", "Natarajasana (Dancer Pose): advanced balance + backbend"],
+    memoryTrick: "'Vriksha = Tree' in Sanskrit — stand tall and rooted like a tree.",
+    sportsRelevance: "Balance asanas support proprioception training relevant to gymnastics, skating and combat sports."
+  },
+  relatedIds: ["YOG-002"],
+  source: "Light on Yoga - B.K.S. Iyengar",
+  tags: ["asanas", "balance"]
+}, {
+  id: "YOG-006",
+  exam: ["UGC NET", "SET"],
+  subject: "Yoga",
+  topic: "Foundations of Yoga",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "Which text is considered the foundational scripture systematizing the philosophy and practice of Yoga?",
+  options: ["Bhagavad Gita", "Patanjali's Yoga Sutras", "Hatha Yoga Pradipika", "Upanishads"],
+  correctIndex: 1,
+  explanation: "Patanjali's Yoga Sutras (compiled around 400 CE) is widely regarded as the foundational text that systematized yoga philosophy into the Ashtanga (eight-limbed) framework.",
+  concept: {
+    title: "Key Yogic Texts",
+    definition: "Several ancient texts contribute to yoga philosophy, each with a different focus.",
+    points: ["Patanjali's Yoga Sutras: systematic 8-limb framework", "Hatha Yoga Pradipika: focuses on physical postures & purification techniques", "Bhagavad Gita: discusses Karma, Bhakti, and Jnana Yoga as paths to self-realization"],
+    memoryTrick: "'Patanjali = the systematizer'.",
+    sportsRelevance: "Frequently tested definitional/historical question in UGC NET Paper 2."
+  },
+  relatedIds: ["YOG-001", "YOG-004"],
+  source: "Patanjali Yoga Sutras",
+  tags: ["philosophy", "history"]
+}, {
+  id: "OLY-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Olympic Movement",
+  topic: "Modern Olympics",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "Who is regarded as the founder of the Modern Olympic Games?",
+  options: ["Juan Antonio Samaranch", "Baron Pierre de Coubertin", "Avery Brundage", "Thomas Bach"],
+  correctIndex: 1,
+  explanation: "Baron Pierre de Coubertin, a French educator, founded the International Olympic Committee (IOC) in 1894 and is credited as the father of the Modern Olympic Games, first held in Athens in 1896.",
+  concept: {
+    title: "Founder of Modern Olympics",
+    definition: "Coubertin revived the ancient Greek Olympic tradition in a modern international format.",
+    points: ["Founded the IOC in 1894", "First Modern Olympics: Athens, 1896", "Coined the Olympic motto: 'Citius, Altius, Fortius' (Faster, Higher, Stronger)"],
+    memoryTrick: "'Coubertin = Creator of the comeback' (Olympics comeback).",
+    sportsRelevance: "One of the most frequently repeated questions across all PE competitive exams."
+  },
+  relatedIds: ["OLY-002", "OLY-003"],
+  source: "Olympic Movement history texts",
+  tags: ["olympics", "history"]
+}, {
+  id: "OLY-002",
+  exam: ["UGC NET", "DSSSB", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Olympic Movement",
+  topic: "Olympic Symbols",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "The five interlocking rings of the Olympic symbol represent:",
+  options: ["The five founding nations", "The five continents of the world joined in friendship", "The five Olympic values", "The five original sports"],
+  correctIndex: 1,
+  explanation: "The five interlocking Olympic rings represent the union of the five inhabited continents (Africa, Americas, Asia, Europe, Oceania) and the meeting of athletes from around the world at the Olympic Games.",
+  concept: {
+    title: "Olympic Symbols",
+    definition: "The Olympic Movement uses distinct symbols, each with defined meaning.",
+    points: ["Rings: 5 continents united (blue, yellow, black, green, red + white background)", "Motto: 'Citius, Altius, Fortius – Communiter' (Faster, Higher, Stronger – Together, updated 2021)", "Flame: lit in Olympia, Greece, symbolizing continuity with ancient games"],
+    memoryTrick: "'5 rings = 5 continents'.",
+    sportsRelevance: "Frequently asked factual/symbolic question in all competitive PE exams."
+  },
+  relatedIds: ["OLY-001", "OLY-004"],
+  source: "Olympic Movement history texts",
+  tags: ["olympics", "symbols"]
+}, {
+  id: "OLY-003",
+  exam: ["UGC NET", "SET"],
+  subject: "Olympic Movement",
+  topic: "Ancient Olympics",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "The Ancient Olympic Games were held in honor of which Greek God?",
+  options: ["Poseidon", "Zeus", "Apollo", "Hermes"],
+  correctIndex: 1,
+  explanation: "The Ancient Olympic Games, first recorded in 776 BCE, were held at Olympia in honor of Zeus, the king of the Greek gods.",
+  concept: {
+    title: "Ancient Olympic Games",
+    definition: "Held every four years (an 'Olympiad') at Olympia, Greece, from 776 BCE until banned in 393 CE.",
+    points: ["Held in honor of Zeus", "Only free-born Greek men could compete (originally)", "Games were suspended during wars ('Olympic Truce')"],
+    memoryTrick: "'Zeus at Olympia' — the king of gods hosted at his sanctuary.",
+    sportsRelevance: "Historical foundation question, contrasts with the Modern Olympics' secular/international nature."
+  },
+  relatedIds: ["OLY-001"],
+  source: "Olympic Movement history texts",
+  tags: ["olympics", "ancient-history"]
+}, {
+  id: "OLY-004",
+  exam: ["KVS PGT", "UGC NET", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Olympic Movement",
+  topic: "India & Olympics",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "Who became the first Indian to win an individual Olympic gold medal?",
+  options: ["Milkha Singh", "Abhinav Bindra", "Leander Paes", "P.T. Usha"],
+  correctIndex: 1,
+  explanation: "Abhinav Bindra won India's first individual Olympic gold medal in the 10m Air Rifle event at the 2008 Beijing Olympics.",
+  concept: {
+    title: "India's Olympic Milestones",
+    definition: "Key individual achievements shaping India's Olympic history.",
+    points: ["Abhinav Bindra: first individual gold (Shooting, Beijing 2008)", "Neeraj Chopra: second individual gold (Javelin Throw, Tokyo 2020/2021)", "K.D. Jadhav: India's first individual Olympic medal (Bronze, Wrestling, 1952)"],
+    memoryTrick: "'Bindra = Bullet, first individual gold'.",
+    sportsRelevance: "Extremely high-frequency current-affairs-meets-history question in Indian PE exams."
+  },
+  relatedIds: ["OLY-001"],
+  source: "Olympic Movement history texts",
+  tags: ["india", "olympics"]
+}, {
+  id: "OLY-005",
+  exam: ["UGC NET", "SET"],
+  subject: "Olympic Movement",
+  topic: "Modern Olympics",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "The Olympic Games are held once every how many years, referred to as an 'Olympiad'?",
+  options: ["Two years", "Three years", "Four years", "Five years"],
+  correctIndex: 2,
+  explanation: "An Olympiad refers to the four-year period between Olympic Games. The Summer and Winter Olympics are each held once every four years, staggered two years apart.",
+  concept: {
+    title: "Olympiad Cycle",
+    definition: "The Olympic calendar is structured around 4-year cycles.",
+    points: ["Summer Olympics: every 4 years (e.g., 2020(21), 2024, 2028)", "Winter Olympics: every 4 years, offset by 2 years from Summer Games", "'Olympiad' technically refers to the 4-year period itself, not just the event"],
+    memoryTrick: "'Olympiad = 4-year block of time, not just the event day'.",
+    sportsRelevance: "Commonly confused terminology tested in written exams."
+  },
+  relatedIds: ["OLY-001"],
+  source: "Olympic Movement history texts",
+  tags: ["olympics"]
+}, {
+  id: "OLY-006",
+  exam: ["KVS PGT", "NVS", "EMRS", "AWES", "Sainik School", "CTET"],
+  subject: "Olympic Movement",
+  topic: "Paralympics",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "The Paralympic Games are organized for athletes with:",
+  options: ["Only visual impairments", "A range of physical, visual and intellectual impairments", "Only hearing impairments", "Age-related restrictions only"],
+  correctIndex: 1,
+  explanation: "The Paralympic Games are a major international multi-sport event for athletes with a range of disabilities, including physical, visual, and intellectual impairments, organized by the International Paralympic Committee (IPC).",
+  concept: {
+    title: "Paralympic Movement",
+    definition: "Parallel Games held shortly after the Olympics in the same host city, for athletes with disabilities.",
+    points: ["Organized by the International Paralympic Committee (IPC)", "Classification system groups athletes by impairment type/degree for fair competition", "India's notable Paralympians: Devendra Jhajharia, Avani Lekhara, Murlikant Petkar"],
+    memoryTrick: "'Para = alongside' — held alongside/parallel to the Olympics.",
+    sportsRelevance: "Adapted Physical Education syllabus overlaps directly with Paralympic classification knowledge."
+  },
+  relatedIds: ["OLY-001", "ADP-001"],
+  source: "Olympic Movement history texts",
+  tags: ["paralympics"]
+}, {
+  id: "RUL-001",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Rules and Regulations of Games",
+  topic: "Basketball",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "In basketball, how many players from each team are on the court at one time?",
+  options: ["4", "5", "6", "7"],
+  correctIndex: 1,
+  explanation: "Each basketball team has 5 players on the court at a time (out of typically 12-15 on the full roster).",
+  concept: {
+    title: "Basketball Basics",
+    definition: "FIBA basketball rules govern team size, court, and gameplay.",
+    points: ["5 players per side on court", "Court dimensions: 28m x 15m (FIBA)", "Game duration: 4 quarters of 10 minutes each (FIBA)"],
+    memoryTrick: "'High Five' — 5 players on the court.",
+    sportsRelevance: "Foundational rule tested across nearly every PE recruitment exam."
+  },
+  relatedIds: ["RUL-002"],
+  source: "FIBA Official Rules",
+  tags: ["basketball"]
+}, {
+  id: "RUL-002",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Rules and Regulations of Games",
+  topic: "Volleyball",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "In volleyball, a team is allowed a maximum of how many touches (hits) before returning the ball over the net?",
+  options: ["Two", "Three", "Four", "Unlimited"],
+  correctIndex: 1,
+  explanation: "A volleyball team may touch the ball a maximum of three times (not counting a block touch) before it must cross the net to the opponent's side.",
+  concept: {
+    title: "Volleyball Basic Rules",
+    definition: "FIVB rules govern touches, rotations, and scoring.",
+    points: ["Max 3 touches per side (block doesn't count as a touch)", "6 players per side on court", "Rally point system: games to 25 points (must win by 2), deciding set to 15"],
+    memoryTrick: "'3 touches: dig-set-spike'.",
+    sportsRelevance: "Common rules question across KVS, DSSSB and NET exams."
+  },
+  relatedIds: ["RUL-001"],
+  source: "FIVB Official Rules",
+  tags: ["volleyball"]
+}, {
+  id: "RUL-003",
+  exam: ["UGC NET", "State PSC", "SET"],
+  subject: "Rules and Regulations of Games",
+  topic: "Badminton",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "In BWF badminton singles, a match is the best of how many games, and each game is played to how many points?",
+  options: ["Best of 3 games, 21 points each (win by 2, cap 30)", "Best of 5 games, 15 points each", "Best of 3 games, 11 points each", "Best of 1 game, 25 points"],
+  correctIndex: 0,
+  explanation: "BWF badminton matches are best-of-3 games. Each game is played to 21 points, with a requirement to win by 2 points, up to a hard cap of 30 points (where 30-29 wins).",
+  concept: {
+    title: "Badminton Scoring (BWF)",
+    definition: "Rally point scoring system adopted by BWF since 2006.",
+    points: ["Best of 3 games, first to 21 (win by 2)", "Cap at 30 points (golden point at 29-29)", "Court dimensions differ for singles (narrower) vs doubles (wider)"],
+    memoryTrick: "'21, win by 2, cap at 30' — the badminton scoring formula.",
+    sportsRelevance: "One of the most repeated rules-based MCQs in Indian PE exams."
+  },
+  relatedIds: ["RUL-002"],
+  source: "BWF Official Statutes",
+  tags: ["badminton"]
+}, {
+  id: "RUL-004",
+  exam: ["KVS PGT", "UGC NET", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Rules and Regulations of Games",
+  topic: "Kabaddi",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2021,
+  question: "In Kabaddi, the offensive player who enters the opponent's court to score points is called the:",
+  options: ["Defender", "Raider", "Anti", "All-rounder"],
+  correctIndex: 1,
+  explanation: "In Kabaddi, the 'Raider' is the attacking player who enters the opposing team's half, attempts to touch defenders and return safely, chanting 'Kabaddi' continuously (in traditional format) without taking a breath.",
+  concept: {
+    title: "Kabaddi Roles & Terms",
+    definition: "A traditional Indian contact sport with unique terminology.",
+    points: ["Raider: attacking player scoring 'touch points'", "Defenders (Antis): try to stop and tackle the raider", "'Lona': bonus points for pinning the entire opposing team", "7 players per side on court (Pro Kabaddi format)"],
+    memoryTrick: "'Raider RAIDS the opponent's court'.",
+    sportsRelevance: "Highly relevant given Kabaddi's inclusion in Asian Games and Indian school curricula."
+  },
+  relatedIds: ["RUL-005"],
+  source: "Amateur Kabaddi Federation of India Rules",
+  tags: ["kabaddi"]
+}, {
+  id: "RUL-005",
+  exam: ["UGC NET", "NVS", "SET", "EMRS", "AWES", "Sainik School", "CTET"],
+  subject: "Rules and Regulations of Games",
+  topic: "Football",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "A standard football (soccer) match consists of how many minutes of regular play?",
+  options: ["80 minutes (2x40)", "90 minutes (2x45)", "100 minutes (2x50)", "60 minutes (2x30)"],
+  correctIndex: 1,
+  explanation: "A standard football match consists of two halves of 45 minutes each, totaling 90 minutes of regular play, plus stoppage time added by the referee.",
+  concept: {
+    title: "Football Match Duration",
+    definition: "FIFA Laws of the Game govern match structure.",
+    points: ["2 halves of 45 minutes = 90 minutes", "15-minute half-time interval", "Extra time (2x15 min) + penalties in knockout matches if tied"],
+    memoryTrick: "'2 x 45 = 90' — simple doubling.",
+    sportsRelevance: "Basic factual rule tested across nearly all PE recruitment exams."
+  },
+  relatedIds: ["RUL-006"],
+  source: "FIFA Laws of the Game",
+  tags: ["football"]
+}, {
+  id: "RUL-006",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Rules and Regulations of Games",
+  topic: "Hockey",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "In field hockey, a match is officially divided into how many quarters as per current FIH rules?",
+  options: ["Two halves of 35 minutes", "Four quarters of 15 minutes", "Three periods of 20 minutes", "Four quarters of 20 minutes"],
+  correctIndex: 1,
+  explanation: "Since 2019, FIH rules divide a field hockey match into four quarters of 15 minutes each (total 60 minutes), replacing the older two-halves format.",
+  concept: {
+    title: "Field Hockey Match Format",
+    definition: "FIH updated hockey's structure to a quarter-based system.",
+    points: ["4 quarters × 15 minutes = 60 minutes total", "2-minute breaks between Q1/Q2 and Q3/Q4; 10-minute half-time after Q2", "11 players per side including goalkeeper"],
+    memoryTrick: "'4 quarters, just like basketball' — helps remember the newer format.",
+    sportsRelevance: "Recently updated rule, frequently tested to check candidates' current knowledge."
+  },
+  relatedIds: ["RUL-005"],
+  source: "FIH Rules of Hockey",
+  tags: ["hockey"]
+}, {
+  id: "RUL-007",
+  exam: ["UGC NET", "SET"],
+  subject: "Rules and Regulations of Games",
+  topic: "Athletics",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "In track and field, a false start in a sprint event under current World Athletics rules results in:",
+  options: ["A warning for the whole field, no disqualification", "Immediate disqualification of the athlete who false-started", "Restart of the race for everyone, no penalty", "Time penalty added to final result"],
+  correctIndex: 1,
+  explanation: "Under current World Athletics rules, any athlete responsible for a false start is immediately disqualified from that race — there is no longer a 'one warning per field' allowance.",
+  concept: {
+    title: "False Start Rule",
+    definition: "Reaction time is measured electronically; a reaction under 0.1 seconds is deemed a false start.",
+    points: ["Zero-tolerance rule since 2010 (single false start = disqualification)", "Reaction time <0.1 sec is considered a false start (human reaction can't be faster)", "Applies individually — only the offending athlete is disqualified"],
+    memoryTrick: "'One false start, you're out' — no second chances anymore.",
+    sportsRelevance: "High-profile rule; has ended the races of Olympic-level sprinters like Usain Bolt (2011 Worlds)."
+  },
+  relatedIds: ["RUL-008"],
+  source: "World Athletics Competition Rules",
+  tags: ["athletics"]
+}, {
+  id: "RUL-008",
+  exam: ["KVS PGT", "UGC NET", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Rules and Regulations of Games",
+  topic: "Cricket",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2021,
+  question: "In a T20 cricket match, each team bats for a maximum of how many overs?",
+  options: ["10 overs", "20 overs", "50 overs", "15 overs"],
+  correctIndex: 1,
+  explanation: "In Twenty20 (T20) cricket, each team bats for a maximum of 20 overs per innings, making it the shortest standard format compared to ODI (50 overs) and Test cricket (unlimited, multi-day).",
+  concept: {
+    title: "Cricket Formats",
+    definition: "Cricket has three primary formats differing in overs/duration.",
+    points: ["T20: 20 overs per side", "ODI (One Day International): 50 overs per side", "Test Cricket: up to 5 days, unlimited overs, 2 innings per side"],
+    memoryTrick: "'T-20 = Twenty overs, Twenty-twenty'.",
+    sportsRelevance: "Basic format knowledge tested in general sports rules sections."
+  },
+  relatedIds: ["RUL-005"],
+  source: "ICC Playing Conditions",
+  tags: ["cricket"]
+}, {
+  id: "RUL-009",
+  exam: ["UGC NET", "DSSSB", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Rules and Regulations of Games",
+  topic: "Table Tennis",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "A game of table tennis (as per ITTF rules) is played up to how many points (win by 2)?",
+  options: ["11 points", "21 points", "15 points", "25 points"],
+  correctIndex: 0,
+  explanation: "Under current ITTF rules, a game of table tennis is played to 11 points, and a player must win by at least 2 points. Matches are typically best-of-5 or best-of-7 games.",
+  concept: {
+    title: "Table Tennis Scoring",
+    definition: "ITTF switched from the traditional 21-point system to an 11-point system in 2001.",
+    points: ["Games to 11 points, win by 2", "Best-of-5 (recreational/team) or best-of-7 (major tournaments)", "Service alternates every 2 points (every point after 10-10 deuce)"],
+    memoryTrick: "'11 is the new 21' — remember the modern rule change.",
+    sportsRelevance: "Frequently tested rule-change question to catch outdated knowledge."
+  },
+  relatedIds: ["RUL-003"],
+  source: "ITTF Handbook",
+  tags: ["table-tennis"]
+}, {
+  id: "RUL-010",
+  exam: ["KVS PGT", "UGC NET", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Rules and Regulations of Games",
+  topic: "Kho-Kho",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "In traditional Kho-Kho, each team consists of how many players on the field at a time?",
+  options: ["7", "9", "11", "12"],
+  correctIndex: 1,
+  explanation: "A Kho-Kho team consists of 12 players registered, but only 9 players take the field at any given time during a turn.",
+  concept: {
+    title: "Kho-Kho Basics",
+    definition: "A traditional Indian tag-based team sport played on a rectangular court.",
+    points: ["9 players on field per turn (12 in the full squad)", "Played in two innings, each with a 'chasing' and 'running' turn", "'Kho' is called to change the active chaser"],
+    memoryTrick: "'9 on the field, dodging and chasing'.",
+    sportsRelevance: "Traditional Indian sport frequently included in PE syllabi and school curricula."
+  },
+  relatedIds: ["RUL-004"],
+  source: "Kho-Kho Federation of India Rules",
+  tags: ["kho-kho"]
+}];
+QUESTION_BANK.push({
+  id: "FND-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Foundations of Physical Education",
+  topic: "Definitions",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "Physical Education is best defined as education:",
+  options: ["Only about playing sports for entertainment", "Through and of physical activity, aiming at holistic development of an individual", "Limited to military-style drills", "Only relevant for professional athletes"],
+  correctIndex: 1,
+  explanation: "Physical Education is education through physical activity — it uses movement, sport and exercise as a medium to develop physical, mental, social and emotional capacities of an individual holistically.",
+  concept: {
+    title: "Definition & Scope of Physical Education",
+    definition: "PE is a formal, planned process of education that uses physical activity as its primary medium.",
+    points: ["Aims at holistic development: physical, mental, social, emotional", "Distinct from 'sport' (competition-focused) though closely related", "Modern PE includes health education, recreation, and adapted PE"],
+    memoryTrick: "'PE = Education THROUGH the physical'.",
+    sportsRelevance: "Foundational conceptual question found in nearly every PE exam's first section."
+  },
+  relatedIds: [],
+  source: "Foundations of Physical Education - Bucher",
+  tags: ["definitions"]
+}, {
+  id: "FND-002",
+  exam: ["UGC NET", "SET"],
+  subject: "History of Physical Education",
+  topic: "Indian PE History",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "The YMCA College of Physical Education, one of India's earliest PE training institutions, was established in which city?",
+  options: ["Mumbai", "Chennai", "Madras (now Chennai)", "Kolkata"],
+  correctIndex: 2,
+  explanation: "The YMCA College of Physical Education was established in Madras (now Chennai) in 1920, and remains one of the oldest and most influential institutions for professional PE training in India.",
+  concept: {
+    title: "Milestones in Indian PE History",
+    definition: "Institutional development shaped the growth of formal Physical Education in India.",
+    points: ["YMCA College of PE, Madras — established 1920", "Lakshmibai National Institute of Physical Education (LNIPE), Gwalior — premier national institute", "Sports Authority of India (SAI) — established 1984, promotes sports development nationally"],
+    memoryTrick: "'YMCA in Madras started it all'.",
+    sportsRelevance: "Institutional history is a recurring topic in UGC NET Paper 2 (Physical Education)."
+  },
+  relatedIds: ["FND-001"],
+  source: "History of Physical Education in India",
+  tags: ["history", "india"]
+}, {
+  id: "NUT-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Nutrition",
+  topic: "Macronutrients",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "Which macronutrient is the body's primary and most readily available energy source during high-intensity exercise?",
+  options: ["Protein", "Fat", "Carbohydrate", "Vitamins"],
+  correctIndex: 2,
+  explanation: "Carbohydrates are the body's primary and fastest-accessible energy source, especially during high-intensity exercise, as they are readily converted to glucose and stored as glycogen for quick use.",
+  concept: {
+    title: "Macronutrients & Exercise",
+    definition: "Carbohydrates, fats and proteins each serve distinct roles in athletic performance.",
+    points: ["Carbohydrates: primary fuel for high-intensity work, stored as glycogen", "Fats: primary fuel for low-intensity, long-duration work", "Protein: muscle repair/growth, minor energy contributor"],
+    memoryTrick: "'Carbs = quick energy, Fats = slow-burn energy'.",
+    sportsRelevance: "Basis of carbohydrate-loading strategies before endurance competitions."
+  },
+  relatedIds: ["PHY-014"],
+  source: "Sports Nutrition - Dunford",
+  tags: ["nutrition"]
+}, {
+  id: "FA-001",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "First Aid",
+  topic: "RICE Protocol",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2021,
+  question: "The RICE protocol for managing acute soft-tissue sports injuries stands for:",
+  options: ["Run, Ice, Compress, Elevate", "Rest, Ice, Compression, Elevation", "Rest, Immobilize, Cool, Evaluate", "Reduce, Ice, Contain, Examine"],
+  correctIndex: 1,
+  explanation: "RICE stands for Rest, Ice, Compression, Elevation — the standard first-aid protocol for managing acute soft-tissue injuries like sprains and strains in the first 24-48 hours.",
+  concept: {
+    title: "RICE Protocol",
+    definition: "Immediate first-aid management for acute musculoskeletal injuries.",
+    points: ["Rest: stop activity, avoid further stress on the injury", "Ice: apply cold to reduce swelling/pain (15-20 min intervals)", "Compression: elastic bandage to limit swelling", "Elevation: raise the injured area above heart level"],
+    memoryTrick: "'RICE cools down the injury' — like rice cooling a hot plate.",
+    sportsRelevance: "Standard first response for ankle sprains, muscle strains in any sport."
+  },
+  relatedIds: ["PHY-005"],
+  source: "Sports First Aid Manual",
+  tags: ["first-aid", "injury"]
+}, {
+  id: "SOC-001",
+  exam: ["UGC NET", "SET"],
+  subject: "Sociology of Physical Education",
+  topic: "Sport & Society",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "The role of sport in promoting social integration across different castes, religions and regions is primarily studied under:",
+  options: ["Sports Psychology", "Sociology of Sport", "Exercise Physiology", "Kinesiology"],
+  correctIndex: 1,
+  explanation: "Sociology of Sport examines how sport interacts with social structures — including social integration, gender, class, and identity — distinct from psychology (individual mind/behavior) or physiology (body function).",
+  concept: {
+    title: "Sociology of Sport",
+    definition: "A sub-discipline studying sport as a social institution and its broader societal impact.",
+    points: ["Studies social integration/mobility through sport", "Examines gender equity, media influence, and commercialization of sport", "Distinct from sports psychology, which focuses on individual mental processes"],
+    memoryTrick: "'Socio = Society' — the lens is always social, not individual.",
+    sportsRelevance: "India's cricket/kabaddi popularity is often cited as a case study of social integration through sport."
+  },
+  relatedIds: ["FND-001"],
+  source: "Sociology of Sport - Coakley",
+  tags: ["sociology"]
+}, {
+  id: "BIO-001",
+  exam: ["UGC NET", "SET"],
+  subject: "Biomechanics",
+  topic: "Newton's Laws in Sport",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2023,
+  question: "A sprinter pushing backward against the starting blocks to propel themselves forward is best explained by which of Newton's laws?",
+  options: ["Newton's First Law (Inertia)", "Newton's Second Law (F=ma)", "Newton's Third Law (Action-Reaction)", "Law of Conservation of Momentum"],
+  correctIndex: 2,
+  explanation: "Newton's Third Law states every action has an equal and opposite reaction — the sprinter pushes backward on the blocks (action), and the blocks push the sprinter forward with equal force (reaction).",
+  concept: {
+    title: "Newton's Laws Applied to Sport",
+    definition: "Biomechanics applies classical mechanics to human movement analysis.",
+    points: ["1st Law (Inertia): a body at rest/motion stays that way unless acted on by force", "2nd Law (F=ma): force equals mass times acceleration — explains why heavier shot put needs more force", "3rd Law (Action-Reaction): explains starting blocks, swimming push-offs, jumping"],
+    memoryTrick: "'3rd Law = every push has a payback (equal & opposite)'.",
+    sportsRelevance: "Explains technique optimization in sprint starts, swimming turns, and jumping takeoffs."
+  },
+  relatedIds: ["TRN-004"],
+  source: "Biomechanics of Sport - Hall",
+  tags: ["biomechanics", "newtons-laws"]
+}, {
+  id: "BIO-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Biomechanics",
+  topic: "Levers",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "Most lever systems in the human body (e.g., elbow flexion by the biceps) are classified as which class of lever?",
+  options: ["First Class", "Second Class", "Third Class", "Fourth Class"],
+  correctIndex: 2,
+  explanation: "Most human body levers are Third Class levers, where the effort (muscle force) is between the fulcrum (joint) and the resistance (load) — sacrificing mechanical advantage for greater speed/range of motion.",
+  concept: {
+    title: "Classes of Levers in the Body",
+    definition: "Levers are classified by the relative position of fulcrum, effort, and resistance.",
+    points: ["1st Class: fulcrum between effort & resistance (e.g., head nodding at atlanto-occipital joint)", "2nd Class: resistance between fulcrum & effort (e.g., calf raise — rare in the body)", "3rd Class: effort between fulcrum & resistance (most common — e.g., elbow flexion)"],
+    memoryTrick: "'3rd Class = most common, built for speed not force'.",
+    sportsRelevance: "Explains why the human arm is fast but not maximally strong — a biomechanical trade-off."
+  },
+  relatedIds: ["BIO-001", "ANA-003"],
+  source: "Biomechanics of Sport - Hall",
+  tags: ["biomechanics", "levers"]
+});
+QUESTION_BANK.push({
+  id: "PHL-001",
+  exam: ["UGC NET", "SET"],
+  subject: "Philosophy of Physical Education",
+  topic: "Idealism",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "Which philosophy of education emphasizes that physical education should develop the mind and moral character alongside the body, tracing its roots to Plato's ideas?",
+  options: ["Naturalism", "Idealism", "Pragmatism", "Existentialism"],
+  correctIndex: 1,
+  explanation: "Idealism, rooted in Plato's philosophy, views physical education as a means to develop sound character and mind, not just the body — 'a sound mind in a sound body'.",
+  concept: {
+    title: "Idealism in PE",
+    definition: "Idealism holds that reality is fundamentally mental/spiritual, and education (including PE) should cultivate moral and intellectual character.",
+    points: ["Rooted in Plato's philosophy", "Emphasizes character and mind development through physical activity", "Physical activity is a means to a higher moral/intellectual end"],
+    memoryTrick: "'Idealism = Ideas & Ideals' — the goal is the mind, body is the vehicle.",
+    sportsRelevance: "Underpins the classical view that sport builds character, not just muscle."
+  },
+  relatedIds: ["PHL-003"],
+  source: "Foundations of Physical Education - Bucher",
+  tags: ["philosophy", "idealism"]
+}, {
+  id: "PHL-002",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Philosophy of Physical Education",
+  topic: "Naturalism",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "The philosophy of Naturalism in physical education, associated with Jean-Jacques Rousseau, advocates for:",
+  options: ["Rigid drill-based training", "Learning through natural, spontaneous physical activity and play", "Competitive sport only for elites", "Physical education as punishment"],
+  correctIndex: 1,
+  explanation: "Naturalism emphasizes learning through nature and spontaneous activity/play, allowing the child to develop freely rather than through rigid, artificial drills.",
+  concept: {
+    title: "Naturalism in PE",
+    definition: "A philosophy that believes education should follow the natural growth and instincts of the child, with minimal artificial restriction.",
+    points: ["Associated with Rousseau's 'Emile'", "Favors free play and natural movement over rigid drills", "Child-centered approach to physical development"],
+    memoryTrick: "'Naturalism = Nature knows best' — let the child play freely.",
+    sportsRelevance: "Basis for play-based early-childhood PE programs."
+  },
+  relatedIds: ["PHL-001"],
+  source: "Foundations of Physical Education - Bucher",
+  tags: ["philosophy", "naturalism"]
+}, {
+  id: "PHL-003",
+  exam: ["UGC NET", "SET"],
+  subject: "Philosophy of Physical Education",
+  topic: "Pragmatism",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "John Dewey's philosophy of Pragmatism, highly influential in modern physical education, is best summarized by which principle?",
+  options: ["Learning by doing / experience-based education", "Physical training strictly for military discipline", "Education focused solely on classical texts", "Physical education as an optional extracurricular"],
+  correctIndex: 0,
+  explanation: "Dewey's Pragmatism holds that genuine learning occurs through direct experience and active doing, not passive reception — directly shaping activity-based, experiential PE pedagogy.",
+  concept: {
+    title: "Pragmatism & Dewey",
+    definition: "Pragmatism evaluates ideas by their practical consequences and champions experiential, 'learning by doing' education.",
+    points: ["John Dewey is the key proponent", "'Learning by doing' is the core principle", "Strongly influences modern activity-based PE teaching methods"],
+    memoryTrick: "'Pragmatism = Practice' — you learn it by doing it.",
+    sportsRelevance: "Basis for most modern skill-teaching approaches in PE (practice-based learning)."
+  },
+  relatedIds: ["PHL-001", "TCH-002"],
+  source: "Foundations of Physical Education - Bucher",
+  tags: ["philosophy", "pragmatism"]
+}, {
+  id: "PHL-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Philosophy of Physical Education",
+  topic: "Existentialism",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "An Existentialist approach to physical education would most likely emphasize:",
+  options: ["Standardized testing for all students", "Individual choice, self-expression and personal meaning in physical activity", "Strict adherence to a single sport curriculum", "Group conformity over individual preference"],
+  correctIndex: 1,
+  explanation: "Existentialism centers on individual freedom, choice and self-defined meaning — in PE this translates to valuing personal expression and choice of activity over standardized, conformist programs.",
+  concept: {
+    title: "Existentialism in PE",
+    definition: "A philosophy emphasizing individual existence, freedom of choice, and personal responsibility for creating one's own meaning.",
+    points: ["Values individual freedom and self-expression", "Rejects rigid, one-size-fits-all programs", "Encourages students to find personal meaning in movement"],
+    memoryTrick: "'Exist = Individual exists first, meaning comes from choice.'",
+    sportsRelevance: "Supports offering varied activity choices (dance, yoga, individual sport) rather than one mandatory sport."
+  },
+  relatedIds: ["PHL-001"],
+  source: "Foundations of Physical Education - Bucher",
+  tags: ["philosophy", "existentialism"]
+}, {
+  id: "PHL-005",
+  exam: ["UGC NET", "SET"],
+  subject: "Philosophy of Physical Education",
+  topic: "Realism",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "Realism as a philosophy of physical education emphasizes:",
+  options: ["Physical education based on scientific facts, objective observation and measurable outcomes", "Physical education based purely on tradition and myth", "Ignoring scientific principles in training", "Education solely through abstract ideas"],
+  correctIndex: 0,
+  explanation: "Realism holds that the physical world is knowable through objective observation and scientific method — in PE, this underlies evidence-based training, testing and measurement.",
+  concept: {
+    title: "Realism in PE",
+    definition: "A philosophy asserting that reality exists independently of the mind and is best understood through scientific observation and evidence.",
+    points: ["Emphasizes objective, scientific approach", "Basis for evidence-based training and measurement in PE", "Contrasts with Idealism's mind-first approach"],
+    memoryTrick: "'Realism = Real, measurable facts.'",
+    sportsRelevance: "Underlies the entire discipline of Test, Measurement & Evaluation in PE."
+  },
+  relatedIds: ["PHL-001", "TME-001"],
+  source: "Foundations of Physical Education - Bucher",
+  tags: ["philosophy", "realism"]
+}, {
+  id: "EPH-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Exercise Physiology",
+  topic: "VO2 Max",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "VO2 max is best defined as:",
+  options: ["The maximum volume of oxygen the body can consume during heavy exercise per unit time", "The total lung capacity of an athlete", "The resting oxygen consumption rate", "The amount of carbon dioxide exhaled during exercise"],
+  correctIndex: 0,
+  explanation: "VO2 max is the maximum rate at which the body can take up and utilize oxygen during intense exercise, considered a key indicator of aerobic/cardiorespiratory fitness.",
+  concept: {
+    title: "VO2 Max",
+    definition: "VO2 max (maximal oxygen uptake) measures the body's maximum capacity to transport and use oxygen during exercise.",
+    points: ["Measured in ml/kg/min", "Gold-standard indicator of aerobic fitness", "Improved through endurance/aerobic training"],
+    memoryTrick: "'VO2 max = your engine's top oxygen-burning speed.'",
+    sportsRelevance: "Elite endurance athletes (marathoners, cyclists) have among the highest recorded VO2 max values."
+  },
+  relatedIds: ["EPH-003", "EPH-004"],
+  source: "Exercise Physiology - McArdle",
+  tags: ["exercise-physiology", "vo2max"]
+}, {
+  id: "EPH-002",
+  exam: ["UGC NET", "DSSSB", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Exercise Physiology",
+  topic: "Energy Systems",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "Which energy system is predominantly used for short, maximal-intensity efforts lasting less than 10 seconds, such as a 100m sprint start?",
+  options: ["Aerobic (Oxidative) system", "ATP-PCr (Phosphagen) system", "Anaerobic Glycolytic system", "Beta-oxidation system"],
+  correctIndex: 1,
+  explanation: "The ATP-PCr (phosphagen) system provides immediate, very high-intensity energy for the first few seconds of maximal effort, using stored ATP and phosphocreatine without oxygen.",
+  concept: {
+    title: "Three Energy Systems",
+    definition: "The body uses three interacting energy systems depending on intensity/duration: ATP-PCr, Anaerobic Glycolysis, and the Aerobic system.",
+    points: ["ATP-PCr: 0-10 sec, maximal intensity (sprints, jumps)", "Anaerobic Glycolysis: 10 sec-2 min, high intensity (400m run)", "Aerobic system: 2+ min, sustained/endurance activity"],
+    memoryTrick: "'PCr = Powers the very first seconds.'",
+    sportsRelevance: "Explains why sprinters train differently (power/speed) than marathoners (aerobic endurance)."
+  },
+  relatedIds: ["EPH-001", "EPH-003"],
+  source: "Exercise Physiology - McArdle",
+  tags: ["exercise-physiology", "energy-systems"]
+}, {
+  id: "EPH-003",
+  exam: ["UGC NET", "SET"],
+  subject: "Exercise Physiology",
+  topic: "EPOC",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "The elevated oxygen consumption that persists after exercise has stopped, used to restore the body to its resting state, is known as:",
+  options: ["VO2 max", "Excess Post-exercise Oxygen Consumption (EPOC)", "Basal Metabolic Rate", "Anaerobic threshold"],
+  correctIndex: 1,
+  explanation: "EPOC (commonly called 'oxygen debt') is the continued elevated oxygen uptake after exercise, used to replenish ATP/PCr stores, clear lactate, and restore normal body temperature and hormone levels.",
+  concept: {
+    title: "EPOC (Oxygen Debt)",
+    definition: "EPOC reflects the metabolic cost of recovery after exercise, historically termed 'oxygen debt'.",
+    points: ["Higher-intensity exercise produces greater EPOC", "Used to restore ATP-PCr stores and clear metabolic byproducts", "Contributes to 'afterburn' calorie expenditure post-workout"],
+    memoryTrick: "'EPOC = Extra Panting Once Complete.'",
+    sportsRelevance: "Basis for HIIT's popularity — greater EPOC means more calories burned after the workout ends."
+  },
+  relatedIds: ["EPH-001", "EPH-002"],
+  source: "Exercise Physiology - McArdle",
+  tags: ["exercise-physiology", "epoc"]
+}, {
+  id: "EPH-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Exercise Physiology",
+  topic: "Lactate Threshold",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2023,
+  question: "The exercise intensity at which blood lactate begins to accumulate faster than it can be cleared is called the:",
+  options: ["VO2 max", "Lactate (anaerobic) threshold", "Resting metabolic rate", "Cardiac output ceiling"],
+  correctIndex: 1,
+  explanation: "The lactate (anaerobic) threshold marks the exercise intensity beyond which lactate production outpaces clearance, leading to rapid fatigue — a key marker used to design endurance training zones.",
+  concept: {
+    title: "Lactate Threshold",
+    definition: "A physiological marker used to prescribe training intensity zones for endurance athletes.",
+    points: ["Occurs at roughly 50-80% of VO2 max depending on training status", "Training can shift the threshold to a higher percentage of VO2 max", "Used to set 'tempo run' or 'threshold pace' training zones"],
+    memoryTrick: "'Threshold = the tipping point where burn outpaces clearance.'",
+    sportsRelevance: "Central concept in designing marathon and cycling training plans."
+  },
+  relatedIds: ["EPH-001"],
+  source: "Exercise Physiology - McArdle",
+  tags: ["exercise-physiology", "lactate"]
+}, {
+  id: "EPH-005",
+  exam: ["KVS PGT", "NVS", "EMRS", "AWES", "Sainik School", "CTET"],
+  subject: "Exercise Physiology",
+  topic: "Cardiovascular Adaptations",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2021,
+  question: "A well-documented cardiovascular adaptation to long-term aerobic endurance training is:",
+  options: ["Increased resting heart rate", "Decreased stroke volume", "Bradycardia (lower resting heart rate) and increased stroke volume", "Decreased capillary density in muscles"],
+  correctIndex: 2,
+  explanation: "Chronic aerobic training enlarges the heart's stroke volume (more blood pumped per beat), which allows the same cardiac output at a lower resting heart rate — training bradycardia.",
+  concept: {
+    title: "Chronic Cardiovascular Adaptations",
+    definition: "Long-term endurance training produces structural and functional adaptations in the cardiovascular system.",
+    points: ["Increased stroke volume and cardiac output at maximal effort", "Training bradycardia (lower resting HR, often 40-60 bpm in elite endurance athletes)", "Increased capillary density improves oxygen delivery to muscles"],
+    memoryTrick: "'Big, efficient heart beats slower.'",
+    sportsRelevance: "Explains why elite cyclists/runners often have resting heart rates well below 60 bpm."
+  },
+  relatedIds: ["EPH-001", "EPH-003"],
+  source: "Exercise Physiology - McArdle",
+  tags: ["exercise-physiology", "cardiovascular"]
+}, {
+  id: "KIN-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Kinesiology",
+  topic: "Planes of Motion",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "Flexion and extension of the knee occur primarily in which anatomical plane?",
+  options: ["Frontal (Coronal) plane", "Sagittal plane", "Transverse (Horizontal) plane", "Oblique plane"],
+  correctIndex: 1,
+  explanation: "Flexion/extension movements (bending/straightening a joint) occur in the sagittal plane, which divides the body into left and right halves.",
+  concept: {
+    title: "Anatomical Planes of Motion",
+    definition: "The body's movements are analyzed relative to three cardinal planes: sagittal, frontal and transverse.",
+    points: ["Sagittal plane: flexion/extension (e.g., knee bend, walking)", "Frontal plane: abduction/adduction (e.g., jumping jacks)", "Transverse plane: rotation (e.g., trunk twist)"],
+    memoryTrick: "'Sagittal = Straight ahead, front-back movement.'",
+    sportsRelevance: "Understanding planes helps design exercises targeting movement patterns specific to a sport."
+  },
+  relatedIds: ["KIN-002", "ANA-003"],
+  source: "Kinesiology text",
+  tags: ["kinesiology", "planes-of-motion"]
+}, {
+  id: "KIN-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Kinesiology",
+  topic: "Muscle Actions",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "During elbow flexion, the biceps brachii acts as the agonist (prime mover). Which muscle acts as its antagonist?",
+  options: ["Brachialis", "Triceps brachii", "Deltoid", "Brachioradialis"],
+  correctIndex: 1,
+  explanation: "The triceps brachii, an elbow extensor, acts as the antagonist to the biceps brachii during elbow flexion — antagonist muscles relax/lengthen to allow the agonist's action.",
+  concept: {
+    title: "Agonist-Antagonist Muscle Pairs",
+    definition: "Muscles typically work in opposing pairs: the agonist causes the movement while the antagonist relaxes/lengthens.",
+    points: ["Agonist (prime mover): causes the desired movement", "Antagonist: opposes/controls the agonist's action", "Synergist: assists the agonist in performing the movement"],
+    memoryTrick: "'Agonist Acts, Antagonist Allows.'",
+    sportsRelevance: "Balanced strength training of agonist-antagonist pairs (e.g., biceps-triceps, quads-hamstrings) reduces injury risk."
+  },
+  relatedIds: ["KIN-001", "ANA-004"],
+  source: "Kinesiology text",
+  tags: ["kinesiology", "muscle-action"]
+}, {
+  id: "KIN-003",
+  exam: ["UGC NET", "DSSSB", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Kinesiology",
+  topic: "Muscle Contraction",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "When a muscle shortens while generating force against resistance (e.g., lifting a weight during a bicep curl), the contraction is termed:",
+  options: ["Isometric contraction", "Eccentric contraction", "Concentric contraction", "Isokinetic contraction"],
+  correctIndex: 2,
+  explanation: "A concentric contraction occurs when the muscle shortens while producing force, such as the lifting (upward) phase of a bicep curl.",
+  concept: {
+    title: "Types of Muscle Contraction",
+    definition: "Muscle contractions are classified as isotonic (concentric/eccentric), isometric, or isokinetic.",
+    points: ["Concentric: muscle shortens (lifting phase)", "Eccentric: muscle lengthens under tension (lowering phase)", "Isometric: no change in muscle length or joint angle"],
+    memoryTrick: "'CONcentric = muscle CONtracts shorter.'",
+    sportsRelevance: "Most sport movements combine concentric and eccentric phases (e.g., jumping = eccentric loading then concentric drive)."
+  },
+  relatedIds: ["KIN-004", "KIN-005"],
+  source: "Kinesiology text",
+  tags: ["kinesiology", "contraction"]
+}, {
+  id: "KIN-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Kinesiology",
+  topic: "Muscle Contraction",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2023,
+  question: "The controlled lengthening of a muscle under tension, such as lowering a weight slowly during a squat, is called:",
+  options: ["Concentric contraction", "Eccentric contraction", "Isometric contraction", "Plyometric contraction"],
+  correctIndex: 1,
+  explanation: "Eccentric contraction occurs when a muscle lengthens while still generating force to control the movement, such as the lowering phase of a squat.",
+  concept: {
+    title: "Eccentric Contraction",
+    definition: "Eccentric contractions can generate more force than concentric ones but are also linked to greater delayed-onset muscle soreness (DOMS).",
+    points: ["Muscle lengthens while producing tension", "Generates greater force potential than concentric contractions", "Associated with more muscle micro-damage and DOMS"],
+    memoryTrick: "'ECCentric = muscle EXtends (lengthens) under control.'",
+    sportsRelevance: "Eccentric-focused training is used in rehab and strength programs to build tendon resilience."
+  },
+  relatedIds: ["KIN-003"],
+  source: "Kinesiology text",
+  tags: ["kinesiology", "eccentric"]
+}, {
+  id: "KIN-005",
+  exam: ["KVS PGT", "State PSC", "EMRS", "AWES", "Sainik School"],
+  subject: "Kinesiology",
+  topic: "Muscle Contraction",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2021,
+  question: "A muscle contraction that generates force without any visible change in muscle length or joint angle, such as holding a plank, is known as:",
+  options: ["Isotonic contraction", "Isokinetic contraction", "Isometric contraction", "Eccentric contraction"],
+  correctIndex: 2,
+  explanation: "Isometric contraction produces muscular tension without a change in muscle length or joint movement — holding a static position like a plank or wall-sit is a classic example.",
+  concept: {
+    title: "Isometric Contraction",
+    definition: "'Iso' = same, 'metric' = length — the muscle length stays the same while tension is generated.",
+    points: ["No visible joint movement occurs", "Commonly used in stability and core-strength exercises", "Useful in rehabilitation when joint movement must be limited"],
+    memoryTrick: "'ISOmetric = length stays the SAME.'",
+    sportsRelevance: "Core-stability sports (gymnastics rings, planking) rely heavily on isometric strength."
+  },
+  relatedIds: ["KIN-003", "KIN-004"],
+  source: "Kinesiology text",
+  tags: ["kinesiology", "isometric"]
+}, {
+  id: "TRM-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Training Methods",
+  topic: "Fartlek Training",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "'Fartlek' training, a method combining continuous running with varied-pace bursts, originated in which country?",
+  options: ["Sweden", "Finland", "Germany", "Kenya"],
+  correctIndex: 0,
+  explanation: "Fartlek, meaning 'speed play' in Swedish, was developed in Sweden in the 1930s and blends continuous running with unstructured changes of pace and terrain.",
+  concept: {
+    title: "Fartlek Training",
+    definition: "An unstructured endurance training method mixing fast and slow running over varied terrain, developing both aerobic and anaerobic systems.",
+    points: ["Swedish origin, meaning 'speed play'", "Combines continuous running with variable-intensity surges", "Develops both aerobic base and anaerobic capacity"],
+    memoryTrick: "'Fartlek = FAST + slow, playfully mixed.'",
+    sportsRelevance: "Popular among middle/long-distance runners and football players for varied-intensity conditioning."
+  },
+  relatedIds: ["TRM-002", "TRN-001"],
+  source: "Sports Training - Bompa",
+  tags: ["training-methods", "fartlek"]
+}, {
+  id: "TRM-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Training Methods",
+  topic: "Interval Training",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "A training method characterized by alternating periods of high-intensity work with fixed periods of rest or low-intensity recovery is called:",
+  options: ["Continuous training", "Interval training", "Fartlek training", "Weight training"],
+  correctIndex: 1,
+  explanation: "Interval training structures exercise into repeated high-intensity work bouts separated by defined rest/recovery periods, allowing greater total high-intensity workload than continuous exercise.",
+  concept: {
+    title: "Interval Training",
+    definition: "A systematic method alternating work and rest intervals, widely used to develop both aerobic and anaerobic capacity.",
+    points: ["Precisely defined work:rest ratios (e.g., 30 sec work : 90 sec rest)", "Allows higher-intensity work than sustained continuous training", "Basis of modern HIIT (High-Intensity Interval Training)"],
+    memoryTrick: "'INTERval = IN-between rest breaks.'",
+    sportsRelevance: "Core method for developing speed-endurance in sports like football, hockey and athletics."
+  },
+  relatedIds: ["TRM-001"],
+  source: "Sports Training - Bompa",
+  tags: ["training-methods", "interval"]
+}, {
+  id: "TRM-003",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Training Methods",
+  topic: "Circuit Training",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2021,
+  question: "Circuit training typically involves performing a series of exercises:",
+  options: ["At a single station for maximum duration", "At different stations in sequence, with minimal rest between stations", "Only in water (aquatic exercises)", "Exclusively using free weights"],
+  correctIndex: 1,
+  explanation: "Circuit training involves moving through a sequence of different exercise stations, each targeting different muscle groups/fitness components, with minimal rest between stations.",
+  concept: {
+    title: "Circuit Training",
+    definition: "An efficient training method combining strength, endurance and sometimes flexibility exercises in a rotating station format.",
+    points: ["Multiple stations, each with a different exercise", "Minimal rest between stations, brief rest between full circuits", "Improves muscular endurance and cardiovascular fitness simultaneously"],
+    memoryTrick: "'Circuit = a circle of different stations.'",
+    sportsRelevance: "Widely used in school PE and team pre-season conditioning for time-efficient, full-body fitness."
+  },
+  relatedIds: ["TRM-002"],
+  source: "Sports Training - Bompa",
+  tags: ["training-methods", "circuit"]
+}, {
+  id: "TRM-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Training Methods",
+  topic: "Plyometric Training",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "Plyometric training (e.g., depth jumps, bounding) primarily develops explosive power by exploiting which physiological mechanism?",
+  options: ["The stretch-shortening cycle of muscle-tendon units", "Slow-twitch fiber hypertrophy", "Increased joint flexibility alone", "Reduced heart rate variability"],
+  correctIndex: 0,
+  explanation: "Plyometrics exploit the stretch-shortening cycle: a rapid eccentric (lengthening) muscle action immediately followed by a concentric (shortening) action produces greater force output than a concentric action alone.",
+  concept: {
+    title: "Plyometric Training & the Stretch-Shortening Cycle",
+    definition: "Plyometrics train the neuromuscular system to rapidly convert eccentric loading into explosive concentric force.",
+    points: ["Stretch-shortening cycle: eccentric load immediately followed by explosive concentric action", "Improves rate of force development (explosiveness), not just maximal strength", "Requires adequate strength base before introduction to reduce injury risk"],
+    memoryTrick: "'Plyo = quick stretch, then explode.'",
+    sportsRelevance: "Essential for jump-dependent sports: volleyball spiking, basketball rebounding, long jump."
+  },
+  relatedIds: ["TRM-002", "BIO-006"],
+  source: "Sports Training - Bompa",
+  tags: ["training-methods", "plyometrics"]
+}, {
+  id: "TRM-005",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Training Methods",
+  topic: "Periodization",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2023,
+  question: "The systematic planning of training into phases (e.g., preparatory, competitive, transition) to peak performance for a target event is known as:",
+  options: ["Overtraining", "Periodization", "Detraining", "Cross-training"],
+  correctIndex: 1,
+  explanation: "Periodization is the deliberate, long-term organization of training into distinct phases (macrocycle, mesocycle, microcycle) to manage fatigue and peak performance at the right time.",
+  concept: {
+    title: "Periodization",
+    definition: "A structured training-planning framework dividing the training year into preparatory, competitive and transition phases.",
+    points: ["Macrocycle: full training year/season plan", "Mesocycle: a few weeks to months, a training block", "Microcycle: typically one week, the smallest planning unit"],
+    memoryTrick: "'Periodization = PERIODS of planned training.'",
+    sportsRelevance: "Used by elite coaches to ensure athletes peak for major competitions like the Olympics or National Games."
+  },
+  relatedIds: ["TRM-004", "TRN-012"],
+  source: "Sports Training - Bompa",
+  tags: ["training-methods", "periodization"]
+}, {
+  id: "FIT-001",
+  exam: ["UGC NET", "NVS", "SET", "EMRS", "AWES", "Sainik School", "CTET"],
+  subject: "Fitness and Wellness",
+  topic: "Health-Related Fitness",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "Which of the following is NOT one of the five components of health-related physical fitness?",
+  options: ["Cardiorespiratory endurance", "Muscular strength", "Agility", "Body composition"],
+  correctIndex: 2,
+  explanation: "The five components of health-related fitness are cardiorespiratory endurance, muscular strength, muscular endurance, flexibility, and body composition. Agility is a skill-related (not health-related) fitness component.",
+  concept: {
+    title: "Health-Related vs Skill-Related Fitness",
+    definition: "Fitness components are grouped into health-related (linked to disease prevention/wellness) and skill-related (linked to sport performance).",
+    points: ["Health-related: cardio endurance, muscular strength/endurance, flexibility, body composition", "Skill-related: agility, balance, coordination, power, reaction time, speed", "Health-related fitness is the foundation tested in most fitness assessments"],
+    memoryTrick: "'Health = Cardio, Strength, Endurance, Flex, Composition (5 C-S-E-F-C).'",
+    sportsRelevance: "Public health/school fitness tests (e.g., FITNESSGRAM) focus on health-related components."
+  },
+  relatedIds: ["FIT-003", "FIT-005"],
+  source: "Physical Fitness - Corbin",
+  tags: ["fitness-wellness", "components"]
+}, {
+  id: "FIT-002",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Fitness and Wellness",
+  topic: "FITT Principle",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "The FITT principle used to design an exercise program stands for:",
+  options: ["Force, Intensity, Time, Type", "Frequency, Intensity, Time, Type", "Fitness, Interval, Training, Tempo", "Frequency, Impact, Tempo, Type"],
+  correctIndex: 1,
+  explanation: "FITT stands for Frequency (how often), Intensity (how hard), Time (duration) and Type (mode of exercise) — the four variables manipulated to design and progress an exercise program.",
+  concept: {
+    title: "The FITT Principle",
+    definition: "A foundational framework for designing and progressively overloading any exercise program.",
+    points: ["Frequency: sessions per week", "Intensity: how hard (e.g., % of max heart rate)", "Time & Type: duration and mode/kind of activity"],
+    memoryTrick: "'FITT = Frequency, Intensity, Time, Type.'",
+    sportsRelevance: "Used by coaches and trainers to systematically progress an athlete's training load."
+  },
+  relatedIds: ["FIT-001", "TRM-005"],
+  source: "Physical Fitness - Corbin",
+  tags: ["fitness-wellness", "fitt"]
+}, {
+  id: "FIT-003",
+  exam: ["UGC NET", "SET"],
+  subject: "Fitness and Wellness",
+  topic: "Flexibility",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2021,
+  question: "Flexibility, as a component of health-related fitness, is best defined as:",
+  options: ["The ability to sustain repeated muscular contractions", "The range of motion available at a joint or group of joints", "The maximum force a muscle can generate", "The efficiency of the cardiovascular system"],
+  correctIndex: 1,
+  explanation: "Flexibility refers to the range of motion (ROM) achievable at a joint, influenced by muscle/tendon extensibility, joint structure and connective tissue.",
+  concept: {
+    title: "Flexibility",
+    definition: "A health-related fitness component crucial for injury prevention and efficient movement.",
+    points: ["Static flexibility: ROM without movement speed (e.g., a stretch hold)", "Dynamic flexibility: ROM during active movement", "Improved through regular stretching (static, dynamic, PNF)"],
+    memoryTrick: "'Flexibility = how FAR a joint can move.'",
+    sportsRelevance: "Gymnasts and dancers require exceptionally high flexibility for their sport's demands."
+  },
+  relatedIds: ["FIT-001", "YOG-001"],
+  source: "Physical Fitness - Corbin",
+  tags: ["fitness-wellness", "flexibility"]
+}, {
+  id: "FIT-004",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Fitness and Wellness",
+  topic: "Wellness Dimensions",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "The holistic concept of 'wellness' in health education typically encompasses which dimensions?",
+  options: ["Only physical fitness", "Physical, mental, social, emotional and spiritual well-being", "Only academic achievement", "Only nutritional intake"],
+  correctIndex: 1,
+  explanation: "Wellness is a multidimensional concept extending beyond physical fitness to include mental, social, emotional, spiritual and often occupational and environmental well-being.",
+  concept: {
+    title: "Dimensions of Wellness",
+    definition: "A holistic model recognizing that true health integrates several interconnected life dimensions, not physical fitness alone.",
+    points: ["Physical wellness: fitness, nutrition, sleep", "Mental/emotional wellness: stress management, emotional regulation", "Social/spiritual wellness: relationships, sense of purpose"],
+    memoryTrick: "'Wellness = Whole-person Wellbeing, not just muscles.'",
+    sportsRelevance: "Modern PE curricula (per NEP 2020) increasingly emphasize wellness education alongside physical skill."
+  },
+  relatedIds: ["FIT-001", "HED-001"],
+  source: "Physical Fitness - Corbin",
+  tags: ["fitness-wellness", "wellness"]
+}, {
+  id: "FIT-005",
+  exam: ["UGC NET", "State PSC", "SET"],
+  subject: "Fitness and Wellness",
+  topic: "Muscular Endurance",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "Muscular endurance differs from muscular strength in that it refers to:",
+  options: ["The maximum force a muscle can exert in a single effort", "The ability of a muscle to perform repeated contractions over time without fatigue", "The speed of muscle contraction", "The size (cross-sectional area) of the muscle"],
+  correctIndex: 1,
+  explanation: "Muscular endurance is the capacity of a muscle or muscle group to sustain repeated contractions or hold a contraction over time, whereas muscular strength refers to peak force output in a single maximal effort.",
+  concept: {
+    title: "Muscular Strength vs Endurance",
+    definition: "Two related but distinct health-related fitness components, trained with different rep/load protocols.",
+    points: ["Strength: trained with low reps, high load (1-6 reps)", "Endurance: trained with high reps, lower load (15+ reps)", "Both contribute to overall muscular fitness"],
+    memoryTrick: "'Endurance = keeps going; Strength = goes hard once.'",
+    sportsRelevance: "Distance swimmers/cyclists prioritize muscular endurance; powerlifters prioritize maximal strength."
+  },
+  relatedIds: ["FIT-001"],
+  source: "Physical Fitness - Corbin",
+  tags: ["fitness-wellness", "endurance"]
+}, {
+  id: "HED-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Health Education",
+  topic: "Definition of Health",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "According to the World Health Organization (WHO), health is defined as:",
+  options: ["The mere absence of disease or infirmity", "A state of complete physical, mental and social well-being, not merely the absence of disease", "Only the physical fitness level of an individual", "A state determined solely by genetics"],
+  correctIndex: 1,
+  explanation: "WHO's 1948 constitution defines health holistically as complete physical, mental and social well-being, not merely the absence of disease or infirmity.",
+  concept: {
+    title: "WHO Definition of Health",
+    definition: "A landmark, widely-cited definition establishing health as a multidimensional, positive state rather than just the absence of illness.",
+    points: ["Physical, mental, and social well-being — three pillars", "Adopted by WHO in 1948, still the standard reference definition", "Basis for the broader concept of 'wellness' in modern health education"],
+    memoryTrick: "'WHO's Health = Physical + Mental + Social, not just 'not sick'.'",
+    sportsRelevance: "Frames modern PE/health curricula to address more than just physical fitness."
+  },
+  relatedIds: ["FIT-004"],
+  source: "WHO Constitution, 1948",
+  tags: ["health-education", "who"]
+}, {
+  id: "HED-002",
+  exam: ["UGC NET", "NVS", "SET", "EMRS", "AWES", "Sainik School", "CTET"],
+  subject: "Health Education",
+  topic: "Disease Classification",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "Which of the following is classified as a non-communicable (lifestyle) disease?",
+  options: ["Tuberculosis", "Type 2 Diabetes", "Influenza", "Malaria"],
+  correctIndex: 1,
+  explanation: "Type 2 Diabetes is a non-communicable disease (NCD) linked to lifestyle factors like diet and inactivity; Tuberculosis, Influenza and Malaria are all communicable/infectious diseases.",
+  concept: {
+    title: "Communicable vs Non-Communicable Diseases",
+    definition: "Diseases are broadly classified by whether they can spread between people (communicable) or arise from lifestyle/genetic/environmental factors (non-communicable).",
+    points: ["Communicable: caused by pathogens, can spread (TB, flu, malaria)", "Non-communicable: chronic, lifestyle-linked (diabetes, hypertension, heart disease)", "Physical activity is a key preventive measure for many NCDs"],
+    memoryTrick: "'NCD = Not Contagious, Diet-related.'",
+    sportsRelevance: "Regular physical activity is one of the most effective preventive strategies against lifestyle NCDs."
+  },
+  relatedIds: ["HED-005"],
+  source: "Health Education text",
+  tags: ["health-education", "disease"]
+}, {
+  id: "HED-003",
+  exam: ["UGC NET", "SET"],
+  subject: "Health Education",
+  topic: "Goals of Health Education",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "The primary goal of school health education programs is to:",
+  options: ["Prepare students for competitive examinations only", "Equip students with knowledge and skills to make informed health decisions and adopt healthy behaviors", "Replace physical education classes entirely", "Focus only on treating existing illnesses"],
+  correctIndex: 1,
+  explanation: "School health education aims to build health literacy — knowledge, attitudes and skills that empower students to make informed decisions and adopt lifelong healthy behaviors.",
+  concept: {
+    title: "Goals of Health Education",
+    definition: "Health education is preventive and empowering in focus, distinct from clinical treatment.",
+    points: ["Builds health literacy and informed decision-making", "Complements (not replaces) physical education", "Focuses on prevention and lifelong healthy behavior"],
+    memoryTrick: "'Health Ed = Educate to prevent, not just to treat.'",
+    sportsRelevance: "Often delivered alongside PE classes as part of a combined health-and-physical-education curriculum."
+  },
+  relatedIds: ["HED-001"],
+  source: "Health Education text",
+  tags: ["health-education", "goals"]
+}, {
+  id: "HED-004",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Health Education",
+  topic: "Personal Hygiene",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2021,
+  question: "Regular practices such as handwashing, dental care and adequate sleep fall under which aspect of health?",
+  options: ["Personal hygiene", "Community health", "Environmental health", "Occupational health"],
+  correctIndex: 0,
+  explanation: "Personal hygiene refers to individual practices — handwashing, dental care, bathing, sleep — that maintain one's own health and prevent disease transmission.",
+  concept: {
+    title: "Personal Hygiene",
+    definition: "Individual-level health practices that form the foundation of disease prevention.",
+    points: ["Includes handwashing, dental/oral care, bathing, adequate sleep", "Directly reduces risk of infectious disease transmission", "A core topic in primary-school health education"],
+    memoryTrick: "'Personal Hygiene = what YOU do daily for your own health.'",
+    sportsRelevance: "Coaches emphasize hygiene (e.g., clean gear, handwashing) to reduce illness/infection in team settings."
+  },
+  relatedIds: ["HED-002"],
+  source: "Health Education text",
+  tags: ["health-education", "hygiene"]
+}, {
+  id: "HED-005",
+  exam: ["UGC NET", "SET"],
+  subject: "Health Education",
+  topic: "Risk Factors",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2023,
+  question: "Which of the following is a major modifiable risk factor for lifestyle diseases like hypertension and heart disease?",
+  options: ["Age", "Genetics", "Physical inactivity and poor diet", "Gender"],
+  correctIndex: 2,
+  explanation: "Physical inactivity and poor diet are modifiable (changeable) risk factors for lifestyle diseases, unlike age, genetics and gender, which are non-modifiable.",
+  concept: {
+    title: "Modifiable vs Non-Modifiable Risk Factors",
+    definition: "Understanding which risk factors can be changed guides effective public-health and health-education interventions.",
+    points: ["Modifiable: diet, physical activity, smoking, alcohol use", "Non-modifiable: age, gender, genetics, family history", "Physical education directly targets the modifiable risk factor of inactivity"],
+    memoryTrick: "'Modifiable = you can MODIFY it through behavior.'",
+    sportsRelevance: "Justifies why regular PE and physical activity promotion is central to public-health disease prevention strategy."
+  },
+  relatedIds: ["HED-002"],
+  source: "Health Education text",
+  tags: ["health-education", "risk-factors"]
+}, {
+  id: "NTR-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Nutrition",
+  topic: "Balanced Diet",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "A balanced diet is one that provides:",
+  options: ["Only proteins in excess", "All essential nutrients in appropriate proportions to meet the body's needs", "Only carbohydrates for energy", "Exclusively raw foods"],
+  correctIndex: 1,
+  explanation: "A balanced diet supplies all essential nutrients — carbohydrates, proteins, fats, vitamins, minerals, fiber and water — in the right proportions needed for growth, energy and health.",
+  concept: {
+    title: "Balanced Diet",
+    definition: "A dietary pattern providing appropriate quantities and proportions of all essential nutrients.",
+    points: ["Includes carbohydrates, proteins, fats, vitamins, minerals, fiber, water", "Proportions vary by age, activity level and health status", "Foundation of general nutrition and sports nutrition alike"],
+    memoryTrick: "'Balanced = a bit of everything, in the right amount.'",
+    sportsRelevance: "Athletes need a balanced diet as the foundation, with sport-specific adjustments layered on top (see Sports Nutrition)."
+  },
+  relatedIds: ["NUT-001"],
+  source: "Nutrition Science text",
+  tags: ["nutrition", "balanced-diet"]
+}, {
+  id: "NTR-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Nutrition",
+  topic: "Vitamin Deficiency",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "A deficiency of Vitamin D in children primarily leads to which condition?",
+  options: ["Scurvy", "Rickets", "Night blindness", "Beriberi"],
+  correctIndex: 1,
+  explanation: "Vitamin D deficiency in children causes Rickets, characterized by weak, soft bones due to impaired calcium absorption; scurvy (Vitamin C), night blindness (Vitamin A) and beriberi (Vitamin B1) result from other deficiencies.",
+  concept: {
+    title: "Vitamin Deficiency Disorders",
+    definition: "Each vitamin deficiency produces a distinct, well-documented clinical condition.",
+    points: ["Vitamin C deficiency → Scurvy", "Vitamin A deficiency → Night blindness", "Vitamin D deficiency → Rickets (children) / Osteomalacia (adults)"],
+    memoryTrick: "'D is for the bones' — Vitamin D deficiency, Rickets in kiDs.'",
+    sportsRelevance: "Adequate Vitamin D (sunlight + diet) is essential for young athletes' bone health and injury prevention."
+  },
+  relatedIds: ["NTR-001"],
+  source: "Nutrition Science text",
+  tags: ["nutrition", "vitamins"]
+}, {
+  id: "NTR-003",
+  exam: ["KVS PGT", "NVS", "EMRS", "AWES", "Sainik School", "CTET"],
+  subject: "Nutrition",
+  topic: "BMI",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2021,
+  question: "Body Mass Index (BMI) is calculated as:",
+  options: ["Weight (kg) / Height (m)", "Weight (kg) / Height squared (m²)", "Height (m) / Weight (kg)", "Weight (kg) x Height (m)"],
+  correctIndex: 1,
+  explanation: "BMI is calculated by dividing a person's weight in kilograms by the square of their height in meters (kg/m²), used as a simple screening tool for body-weight categories.",
+  concept: {
+    title: "Body Mass Index (BMI)",
+    definition: "A simple, widely-used (though imperfect) screening measure relating weight to height.",
+    points: ["Formula: weight (kg) ÷ height² (m²)", "Categories: underweight, normal, overweight, obese", "Doesn't distinguish muscle mass from fat mass — a known limitation for athletes"],
+    memoryTrick: "'BMI = Body Mass ÷ Inches-squared (in meters).'",
+    sportsRelevance: "Athletes with high muscle mass can show a 'high' BMI without being overfat — a key limitation coaches must understand."
+  },
+  relatedIds: ["NTR-001"],
+  source: "Nutrition Science text",
+  tags: ["nutrition", "bmi"]
+}, {
+  id: "NTR-004",
+  exam: ["UGC NET", "State PSC", "SET"],
+  subject: "Nutrition",
+  topic: "Malnutrition",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "The term 'malnutrition' refers to:",
+  options: ["Only insufficient food intake (undernutrition)", "Only excessive food intake (overnutrition)", "Both undernutrition and overnutrition/imbalanced nutrient intake", "Only vitamin deficiencies"],
+  correctIndex: 2,
+  explanation: "Malnutrition is a broad term covering both undernutrition (deficiencies, stunting, wasting) and overnutrition (excess intake leading to overweight/obesity) — any imbalance in nutrient intake.",
+  concept: {
+    title: "Malnutrition — A Broad Term",
+    definition: "Malnutrition includes deficiency states and excess/imbalance states alike.",
+    points: ["Undernutrition: stunting, wasting, micronutrient deficiencies", "Overnutrition: overweight, obesity, diet-related NCDs", "Both forms can coexist within the same population or even individual"],
+    memoryTrick: "'Malnutrition = MAL (bad) nutrition, in either direction.'",
+    sportsRelevance: "Public-health nutrition programs for youth address both undernutrition and rising childhood obesity."
+  },
+  relatedIds: ["NTR-001", "HED-002"],
+  source: "Nutrition Science text",
+  tags: ["nutrition", "malnutrition"]
+}, {
+  id: "NTR-005",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Nutrition",
+  topic: "Macronutrients",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "Which macronutrient provides the most energy per gram?",
+  options: ["Carbohydrates (4 kcal/g)", "Proteins (4 kcal/g)", "Fats (9 kcal/g)", "Water (0 kcal/g)"],
+  correctIndex: 2,
+  explanation: "Fats provide approximately 9 kcal per gram, more than double the energy density of carbohydrates or proteins (both approximately 4 kcal/g), making fat the most energy-dense macronutrient.",
+  concept: {
+    title: "Energy Density of Macronutrients",
+    definition: "Each macronutrient yields a characteristic amount of energy per gram when metabolized.",
+    points: ["Carbohydrates: ~4 kcal/g — primary quick-energy source", "Proteins: ~4 kcal/g — primarily for tissue building/repair", "Fats: ~9 kcal/g — most energy-dense, used for sustained/low-intensity energy"],
+    memoryTrick: "'Fat = the fattest calorie count, at 9.'",
+    sportsRelevance: "Ultra-endurance athletes rely more on fat oxidation for energy during long, low-intensity efforts."
+  },
+  relatedIds: ["NTR-001", "NUT-001"],
+  source: "Nutrition Science text",
+  tags: ["nutrition", "macronutrients"]
+}, {
+  id: "INJ-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Injuries",
+  topic: "Sprain vs Strain",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "A 'sprain' refers to an injury to which structure, as distinguished from a 'strain' (which affects muscle/tendon)?",
+  options: ["Ligament", "Bone", "Cartilage only", "Skin"],
+  correctIndex: 0,
+  explanation: "A sprain is an injury (stretch or tear) to a ligament, the connective tissue joining bone to bone, while a strain affects a muscle or tendon.",
+  concept: {
+    title: "Sprain vs Strain",
+    definition: "Two commonly confused but distinct soft-tissue injury terms in sports medicine.",
+    points: ["Sprain: ligament injury (e.g., ankle sprain)", "Strain: muscle/tendon injury (e.g., hamstring strain)", "Both are typically graded I (mild) to III (complete tear)"],
+    memoryTrick: "'SPrain = SPecifically ligaments; STrain = Sinew/Tendon/muscle.'",
+    sportsRelevance: "Ankle sprains are among the most common injuries across almost every sport."
+  },
+  relatedIds: ["INJ-004", "REH-001"],
+  source: "Sports Medicine text",
+  tags: ["sports-injuries", "sprain-strain"]
+}, {
+  id: "INJ-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Sports Injuries",
+  topic: "ACL Injury",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "Anterior Cruciate Ligament (ACL) tears are most commonly associated with sudden deceleration and direction changes in which type of sports?",
+  options: ["Swimming and diving", "Football, basketball and skiing", "Archery and shooting", "Chess and carrom"],
+  correctIndex: 1,
+  explanation: "ACL tears frequently occur in sports involving sudden deceleration, pivoting and direction changes — football, basketball, skiing and similar cutting/jumping sports carry the highest risk.",
+  concept: {
+    title: "ACL Injuries",
+    definition: "One of the most significant and career-impacting knee ligament injuries in sport.",
+    points: ["Often a non-contact injury from awkward landing or sudden pivot", "High-risk sports: football, basketball, skiing, netball", "Frequently requires surgical reconstruction and lengthy rehabilitation"],
+    memoryTrick: "'ACL = Awkward Cutting/Landing injury.'",
+    sportsRelevance: "ACL injury prevention programs (e.g., neuromuscular training) are now standard in youth football/basketball."
+  },
+  relatedIds: ["INJ-001", "ANA-003"],
+  source: "Sports Medicine text",
+  tags: ["sports-injuries", "acl"]
+}, {
+  id: "INJ-003",
+  exam: ["UGC NET", "DSSSB", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Injuries",
+  topic: "Tennis Elbow",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "'Tennis elbow' is the common name for which medical condition?",
+  options: ["Medial epicondylitis", "Lateral epicondylitis", "Carpal tunnel syndrome", "Rotator cuff tear"],
+  correctIndex: 1,
+  explanation: "Tennis elbow (lateral epicondylitis) is inflammation/degeneration of the tendons on the outside (lateral side) of the elbow, often from repetitive wrist-extension movements.",
+  concept: {
+    title: "Overuse Injuries: Tennis & Golfer's Elbow",
+    definition: "Both are repetitive-strain tendon injuries at the elbow, differing by which side is affected.",
+    points: ["Tennis elbow (lateral epicondylitis): outer elbow, from wrist extension overuse", "Golfer's elbow (medial epicondylitis): inner elbow, from wrist flexion overuse", "Common in racquet sports but also occurs from repetitive occupational movements"],
+    memoryTrick: "'TEnnis = the outsiDE (lateral).'",
+    sportsRelevance: "Common in badminton, tennis and table tennis players due to repetitive wrist/forearm loading."
+  },
+  relatedIds: ["INJ-004"],
+  source: "Sports Medicine text",
+  tags: ["sports-injuries", "tennis-elbow"]
+}, {
+  id: "INJ-004",
+  exam: ["KVS PGT", "NVS", "EMRS", "AWES", "Sainik School", "CTET"],
+  subject: "Sports Injuries",
+  topic: "Shin Splints",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2021,
+  question: "'Shin splints', characterized by pain along the shin bone, are typically classified as which type of injury?",
+  options: ["Acute traumatic injury", "Overuse (chronic) injury", "Congenital injury", "Infectious condition"],
+  correctIndex: 1,
+  explanation: "Shin splints (medial tibial stress syndrome) develop gradually from repetitive stress on the shin bone and surrounding tissue, classifying them as an overuse/chronic injury rather than a sudden acute one.",
+  concept: {
+    title: "Overuse Injuries",
+    definition: "Injuries that develop gradually from repetitive stress rather than a single traumatic event.",
+    points: ["Common in runners, especially with sudden increases in training volume", "Caused by repetitive impact stress on the tibia and surrounding muscles", "Managed with rest, gradual return, and addressing training-load errors"],
+    memoryTrick: "'Shin splints = Slow, repetitive Stress.'",
+    sportsRelevance: "A classic 'too much, too soon' injury in distance runners and new recruits in fitness training."
+  },
+  relatedIds: ["INJ-001"],
+  source: "Sports Medicine text",
+  tags: ["sports-injuries", "shin-splints"]
+}, {
+  id: "INJ-005",
+  exam: ["UGC NET", "SET"],
+  subject: "Sports Injuries",
+  topic: "Injury Classification",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2023,
+  question: "An injury that occurs suddenly due to a specific traumatic incident (e.g., a fall or collision) is classified as:",
+  options: ["A chronic injury", "An overuse injury", "An acute injury", "A degenerative injury"],
+  correctIndex: 2,
+  explanation: "Acute injuries result from a single identifiable traumatic event (a fall, collision, or awkward movement), unlike chronic/overuse injuries which develop gradually from repetitive stress.",
+  concept: {
+    title: "Acute vs Chronic Injuries",
+    definition: "The two broad injury categories, distinguished by mechanism and onset.",
+    points: ["Acute: sudden onset, identifiable traumatic event (fractures, sprains, dislocations)", "Chronic/Overuse: gradual onset from repetitive microtrauma (tendinitis, stress fractures)", "Management approach differs significantly between the two categories"],
+    memoryTrick: "'ACute = A Clear moment of injury.'",
+    sportsRelevance: "Contact sports (rugby, football) see more acute injuries; endurance sports see more overuse injuries."
+  },
+  relatedIds: ["INJ-004", "INJ-001"],
+  source: "Sports Medicine text",
+  tags: ["sports-injuries", "classification"]
+}, {
+  id: "REH-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Rehabilitation",
+  topic: "Goals of Rehab",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "The primary goal of sports injury rehabilitation is to:",
+  options: ["Immediately return the athlete to competition regardless of healing status", "Restore the injured area to full, pain-free function and prevent re-injury", "Permanently restrict the athlete from that sport", "Focus only on pain medication"],
+  correctIndex: 1,
+  explanation: "Rehabilitation aims to restore full, pain-free function of the injured structure and minimize the risk of re-injury, rather than rushing an unprepared athlete back to play.",
+  concept: {
+    title: "Goals of Rehabilitation",
+    definition: "A structured, progressive process balancing safe healing with a timely, functional return to sport.",
+    points: ["Restores strength, mobility and function of the injured area", "Reduces risk of re-injury through progressive loading", "Balances biological healing time with the athlete's competitive needs"],
+    memoryTrick: "'Rehab = REstore, then Back to play.'",
+    sportsRelevance: "Rushed rehabilitation is a leading cause of repeat injuries, especially with hamstring and ankle injuries."
+  },
+  relatedIds: ["INJ-001", "REH-004"],
+  source: "Sports Medicine text",
+  tags: ["rehabilitation", "goals"]
+}, {
+  id: "REH-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Rehabilitation",
+  topic: "Phases of Rehab",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "The typical phases of sports rehabilitation progress in which order?",
+  options: ["Return-to-sport, Recovery, Acute", "Acute (protection) then Recovery (restoring function) then Return-to-sport (sport-specific training)", "Recovery, Return-to-sport, Acute", "There is only one phase in rehabilitation"],
+  correctIndex: 1,
+  explanation: "Rehabilitation typically follows three broad phases: the acute phase (protect and reduce inflammation), the recovery phase (restore range of motion, strength and function), and the return-to-sport phase (sport-specific, progressive loading).",
+  concept: {
+    title: "Phases of Sports Rehabilitation",
+    definition: "A structured, progressive framework moving from protection to full sport-specific readiness.",
+    points: ["Acute phase: protection, pain/swelling control (e.g., RICE)", "Recovery phase: restoring ROM, strength, and basic function", "Return-to-sport phase: sport-specific drills, gradual re-exposure to competition"],
+    memoryTrick: "'A-R-R: Acute, Recovery, Return.'",
+    sportsRelevance: "Skipping phases (e.g., jumping straight to sport-specific drills) significantly raises re-injury risk."
+  },
+  relatedIds: ["REH-001", "FA-002"],
+  source: "Sports Medicine text",
+  tags: ["rehabilitation", "phases"]
+}, {
+  id: "REH-003",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Rehabilitation",
+  topic: "Cryotherapy",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2021,
+  question: "Cryotherapy (application of cold) is commonly used in the acute phase of rehabilitation primarily to:",
+  options: ["Increase blood flow and swelling", "Reduce pain, inflammation and swelling", "Strengthen the muscle immediately", "Improve flexibility only"],
+  correctIndex: 1,
+  explanation: "Cryotherapy constricts blood vessels and slows nerve conduction, helping reduce pain, swelling and inflammation in the acute (early) phase after an injury.",
+  concept: {
+    title: "Cryotherapy in Acute Care",
+    definition: "Cold application is a cornerstone of acute injury management, forming part of the classic RICE protocol.",
+    points: ["Reduces blood flow to the area, limiting swelling", "Numbs pain receptors, providing analgesic effect", "Typically applied in 15-20 minute intervals, not continuously"],
+    memoryTrick: "'Cryo = Cold, Calms the swelling.'",
+    sportsRelevance: "Standard sideline treatment for acute ankle sprains and muscle strains across almost all sports."
+  },
+  relatedIds: ["FA-001", "REH-002"],
+  source: "Sports Medicine text",
+  tags: ["rehabilitation", "cryotherapy"]
+}, {
+  id: "REH-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Rehabilitation",
+  topic: "Return-to-Play Criteria",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "Before clearing an athlete to return to play after injury, sports medicine professionals primarily assess:",
+  options: ["Only the athlete's personal desire to play", "Pain-free range of motion, strength, and functional/sport-specific performance criteria", "Only the number of days since injury", "Only the opponent's strength"],
+  correctIndex: 1,
+  explanation: "Return-to-play decisions are based on objective functional criteria — pain-free range of motion, strength symmetry (compared to the uninjured side), and successful performance of sport-specific movement tests — not simply elapsed time.",
+  concept: {
+    title: "Return-to-Play (RTP) Criteria",
+    definition: "A criteria-based, not purely time-based, approach to clearing athletes for competition.",
+    points: ["Pain-free full range of motion", "Strength and stability comparable to the uninjured limb", "Successful completion of progressively demanding sport-specific tests"],
+    memoryTrick: "'RTP = Ready, Tested, Prepared — not just 'time's up'.'",
+    sportsRelevance: "Modern sports medicine increasingly favors criteria-based over purely calendar-based return-to-play decisions."
+  },
+  relatedIds: ["REH-001", "REH-002"],
+  source: "Sports Medicine text",
+  tags: ["rehabilitation", "return-to-play"]
+}, {
+  id: "REH-005",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Rehabilitation",
+  topic: "Proprioceptive Training",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "Balance and proprioceptive exercises are especially emphasized during rehabilitation of which type of injury?",
+  options: ["Ankle sprains", "Common cold", "Dental injuries", "Skin abrasions"],
+  correctIndex: 0,
+  explanation: "Ankle sprains damage ligaments and the joint's proprioceptive (position-sense) receptors, so balance/proprioceptive training (e.g., wobble boards, single-leg balance drills) is a core rehab component to restore joint stability.",
+  concept: {
+    title: "Proprioception in Rehabilitation",
+    definition: "Proprioceptive training restores the nervous system's sense of joint position, critical for dynamic stability and re-injury prevention.",
+    points: ["Proprioception: the body's sense of joint position/movement without looking", "Damaged significantly in ligament injuries like ankle sprains", "Restored through balance boards, single-leg stands, and unstable-surface drills"],
+    memoryTrick: "'Proprio = knowing where your joint is, without looking.'",
+    sportsRelevance: "Reduces recurrent ankle sprain rates significantly in sports with frequent cutting/jumping (basketball, football)."
+  },
+  relatedIds: ["INJ-001", "REH-002"],
+  source: "Sports Medicine text",
+  tags: ["rehabilitation", "proprioception"]
+}, {
+  id: "STA-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Statistics",
+  topic: "Measures of Central Tendency",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "The 'mean' of a data set is calculated as:",
+  options: ["The middle value when data is arranged in order", "The sum of all values divided by the number of values", "The most frequently occurring value", "The difference between the highest and lowest values"],
+  correctIndex: 1,
+  explanation: "The mean (arithmetic average) is calculated by summing all values in a data set and dividing by the total number of values.",
+  concept: {
+    title: "Measures of Central Tendency",
+    definition: "Mean, median and mode are the three primary measures used to describe the 'center' of a data set.",
+    points: ["Mean: sum of values ÷ number of values", "Median: the middle value when data is ordered", "Mode: the most frequently occurring value"],
+    memoryTrick: "'Mean = add them all, then divide.'",
+    sportsRelevance: "Used to summarize a class's average fitness test scores or an athlete's average performance across trials."
+  },
+  relatedIds: ["STA-002", "STA-003"],
+  source: "Statistics in PE - Research text",
+  tags: ["statistics", "central-tendency"]
+}, {
+  id: "STA-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Statistics",
+  topic: "Median",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "Which measure of central tendency is least affected by extreme outlier scores in a data set?",
+  options: ["Mean", "Median", "Range", "Standard deviation"],
+  correctIndex: 1,
+  explanation: "The median (middle value) is resistant to extreme outliers since it depends only on the position of values, not their magnitude — unlike the mean, which outliers can skew significantly.",
+  concept: {
+    title: "Median's Resistance to Outliers",
+    definition: "A key reason researchers choose the median over the mean for skewed data sets.",
+    points: ["Median: the middle value in an ordered data set", "Not distorted by unusually high or low scores (outliers)", "Preferred measure for skewed distributions (e.g., income, some performance data)"],
+    memoryTrick: "'Median stays in the MIDDLE, unmoved by outliers.'",
+    sportsRelevance: "Useful when analyzing performance data with a few extreme outlier scores (e.g., one athlete's exceptional result)."
+  },
+  relatedIds: ["STA-001"],
+  source: "Statistics in PE - Research text",
+  tags: ["statistics", "median"]
+}, {
+  id: "STA-003",
+  exam: ["KVS PGT", "NVS", "EMRS", "AWES", "Sainik School", "CTET"],
+  subject: "Statistics",
+  topic: "Mode",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2021,
+  question: "In a set of physical fitness test scores, the 'mode' refers to:",
+  options: ["The average score", "The middle score", "The most frequently occurring score", "The total sum of scores"],
+  correctIndex: 2,
+  explanation: "The mode is the value that appears most frequently in a data set; a data set can have one mode, multiple modes, or no mode at all.",
+  concept: {
+    title: "The Mode",
+    definition: "The simplest measure of central tendency, useful for categorical or frequently-repeated numerical data.",
+    points: ["The most frequently occurring value in a data set", "A data set can be unimodal, bimodal, or multimodal", "Useful for identifying the most common category or score"],
+    memoryTrick: "'Mode = the MOST common one.'",
+    sportsRelevance: "Coaches might use mode to identify the most common jersey/shoe size needed for a squad."
+  },
+  relatedIds: ["STA-001"],
+  source: "Statistics in PE - Research text",
+  tags: ["statistics", "mode"]
+}, {
+  id: "STA-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Statistics",
+  topic: "Standard Deviation",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "Standard deviation is a statistical measure used to indicate:",
+  options: ["The central/average value of a data set", "The spread or dispersion of scores around the mean", "The most common score", "The total number of data points"],
+  correctIndex: 1,
+  explanation: "Standard deviation quantifies how spread out data points are from the mean — a low standard deviation means scores cluster near the mean, while a high one indicates greater variability.",
+  concept: {
+    title: "Standard Deviation (Measure of Variability)",
+    definition: "Complements central tendency measures by describing how consistent or variable a set of scores is.",
+    points: ["Low SD = scores tightly clustered around the mean (high consistency)", "High SD = scores widely spread out (high variability)", "Essential for comparing consistency between athletes/teams with similar means"],
+    memoryTrick: "'SD = how far scores wander from the average.'",
+    sportsRelevance: "Two athletes can have the same average performance but very different consistency, revealed by standard deviation."
+  },
+  relatedIds: ["STA-001", "STA-002"],
+  source: "Statistics in PE - Research text",
+  tags: ["statistics", "standard-deviation"]
+}, {
+  id: "STA-005",
+  exam: ["UGC NET", "SET"],
+  subject: "Statistics",
+  topic: "Correlation",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2023,
+  question: "A correlation coefficient (r) value of +1.0 between two variables indicates:",
+  options: ["No relationship between the variables", "A perfect negative relationship", "A perfect positive relationship", "An undefined relationship"],
+  correctIndex: 2,
+  explanation: "A correlation coefficient of +1.0 represents a perfect positive linear relationship — as one variable increases, the other increases proportionally and predictably.",
+  concept: {
+    title: "Correlation Coefficient (r)",
+    definition: "Correlation values range from -1.0 (perfect negative) to +1.0 (perfect positive), with 0 indicating no linear relationship.",
+    points: ["+1.0: perfect positive correlation", "-1.0: perfect negative correlation", "0: no linear relationship between variables"],
+    memoryTrick: "'r = +1 means they RISE together, perfectly.'",
+    sportsRelevance: "Used in research to study, e.g., the relationship between training hours and performance improvement."
+  },
+  relatedIds: ["STA-004"],
+  source: "Statistics in PE - Research text",
+  tags: ["statistics", "correlation"]
+}, {
+  id: "RSM-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Research Methodology",
+  topic: "Experimental Research",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "A research design in which the researcher manipulates an independent variable to observe its effect on a dependent variable is called:",
+  options: ["Descriptive research", "Experimental research", "Historical research", "Case study research"],
+  correctIndex: 1,
+  explanation: "Experimental research involves deliberately manipulating one or more independent variables under controlled conditions to observe their causal effect on a dependent variable.",
+  concept: {
+    title: "Experimental Research Design",
+    definition: "The only research design that can establish cause-and-effect relationships, through controlled manipulation of variables.",
+    points: ["Involves manipulation of an independent variable", "Uses control groups to isolate the treatment's effect", "Considered the 'gold standard' for establishing causation"],
+    memoryTrick: "'Experimental = the researcher EXPERIMENTS by changing something.'",
+    sportsRelevance: "Used to test whether a new training method (independent variable) actually improves sprint speed (dependent variable)."
+  },
+  relatedIds: ["RSM-003"],
+  source: "Research Methods in PE",
+  tags: ["research-methodology", "experimental"]
+}, {
+  id: "RSM-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Research Methodology",
+  topic: "Hypothesis",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "A hypothesis in research is best described as:",
+  options: ["A proven fact", "A tentative, testable statement predicting the relationship between variables", "An irrelevant assumption", "The final conclusion of a study"],
+  correctIndex: 1,
+  explanation: "A hypothesis is a tentative, testable prediction about the relationship between two or more variables, formulated before data collection and tested through research.",
+  concept: {
+    title: "Hypothesis",
+    definition: "The starting proposition of a research study, subject to being supported or rejected by evidence.",
+    points: ["Formulated before data collection begins", "Must be testable and falsifiable", "Can be a null hypothesis (no effect/relationship) or alternative hypothesis (an effect exists)"],
+    memoryTrick: "'Hypothesis = a HYpothetical guess, awaiting a test.'",
+    sportsRelevance: "A coach might hypothesize that plyometric training improves vertical jump height, then test it experimentally."
+  },
+  relatedIds: ["RSM-001"],
+  source: "Research Methods in PE",
+  tags: ["research-methodology", "hypothesis"]
+}, {
+  id: "RSM-003",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Research Methodology",
+  topic: "Variables",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "In a study examining the effect of a new training program (the treatment) on athletes' sprint times, the sprint time is the:",
+  options: ["Independent variable", "Dependent variable", "Control variable", "Extraneous variable"],
+  correctIndex: 1,
+  explanation: "The dependent variable is the outcome being measured/observed — here, sprint time — which is expected to change (depend on) the independent variable, the training program.",
+  concept: {
+    title: "Independent vs Dependent Variables",
+    definition: "A core distinction in experimental research design.",
+    points: ["Independent variable: what the researcher manipulates (the training program)", "Dependent variable: what is measured as the outcome (sprint time)", "Control/extraneous variables: factors held constant or accounted for to isolate the true effect"],
+    memoryTrick: "'DEpendent DEpends on the independent.'",
+    sportsRelevance: "Correctly identifying variables is essential to designing valid studies on training interventions."
+  },
+  relatedIds: ["RSM-001"],
+  source: "Research Methods in PE",
+  tags: ["research-methodology", "variables"]
+}, {
+  id: "RSM-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Research Methodology",
+  topic: "Sampling",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2023,
+  question: "Random sampling in research is primarily used to:",
+  options: ["Ensure every individual in the population has an equal chance of selection, reducing bias", "Select only the most skilled participants", "Guarantee a large sample size", "Eliminate the need for a control group"],
+  correctIndex: 0,
+  explanation: "Random sampling gives every member of the population an equal chance of being selected, minimizing selection bias and improving the sample's representativeness of the wider population.",
+  concept: {
+    title: "Random Sampling",
+    definition: "A key technique to enhance the external validity (generalizability) of research findings.",
+    points: ["Reduces selection bias in participant recruitment", "Improves generalizability of findings to the broader population", "Contrasts with convenience or purposive (non-random) sampling"],
+    memoryTrick: "'Random = every individual has an equal, random chance.'",
+    sportsRelevance: "Ensures a fitness study's conclusions can be reasonably generalized beyond just the sampled athletes."
+  },
+  relatedIds: ["RSM-001"],
+  source: "Research Methods in PE",
+  tags: ["research-methodology", "sampling"]
+}, {
+  id: "RSM-005",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Research Methodology",
+  topic: "Types of Research",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "Research that studies past events and records to understand the development of physical education as a discipline is called:",
+  options: ["Experimental research", "Historical research", "Correlational research", "Action research"],
+  correctIndex: 1,
+  explanation: "Historical research systematically studies past records, documents and events to understand the evolution of a field — such as tracing the development of physical education through history.",
+  concept: {
+    title: "Historical Research",
+    definition: "A qualitative research approach relying on primary and secondary historical sources.",
+    points: ["Relies on primary sources (original documents) and secondary sources", "Used to trace the evolution of PE philosophy, institutions and practices", "Distinct from experimental research, which tests present-day interventions"],
+    memoryTrick: "'Historical = looks back at HISTORY.'",
+    sportsRelevance: "Used to study, for example, how PE curricula in India evolved from British colonial-era drill to today's holistic approach."
+  },
+  relatedIds: ["RSM-001", "HIS-001"],
+  source: "Research Methods in PE",
+  tags: ["research-methodology", "historical"]
+}, {
+  id: "SMG-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Management",
+  topic: "Functions of Management",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "The basic functions of sports management typically include planning, organizing, staffing, directing and:",
+  options: ["Playing", "Controlling/evaluating", "Spectating", "Sponsoring only"],
+  correctIndex: 1,
+  explanation: "The classic management functions applied to sports organizations are planning, organizing, staffing, directing and controlling (monitoring/evaluating outcomes against objectives).",
+  concept: {
+    title: "Functions of Sports Management",
+    definition: "A framework describing the core activities involved in managing any sports organization or event.",
+    points: ["Planning: setting objectives and how to achieve them", "Organizing & Staffing: structuring resources and people", "Directing & Controlling: leading execution and evaluating outcomes"],
+    memoryTrick: "'P-O-S-D-C: Plan, Organize, Staff, Direct, Control.'",
+    sportsRelevance: "Applied by school sports departments, federations, and event organizing committees alike."
+  },
+  relatedIds: ["SMG-002"],
+  source: "Sports Management text",
+  tags: ["sports-management", "functions"]
+}, {
+  id: "SMG-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Sports Management",
+  topic: "Planning",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "In sports management, 'planning' refers to:",
+  options: ["Executing an event without preparation", "Deciding in advance what needs to be done, how, and by whom to achieve objectives", "Only budgeting for equipment", "Post-event evaluation"],
+  correctIndex: 1,
+  explanation: "Planning is the forward-looking management function of setting objectives and determining the actions, resources, and responsibilities needed to achieve them, before execution begins.",
+  concept: {
+    title: "Planning in Sports Management",
+    definition: "The first and foundational step in the management process, setting direction for all subsequent action.",
+    points: ["Establishes clear objectives before action begins", "Determines required resources, timelines and responsibilities", "Poor planning is a leading cause of event/programme failure"],
+    memoryTrick: "'Planning = deciding BEFORE doing.'",
+    sportsRelevance: "A tournament's planning phase covers scheduling, venue booking, officiating and safety protocols months in advance."
+  },
+  relatedIds: ["SMG-001", "SMG-003"],
+  source: "Sports Management text",
+  tags: ["sports-management", "planning"]
+}, {
+  id: "SMG-003",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Management",
+  topic: "Event Management",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2021,
+  question: "Which of the following is a critical responsibility of a sports event manager before a tournament?",
+  options: ["Ignoring venue safety and logistics", "Risk assessment, venue logistics, and scheduling", "Only selecting players", "Only announcing the winner"],
+  correctIndex: 1,
+  explanation: "A sports event manager must handle risk assessment (safety, medical, weather contingencies), venue logistics (facilities, equipment, transport) and scheduling well before the tournament begins.",
+  concept: {
+    title: "Sports Event Management",
+    definition: "Encompasses the full lifecycle of planning, executing and evaluating a sporting event.",
+    points: ["Risk assessment ensures athlete and spectator safety", "Logistics covers venue, equipment, transport and accommodation", "Scheduling avoids conflicts and ensures smooth event flow"],
+    memoryTrick: "'Event Management = Risk + Logistics + Schedule, sorted in advance.'",
+    sportsRelevance: "Poor event management (e.g., inadequate crowd safety planning) has caused real-world sporting tragedies — underscoring its importance."
+  },
+  relatedIds: ["SMG-002", "SMG-004"],
+  source: "Sports Management text",
+  tags: ["sports-management", "event-management"]
+}, {
+  id: "SMG-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Sports Management",
+  topic: "Facility Management",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "Effective sports facility management primarily involves:",
+  options: ["Maintenance, scheduling and safe utilization of sports infrastructure", "Ignoring equipment maintenance", "Only constructing new stadiums", "Focusing solely on ticket pricing"],
+  correctIndex: 0,
+  explanation: "Facility management covers the ongoing maintenance, safe operation, scheduling and efficient utilization of sports infrastructure (grounds, gyms, pools, equipment) to maximize safety and usable life.",
+  concept: {
+    title: "Sports Facility Management",
+    definition: "A specialized area ensuring sports infrastructure remains safe, functional and efficiently used.",
+    points: ["Regular maintenance prevents costly damage and safety hazards", "Scheduling balances competing demands from multiple user groups", "Directly impacts both athlete safety and facility lifespan"],
+    memoryTrick: "'Facility Management = keep it Safe, Scheduled, and Sound.'",
+    sportsRelevance: "Poorly maintained playing surfaces are a common, preventable cause of sports injuries."
+  },
+  relatedIds: ["SMG-003"],
+  source: "Sports Management text",
+  tags: ["sports-management", "facility"]
+}, {
+  id: "SMG-005",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Management",
+  topic: "Leadership Styles",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "A leadership style in sports management where the leader makes decisions unilaterally with little input from the team is called:",
+  options: ["Democratic leadership", "Autocratic leadership", "Laissez-faire leadership", "Transformational leadership"],
+  correctIndex: 1,
+  explanation: "Autocratic leadership centers decision-making authority with the leader, with minimal input or consultation from team members — contrasted with democratic (participative) or laissez-faire (hands-off) styles.",
+  concept: {
+    title: "Leadership Styles in Sports Management",
+    definition: "Different situations and team compositions call for different leadership approaches.",
+    points: ["Autocratic: leader decides alone, fast decisions but less buy-in", "Democratic: team input is sought, higher buy-in but slower decisions", "Laissez-faire: minimal leader direction, high autonomy for the team"],
+    memoryTrick: "'AUTOcratic = the leader acts AUTOnomously.'",
+    sportsRelevance: "Autocratic styles are sometimes preferred in high-pressure, time-critical competitive situations (e.g., a timeout decision)."
+  },
+  relatedIds: ["SMG-001"],
+  source: "Sports Management text",
+  tags: ["sports-management", "leadership"]
+}, {
+  id: "SAD-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Administration",
+  topic: "Sports Authority of India",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "The Sports Authority of India (SAI), established in 1984, functions under which ministry?",
+  options: ["Ministry of Education", "Ministry of Youth Affairs and Sports", "Ministry of Home Affairs", "Ministry of Health and Family Welfare"],
+  correctIndex: 1,
+  explanation: "SAI, India's premier sports development body established in 1984, operates under the Ministry of Youth Affairs and Sports, Government of India.",
+  concept: {
+    title: "Sports Authority of India (SAI)",
+    definition: "The apex national body responsible for promoting sports development, talent identification and training infrastructure in India.",
+    points: ["Established in 1984", "Functions under the Ministry of Youth Affairs and Sports", "Runs schemes like NSTC (National Sports Talent Contest) and various training centers"],
+    memoryTrick: "'SAI = Sports Authority under the Youth & Sports Ministry.'",
+    sportsRelevance: "Manages many of India's premier training centers used by Olympic and national-level athletes."
+  },
+  relatedIds: ["SAD-002", "SAD-004"],
+  source: "Sports Administration in India",
+  tags: ["sports-administration", "sai"]
+}, {
+  id: "SAD-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Sports Administration",
+  topic: "Indian Olympic Association",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "The Indian Olympic Association (IOA) is primarily responsible for:",
+  options: ["Conducting school-level examinations", "Representing India in the International Olympic Committee and organizing India's participation in the Olympic Games", "Running professional cricket leagues", "Regulating school curricula"],
+  correctIndex: 1,
+  explanation: "The IOA is India's National Olympic Committee, responsible for representing the country within the IOC and organizing/coordinating India's participation in the Olympic and Asian Games.",
+  concept: {
+    title: "Indian Olympic Association (IOA)",
+    definition: "India's National Olympic Committee, a member of the International Olympic Committee.",
+    points: ["Coordinates India's Olympic and Asian Games participation", "Works with National Sports Federations (NSFs) for each sport", "Distinct from SAI, which focuses on grassroots training infrastructure"],
+    memoryTrick: "'IOA = India's Olympic Ambassador.'",
+    sportsRelevance: "Selects and sends India's official contingent to the Olympic Games in coordination with respective sport federations."
+  },
+  relatedIds: ["SAD-001"],
+  source: "Sports Administration in India",
+  tags: ["sports-administration", "ioa"]
+}, {
+  id: "SAD-003",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Administration",
+  topic: "National Sports Policy",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2021,
+  question: "India's National Sports Policy primarily aims to:",
+  options: ["Discourage grassroots sports participation", "Promote sports for excellence and mass participation across the country", "Focus exclusively on urban elite athletes", "Eliminate government funding for sports"],
+  correctIndex: 1,
+  explanation: "India's National Sports Policy frameworks aim to build a sporting culture through both mass participation (grassroots access) and achieving excellence (elite athlete development) nationwide.",
+  concept: {
+    title: "National Sports Policy of India",
+    definition: "A guiding government framework balancing broad-based participation with high-performance athlete development.",
+    points: ["Dual focus: mass participation and competitive excellence", "Guides funding priorities and infrastructure development", "Periodically updated to reflect evolving sporting goals"],
+    memoryTrick: "'Policy = Participation + Performance, for everyone.'",
+    sportsRelevance: "Shapes schemes like Khelo India that specifically target grassroots talent identification."
+  },
+  relatedIds: ["SAD-004"],
+  source: "Sports Administration in India",
+  tags: ["sports-administration", "policy"]
+}, {
+  id: "SAD-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Sports Administration",
+  topic: "Khelo India",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2024,
+  question: "'Khelo India' is a national programme launched by the Government of India primarily to:",
+  options: ["Promote sports culture and identify talent at the grassroots level", "Fund only international cricket tournaments", "Replace physical education in schools", "Regulate sports betting"],
+  correctIndex: 0,
+  explanation: "Khelo India is a flagship government programme aimed at reviving sports culture at the grassroots level and building a strong pipeline of sporting talent through games, infrastructure and scholarships.",
+  concept: {
+    title: "Khelo India Programme",
+    definition: "A cornerstone modern initiative connecting school-level participation to elite talent development.",
+    points: ["Includes Khelo India School Games and Khelo India Youth Games", "Provides scholarships and training support to identified talent", "Aims to build infrastructure at the district level across India"],
+    memoryTrick: "'Khelo India = 'Play India' — grassroots-to-elite talent pipeline.'",
+    sportsRelevance: "Many current national-level athletes were first identified through Khelo India competitions."
+  },
+  relatedIds: ["SAD-001", "SAD-003"],
+  source: "Sports Administration in India",
+  tags: ["sports-administration", "khelo-india"]
+}, {
+  id: "SAD-005",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Administration",
+  topic: "National Sports Awards",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "Prestigious sports awards in India, such as the Khel Ratna and Arjuna Award, are conferred by the:",
+  options: ["State governments only", "Ministry of Youth Affairs and Sports, Government of India", "Indian Olympic Association", "BCCI"],
+  correctIndex: 1,
+  explanation: "India's national sports awards, including the Khel Ratna and Arjuna Award, are administered and conferred by the Ministry of Youth Affairs and Sports, Government of India, typically presented by the President.",
+  concept: {
+    title: "National Sports Awards Administration",
+    definition: "A centralized, government-administered recognition system for sporting achievement and contribution.",
+    points: ["Administered by the Ministry of Youth Affairs and Sports", "Selection involves nomination and committee review processes", "Presented annually, usually by the President of India"],
+    memoryTrick: "'Awards = administered by the Sports Ministry, presented by the President.'",
+    sportsRelevance: "Recognizes athletes (Khel Ratna, Arjuna), coaches (Dronacharya), and lifetime contributors (Dhyan Chand Award)."
+  },
+  relatedIds: ["SAD-001", "AWD-001"],
+  source: "Sports Administration in India",
+  tags: ["sports-administration", "awards"]
+}, {
+  id: "EDT-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Educational Technology",
+  topic: "Video Analysis",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "Video analysis technology is commonly used in physical education and coaching primarily to:",
+  options: ["Replace physical practice entirely", "Analyze and give feedback on technique and performance", "Only entertain students", "Avoid teacher-student interaction"],
+  correctIndex: 1,
+  explanation: "Video analysis allows coaches and teachers to slow down, replay and annotate movement, providing precise, visual feedback on technique that supplements (not replaces) hands-on practice and instruction.",
+  concept: {
+    title: "Video Analysis in PE/Coaching",
+    definition: "A widely-used educational technology tool for objective, visual performance feedback.",
+    points: ["Enables slow-motion review of technique errors", "Provides objective, repeatable feedback compared to memory alone", "Increasingly accessible via smartphones and apps, not just professional setups"],
+    memoryTrick: "'Video = Visible, replayable feedback.'",
+    sportsRelevance: "Used from school PE classes analyzing a javelin throw to elite biomechanics labs analyzing a sprinter's stride."
+  },
+  relatedIds: ["EDT-002"],
+  source: "Educational Technology in PE",
+  tags: ["edu-tech", "video-analysis"]
+}, {
+  id: "EDT-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Educational Technology",
+  topic: "Wearable Technology",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "Wearable devices like heart-rate monitors and accelerometers used in PE classes primarily help in:",
+  options: ["Grading handwriting", "Tracking physiological data such as heart rate, steps and calories for individualized feedback", "Replacing the PE teacher", "Scheduling school holidays"],
+  correctIndex: 1,
+  explanation: "Wearable technology (heart-rate monitors, pedometers, accelerometers) collects real-time physiological and movement data, enabling individualized feedback and objective tracking of student effort and progress.",
+  concept: {
+    title: "Wearable Technology in PE",
+    definition: "Growing category of educational technology providing objective, individualized fitness data.",
+    points: ["Tracks heart rate, steps, distance and calorie expenditure", "Enables individualized goal-setting and progress tracking", "Increases student accountability and engagement in fitness activities"],
+    memoryTrick: "'Wearables = Wear it, track it, improve it.'",
+    sportsRelevance: "Helps identify students working at appropriate intensity zones during fitness units."
+  },
+  relatedIds: ["EDT-001"],
+  source: "Educational Technology in PE",
+  tags: ["edu-tech", "wearables"]
+}, {
+  id: "EDT-003",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Educational Technology",
+  topic: "Learning Management Systems",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2021,
+  question: "A Learning Management System (LMS) used to deliver PE theory content, quizzes and track student progress online is an example of:",
+  options: ["Educational technology integration", "Physical training equipment", "A sports rule", "An anatomical structure"],
+  correctIndex: 0,
+  explanation: "An LMS is a software platform for delivering, tracking and managing educational content — its use for PE theory instruction is a direct application of educational technology in the subject.",
+  concept: {
+    title: "Learning Management Systems (LMS)",
+    definition: "Digital platforms increasingly used to deliver the theoretical/cognitive component of PE curricula.",
+    points: ["Delivers content, assessments and tracks progress digitally", "Supports blended learning — combining online theory with practical sessions", "Useful for remote/hybrid PE theory instruction"],
+    memoryTrick: "'LMS = Learning delivered, Managed, Systematically.'",
+    sportsRelevance: "Enables PE theory (rules, anatomy, nutrition) to be taught and assessed alongside practical skill sessions."
+  },
+  relatedIds: ["EDT-001", "EDT-002"],
+  source: "Educational Technology in PE",
+  tags: ["edu-tech", "lms"]
+}, {
+  id: "EDT-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Educational Technology",
+  topic: "Virtual Reality",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "Virtual Reality (VR) simulations are increasingly used in sports training to:",
+  options: ["Physically replace all outdoor training permanently", "Allow athletes to practice decision-making and tactical scenarios in a safe, controlled environment", "Eliminate the need for coaches", "Only for entertainment purposes"],
+  correctIndex: 1,
+  explanation: "VR simulations let athletes rehearse tactical decision-making and game scenarios repeatedly in a controlled, risk-free virtual environment — a supplement to, not replacement for, physical training.",
+  concept: {
+    title: "Virtual Reality in Sports Training",
+    definition: "An emerging technology aiding cognitive/tactical training alongside traditional physical practice.",
+    points: ["Enables repeated practice of tactical/decision-making scenarios", "Reduces physical injury risk during scenario-based training", "Used by elite teams in sports like American football and cricket for tactical preparation"],
+    memoryTrick: "'VR = Virtually Repeat scenarios, safely.'",
+    sportsRelevance: "Cricket batters have used VR to practice facing specific bowlers' deliveries before a match."
+  },
+  relatedIds: ["EDT-001"],
+  source: "Educational Technology in PE",
+  tags: ["edu-tech", "vr"]
+}, {
+  id: "EDT-005",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Educational Technology",
+  topic: "Technology in Assessment",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "One key advantage of using technology (e.g., photo-finish cameras, electronic timing) in sports assessment is:",
+  options: ["Increased subjectivity", "Improved accuracy and objectivity of measurement", "Slower results", "Higher cost with no benefit"],
+  correctIndex: 1,
+  explanation: "Technologies like photo-finish cameras and electronic timing systems remove human reaction-time error and subjective judgment, dramatically improving the accuracy and objectivity of performance measurement.",
+  concept: {
+    title: "Technology in Sports Assessment",
+    definition: "Modern measurement technology reduces human error and bias in performance evaluation.",
+    points: ["Eliminates human reaction-time error in timing (e.g., electronic starting guns/timers)", "Removes subjective judgment disputes (e.g., photo-finish, goal-line technology)", "Widely adopted in athletics, swimming, cricket and football officiating"],
+    memoryTrick: "'Tech in Assessment = Objective, not just Opinion.'",
+    sportsRelevance: "Photo-finish technology has settled numerous razor-thin sprint results at the Olympics."
+  },
+  relatedIds: ["TME-001", "EDT-004"],
+  source: "Educational Technology in PE",
+  tags: ["edu-tech", "assessment"]
+}, {
+  id: "TCH-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Teaching Methods",
+  topic: "Command Style",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "In Mosston's Spectrum of Teaching Styles, the 'Command Style', where the teacher makes all decisions and students simply respond, is best suited for:",
+  options: ["Encouraging maximum student creativity", "Teaching precise, safety-critical skills requiring uniform execution (e.g., gymnastics safety drills)", "Independent research projects", "Peer teaching only"],
+  correctIndex: 1,
+  explanation: "The Command Style places all decision-making with the teacher, making it ideal for teaching precise, safety-critical or highly standardized skills where uniform, immediate execution matters most.",
+  concept: {
+    title: "Mosston's Spectrum of Teaching Styles",
+    definition: "A foundational framework in PE pedagogy classifying teaching styles by who makes the decisions — teacher or learner.",
+    points: ["Command Style: teacher decides everything, students replicate exactly", "Best for safety-critical, precision-dependent skills", "Contrasted with more student-centered styles like Guided Discovery"],
+    memoryTrick: "'Command = the teacher COMMANDS, students comply.'",
+    sportsRelevance: "Used when teaching correct spotting technique in gymnastics or safe weight-lifting form, where errors are dangerous."
+  },
+  relatedIds: ["TCH-004", "TCH-005"],
+  source: "Teaching Methods in PE - Mosston",
+  tags: ["teaching-methods", "command-style"]
+}, {
+  id: "TCH-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Teaching Methods",
+  topic: "Demonstration Method",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "The demonstration method of teaching a motor skill in PE is most effective because it:",
+  options: ["Provides a visual model for students to observe and imitate correct technique", "Eliminates the need for practice", "Works only for theoretical topics", "Requires no teacher involvement"],
+  correctIndex: 0,
+  explanation: "The demonstration method gives students a clear visual model of correct technique to observe and imitate, leveraging observational learning before and during practice.",
+  concept: {
+    title: "Demonstration Method",
+    definition: "One of the oldest and most widely used teaching methods for motor-skill acquisition.",
+    points: ["Provides a visual, observable model of correct technique", "Most effective when followed immediately by guided practice", "Can be delivered live by the teacher or via video"],
+    memoryTrick: "'Demonstrate = show it, THEN let them try it.'",
+    sportsRelevance: "Standard first step for teaching any new sport skill, from a basketball free-throw to a swimming stroke."
+  },
+  relatedIds: ["TCH-001", "PHL-003"],
+  source: "Teaching Methods in PE - Mosston",
+  tags: ["teaching-methods", "demonstration"]
+}, {
+  id: "TCH-003",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Teaching Methods",
+  topic: "Whole-Part-Whole Method",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2021,
+  question: "The 'whole-part-whole' method of teaching a complex motor skill involves:",
+  options: ["Teaching only isolated parts forever without integration", "Presenting the entire skill, breaking it into parts for practice, then reintegrating into the whole", "Never demonstrating the skill", "Testing before any teaching occurs"],
+  correctIndex: 1,
+  explanation: "The whole-part-whole method first presents the complete skill so learners understand the overall pattern, then isolates difficult components for focused practice, before reintegrating them into the full skill.",
+  concept: {
+    title: "Whole-Part-Whole Teaching Method",
+    definition: "Balances the benefits of understanding the complete skill with focused practice on its difficult components.",
+    points: ["Step 1: demonstrate/perform the whole skill", "Step 2: break down and practice difficult parts in isolation", "Step 3: reintegrate parts back into the complete, whole skill"],
+    memoryTrick: "'Whole-Part-Whole: see it whole, fix the parts, do it whole again.'",
+    sportsRelevance: "Effective for complex skills like a cricket bowling action or a volleyball spike approach."
+  },
+  relatedIds: ["TCH-002"],
+  source: "Teaching Methods in PE - Mosston",
+  tags: ["teaching-methods", "whole-part-whole"]
+}, {
+  id: "TCH-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Teaching Methods",
+  topic: "Reciprocal Teaching Style",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "A teaching style in which students work in pairs, with one performing and the other providing feedback based on teacher-prepared criteria, is called:",
+  options: ["Command style", "Reciprocal (peer) teaching style", "Guided discovery style", "Self-check style"],
+  correctIndex: 1,
+  explanation: "The Reciprocal Style pairs students, with one performing a task while the partner observes and gives feedback using teacher-provided criteria sheets — shifting some decision-making to the learners.",
+  concept: {
+    title: "Reciprocal (Peer) Teaching Style",
+    definition: "Part of Mosston's Spectrum, promoting peer feedback and social learning skills alongside motor-skill development.",
+    points: ["Students paired: one performs, one observes and gives feedback", "Uses teacher-prepared criteria sheets to structure peer feedback", "Develops communication and observational skills alongside motor skills"],
+    memoryTrick: "'Reciprocal = students give feedback to each other, in return.'",
+    sportsRelevance: "Common in badminton or tennis units where partners can readily observe and critique each other's strokes."
+  },
+  relatedIds: ["TCH-001"],
+  source: "Teaching Methods in PE - Mosston",
+  tags: ["teaching-methods", "reciprocal"]
+}, {
+  id: "TCH-005",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Teaching Methods",
+  topic: "Guided Discovery",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2023,
+  question: "In the 'Guided Discovery' teaching style, the teacher's primary role is to:",
+  options: ["Give the answer directly at the start", "Ask a sequence of questions/tasks that lead students to discover the correct movement solution themselves", "Perform the skill for students to copy exactly", "Avoid any interaction with students"],
+  correctIndex: 1,
+  explanation: "In Guided Discovery, the teacher carefully sequences questions and tasks that lead students, step by step, to discover the correct movement solution or concept on their own, rather than being told directly.",
+  concept: {
+    title: "Guided Discovery Teaching Style",
+    definition: "A more student-centered style in Mosston's Spectrum, promoting cognitive engagement and deeper understanding.",
+    points: ["Teacher designs a logical sequence of guiding questions/tasks", "Students actively discover the solution rather than being told", "Promotes deeper understanding and problem-solving skills"],
+    memoryTrick: "'Guided Discovery = guided to DISCOVER, not told directly.'",
+    sportsRelevance: "Useful for teaching tactical concepts in games (e.g., discovering why spacing helps in a small-sided football game)."
+  },
+  relatedIds: ["TCH-001", "TCH-004"],
+  source: "Teaching Methods in PE - Mosston",
+  tags: ["teaching-methods", "guided-discovery"]
+}, {
+  id: "CUR-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Curriculum in Physical Education",
+  topic: "Definition",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "In the context of Physical Education, 'curriculum' refers to:",
+  options: ["Only the list of sports equipment available", "The planned set of learning experiences, content and objectives designed for students", "A single day's lesson plan only", "The school's annual sports day event"],
+  correctIndex: 1,
+  explanation: "Curriculum encompasses the entire planned framework of learning objectives, content, activities and assessments designed to guide student learning over a course of study — much broader than a single lesson or event.",
+  concept: {
+    title: "Curriculum in PE",
+    definition: "The comprehensive, structured plan of what is to be taught and learned in physical education.",
+    points: ["Includes objectives, content, teaching strategies and assessment", "Broader than a single lesson plan — spans a full course/programme", "Should align with broader educational goals (e.g., NEP 2020 in India)"],
+    memoryTrick: "'Curriculum = the full roadmap, not just one stop.'",
+    sportsRelevance: "A well-designed PE curriculum sequences skills logically from basic movement in early grades to sport-specific skills later."
+  },
+  relatedIds: ["CUR-003", "PHL-001"],
+  source: "Curriculum Design in PE",
+  tags: ["curriculum", "definition"]
+}, {
+  id: "CUR-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Curriculum in Physical Education",
+  topic: "NEP 2020",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "The National Education Policy (NEP) 2020 in India recommends that physical education and sports be:",
+  options: ["Removed from the school curriculum", "Integrated as an essential part of the curriculum, on par with other subjects", "Made available only as a paid extracurricular activity", "Restricted to secondary school only"],
+  correctIndex: 1,
+  explanation: "NEP 2020 explicitly recommends integrating sports and physical education into the core curriculum, recognizing it as essential to holistic development, not a peripheral extracurricular activity.",
+  concept: {
+    title: "NEP 2020 and Physical Education",
+    definition: "A landmark Indian policy shift elevating PE's status within formal education.",
+    points: ["Recommends PE as part of the core curriculum, not an optional add-on", "Emphasizes holistic, multidisciplinary education including sports", "Encourages experiential and activity-based learning across all subjects"],
+    memoryTrick: "'NEP 2020 = PE gets a seat at the core-curriculum table.'",
+    sportsRelevance: "Shapes ongoing curriculum reforms in Indian schools placing greater emphasis on structured PE instruction."
+  },
+  relatedIds: ["CUR-001", "FND-001"],
+  source: "NEP 2020 Document",
+  tags: ["curriculum", "nep-2020"]
+}, {
+  id: "CUR-003",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Curriculum in Physical Education",
+  topic: "Spiral Curriculum",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "A 'spiral curriculum' in physical education involves:",
+  options: ["Teaching each topic once and never revisiting it", "Revisiting core concepts and skills at increasing levels of complexity across grade levels", "Random, unplanned topic selection", "Only teaching one sport throughout schooling"],
+  correctIndex: 1,
+  explanation: "A spiral curriculum deliberately revisits core skills and concepts multiple times across a student's schooling, each time at a greater level of depth and complexity, reinforcing and building on prior learning.",
+  concept: {
+    title: "Spiral Curriculum Concept",
+    definition: "A curriculum-design principle (associated with Jerome Bruner) emphasizing progressive reinforcement of core concepts.",
+    points: ["Core skills (e.g., throwing, catching) reappear across grade levels", "Complexity and challenge increase with each revisit", "Reinforces learning and builds a stronger long-term skill foundation"],
+    memoryTrick: "'Spiral = comes back around, each time a bit higher.'",
+    sportsRelevance: "A basic throw taught in Grade 1 evolves into sport-specific throwing (javelin, cricket) by secondary school through a spiral design."
+  },
+  relatedIds: ["CUR-001"],
+  source: "Curriculum Design in PE",
+  tags: ["curriculum", "spiral"]
+}, {
+  id: "CUR-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Curriculum in Physical Education",
+  topic: "Scope and Sequence",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "'Scope and sequence' in curriculum planning refers to:",
+  options: ["The breadth of content covered (scope) and the order in which it is taught (sequence)", "Only the total number of PE periods per week", "The list of sports equipment needed", "The grading rubric alone"],
+  correctIndex: 0,
+  explanation: "'Scope' defines the breadth and depth of content to be covered, while 'sequence' determines the logical order in which that content is taught across the curriculum's timeline.",
+  concept: {
+    title: "Scope and Sequence",
+    definition: "A fundamental curriculum-planning concept ensuring content is both comprehensive and logically ordered.",
+    points: ["Scope: what content/skills are included, and how deeply", "Sequence: the order in which content is introduced and built upon", "Together they ensure coherent, progressive learning"],
+    memoryTrick: "'Scope = WHAT; Sequence = WHEN/in what ORDER.'",
+    sportsRelevance: "Ensures, for example, that basic fitness concepts are taught before complex training-program design."
+  },
+  relatedIds: ["CUR-001", "CUR-003"],
+  source: "Curriculum Design in PE",
+  tags: ["curriculum", "scope-sequence"]
+}, {
+  id: "CUR-005",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Curriculum in Physical Education",
+  topic: "Bloom's Taxonomy Domains",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2023,
+  question: "A well-designed PE curriculum typically addresses learning objectives across which three domains (per Bloom's taxonomy)?",
+  options: ["Cognitive, Affective, and Psychomotor domains", "Only the Psychomotor domain", "Only the Cognitive domain", "Financial, Legal, and Administrative domains"],
+  correctIndex: 0,
+  explanation: "Bloom's taxonomy identifies three domains of learning — cognitive (knowledge/understanding), affective (attitudes/values) and psychomotor (physical skills) — all of which a comprehensive PE curriculum should address.",
+  concept: {
+    title: "Bloom's Taxonomy in PE Curriculum Design",
+    definition: "Ensures PE develops the whole learner: knowledge, attitudes, and physical skill, not skill alone.",
+    points: ["Cognitive: understanding rules, strategy, health concepts", "Affective: attitudes toward fair play, teamwork, lifelong activity", "Psychomotor: the physical execution of motor skills"],
+    memoryTrick: "'Bloom's 3 Domains: Think (Cognitive), Feel (Affective), Do (Psychomotor).'",
+    sportsRelevance: "A rounded PE unit on basketball would test rule knowledge (cognitive), sportsmanship (affective) and shooting technique (psychomotor)."
+  },
+  relatedIds: ["CUR-001", "PHL-001"],
+  source: "Curriculum Design in PE",
+  tags: ["curriculum", "blooms-taxonomy"]
+}, {
+  id: "ADP-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Adapted Physical Education",
+  topic: "Definition",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "Adapted Physical Education (APE) refers to:",
+  options: ["Physical education exclusively for elite athletes", "A modified physical education program designed to meet the unique needs of individuals with disabilities", "Physical education taught only in a foreign language", "An advanced, more difficult version of regular PE"],
+  correctIndex: 1,
+  explanation: "Adapted Physical Education is a specially designed program that modifies activities, equipment or instruction to meet the unique physical, motor and fitness needs of individuals with disabilities.",
+  concept: {
+    title: "Adapted Physical Education (APE)",
+    definition: "A specialized branch of physical education ensuring meaningful, safe participation for individuals with disabilities.",
+    points: ["Modifies activities, rules, or equipment as needed", "Aims for meaningful participation, not exclusion", "Delivered by specially trained APE teachers/therapists where needed"],
+    memoryTrick: "'Adapted = ADjusted to fit the individual's needs.'",
+    sportsRelevance: "Ensures students with physical, sensory, or intellectual disabilities can meaningfully participate in physical activity."
+  },
+  relatedIds: ["ADP-003", "ADP-005"],
+  source: "Adapted Physical Education text",
+  tags: ["adapted-pe", "definition"]
+}, {
+  id: "ADP-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Adapted Physical Education",
+  topic: "IEP",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "An Individualized Education Program (IEP) in the context of Adapted Physical Education is:",
+  options: ["A generic curriculum applied identically to all students", "A personalized plan outlining specific goals, services, and accommodations for a student with a disability", "A punishment plan for students who fail PE", "Only used for gifted athletes"],
+  correctIndex: 1,
+  explanation: "An IEP is a legally-grounded, individualized plan developed for a student with a disability, specifying personalized goals, necessary services and accommodations — including in physical education.",
+  concept: {
+    title: "Individualized Education Program (IEP)",
+    definition: "A personalized planning document ensuring appropriate, tailored educational (including PE) support.",
+    points: ["Developed collaboratively (teachers, specialists, often parents)", "Specifies measurable goals and required accommodations", "Physical education goals are included when relevant to the student's needs"],
+    memoryTrick: "'IEP = Individual's Education Plan, tailored to them.'",
+    sportsRelevance: "An APE teacher uses a student's IEP to decide which modifications (equipment, rules) best support their participation."
+  },
+  relatedIds: ["ADP-001"],
+  source: "Adapted Physical Education text",
+  tags: ["adapted-pe", "iep"]
+}, {
+  id: "ADP-003",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Adapted Physical Education",
+  topic: "Inclusion",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2021,
+  question: "The principle of 'inclusion' in Adapted Physical Education emphasizes:",
+  options: ["Segregating students with disabilities into entirely separate facilities permanently", "Including students with disabilities in general PE settings with appropriate support, whenever possible", "Excluding students with disabilities from all sports", "Only inclusion in classroom subjects, not PE"],
+  correctIndex: 1,
+  explanation: "Inclusion emphasizes educating students with disabilities alongside their peers in the general PE setting whenever appropriate, using support and modifications rather than automatic segregation.",
+  concept: {
+    title: "Principle of Inclusion",
+    definition: "A guiding value in modern special/adapted education, favoring the 'least restrictive environment'.",
+    points: ["Prioritizes participation with peers in general settings, when appropriate", "Uses the 'least restrictive environment' principle", "Supported by modifications, not exclusion, as the default approach"],
+    memoryTrick: "'Inclusion = IN the same class, WITH the right support.'",
+    sportsRelevance: "A student using a wheelchair might play a modified version of basketball alongside classmates rather than being excluded."
+  },
+  relatedIds: ["ADP-001", "ADP-005"],
+  source: "Adapted Physical Education text",
+  tags: ["adapted-pe", "inclusion"]
+}, {
+  id: "ADP-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Adapted Physical Education",
+  topic: "Paralympic Classification",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "Classification systems used in Paralympic sports exist primarily to:",
+  options: ["Exclude athletes with disabilities from competition", "Group athletes with similar functional abilities to ensure fair competition", "Determine ticket prices", "Rank countries by medal count only"],
+  correctIndex: 1,
+  explanation: "Paralympic classification groups athletes by the type and degree of their impairment's impact on performance, ensuring that competition outcomes reflect skill, training and dedication rather than the degree of impairment.",
+  concept: {
+    title: "Paralympic Classification Systems",
+    definition: "A sport-science-based system ensuring fairness across athletes with varying disabilities.",
+    points: ["Athletes are grouped by functional ability, not just diagnosis", "Aims to ensure fair, meaningful competition", "Classification criteria are sport-specific (e.g., swimming vs athletics)"],
+    memoryTrick: "'Classification = Compete fairly against similar abilities.'",
+    sportsRelevance: "Enables athletes with vastly different disabilities to compete meaningfully within the same overall Games."
+  },
+  relatedIds: ["ADP-001"],
+  source: "Adapted Physical Education text",
+  tags: ["adapted-pe", "paralympic"]
+}, {
+  id: "ADP-005",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Adapted Physical Education",
+  topic: "Modification Strategies",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "Common strategies to adapt a physical activity for a student with a physical disability include:",
+  options: ["Refusing to modify anything", "Modifying equipment, rules, or the environment to enable participation", "Excluding the student from that unit entirely", "Only offering theoretical/written work instead"],
+  correctIndex: 1,
+  explanation: "Adapted PE commonly modifies equipment (lighter balls, larger targets), rules (extra bounces, modified boundaries), or the environment (surface, space) to enable meaningful participation for students with disabilities.",
+  concept: {
+    title: "Adaptation Strategies",
+    definition: "Practical, flexible approaches allowing genuine participation rather than exclusion or passive observation.",
+    points: ["Equipment modification: lighter/larger/adapted equipment", "Rule modification: adjusted scoring, extra attempts, flexible boundaries", "Environmental modification: surface, space, or pace adjustments"],
+    memoryTrick: "'Adapt the Equipment, Rules, or Environment — not the student's right to play.'",
+    sportsRelevance: "A student with limited mobility might use a larger, softer ball and play within a smaller court area in a modified game."
+  },
+  relatedIds: ["ADP-001", "ADP-003"],
+  source: "Adapted Physical Education text",
+  tags: ["adapted-pe", "modification"]
+}, {
+  id: "ASG-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Asian Games",
+  topic: "History",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "The first Asian Games were held in 1951 in which city?",
+  options: ["Bangkok", "New Delhi", "Jakarta", "Manila"],
+  correctIndex: 1,
+  explanation: "The inaugural Asian Games were held in New Delhi, India, in 1951, marking the beginning of the continent's largest multi-sport event.",
+  concept: {
+    title: "History of the Asian Games",
+    definition: "A continental multi-sport event first held in 1951, second in size only to the Olympic Games.",
+    points: ["First edition: New Delhi, 1951", "Organized under the Asian Games Federation, later the OCA", "India has hosted the Games twice (1951 and 1982)"],
+    memoryTrick: "'First Asian Games = New Delhi, 1951.'",
+    sportsRelevance: "A landmark event establishing India's role in early Asian sporting cooperation."
+  },
+  relatedIds: ["ASG-002"],
+  source: "Olympic & Asian Games Almanac",
+  tags: ["asian-games", "history"]
+}, {
+  id: "ASG-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Asian Games",
+  topic: "Governing Body",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "The Asian Games are organized under the authority of which body?",
+  options: ["International Olympic Committee (IOC)", "Olympic Council of Asia (OCA)", "Asian Football Confederation", "United Nations"],
+  correctIndex: 1,
+  explanation: "The Olympic Council of Asia (OCA), founded in 1982, is the governing body responsible for organizing the Asian Games and other continental multi-sport events.",
+  concept: {
+    title: "Olympic Council of Asia (OCA)",
+    definition: "The continental body overseeing sport in Asia, analogous to the IOC at the global level.",
+    points: ["Founded in 1982, headquartered in Kuwait", "Organizes the Asian Games, Asian Winter Games and Asian Youth Games", "Works in coordination with the IOC and National Olympic Committees"],
+    memoryTrick: "'OCA = Olympic Council of Asia, the continental IOC.'",
+    sportsRelevance: "Sets eligibility and sport-inclusion rules for each edition of the Asian Games."
+  },
+  relatedIds: ["ASG-001"],
+  source: "Olympic & Asian Games Almanac",
+  tags: ["asian-games", "oca"]
+}, {
+  id: "ASG-003",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Asian Games",
+  topic: "Frequency",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2021,
+  question: "The Asian Games are held once every how many years?",
+  options: ["2 years", "4 years", "5 years", "3 years"],
+  correctIndex: 1,
+  explanation: "Like the Olympic Games, the Asian Games are held once every four years, typically in the year following (or preceding) the Summer Olympics.",
+  concept: {
+    title: "Asian Games Frequency",
+    definition: "A quadrennial (every 4 years) continental sporting event.",
+    points: ["Held every 4 years, similar cycle to the Olympics", "Occasionally rescheduled due to exceptional circumstances (e.g., 2022 edition held in 2023)", "Features both Olympic and several non-Olympic/regional sports"],
+    memoryTrick: "'Asian Games = every 4 years, Olympic-style cycle.'",
+    sportsRelevance: "Serves as a key stepping stone competition for Asian athletes preparing for the Olympics."
+  },
+  relatedIds: ["ASG-001"],
+  source: "Olympic & Asian Games Almanac",
+  tags: ["asian-games", "frequency"]
+}, {
+  id: "ASG-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Asian Games",
+  topic: "Host Cities",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "The 19th Asian Games (originally scheduled for 2022) were held in 2023 in which Chinese city?",
+  options: ["Beijing", "Guangzhou", "Hangzhou", "Shanghai"],
+  correctIndex: 2,
+  explanation: "The 19th Asian Games were hosted by Hangzhou, China, in September-October 2023, after being postponed from 2022 due to COVID-19-related circumstances.",
+  concept: {
+    title: "2023 Hangzhou Asian Games",
+    definition: "A landmark edition postponed by a year, becoming one of the largest multi-sport events ever held.",
+    points: ["Hosted by Hangzhou, China, in 2023 (originally planned for 2022)", "Featured esports as a medal event for the first time", "India recorded its best-ever medal tally at this edition"],
+    memoryTrick: "'Hangzhou 2023 = the postponed-but-record-breaking Asian Games.'",
+    sportsRelevance: "India's strong performance here was widely covered as a landmark moment for Indian sport."
+  },
+  relatedIds: ["ASG-001", "ASG-005"],
+  source: "Olympic & Asian Games Almanac",
+  tags: ["asian-games", "hangzhou"]
+}, {
+  id: "ASG-005",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Asian Games",
+  topic: "India's Performance",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "India recorded its best-ever medal tally at the Asian Games at the 2023 Hangzhou edition, crossing which milestone for the first time?",
+  options: ["50 medals", "75 medals", "100 medals", "150 medals"],
+  correctIndex: 2,
+  explanation: "At the 2023 Hangzhou Asian Games, India crossed the 100-medal mark for the first time in its Asian Games history, finishing with 107 medals overall.",
+  concept: {
+    title: "India at the Asian Games",
+    definition: "India's medal performance at the Asian Games has grown substantially in recent editions.",
+    points: ["2023 Hangzhou: India's best-ever tally, crossing 100 medals", "Reflects growing investment in grassroots and elite sport (e.g., Khelo India, TOPS)", "Athletics and shooting were among India's strongest medal contributors"],
+    memoryTrick: "'Hangzhou 2023 = India's first 100+ medal Asian Games.'",
+    sportsRelevance: "A widely cited milestone reflecting the impact of schemes like Khelo India and the Target Olympic Podium Scheme (TOPS)."
+  },
+  relatedIds: ["ASG-004", "SAD-004"],
+  source: "Olympic & Asian Games Almanac",
+  tags: ["asian-games", "india"]
+}, {
+  id: "CWG-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Commonwealth Games",
+  topic: "History",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "The first Commonwealth Games (then called the British Empire Games) were held in 1930 in:",
+  options: ["London, England", "Hamilton, Canada", "Sydney, Australia", "Auckland, New Zealand"],
+  correctIndex: 1,
+  explanation: "The first British Empire Games (the original name of the Commonwealth Games) were held in Hamilton, Canada, in 1930.",
+  concept: {
+    title: "History of the Commonwealth Games",
+    definition: "A multi-sport event for athletes from Commonwealth nations, first held in 1930.",
+    points: ["First edition: Hamilton, Canada, 1930 (as the British Empire Games)", "Renamed several times before settling on 'Commonwealth Games' in 1978", "India has participated since the very first edition"],
+    memoryTrick: "'First CWG = Hamilton, Canada, 1930.'",
+    sportsRelevance: "One of the oldest continuing multi-sport events, alongside the Olympics."
+  },
+  relatedIds: ["CWG-002"],
+  source: "Commonwealth Games Almanac",
+  tags: ["commonwealth-games", "history"]
+}, {
+  id: "CWG-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Commonwealth Games",
+  topic: "Governing Body",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "The Commonwealth Games are organized by the:",
+  options: ["International Olympic Committee", "Commonwealth Games Federation (CGF)", "United Nations Sports Council", "Olympic Council of Asia"],
+  correctIndex: 1,
+  explanation: "The Commonwealth Games Federation (CGF) is the international body responsible for directing and controlling the Commonwealth Games and its associated activities.",
+  concept: {
+    title: "Commonwealth Games Federation (CGF)",
+    definition: "The governing body overseeing the Commonwealth Games, distinct from the IOC.",
+    points: ["Founded in 1932, headquartered in London", "Sets sport programme, eligibility and host-city selection processes", "Works with national Commonwealth Games Associations in member countries"],
+    memoryTrick: "'CGF = Commonwealth Games Federation, the CWG's IOC-equivalent.'",
+    sportsRelevance: "Determines which sports (including several unique to the CWG, like lawn bowls) feature at each edition."
+  },
+  relatedIds: ["CWG-001"],
+  source: "Commonwealth Games Almanac",
+  tags: ["commonwealth-games", "cgf"]
+}, {
+  id: "CWG-003",
+  exam: ["KVS PGT", "NVS", "EMRS", "AWES", "Sainik School", "CTET"],
+  subject: "Commonwealth Games",
+  topic: "Frequency",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2021,
+  question: "The Commonwealth Games are held once every:",
+  options: ["2 years", "4 years", "5 years", "6 years"],
+  correctIndex: 1,
+  explanation: "The Commonwealth Games follow a four-year cycle, similar to the Olympic and Asian Games, typically held in a non-Olympic year.",
+  concept: {
+    title: "Commonwealth Games Frequency",
+    definition: "A quadrennial multi-sport event for Commonwealth nations.",
+    points: ["Held every 4 years", "Scheduled to avoid clashing with the Summer Olympics", "Includes both Olympic and Commonwealth-specific sports"],
+    memoryTrick: "'CWG = every 4 years, like its Olympic cousin.'",
+    sportsRelevance: "Serves as a major competitive platform for athletes from smaller Commonwealth nations as well."
+  },
+  relatedIds: ["CWG-001"],
+  source: "Commonwealth Games Almanac",
+  tags: ["commonwealth-games", "frequency"]
+}, {
+  id: "CWG-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Commonwealth Games",
+  topic: "Host Cities",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "The 2022 Commonwealth Games were hosted by which city?",
+  options: ["Gold Coast, Australia", "Birmingham, England", "Durban, South Africa", "Glasgow, Scotland"],
+  correctIndex: 1,
+  explanation: "Birmingham, England hosted the 2022 Commonwealth Games, after Durban, South Africa withdrew as the originally planned host.",
+  concept: {
+    title: "2022 Birmingham Commonwealth Games",
+    definition: "A significant recent edition notable for gender-equal medal events.",
+    points: ["Hosted by Birmingham, England, in 2022", "Became one of the first major multi-sport events with more women's than men's medal events", "India finished among the top medal-winning nations"],
+    memoryTrick: "'2022 CWG = Birmingham, stepping in after Durban's withdrawal.'",
+    sportsRelevance: "India's shooting and weightlifting contingents were notably absent from the sports programme at this edition, a point of ongoing debate."
+  },
+  relatedIds: ["CWG-001"],
+  source: "Commonwealth Games Almanac",
+  tags: ["commonwealth-games", "birmingham"]
+}, {
+  id: "CWG-005",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Commonwealth Games",
+  topic: "Eligibility",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "Participation in the Commonwealth Games is restricted to athletes from:",
+  options: ["Any country in the world", "Nations and territories of the Commonwealth of Nations", "Only European countries", "Only Asian countries"],
+  correctIndex: 1,
+  explanation: "Only athletes representing nations and territories that are members of the Commonwealth of Nations (a voluntary association of mostly former British Empire territories) are eligible to compete.",
+  concept: {
+    title: "Commonwealth Games Eligibility",
+    definition: "Membership in the Commonwealth of Nations is the defining eligibility criterion.",
+    points: ["Restricted to Commonwealth member nations/territories", "Some large countries (e.g., England, Scotland, Wales) compete as separate teams, unlike at the Olympics", "India has been a prominent, long-standing Commonwealth Games participant"],
+    memoryTrick: "'CWG = Commonwealth countries only, unlike the more inclusive Olympics.'",
+    sportsRelevance: "Explains why 'Team England' and 'Team Scotland' compete separately here but combine as 'Team GB' at the Olympics."
+  },
+  relatedIds: ["CWG-001"],
+  source: "Commonwealth Games Almanac",
+  tags: ["commonwealth-games", "eligibility"]
+}, {
+  id: "NSP-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "National Sports",
+  topic: "National Sports Day",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "National Sports Day in India is celebrated on August 29 to commemorate the birth anniversary of:",
+  options: ["Sachin Tendulkar", "Major Dhyan Chand", "Milkha Singh", "P.T. Usha"],
+  correctIndex: 1,
+  explanation: "National Sports Day is observed on August 29, the birth anniversary of hockey legend Major Dhyan Chand, widely regarded as one of the greatest hockey players in history.",
+  concept: {
+    title: "National Sports Day",
+    definition: "An annual observance honoring India's sporting legacy, centered on hockey icon Dhyan Chand.",
+    points: ["Observed on August 29 each year", "Marks the birth anniversary of Major Dhyan Chand", "National sports awards are often announced/presented around this date"],
+    memoryTrick: "'National Sports Day = Dhyan Chand's Day, August 29.'",
+    sportsRelevance: "A day used to promote awareness and celebration of sports and physical activity nationwide."
+  },
+  relatedIds: ["NSP-004"],
+  source: "National Sports Almanac - India",
+  tags: ["national-sports", "sports-day"]
+}, {
+  id: "NSP-002",
+  exam: ["UGC NET", "SET"],
+  subject: "National Sports",
+  topic: "National Sport Status",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2023,
+  question: "As clarified by the Government of India, which of the following is the CURRENT official 'National Sport' of India?",
+  options: ["Hockey", "Cricket", "Kabaddi", "India has no officially declared National Sport"],
+  correctIndex: 3,
+  explanation: "Despite the popular belief that hockey is India's national sport, the Government of India has officially clarified (including via RTI responses) that no sport has been formally declared as the National Sport of India.",
+  concept: {
+    title: "The 'National Sport of India' Myth",
+    definition: "A commonly tested, often misunderstood fact — hockey is popularly associated with this title, but it holds no official government designation.",
+    points: ["No sport is legally/officially notified as India's 'National Sport'", "Hockey is widely and popularly considered the 'unofficial' national sport due to Olympic history", "Government RTI responses have explicitly confirmed the absence of an official designation"],
+    memoryTrick: "'Popular ≠ Official — India has no LEGALLY declared national sport.'",
+    sportsRelevance: "A frequently tested 'trick' fact in PE and general knowledge competitive exams."
+  },
+  relatedIds: ["NSP-001"],
+  source: "National Sports Almanac - India",
+  tags: ["national-sports", "hockey"]
+}, {
+  id: "NSP-003",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "National Sports",
+  topic: "National Games",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2021,
+  question: "The National Games of India is a multi-sport event, similar in concept to the Olympics, held for:",
+  options: ["Only international athletes", "Athletes representing Indian states and union territories", "Only school students", "Only Commonwealth nations"],
+  correctIndex: 1,
+  explanation: "The National Games of India is a domestic multi-sport event in which athletes compete representing their respective Indian states and union territories, mirroring the Olympic model at a national scale.",
+  concept: {
+    title: "National Games of India",
+    definition: "A significant domestic sporting event fostering inter-state competition and talent development.",
+    points: ["Athletes represent Indian states/UTs, not the country as a whole", "Held periodically, though not on a strictly fixed calendar historically", "Serves as a major talent-identification platform for national-level selection"],
+    memoryTrick: "'National Games = states compete, like a mini-Olympics for India.'",
+    sportsRelevance: "Many future Olympic and Asian Games athletes first gain prominence at the National Games."
+  },
+  relatedIds: ["NSP-001"],
+  source: "National Sports Almanac - India",
+  tags: ["national-sports", "national-games"]
+}, {
+  id: "NSP-004",
+  exam: ["UGC NET", "SET"],
+  subject: "National Sports",
+  topic: "Khel Ratna",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "India's highest sporting honour, previously known as the Rajiv Gandhi Khel Ratna, was renamed in 2021 as the:",
+  options: ["Arjuna Award", "Major Dhyan Chand Khel Ratna Award", "Padma Shri", "Dronacharya Award"],
+  correctIndex: 1,
+  explanation: "In 2021, the Government of India renamed the Rajiv Gandhi Khel Ratna Award to the Major Dhyan Chand Khel Ratna Award, honoring the hockey legend's legacy.",
+  concept: {
+    title: "Major Dhyan Chand Khel Ratna Award",
+    definition: "India's highest sporting honour, renamed in 2021 to reflect Dhyan Chand's iconic status in Indian sport.",
+    points: ["Renamed from Rajiv Gandhi Khel Ratna in 2021", "India's highest honour for outstanding sporting performance", "Awarded alongside the Arjuna Award and Dronacharya Award each year"],
+    memoryTrick: "'Khel Ratna renamed for Dhyan Chand — India's hockey wizard.'",
+    sportsRelevance: "A recent and frequently tested update in current sports-affairs sections of PE exams."
+  },
+  relatedIds: ["NSP-001", "AWD-003"],
+  source: "National Sports Almanac - India",
+  tags: ["national-sports", "khel-ratna"]
+}, {
+  id: "NSP-005",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "National Sports",
+  topic: "Arjuna Award",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "The Arjuna Award is conferred for:",
+  options: ["Lifetime achievement in coaching only", "Outstanding performance in sports over a period of four years", "Contribution to sports journalism", "Sports infrastructure development"],
+  correctIndex: 1,
+  explanation: "The Arjuna Award recognizes consistently outstanding performance in a recognized sport, typically evaluated over the preceding four years, alongside qualities of leadership, discipline and sportsmanship.",
+  concept: {
+    title: "Arjuna Award",
+    definition: "One of India's earliest and most prestigious sporting honours, established in 1961.",
+    points: ["Recognizes sustained outstanding performance (typically over 4 years)", "Established in 1961, among India's oldest sports awards", "Distinct from the Dronacharya Award (for coaches) and Khel Ratna (highest honour)"],
+    memoryTrick: "'Arjuna = the skilled archer, honoring skilled performance.'",
+    sportsRelevance: "One of the most commonly referenced awards in current-affairs sections of PE competitive exams."
+  },
+  relatedIds: ["NSP-004", "AWD-001"],
+  source: "National Sports Almanac - India",
+  tags: ["national-sports", "arjuna-award"]
+}, {
+  id: "ISP-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "International Sports",
+  topic: "FIFA World Cup",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "The FIFA Football World Cup is held once every:",
+  options: ["2 years", "4 years", "5 years", "3 years"],
+  correctIndex: 1,
+  explanation: "The FIFA World Cup, football's premier international tournament, is held every four years, alternating with other major continental football tournaments.",
+  concept: {
+    title: "FIFA World Cup",
+    definition: "The most-watched sporting event in the world, held quadrennially since 1930 (except during World War II).",
+    points: ["Held every 4 years since 1930 (paused 1942, 1946)", "Expanding format — the 2026 edition will feature 48 teams for the first time", "Brazil has won the tournament a record 5 times"],
+    memoryTrick: "'FIFA WC = every 4 years, football's biggest stage.'",
+    sportsRelevance: "A globally significant reference point frequently tested in general sports-awareness sections."
+  },
+  relatedIds: ["ISP-003"],
+  source: "International Sports Almanac",
+  tags: ["international-sports", "fifa"]
+}, {
+  id: "ISP-002",
+  exam: ["UGC NET", "SET"],
+  subject: "International Sports",
+  topic: "IOC Founding",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "The International Olympic Committee (IOC) was founded in 1894, largely due to the efforts of:",
+  options: ["Pierre de Coubertin", "Juan Antonio Samaranch", "Avery Brundage", "Thomas Bach"],
+  correctIndex: 0,
+  explanation: "Pierre de Coubertin, a French educator, founded the IOC in 1894 and is widely credited as the father of the modern Olympic Games, which began in 1896 in Athens.",
+  concept: {
+    title: "Founding of the IOC",
+    definition: "A foundational moment in modern sports history, establishing the framework for the modern Olympic movement.",
+    points: ["Founded in 1894 by Pierre de Coubertin", "Led directly to the first modern Olympics in Athens, 1896", "IOC remains the supreme authority governing the Olympic Movement"],
+    memoryTrick: "'Coubertin founded the IOC — the father of the modern Olympics.'",
+    sportsRelevance: "Foundational history frequently tested alongside Olympic Movement questions."
+  },
+  relatedIds: ["OLY-001"],
+  source: "International Sports Almanac",
+  tags: ["international-sports", "ioc"]
+}, {
+  id: "ISP-003",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "International Sports",
+  topic: "Grand Slam Tennis",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2021,
+  question: "The four Grand Slam tournaments in tennis are the Australian Open, French Open, Wimbledon and:",
+  options: ["US Open", "Indian Wells", "Miami Open", "ATP Finals"],
+  correctIndex: 0,
+  explanation: "Tennis's four Grand Slam tournaments are the Australian Open, French Open (Roland Garros), Wimbledon and the US Open — together forming the sport's most prestigious annual events.",
+  concept: {
+    title: "Grand Slam Tournaments in Tennis",
+    definition: "The four most prestigious annual tennis tournaments, each carrying the most ranking points and prize money.",
+    points: ["Australian Open: hard court, played in January", "French Open: clay court, played at Roland Garros", "Wimbledon: grass court; US Open: hard court, season finale"],
+    memoryTrick: "'4 Slams: Australian, French, Wimbledon, US.'",
+    sportsRelevance: "Winning all four in the same calendar year is called a 'Calendar Grand Slam' — an extremely rare feat."
+  },
+  relatedIds: ["ISP-005"],
+  source: "International Sports Almanac",
+  tags: ["international-sports", "tennis"]
+}, {
+  id: "ISP-004",
+  exam: ["UGC NET", "SET"],
+  subject: "International Sports",
+  topic: "ICC",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "The International Cricket Council (ICC) is the global governing body for:",
+  options: ["Football", "Cricket", "Hockey", "Badminton"],
+  correctIndex: 1,
+  explanation: "The ICC is the international governing body responsible for the regulation and administration of cricket globally, including organizing major tournaments like the Cricket World Cup.",
+  concept: {
+    title: "International Cricket Council (ICC)",
+    definition: "Cricket's global governing authority, overseeing rules, rankings and major international tournaments.",
+    points: ["Headquartered in Dubai, UAE", "Organizes the ODI and T20 Cricket World Cups", "Sets and updates the official Laws/regulations governing international cricket"],
+    memoryTrick: "'ICC = cricket's global governing body.'",
+    sportsRelevance: "Regulates major events like the ICC Cricket World Cup, a globally followed tournament (especially in South Asia)."
+  },
+  relatedIds: ["MSE-003"],
+  source: "International Sports Almanac",
+  tags: ["international-sports", "icc"]
+}, {
+  id: "ISP-005",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "International Sports",
+  topic: "Wimbledon Surface",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "Wimbledon, the oldest Grand Slam tennis tournament, is traditionally played on which surface?",
+  options: ["Clay", "Hard court", "Grass", "Synthetic carpet"],
+  correctIndex: 2,
+  explanation: "Wimbledon, first held in 1877, is uniquely played on natural grass courts among the four Grand Slams, giving matches their characteristically fast, low-bouncing playing conditions.",
+  concept: {
+    title: "Wimbledon and Grass Courts",
+    definition: "The oldest and most traditional of the Grand Slam tournaments, known for its grass-court format.",
+    points: ["Wimbledon: grass (the only Grand Slam on this surface)", "French Open: clay (slower, higher bounce)", "Australian & US Open: hard court"],
+    memoryTrick: "'Wimbledon = the Grass Grand Slam.'",
+    sportsRelevance: "The unique grass surface significantly favors serve-and-volley and flat, fast playing styles."
+  },
+  relatedIds: ["ISP-003"],
+  source: "International Sports Almanac",
+  tags: ["international-sports", "wimbledon"]
+}, {
+  id: "AWD-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Awards",
+  topic: "Dronacharya Award",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "The Dronacharya Award is conferred to recognize excellence in:",
+  options: ["Sports coaching", "Sports journalism", "Sports administration", "Athletic performance directly"],
+  correctIndex: 0,
+  explanation: "The Dronacharya Award, named after the legendary guru Dronacharya from the Mahabharata, honors excellence and outstanding contribution by coaches in developing sportspersons.",
+  concept: {
+    title: "Dronacharya Award",
+    definition: "India's premier award recognizing the vital, often under-celebrated, role of coaches.",
+    points: ["Named after the guru Dronacharya from Indian mythology", "Recognizes outstanding coaching contribution over a sustained period", "Presented alongside the Arjuna Award and Khel Ratna"],
+    memoryTrick: "'Dronacharya = the great teacher/coach, honored for coaching excellence.'",
+    sportsRelevance: "Recognizes the coaches behind many of India's Olympic and international medal-winning athletes."
+  },
+  relatedIds: ["SAD-005", "AWD-003"],
+  source: "National Sports Almanac - India",
+  tags: ["sports-awards", "dronacharya"]
+}, {
+  id: "AWD-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Sports Awards",
+  topic: "Dhyan Chand Award",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "The Dhyan Chand Award (now Major Dhyan Chand Lifetime Achievement Award) recognizes:",
+  options: ["A single outstanding season", "Lifetime contribution to sports development, even after retirement from active sport", "Only coaching achievements", "Only administrative achievements"],
+  correctIndex: 1,
+  explanation: "The Dhyan Chand Award (now the Major Dhyan Chand Lifetime Achievement Award) honors a sportsperson's lifetime contribution to sport, including continued service to the sport after retiring from active competition.",
+  concept: {
+    title: "Dhyan Chand Lifetime Achievement Award",
+    definition: "Recognizes long-term dedication and contribution to Indian sport beyond active competitive years.",
+    points: ["Focuses on lifetime contribution, not a single achievement", "Often given to retired athletes who continue serving their sport", "Distinct from the performance-focused Arjuna Award and Khel Ratna"],
+    memoryTrick: "'Dhyan Chand Award = a LIFETIME of giving back to sport.'",
+    sportsRelevance: "Frequently awarded to veteran athletes who mentor or administer within their sport post-retirement."
+  },
+  relatedIds: ["AWD-001", "NSP-001"],
+  source: "National Sports Almanac - India",
+  tags: ["sports-awards", "dhyan-chand"]
+}, {
+  id: "AWD-003",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Awards",
+  topic: "Khel Ratna",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2021,
+  question: "The highest sporting honour in India, awarded for the most outstanding performance in the field of sports, is the:",
+  options: ["Arjuna Award", "Major Dhyan Chand Khel Ratna Award", "Dronacharya Award", "Padma Vibhushan"],
+  correctIndex: 1,
+  explanation: "The Major Dhyan Chand Khel Ratna Award (formerly Rajiv Gandhi Khel Ratna) is India's highest sporting honour, recognizing the most outstanding performance by a sportsperson.",
+  concept: {
+    title: "Khel Ratna — India's Highest Sporting Honour",
+    definition: "The apex recognition in India's sports-awards hierarchy.",
+    points: ["India's highest honour specifically for sporting performance", "Renamed in 2021 to honor Major Dhyan Chand", "Sits above the Arjuna Award in prestige/hierarchy"],
+    memoryTrick: "'Khel Ratna = the 'jewel' of Indian sporting honours.'",
+    sportsRelevance: "Reserved for athletes with truly exceptional, sustained international performance."
+  },
+  relatedIds: ["AWD-001", "NSP-004"],
+  source: "National Sports Almanac - India",
+  tags: ["sports-awards", "khel-ratna"]
+}, {
+  id: "AWD-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Sports Awards",
+  topic: "Awarding Authority",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "National sports awards in India, including the Khel Ratna and Arjuna Awards, are presented annually by the:",
+  options: ["Chief Justice of India", "President of India", "Prime Minister only, in private", "State Governors"],
+  correctIndex: 1,
+  explanation: "National sports awards, selected and administered by the Ministry of Youth Affairs and Sports, are traditionally presented in a formal ceremony by the President of India.",
+  concept: {
+    title: "Presentation of National Sports Awards",
+    definition: "A formal, high-profile national ceremony recognizing sporting excellence.",
+    points: ["Presented by the President of India in an annual ceremony", "Selection managed by the Ministry of Youth Affairs and Sports", "Typically held around National Sports Day (August 29)"],
+    memoryTrick: "'President presents; Ministry selects.'",
+    sportsRelevance: "A widely covered annual event in Indian sports media, often featuring the year's top achievers."
+  },
+  relatedIds: ["SAD-005", "NSP-001"],
+  source: "National Sports Almanac - India",
+  tags: ["sports-awards", "presentation"]
+}, {
+  id: "AWD-005",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Awards",
+  topic: "Eligibility Period",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2023,
+  question: "The Arjuna Award recognizes consistently outstanding performance in sports typically over a period of:",
+  options: ["One year only", "The last four years", "Ten years", "Lifetime only"],
+  correctIndex: 1,
+  explanation: "The Arjuna Award criteria generally require consistently outstanding performance over the four years preceding the year of the award, reflecting sustained excellence rather than a single event.",
+  concept: {
+    title: "Arjuna Award Eligibility",
+    definition: "Ensures the award reflects a sustained level of competitive excellence, not a one-off result.",
+    points: ["Evaluation period typically spans the preceding 4 years", "Also considers factors like leadership qualities and discipline", "Distinguishes the award from a single-tournament recognition"],
+    memoryTrick: "'Arjuna = 4 years of consistent excellence, not one lucky year.'",
+    sportsRelevance: "This eligibility structure is a commonly tested detail distinguishing India's various sports awards."
+  },
+  relatedIds: ["AWD-001", "NSP-005"],
+  source: "National Sports Almanac - India",
+  tags: ["sports-awards", "eligibility"]
+}, {
+  id: "ORG-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Organizations",
+  topic: "BCCI",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "The Board of Control for Cricket in India (BCCI) is the governing body for cricket and is headquartered in:",
+  options: ["New Delhi", "Mumbai", "Kolkata", "Chennai"],
+  correctIndex: 1,
+  explanation: "The BCCI, the national governing body for cricket in India and one of the wealthiest sports bodies in the world, is headquartered in Mumbai.",
+  concept: {
+    title: "Board of Control for Cricket in India (BCCI)",
+    definition: "India's cricket governing body, an affiliate member of the ICC.",
+    points: ["Headquartered in Mumbai", "Governs domestic and international cricket in India, including the IPL", "One of the most financially influential sports bodies globally"],
+    memoryTrick: "'BCCI = based in Mumbai, cricket's Indian powerhouse.'",
+    sportsRelevance: "Organizes the IPL, India's most-watched domestic sports league."
+  },
+  relatedIds: ["ORG-002", "MSE-003"],
+  source: "Sports Organizations Almanac",
+  tags: ["sports-organizations", "bcci"]
+}, {
+  id: "ORG-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Sports Organizations",
+  topic: "FIFA",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "FIFA (Federation Internationale de Football Association), football's global governing body, is headquartered in:",
+  options: ["Paris, France", "Zurich, Switzerland", "London, England", "New York, USA"],
+  correctIndex: 1,
+  explanation: "FIFA, football's international governing body, is headquartered in Zurich, Switzerland, and oversees the World Cup and other major international football competitions.",
+  concept: {
+    title: "FIFA",
+    definition: "Football's global governing authority, founded in 1904.",
+    points: ["Headquartered in Zurich, Switzerland", "Founded in 1904", "Organizes the FIFA World Cup, the world's most-watched sporting event"],
+    memoryTrick: "'FIFA = based in Zurich, football's global authority.'",
+    sportsRelevance: "Sets the Laws of the Game in coordination with IFAB (International Football Association Board)."
+  },
+  relatedIds: ["ISP-001"],
+  source: "Sports Organizations Almanac",
+  tags: ["sports-organizations", "fifa"]
+}, {
+  id: "ORG-003",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Organizations",
+  topic: "IOC",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2021,
+  question: "The International Olympic Committee (IOC) is headquartered in:",
+  options: ["Geneva, Switzerland", "Lausanne, Switzerland", "Vienna, Austria", "Rome, Italy"],
+  correctIndex: 1,
+  explanation: "The IOC is headquartered in Lausanne, Switzerland, often referred to as the 'Olympic Capital'.",
+  concept: {
+    title: "International Olympic Committee (IOC) Headquarters",
+    definition: "Lausanne's designation as the Olympic Capital reflects its central role in the Olympic Movement.",
+    points: ["Headquartered in Lausanne, Switzerland", "Lausanne is officially known as the 'Olympic Capital'", "Also home to the Olympic Museum"],
+    memoryTrick: "'Lausanne = the Olympic Capital, home of the IOC.'",
+    sportsRelevance: "A commonly tested factual detail in the Olympic Movement/international sports sections of PE exams."
+  },
+  relatedIds: ["ISP-002"],
+  source: "Sports Organizations Almanac",
+  tags: ["sports-organizations", "ioc"]
+}, {
+  id: "ORG-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Sports Organizations",
+  topic: "SAI Headquarters",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "The Sports Authority of India (SAI) is headquartered in:",
+  options: ["Mumbai", "New Delhi", "Gwalior", "Bengaluru"],
+  correctIndex: 1,
+  explanation: "The Sports Authority of India (SAI) is headquartered in New Delhi, though it operates regional centers and training academies across the country, including in Gwalior, Bengaluru, and Patiala.",
+  concept: {
+    title: "SAI Headquarters and Regional Centers",
+    definition: "SAI's national headquarters coordinates a wide network of regional training centers.",
+    points: ["Headquartered in New Delhi", "Operates numerous regional Sports Training Centers (STCs) nationwide", "LNIPE (Gwalior) is a distinct, affiliated academic institution, not SAI's HQ"],
+    memoryTrick: "'SAI HQ = New Delhi; training centers = spread nationwide.'",
+    sportsRelevance: "Coordinates centralized policy while running de-centralized, sport-specific training centers."
+  },
+  relatedIds: ["SAD-001", "HIS-004"],
+  source: "Sports Organizations Almanac",
+  tags: ["sports-organizations", "sai"]
+}, {
+  id: "ORG-005",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Organizations",
+  topic: "BWF",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "The Badminton World Federation (BWF) serves as the global governing body for:",
+  options: ["Table tennis", "Badminton", "Squash", "Tennis"],
+  correctIndex: 1,
+  explanation: "The BWF is the international governing body for badminton, responsible for organizing major tournaments and setting the sport's rules and world rankings.",
+  concept: {
+    title: "Badminton World Federation (BWF)",
+    definition: "Badminton's global governing authority, overseeing tournaments like the World Championships and Thomas/Uber Cup.",
+    points: ["Governs international badminton competitions and rankings", "Organizes the BWF World Championships and Olympic badminton events", "Headquartered in Kuala Lumpur, Malaysia"],
+    memoryTrick: "'BWF = Badminton World Federation.'",
+    sportsRelevance: "India has produced several BWF world-ranked players and medalists in recent years (e.g., at the World Championships and Olympics)."
+  },
+  relatedIds: ["RUL-003"],
+  source: "Sports Organizations Almanac",
+  tags: ["sports-organizations", "bwf"]
+}, {
+  id: "MSE-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Major Sports Events",
+  topic: "Olympic Frequency",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "The Summer Olympic Games are held once every:",
+  options: ["2 years", "4 years", "5 years", "3 years"],
+  correctIndex: 1,
+  explanation: "The Summer Olympic Games follow a four-year cycle (an 'Olympiad'), a tradition maintained since the modern Games began in 1896 (with exceptions during the World Wars).",
+  concept: {
+    title: "Olympic Games Frequency",
+    definition: "The four-year Olympic cycle underpins scheduling for many other major multi-sport events worldwide.",
+    points: ["Held every 4 years, called an 'Olympiad'", "Summer and Winter Games are staggered two years apart", "Cancelled only during World Wars I and II"],
+    memoryTrick: "'Olympics = every 4 years, an Olympiad.'",
+    sportsRelevance: "This four-year cycle shapes athletes' entire periodized training and competition planning."
+  },
+  relatedIds: ["OLY-001"],
+  source: "Major Sports Events Almanac",
+  tags: ["major-events", "olympics"]
+}, {
+  id: "MSE-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Major Sports Events",
+  topic: "Youth Olympic Games",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "The Youth Olympic Games, first held in 2010 in Singapore, are designed for athletes in which age group?",
+  options: ["Under-12", "Roughly 15-18 years old", "Over 35 (masters)", "Only professional adult athletes"],
+  correctIndex: 1,
+  explanation: "The Youth Olympic Games target elite young athletes typically aged 15 to 18, providing an Olympic-level competitive experience alongside cultural and educational programming.",
+  concept: {
+    title: "Youth Olympic Games (YOG)",
+    definition: "Introduced to engage young athletes and promote Olympic values earlier in their sporting careers.",
+    points: ["First edition: Singapore, 2010", "Targets athletes roughly aged 15-18", "Combines competition with cultural and educational programmes"],
+    memoryTrick: "'YOG = Youth (15-18), first held in Singapore, 2010.'",
+    sportsRelevance: "Serves as a stepping stone for young athletes on the path to senior Olympic competition."
+  },
+  relatedIds: ["MSE-001"],
+  source: "Major Sports Events Almanac",
+  tags: ["major-events", "youth-olympics"]
+}, {
+  id: "MSE-003",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Major Sports Events",
+  topic: "IPL",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2021,
+  question: "The Indian Premier League (IPL) is a professional league for which sport, played in the Twenty20 (T20) format?",
+  options: ["Football", "Cricket", "Kabaddi", "Hockey"],
+  correctIndex: 1,
+  explanation: "The IPL is a franchise-based Twenty20 cricket league in India, launched in 2008, and is among the most-watched and financially valuable sports leagues in the world.",
+  concept: {
+    title: "Indian Premier League (IPL)",
+    definition: "A globally influential T20 cricket league launched in 2008 under the BCCI.",
+    points: ["Launched in 2008 by the BCCI", "Played in the T20 (20-overs-per-side) cricket format", "One of the highest-valued sports leagues globally by brand value"],
+    memoryTrick: "'IPL = cricket's T20 powerhouse league, since 2008.'",
+    sportsRelevance: "Its commercial success has influenced the launch of similar T20 leagues around the world."
+  },
+  relatedIds: ["ORG-001"],
+  source: "Major Sports Events Almanac",
+  tags: ["major-events", "ipl"]
+}, {
+  id: "MSE-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Major Sports Events",
+  topic: "Pro Kabaddi League",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "The Pro Kabaddi League (PKL), launched in 2014, significantly boosted the popularity of which traditional Indian sport?",
+  options: ["Kho-Kho", "Kabaddi", "Wrestling", "Archery"],
+  correctIndex: 1,
+  explanation: "The Pro Kabaddi League, launched in 2014, transformed kabaddi's public profile in India, adopting a franchise-based, television-friendly format similar to the IPL.",
+  concept: {
+    title: "Pro Kabaddi League (PKL)",
+    definition: "A franchise-based professional league that revitalized a traditional Indian sport for modern audiences.",
+    points: ["Launched in 2014, adopting an IPL-style franchise format", "Significantly increased kabaddi's television viewership and commercial appeal", "Helped raise the professional profile of kabaddi players nationally"],
+    memoryTrick: "'PKL = Kabaddi's IPL moment, since 2014.'",
+    sportsRelevance: "A notable case study in modernizing and commercializing a traditional indigenous sport."
+  },
+  relatedIds: ["MSE-003"],
+  source: "Major Sports Events Almanac",
+  tags: ["major-events", "pkl"]
+}, {
+  id: "MSE-005",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Major Sports Events",
+  topic: "World Athletics Championships",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2023,
+  question: "The World Athletics Championships are typically held once every:",
+  options: ["1 year", "2 years", "4 years (same as Olympics)", "5 years"],
+  correctIndex: 1,
+  explanation: "Since 2019, the World Athletics Championships have been held every two years, a shift from the previous pattern, to help balance the global athletics calendar around the Olympic cycle.",
+  concept: {
+    title: "World Athletics Championships Schedule",
+    definition: "The premier standalone athletics event outside the Olympic Games.",
+    points: ["Held every 2 years since the 2019 schedule change", "Distinct from the Olympics, which also feature athletics every 4 years", "Neeraj Chopra became India's first World Championship gold medalist in athletics in 2025"],
+    memoryTrick: "'World Athletics Champs = every 2 years since 2019.'",
+    sportsRelevance: "Provides a major non-Olympic-year competitive platform for track and field athletes."
+  },
+  relatedIds: ["MSE-001"],
+  source: "Major Sports Events Almanac",
+  tags: ["major-events", "athletics"]
+}, {
+  id: "CSA-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Current Sports Affairs",
+  topic: "Neeraj Chopra",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "Neeraj Chopra made history by winning India's first-ever Olympic gold medal in track and field athletics at the Tokyo 2020 Olympics, in which event?",
+  options: ["100m Sprint", "Javelin Throw", "Long Jump", "Shot Put"],
+  correctIndex: 1,
+  explanation: "Neeraj Chopra won the gold medal in the men's javelin throw at the Tokyo 2020 Olympics (held in 2021), becoming the first Indian to win an Olympic gold medal in athletics.",
+  concept: {
+    title: "Neeraj Chopra's Historic Gold",
+    definition: "A landmark moment in Indian athletics history, at the Tokyo 2020 Olympic Games.",
+    points: ["First Indian Olympic gold medalist in track and field/athletics", "Achieved in the men's javelin throw event", "Followed by a silver medal at the Paris 2024 Olympics"],
+    memoryTrick: "'Neeraj Chopra = India's first Olympic athletics gold, javelin throw.'",
+    sportsRelevance: "A defining moment that significantly boosted athletics' popularity and funding in India."
+  },
+  relatedIds: ["CSA-004", "OLY-001"],
+  source: "Current Sports Affairs Digest",
+  tags: ["current-affairs", "neeraj-chopra"]
+}, {
+  id: "CSA-002",
+  exam: ["UGC NET", "SET"],
+  subject: "Current Sports Affairs",
+  topic: "2023 Cricket World Cup",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "The 2023 ICC Cricket World Cup, hosted by India, was won by which team, defeating India in the final?",
+  options: ["England", "Australia", "New Zealand", "South Africa"],
+  correctIndex: 1,
+  explanation: "Australia won the 2023 ICC Cricket World Cup, defeating host nation India in the final held at the Narendra Modi Stadium, Ahmedabad.",
+  concept: {
+    title: "2023 ICC Cricket World Cup",
+    definition: "One of the most-watched editions of the tournament, hosted entirely in India.",
+    points: ["Hosted by India across the 2023 tournament", "Final held at the Narendra Modi Stadium, Ahmedabad", "Australia won their record-extending sixth Cricket World Cup title"],
+    memoryTrick: "'2023 World Cup = hosted by India, won by Australia.'",
+    sportsRelevance: "One of the largest cricket events ever staged, reflecting India's dominant role in global cricket."
+  },
+  relatedIds: ["ISP-004", "MSE-003"],
+  source: "Current Sports Affairs Digest",
+  tags: ["current-affairs", "cricket-world-cup"]
+}, {
+  id: "CSA-003",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Current Sports Affairs",
+  topic: "Chess World Championship",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "In December 2024, D Gukesh became the youngest World Chess Champion in history at the age of 18, defeating which reigning champion?",
+  options: ["Magnus Carlsen", "Ding Liren", "Vishwanathan Anand", "Ian Nepomniachtchi"],
+  correctIndex: 1,
+  explanation: "D Gukesh defeated China's Ding Liren in the 2024 World Chess Championship to become, at 18 years old, the youngest World Chess Champion in history.",
+  concept: {
+    title: "D Gukesh — Youngest World Chess Champion",
+    definition: "A historic achievement for Indian chess, continuing the legacy built by Viswanathan Anand.",
+    points: ["Defeated Ding Liren (China) in the December 2024 title match", "Became the youngest-ever World Chess Champion at age 18", "Part of a broader golden generation of young Indian chess talent"],
+    memoryTrick: "'Gukesh, 18, beats Ding Liren — youngest World Chess Champion ever.'",
+    sportsRelevance: "A landmark achievement reflecting India's rapidly growing strength in chess, following Viswanathan Anand's legacy."
+  },
+  relatedIds: [],
+  source: "Current Sports Affairs Digest",
+  tags: ["current-affairs", "chess", "gukesh"]
+}, {
+  id: "CSA-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Current Sports Affairs",
+  topic: "Paris 2024 Olympics",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "At the Paris 2024 Olympics, India's only silver medal came in the men's javelin throw, won by:",
+  options: ["Arshad Nadeem", "Neeraj Chopra", "Kishore Jena", "Anderson Peters"],
+  correctIndex: 1,
+  explanation: "Neeraj Chopra won the silver medal in the men's javelin throw at the Paris 2024 Olympics, successfully defending his position among the world's best while narrowly missing back-to-back gold.",
+  concept: {
+    title: "India at the Paris 2024 Olympics",
+    definition: "India's javelin throw legacy continued with another podium finish at the Paris Games.",
+    points: ["Neeraj Chopra won silver in the men's javelin throw", "Followed his historic gold at the Tokyo 2020 Olympics", "Pakistan's Arshad Nadeem won the gold medal in the same event with a new Olympic record"],
+    memoryTrick: "'Paris 2024 = Neeraj Chopra silver, following his Tokyo gold.'",
+    sportsRelevance: "Continues to highlight javelin throw as India's strongest recent Olympic athletics event."
+  },
+  relatedIds: ["CSA-001"],
+  source: "Current Sports Affairs Digest",
+  tags: ["current-affairs", "paris-2024"]
+}, {
+  id: "CSA-005",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Current Sports Affairs",
+  topic: "Women's Premier League",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "The Women's Premier League (WPL), a franchise-based T20 cricket league for women in India, was first held in:",
+  options: ["2021", "2022", "2023", "2024"],
+  correctIndex: 2,
+  explanation: "The Women's Premier League (WPL), India's franchise-based T20 league for women's cricket, held its inaugural season in 2023 under the BCCI.",
+  concept: {
+    title: "Women's Premier League (WPL)",
+    definition: "A landmark development for women's cricket in India, mirroring the IPL's franchise model.",
+    points: ["Inaugural season held in 2023", "Organized by the BCCI, following the IPL's franchise structure", "Significantly increased visibility, professionalism and pay for women cricketers in India"],
+    memoryTrick: "'WPL = women's cricket's IPL moment, launched in 2023.'",
+    sportsRelevance: "A major step toward gender parity in professional cricket infrastructure and opportunity in India."
+  },
+  relatedIds: ["MSE-003", "ORG-001"],
+  source: "Current Sports Affairs Digest",
+  tags: ["current-affairs", "wpl"]
+}, {
+  id: "FND-003",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Foundations of Physical Education",
+  topic: "Aims of PE",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "The primary aim of modern Physical Education, beyond just physical fitness, includes development of which additional domains?",
+  options: ["Only academic grades", "Social, emotional, and cognitive development alongside physical fitness", "Only competitive ranking", "Only military discipline"],
+  correctIndex: 1,
+  explanation: "Modern Physical Education aims for holistic development — physical fitness alongside social skills (teamwork, cooperation), emotional growth (confidence, resilience) and cognitive understanding (rules, strategy, health concepts).",
+  concept: {
+    title: "Holistic Aims of Physical Education",
+    definition: "PE's scope extends well beyond physical fitness into social, emotional and cognitive domains.",
+    points: ["Physical: fitness, motor skill development", "Social/Emotional: teamwork, confidence, emotional regulation", "Cognitive: rules, strategy, health knowledge"],
+    memoryTrick: "'PE aims: Physical + Social + Emotional + Cognitive, all at once.'",
+    sportsRelevance: "Justifies PE's place in a well-rounded curriculum, not just as 'exercise time'."
+  },
+  relatedIds: ["FND-001", "CUR-005"],
+  source: "Foundations of Physical Education - Bucher",
+  tags: ["foundations", "aims"]
+}, {
+  id: "FND-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Foundations of Physical Education",
+  topic: "PE vs Physical Training",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "How does 'Physical Education' fundamentally differ from 'Physical Training'?",
+  options: ["They are identical terms with no difference", "Physical Education is a broad, educational process for holistic development; Physical Training is a narrower process focused on developing specific physical capacities", "Physical Training is broader than Physical Education", "Physical Education excludes all forms of exercise"],
+  correctIndex: 1,
+  explanation: "Physical Education is a broad educational process aiming at holistic development through physical activity, while Physical Training is a narrower, often more regimented process focused specifically on developing physical capacities like strength or endurance.",
+  concept: {
+    title: "Physical Education vs Physical Training",
+    definition: "A key conceptual distinction often tested in foundational PE exam sections.",
+    points: ["Physical Education: broad, educational, holistic goals", "Physical Training: narrower, focused on specific physical capacity development (e.g., military/fitness training)", "PE includes physical training as one of its many tools/methods"],
+    memoryTrick: "'Education is broad; Training is narrow and specific.'",
+    sportsRelevance: "Explains why school 'PE' curricula include far more than just fitness drills (games, health education, values)."
+  },
+  relatedIds: ["FND-001"],
+  source: "Foundations of Physical Education - Bucher",
+  tags: ["foundations", "definitions"]
+}, {
+  id: "FND-005",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Foundations of Physical Education",
+  topic: "Physical Culture",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2021,
+  question: "'Physical Culture' refers to:",
+  options: ["A society's or nation's general attitudes, values and practices regarding physical activity and body culture", "A specific gymnastics routine", "A single sport's rulebook", "An individual's personal diet plan"],
+  correctIndex: 0,
+  explanation: "Physical Culture describes the broader societal attitudes, traditions and practices surrounding the body and physical activity within a given culture or era — a foundational concept preceding formal 'Physical Education'.",
+  concept: {
+    title: "Physical Culture",
+    definition: "A broad sociological/historical concept underpinning how societies value and engage with physical activity.",
+    points: ["Reflects a society's collective values and practices about the body/exercise", "Varies historically and culturally (e.g., ancient Greek gymnasiums vs. modern gyms)", "A precursor concept to the more structured field of Physical Education"],
+    memoryTrick: "'Physical Culture = a society's whole relationship with the body.'",
+    sportsRelevance: "Explains why physical activity traditions (yoga, wrestling akharas) differ so much across cultures."
+  },
+  relatedIds: ["FND-001", "HIS-003"],
+  source: "Foundations of Physical Education - Bucher",
+  tags: ["foundations", "physical-culture"]
+}, {
+  id: "FND-006",
+  exam: ["UGC NET", "SET"],
+  subject: "Foundations of Physical Education",
+  topic: "Bucher's Objectives",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "Charles Bucher's classification of physical education objectives includes organic development, neuromuscular development, interpretive/cognitive development, and:",
+  options: ["Personal-social development", "Only academic development", "Only nutritional development", "Only competitive development"],
+  correctIndex: 0,
+  explanation: "Charles Bucher's widely cited four-fold classification of PE objectives comprises organic (physiological systems), neuromuscular (motor skills), interpretive/cognitive (knowledge/understanding), and personal-social (character, social skills) development.",
+  concept: {
+    title: "Bucher's Four Objectives of Physical Education",
+    definition: "A foundational, frequently examined framework for understanding PE's comprehensive goals.",
+    points: ["Organic development: strengthening bodily systems (heart, lungs, muscles)", "Neuromuscular development: coordination, skill and motor efficiency", "Interpretive/Cognitive and Personal-Social development: knowledge and character/social growth"],
+    memoryTrick: "'Bucher's 4: Organic, Neuromuscular, Interpretive, Personal-Social.'",
+    sportsRelevance: "A classic, frequently examined framework in UGC NET Physical Education papers."
+  },
+  relatedIds: ["FND-003"],
+  source: "Foundations of Physical Education - Bucher",
+  tags: ["foundations", "buchers-objectives"]
+}, {
+  id: "FND-007",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Foundations of Physical Education",
+  topic: "PE as a Profession",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "Recognizing Physical Education as a profession implies that:",
+  options: ["Anyone without training can teach PE effectively", "PE teachers require specialized professional training, certification and ongoing development, similar to other academic disciplines", "PE does not require any formal qualification", "PE teaching is a purely voluntary, unpaid activity"],
+  correctIndex: 1,
+  explanation: "Treating PE as a genuine profession means recognizing that effective PE teaching requires specialized training, formal qualification (e.g., B.P.Ed/M.P.Ed), ethical standards and continuous professional development, just like any other academic discipline.",
+  concept: {
+    title: "Physical Education as a Profession",
+    definition: "Professionalization elevates PE's status and ensures quality, trained instruction.",
+    points: ["Requires specialized degrees (B.P.Ed, M.P.Ed) and certification", "Involves a defined body of knowledge and ethical standards", "Ongoing professional development keeps PE teachers current with best practices"],
+    memoryTrick: "'A profession needs training, standards, and growth — PE is no exception.'",
+    sportsRelevance: "Underpins why exams like UGC NET, KVS PGT and DSSSB exist — to certify qualified, professional PE teachers."
+  },
+  relatedIds: ["FND-001"],
+  source: "Foundations of Physical Education - Bucher",
+  tags: ["foundations", "profession"]
+}, {
+  id: "HIS-001",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "History of Physical Education",
+  topic: "Ancient Olympics",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "The Ancient Olympic Games are traditionally dated to have begun in 776 BC in:",
+  options: ["Rome, Italy", "Olympia, Greece", "Sparta, Greece", "Athens, Greece"],
+  correctIndex: 1,
+  explanation: "The Ancient Olympic Games are traditionally dated to 776 BC, held at Olympia in ancient Greece in honor of the god Zeus, continuing for nearly 12 centuries before being abolished.",
+  concept: {
+    title: "Ancient Olympic Games",
+    definition: "The historical origin of the Olympic tradition, held every four years at Olympia.",
+    points: ["Traditional starting date: 776 BC", "Held at Olympia, Greece, in honor of Zeus", "Abolished in 393 AD by Roman Emperor Theodosius I"],
+    memoryTrick: "'Ancient Olympics = Olympia, Greece, 776 BC.'",
+    sportsRelevance: "Directly inspired Pierre de Coubertin's revival of the modern Olympic Games in 1896."
+  },
+  relatedIds: ["HIS-002", "OLY-001"],
+  source: "History of Physical Education",
+  tags: ["history", "ancient-olympics"]
+}, {
+  id: "HIS-002",
+  exam: ["UGC NET", "SET"],
+  subject: "History of Physical Education",
+  topic: "Modern Olympics Revival",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "The first modern Olympic Games were held in 1896 in:",
+  options: ["Paris, France", "Athens, Greece", "London, England", "St. Louis, USA"],
+  correctIndex: 1,
+  explanation: "The first modern Olympic Games were held in Athens, Greece in 1896, symbolically returning the Games to their ancient birthplace, under the initiative of Pierre de Coubertin.",
+  concept: {
+    title: "Revival of the Modern Olympics",
+    definition: "A pivotal moment in sports history, reviving an ancient tradition for the modern era.",
+    points: ["First modern edition: Athens, 1896", "Initiated by Pierre de Coubertin, founder of the IOC", "Featured 14 nations and roughly 241 athletes, all male"],
+    memoryTrick: "'Modern Olympics reborn in Athens, 1896 — full circle from the ancient games.'",
+    sportsRelevance: "Marks the formal beginning of the continuous modern Olympic tradition that continues today."
+  },
+  relatedIds: ["HIS-001", "ISP-002"],
+  source: "History of Physical Education",
+  tags: ["history", "modern-olympics"]
+}, {
+  id: "HIS-003",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "History of Physical Education",
+  topic: "Akhara System",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2021,
+  question: "The traditional Indian 'Akhara' system historically served as centers for training in:",
+  options: ["Chess and board games", "Wrestling (kushti) and physical culture", "Classical music only", "Only academic tutoring"],
+  correctIndex: 1,
+  explanation: "Akharas are traditional Indian gymnasiums historically dedicated to training in wrestling (kushti) and broader physical culture, combining physical training with discipline and community life.",
+  concept: {
+    title: "The Akhara Tradition",
+    definition: "A centuries-old indigenous Indian institution for physical training, especially wrestling.",
+    points: ["Centers primarily for wrestling (kushti) training", "Combined physical training with discipline, diet and community living", "Continue to operate in parts of India today, producing notable wrestlers"],
+    memoryTrick: "'Akhara = India's traditional wrestling gymnasium.'",
+    sportsRelevance: "Many of India's Olympic wrestling medalists trained in traditional akharas early in their careers."
+  },
+  relatedIds: ["FND-005"],
+  source: "History of Physical Education",
+  tags: ["history", "akhara"]
+}, {
+  id: "HIS-004",
+  exam: ["UGC NET", "SET"],
+  subject: "History of Physical Education",
+  topic: "LNIPE",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2024,
+  question: "The Lakshmibai National Institute of Physical Education (LNIPE), a premier institute for professional PE education in India, is located in:",
+  options: ["Gwalior, Madhya Pradesh", "Patiala, Punjab", "Pune, Maharashtra", "Bengaluru, Karnataka"],
+  correctIndex: 0,
+  explanation: "LNIPE, one of India's foremost institutions for professional physical education and sports science education, is located in Gwalior, Madhya Pradesh, and holds Deemed-to-be-University status.",
+  concept: {
+    title: "Lakshmibai National Institute of Physical Education (LNIPE)",
+    definition: "A premier national institution shaping generations of Indian PE professionals.",
+    points: ["Located in Gwalior, Madhya Pradesh", "Holds Deemed-to-be-University status", "Offers B.P.Ed, M.P.Ed and research programmes in physical education"],
+    memoryTrick: "'LNIPE = Gwalior's premier PE institute.'",
+    sportsRelevance: "Many UGC NET/B.P.Ed/M.P.Ed aspirants pursue their professional PE education at LNIPE."
+  },
+  relatedIds: ["FND-002", "ORG-004"],
+  source: "History of Physical Education",
+  tags: ["history", "lnipe"]
+}, {
+  id: "HIS-005",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "History of Physical Education",
+  topic: "Kalaripayattu",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "Kalaripayattu, considered one of the oldest surviving martial art forms in the world, originated in which Indian state?",
+  options: ["Punjab", "Kerala", "Rajasthan", "Assam"],
+  correctIndex: 1,
+  explanation: "Kalaripayattu, believed to be one of the oldest martial art traditions in the world, originated in the southern Indian state of Kerala and combines strikes, weaponry, and healing traditions.",
+  concept: {
+    title: "Kalaripayattu — An Ancient Indian Martial Art",
+    definition: "An indigenous Indian tradition reflecting the deep historical roots of physical culture in India.",
+    points: ["Originated in Kerala, South India", "Combines combat techniques, weaponry training and traditional healing practices", "Considered among the oldest martial art forms still practiced today"],
+    memoryTrick: "'Kalaripayattu = Kerala's ancient martial art.'",
+    sportsRelevance: "An example of India's rich, diverse indigenous physical-culture traditions beyond yoga and wrestling."
+  },
+  relatedIds: ["HIS-003"],
+  source: "History of Physical Education",
+  tags: ["history", "kalaripayattu"]
+}, {
+  id: "SOC-002",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sociology of Physical Education",
+  topic: "Social Mobility",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "Sport is often studied as a potential avenue for 'social mobility' because it can:",
+  options: ["Guarantee wealth to every participant", "Provide opportunities for individuals from disadvantaged backgrounds to gain recognition, education and economic opportunity through athletic talent", "Have no relationship with social class", "Only benefit already-wealthy individuals"],
+  correctIndex: 1,
+  explanation: "Sociologists study sport as a potential (though not guaranteed) pathway for social mobility, as athletic talent can open doors to education, recognition, sponsorship, and economic opportunity for individuals from disadvantaged backgrounds.",
+  concept: {
+    title: "Sport and Social Mobility",
+    definition: "A key sociological theme examining sport's role in shaping social and economic outcomes.",
+    points: ["Talent-based opportunity can transcend socio-economic background", "Not guaranteed — access to facilities/coaching remains an important barrier", "Government schemes like Khelo India aim to widen this pathway"],
+    memoryTrick: "'Sport can be a social ladder — though not everyone gets equal access to it.'",
+    sportsRelevance: "Many of India's top athletes from humble backgrounds are cited as case studies in this sociological theme."
+  },
+  relatedIds: ["SOC-001", "SAD-004"],
+  source: "Sociology of Sport - Coakley",
+  tags: ["sociology", "social-mobility"]
+}, {
+  id: "SOC-003",
+  exam: ["UGC NET", "SET"],
+  subject: "Sociology of Physical Education",
+  topic: "Socialization",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "The process by which individuals learn societal values such as teamwork, discipline and fair play through participation in sport is called:",
+  options: ["Sports commercialization", "Socialization through sport", "Deviance in sport", "Sport sponsorship"],
+  correctIndex: 1,
+  explanation: "Socialization through sport refers to how participation in sport transmits broader societal values — teamwork, discipline, fair play, respect for rules — to participants, especially children and youth.",
+  concept: {
+    title: "Socialization Through Sport",
+    definition: "A core sociological function of sport, extending well beyond physical benefits.",
+    points: ["Sport transmits values: teamwork, discipline, fair play, resilience", "Occurs through both formal (coaching) and informal (peer) interactions", "A key reason sport is emphasized in youth development programs"],
+    memoryTrick: "'Sport socializes — it teaches life values through play.'",
+    sportsRelevance: "Often cited as a justification for mandatory school sports/PE participation."
+  },
+  relatedIds: ["SOC-001"],
+  source: "Sociology of Sport - Coakley",
+  tags: ["sociology", "socialization"]
+}, {
+  id: "SOC-004",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Sociology of Physical Education",
+  topic: "Gender and Sport",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2021,
+  question: "Sociological studies on gender and sport in India have historically identified which factor as a major barrier to women's participation?",
+  options: ["Excess funding for women's sports", "Socio-cultural norms, safety concerns and limited access to facilities", "Too many opportunities for women", "Lack of interest from women entirely"],
+  correctIndex: 1,
+  explanation: "Sociological research has identified socio-cultural norms, safety concerns, and unequal access to facilities, coaching and funding as significant, historically documented barriers to women's greater participation in sport in India.",
+  concept: {
+    title: "Gender and Sport Participation",
+    definition: "A significant and evolving area of sociological study within physical education.",
+    points: ["Socio-cultural expectations have historically limited women's sport participation", "Facility access, safety and funding disparities remain documented challenges", "Recent initiatives (WPL, Khelo India Women's leagues) aim to address these gaps"],
+    memoryTrick: "'Barriers = Norms + Safety + Access, not lack of interest.'",
+    sportsRelevance: "Recent successes of Indian women athletes (wrestling, badminton, boxing) reflect gradual but real progress on this front."
+  },
+  relatedIds: ["SOC-001", "SAD-004"],
+  source: "Sociology of Sport - Coakley",
+  tags: ["sociology", "gender"]
+}, {
+  id: "SOC-005",
+  exam: ["UGC NET", "SET"],
+  subject: "Sociology of Physical Education",
+  topic: "Commercialization",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2024,
+  question: "The 'commercialization of sport' refers to the increasing influence of which factors on how sport is organized and presented?",
+  options: ["Purely amateur, non-commercial values", "Media broadcasting rights, sponsorship and profit-driven interests", "Only government control", "Only volunteer organization"],
+  correctIndex: 1,
+  explanation: "Commercialization of sport describes the growing influence of media rights, corporate sponsorship, and profit motives on how sports events are scheduled, presented, and monetized.",
+  concept: {
+    title: "Commercialization of Sport",
+    definition: "A defining trend in modern sport, reshaping schedules, rules and presentation around commercial interests.",
+    points: ["Driven by media broadcasting rights and sponsorship deals", "Can influence scheduling, rule changes (e.g., shorter game formats), and presentation", "The IPL and Pro Kabaddi League are prominent Indian examples"],
+    memoryTrick: "'Commercialization = sport shaped by media money and sponsorship.'",
+    sportsRelevance: "Explains the rise of shorter formats like T20 cricket, designed for television audiences and advertisers."
+  },
+  relatedIds: ["MSE-003", "MSE-004"],
+  source: "Sociology of Sport - Coakley",
+  tags: ["sociology", "commercialization"]
+}, {
+  id: "SOC-006",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sociology of Physical Education",
+  topic: "Sport and National Identity",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "International sporting events like the Olympics often strengthen a sense of:",
+  options: ["Individual isolation", "National identity and unity among citizens", "Regional conflict only", "Disinterest in sport"],
+  correctIndex: 1,
+  explanation: "Major international sporting events like the Olympics frequently foster a shared sense of national pride, identity and unity, as citizens rally behind their country's athletes on a global stage.",
+  concept: {
+    title: "Sport and National Identity",
+    definition: "A widely studied sociological function of international sport competition.",
+    points: ["Athletes become symbolic representatives of their nation", "Major victories can generate widespread national pride and unity", "Also used diplomatically — 'sports diplomacy' between nations"],
+    memoryTrick: "'Sport unites a nation behind its athletes on the world stage.'",
+    sportsRelevance: "India's collective celebration of Olympic/World Cup successes exemplifies this sociological phenomenon."
+  },
+  relatedIds: ["SOC-001"],
+  source: "Sociology of Sport - Coakley",
+  tags: ["sociology", "national-identity"]
+}, {
+  id: "NUT-002",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Nutrition",
+  topic: "Carbohydrate Loading",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "'Carbohydrate loading' (glycogen loading), practiced by endurance athletes before events like marathons, aims to:",
+  options: ["Reduce muscle glycogen stores", "Maximize muscle glycogen stores to delay fatigue during prolonged exercise", "Increase body fat percentage", "Dehydrate the athlete intentionally"],
+  correctIndex: 1,
+  explanation: "Carbohydrate loading involves increasing carbohydrate intake in the days before an endurance event to maximize muscle glycogen stores, delaying the onset of fatigue during prolonged exercise.",
+  concept: {
+    title: "Carbohydrate (Glycogen) Loading",
+    definition: "A well-established nutritional strategy for endurance athletes preparing for long-duration events.",
+    points: ["Typically practiced 1-3 days before a major endurance event", "Aims to maximize glycogen stores in muscles and liver", "Most beneficial for events lasting longer than 90 minutes"],
+    memoryTrick: "'Carb loading = filling the fuel tank before the long haul.'",
+    sportsRelevance: "Commonly used by marathon runners, triathletes and long-distance cyclists."
+  },
+  relatedIds: ["NTR-005", "EPH-003"],
+  source: "Sports Nutrition text",
+  tags: ["sports-nutrition", "carb-loading"]
+}, {
+  id: "NUT-003",
+  exam: ["UGC NET", "SET"],
+  subject: "Sports Nutrition",
+  topic: "Post-Exercise Recovery",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2022,
+  question: "Consuming a combination of carbohydrates and protein shortly after intense exercise primarily helps to:",
+  options: ["Replenish glycogen stores and support muscle protein repair/recovery", "Increase injury risk", "Slow down recovery", "Have no physiological effect"],
+  correctIndex: 0,
+  explanation: "A post-exercise combination of carbohydrates and protein helps replenish depleted muscle glycogen and provides amino acids needed for muscle protein repair and adaptation.",
+  concept: {
+    title: "Post-Exercise Nutrition",
+    definition: "Nutrient timing after training plays an important role in recovery and adaptation.",
+    points: ["Carbohydrates replenish glycogen stores", "Protein supplies amino acids for muscle repair/synthesis", "Often recommended within roughly 30-60 minutes post-exercise ('recovery window')"],
+    memoryTrick: "'Post-workout = Carbs to refuel, Protein to repair.'",
+    sportsRelevance: "Standard recovery-nutrition advice for athletes in intense training blocks or multi-event competition days."
+  },
+  relatedIds: ["NUT-002"],
+  source: "Sports Nutrition text",
+  tags: ["sports-nutrition", "recovery"]
+}, {
+  id: "NUT-004",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Nutrition",
+  topic: "Hydration",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2021,
+  question: "During prolonged exercise in hot conditions, athletes lose electrolytes such as sodium and potassium primarily through:",
+  options: ["Sweat", "Saliva only", "Breathing alone", "Urine only"],
+  correctIndex: 0,
+  explanation: "Sweat is the primary route through which athletes lose water and electrolytes (especially sodium and potassium) during prolonged exercise, particularly in hot and humid conditions.",
+  concept: {
+    title: "Hydration and Electrolyte Balance",
+    definition: "Proper fluid and electrolyte replacement is essential to prevent dehydration and cramping during exercise.",
+    points: ["Sweat carries both water and electrolytes (sodium, potassium)", "Excessive sweat loss without replacement can cause cramps, fatigue, heat illness", "Sports drinks are formulated to replace both fluid and electrolytes"],
+    memoryTrick: "'Sweat = the main route of fluid and electrolyte loss.'",
+    sportsRelevance: "Explains why athletes in hot-weather endurance events use electrolyte-replacement drinks, not just plain water."
+  },
+  relatedIds: ["FA-005"],
+  source: "Sports Nutrition text",
+  tags: ["sports-nutrition", "hydration"]
+}, {
+  id: "NUT-005",
+  exam: ["UGC NET", "SET"],
+  subject: "Sports Nutrition",
+  topic: "Protein Requirements",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "Compared to sedentary individuals, athletes engaged in regular intense training generally require:",
+  options: ["Less dietary protein", "Roughly the same protein as sedentary individuals", "A higher daily protein intake to support muscle repair and adaptation", "No protein at all"],
+  correctIndex: 2,
+  explanation: "Athletes undergoing regular intense training typically require a higher daily protein intake than sedentary individuals to support increased rates of muscle repair, recovery and adaptation.",
+  concept: {
+    title: "Protein Needs for Athletes",
+    definition: "Training status significantly affects an individual's optimal daily protein requirement.",
+    points: ["Sedentary adults: roughly 0.8 g/kg body weight per day (general guideline)", "Athletes (especially strength/power sports): notably higher requirements", "Excess protein beyond needs does not further boost muscle gain and is simply metabolized as energy"],
+    memoryTrick: "'More training = more repair needed = more protein required.'",
+    sportsRelevance: "Basis for the higher-protein diets typically recommended for strength and power athletes."
+  },
+  relatedIds: ["NTR-005"],
+  source: "Sports Nutrition text",
+  tags: ["sports-nutrition", "protein"]
+}, {
+  id: "NUT-006",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Sports Nutrition",
+  topic: "Ergogenic Aids",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "An 'ergogenic aid' in sports nutrition refers to any substance or method used to:",
+  options: ["Reduce an athlete's performance", "Enhance athletic performance, such as caffeine or creatine supplementation", "Cause disqualification only", "Only used for weight loss"],
+  correctIndex: 1,
+  explanation: "An ergogenic aid is any substance, method or device used with the goal of enhancing athletic performance — legal examples include caffeine and creatine, while others may be banned by anti-doping regulations.",
+  concept: {
+    title: "Ergogenic Aids",
+    definition: "A broad category ranging from legal nutritional supplements to prohibited performance-enhancing substances.",
+    points: ["Legal examples: caffeine, creatine monohydrate, beetroot juice (nitrates)", "Some ergogenic aids are banned under anti-doping regulations (e.g., anabolic steroids)", "Effectiveness and safety vary significantly between different aids"],
+    memoryTrick: "'Ergogenic = 'work-generating' — anything claimed to boost performance.'",
+    sportsRelevance: "Athletes and coaches must distinguish legal ergogenic aids from banned substances under anti-doping codes (e.g., WADA)."
+  },
+  relatedIds: ["NUT-005"],
+  source: "Sports Nutrition text",
+  tags: ["sports-nutrition", "ergogenic-aids"]
+}, {
+  id: "FA-002",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "First Aid",
+  topic: "Primary Survey",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "In emergency first aid, the initial 'ABC' assessment stands for:",
+  options: ["Airway, Breathing, Circulation", "Ankle, Bone, Cast", "Assessment, Bandage, Compression", "Activity, Balance, Coordination"],
+  correctIndex: 0,
+  explanation: "The 'ABC' of first aid — Airway, Breathing, Circulation — is the standard initial assessment sequence used to identify and address immediately life-threatening problems in an emergency.",
+  concept: {
+    title: "ABC of Emergency First Aid",
+    definition: "A universally taught, sequential priority framework for emergency assessment.",
+    points: ["Airway: ensure it is open and unobstructed", "Breathing: check for adequate, effective breathing", "Circulation: check for a pulse and control severe bleeding"],
+    memoryTrick: "'ABC = Airway, Breathing, Circulation — the life-saving order.'",
+    sportsRelevance: "Taught as the foundational first-aid protocol in nearly all sports first-aid and coaching certification courses."
+  },
+  relatedIds: ["FA-001", "FA-003"],
+  source: "Sports First Aid Manual",
+  tags: ["first-aid", "abc"]
+}, {
+  id: "FA-003",
+  exam: ["UGC NET", "SET"],
+  subject: "First Aid",
+  topic: "CPR",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "During Cardiopulmonary Resuscitation (CPR) on an adult, chest compressions should be performed at a rate of approximately:",
+  options: ["40-60 compressions per minute", "100-120 compressions per minute", "150-180 compressions per minute", "20-30 compressions per minute"],
+  correctIndex: 1,
+  explanation: "Standard adult CPR guidelines recommend chest compressions at a rate of approximately 100-120 per minute, at a depth of about 5-6 cm, to maintain effective blood circulation until emergency help arrives.",
+  concept: {
+    title: "CPR Compression Rate",
+    definition: "A globally standardized guideline (per bodies like the American Heart Association) for effective resuscitation.",
+    points: ["Recommended rate: 100-120 compressions per minute", "Recommended depth: approximately 5-6 cm for adults", "Often paced using the rhythm of the song 'Stayin' Alive' as a memory aid"],
+    memoryTrick: "'100-120/min — 'Stayin' Alive' is the CPR beat.'",
+    sportsRelevance: "A critical, potentially life-saving skill for coaches and PE teachers to be certified in."
+  },
+  relatedIds: ["FA-002"],
+  source: "Sports First Aid Manual",
+  tags: ["first-aid", "cpr"]
+}, {
+  id: "FA-004",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "First Aid",
+  topic: "Fracture Management",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2021,
+  question: "When first aid is given for a suspected bone fracture, the injured limb should be:",
+  options: ["Forcefully straightened back into position", "Immobilized/splinted in the position found, without attempting to realign it", "Massaged vigorously", "Left completely unsupported"],
+  correctIndex: 1,
+  explanation: "First aid for a suspected fracture involves immobilizing the limb in the position it is found (using a splint or support), without attempting to realign or straighten it, to avoid further injury.",
+  concept: {
+    title: "First Aid for Suspected Fractures",
+    definition: "A conservative, 'do no further harm' approach is critical when a fracture is suspected.",
+    points: ["Never attempt to realign or forcibly straighten a suspected fracture", "Immobilize the area with a splint or support in the position found", "Seek immediate professional medical attention"],
+    memoryTrick: "'Fractures = Immobilize as found, never force straight.'",
+    sportsRelevance: "Correct initial handling significantly reduces the risk of further tissue, nerve or blood-vessel damage."
+  },
+  relatedIds: ["INJ-005"],
+  source: "Sports First Aid Manual",
+  tags: ["first-aid", "fracture"]
+}, {
+  id: "FA-005",
+  exam: ["UGC NET", "SET"],
+  subject: "First Aid",
+  topic: "Heat Stroke",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "First aid for a suspected case of heat stroke (very high body temperature, confusion) includes:",
+  options: ["Wrapping the person in extra blankets", "Moving the person to a cool place, cooling the body (e.g., cold water/ice packs) and seeking emergency medical help", "Giving the person a hot drink immediately", "Encouraging immediate vigorous exercise"],
+  correctIndex: 1,
+  explanation: "Heat stroke is a medical emergency requiring immediate cooling — moving the person to shade/a cool area, applying cold water or ice packs, and urgently seeking emergency medical help, as body temperature can reach dangerously high, life-threatening levels.",
+  concept: {
+    title: "First Aid for Heat Stroke",
+    definition: "A true medical emergency requiring rapid cooling and urgent professional care.",
+    points: ["Move the person to a cool, shaded area immediately", "Apply cold water/ice packs, especially to neck, armpits and groin", "Call for emergency medical help without delay — heat stroke can be fatal"],
+    memoryTrick: "'Heat stroke = Cool fast, call for help fast.'",
+    sportsRelevance: "A critical concern for outdoor sports and training conducted in hot, humid conditions (common in much of India)."
+  },
+  relatedIds: ["NUT-004"],
+  source: "Sports First Aid Manual",
+  tags: ["first-aid", "heat-stroke"]
+}, {
+  id: "FA-006",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "First Aid",
+  topic: "Nosebleed",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2022,
+  question: "The recommended first-aid technique for a simple nosebleed is to:",
+  options: ["Tilt the head back fully", "Lean the head slightly forward and pinch the soft part of the nose", "Lie flat on the back", "Blow the nose forcefully repeatedly"],
+  correctIndex: 1,
+  explanation: "For a simple nosebleed, current first-aid guidance recommends leaning the head slightly forward (not backward, which can cause blood to be swallowed) and firmly pinching the soft, lower part of the nose for several minutes.",
+  concept: {
+    title: "First Aid for Nosebleeds",
+    definition: "A commonly needed, simple first-aid skill in contact sports and general PE settings.",
+    points: ["Lean the head slightly forward, not backward", "Pinch the soft part of the nose firmly for 10-15 minutes", "Avoid blowing the nose immediately afterward, which can restart bleeding"],
+    memoryTrick: "'Nosebleed = lean forward, pinch, and wait it out.'",
+    sportsRelevance: "A frequent, minor first-aid need in contact sports like football, basketball and boxing."
+  },
+  relatedIds: ["FA-002"],
+  source: "Sports First Aid Manual",
+  tags: ["first-aid", "nosebleed"]
+}, {
+  id: "BIO-003",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Biomechanics",
+  topic: "Stability and Center of Gravity",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2023,
+  question: "A lower center of gravity and a wider base of support generally result in:",
+  options: ["Decreased stability", "Increased stability", "No change in stability", "Increased speed only"],
+  correctIndex: 1,
+  explanation: "A lower center of gravity combined with a wider base of support increases an object or body's mechanical stability, making it more resistant to being toppled or displaced.",
+  concept: {
+    title: "Stability and Center of Gravity",
+    definition: "A fundamental biomechanical principle applied widely in sport for balance and injury prevention.",
+    points: ["Lower center of gravity = greater stability", "Wider base of support = greater stability", "Wrestlers and sumo athletes exploit both principles for stability"],
+    memoryTrick: "'Low and wide = stable; high and narrow = wobbly.'",
+    sportsRelevance: "Explains why athletes bend their knees and widen their stance for balance (e.g., a defensive stance in basketball or wrestling)."
+  },
+  relatedIds: ["KIN-001"],
+  source: "Biomechanics of Sport - Hall",
+  tags: ["biomechanics", "stability"]
+}, {
+  id: "BIO-004",
+  exam: ["UGC NET", "SET"],
+  subject: "Biomechanics",
+  topic: "Projectile Motion",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2022,
+  question: "Ignoring air resistance and release height, the theoretical optimal angle of release for maximum horizontal distance of a projectile (e.g., shot put) is:",
+  options: ["30 degrees", "45 degrees", "60 degrees", "90 degrees"],
+  correctIndex: 1,
+  explanation: "Under idealized conditions (no air resistance, release and landing at the same height), a 45-degree release angle theoretically maximizes horizontal distance for a projectile.",
+  concept: {
+    title: "Optimal Angle of Projection",
+    definition: "A classical physics principle applied in throwing and jumping events in athletics.",
+    points: ["45 degrees is optimal under idealized (no air resistance) conditions", "Real-world optimal angles are often slightly lower due to release height and air resistance", "Applies to events like shot put, javelin, discus and long jump"],
+    memoryTrick: "'45 degrees = the textbook-perfect launch angle.'",
+    sportsRelevance: "Coaches adjust the theoretical 45-degree ideal based on an athlete's release height and the specific implement used."
+  },
+  relatedIds: ["BIO-001"],
+  source: "Biomechanics of Sport - Hall",
+  tags: ["biomechanics", "projectile-motion"]
+}, {
+  id: "BIO-005",
+  exam: ["KVS PGT", "DSSSB", "EMRS", "AWES", "Sainik School"],
+  subject: "Biomechanics",
+  topic: "Friction in Sport",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2021,
+  question: "Athletic spikes and specialized shoe soles are designed to increase friction primarily to:",
+  options: ["Reduce traction and control", "Improve grip and traction, preventing slipping during acceleration and direction changes", "Increase air resistance", "Decrease the athlete's speed"],
+  correctIndex: 1,
+  explanation: "Athletic footwear like sprint spikes and cleats is designed to maximize friction (grip) between the shoe and the playing surface, improving traction during acceleration, deceleration and direction changes.",
+  concept: {
+    title: "Friction in Sports Performance",
+    definition: "Friction is a key biomechanical factor influencing traction, movement efficiency and injury risk.",
+    points: ["Higher friction (grip) aids acceleration and cutting movements", "Excessive friction can also increase joint-loading injury risk (e.g., ACL tears)", "Different surfaces (track, grass, court) require different footwear friction profiles"],
+    memoryTrick: "'Spikes = more friction, more grip, faster starts.'",
+    sportsRelevance: "Explains why sprinters use spikes on the track but different studs are used for grass versus artificial turf in football."
+  },
+  relatedIds: ["INJ-002"],
+  source: "Biomechanics of Sport - Hall",
+  tags: ["biomechanics", "friction"]
+}, {
+  id: "BIO-006",
+  exam: ["UGC NET", "SET"],
+  subject: "Biomechanics",
+  topic: "Angular Momentum",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2024,
+  question: "A diver pulling their body into a tight tuck position mid-air to spin faster is applying which biomechanical principle?",
+  options: ["Newton's First Law only", "Conservation of angular momentum (reducing moment of inertia increases rotational speed)", "Law of gravity alone", "Friction reduction"],
+  correctIndex: 1,
+  explanation: "By pulling limbs closer to the body's rotational axis (reducing the moment of inertia), a diver conserves angular momentum while increasing rotational speed — the same principle used by figure skaters during a spin.",
+  concept: {
+    title: "Conservation of Angular Momentum",
+    definition: "A key biomechanical principle explaining rotational speed control in sports like diving, gymnastics and figure skating.",
+    points: ["Angular momentum = moment of inertia x angular velocity, conserved in the air", "Tucking reduces moment of inertia, which increases angular velocity (spin speed)", "Extending limbs has the opposite effect, slowing the spin for a controlled landing"],
+    memoryTrick: "'Tuck to spin fast, extend to slow down — angular momentum stays constant.'",
+    sportsRelevance: "Fundamental to technique coaching in diving, gymnastics, trampolining and figure skating."
+  },
+  relatedIds: ["TRM-004"],
+  source: "Biomechanics of Sport - Hall",
+  tags: ["biomechanics", "angular-momentum"]
+}, {
+  id: "BIO-007",
+  exam: ["UGC NET", "KVS PGT", "SET", "EMRS", "AWES", "Sainik School"],
+  subject: "Biomechanics",
+  topic: "Force-Velocity Relationship",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2023,
+  question: "The force-velocity relationship in muscle physiology states that as the load (resistance) on a muscle increases, the velocity of shortening:",
+  options: ["Increases proportionally", "Decreases", "Remains exactly constant", "Becomes infinite"],
+  correctIndex: 1,
+  explanation: "The force-velocity relationship describes an inverse relationship: as the external load/resistance on a muscle increases, the maximum velocity at which it can shorten decreases, and vice versa.",
+  concept: {
+    title: "Force-Velocity Relationship",
+    definition: "A fundamental muscle-physiology/biomechanics principle underlying strength and power training design.",
+    points: ["Higher load → slower maximum contraction velocity", "Lower load → faster maximum contraction velocity", "Power (force x velocity) peaks at an intermediate load, informing power-training prescriptions"],
+    memoryTrick: "'More weight, less speed — force and velocity trade off.'",
+    sportsRelevance: "Explains why heavy strength training and light/fast power training produce different, complementary athletic adaptations."
+  },
+  relatedIds: ["KIN-003", "TRM-004"],
+  source: "Biomechanics of Sport - Hall",
+  tags: ["biomechanics", "force-velocity"]
+});
+const TOTAL_QUESTIONS_DEMO = QUESTION_BANK.length;
+
+/* ---- data-content.js ---- */
+const EXAMS = [{
+  id: "kvs-pgt",
+  name: "KVS PGT Physical Education",
+  short: "KVS PGT PE",
+  body: "Kendriya Vidyalaya Sangathan",
+  tests: 42,
+  questions: 6200,
+  difficulty: "Moderate–Hard",
+  syllabus: ["Anatomy & Physiology", "Sports Training", "Yoga", "Olympic Movement", "Sports Rules", "Test & Measurement", "Teaching Methods"],
+  pattern: "100 MCQs · 120 minutes · +1 / −0.25",
+  color: "navy"
+}, {
+  id: "ugc-net",
+  name: "UGC NET Physical Education",
+  short: "UGC NET PE",
+  body: "National Testing Agency",
+  tests: 38,
+  questions: 7400,
+  difficulty: "Hard",
+  syllabus: ["10 Units per NTA Syllabus", "Research & Statistics", "Biomechanics & Kinesiology", "Sports Psychology & Sociology", "Sports Management"],
+  pattern: "Paper 1 (50Q) + Paper 2 (100Q) · 3 hours · No negative marking",
+  color: "indigo"
+}, {
+  id: "nvs",
+  name: "NVS Physical Education",
+  short: "NVS PE",
+  body: "Navodaya Vidyalaya Samiti",
+  tests: 24,
+  questions: 3600,
+  difficulty: "Moderate",
+  syllabus: ["General Awareness", "PE Core Subjects", "Teaching Aptitude", "Current Affairs"],
+  pattern: "150 MCQs · 150 minutes · +1 / −0.25",
+  color: "teal"
+}, {
+  id: "dsssb",
+  name: "DSSSB Physical Education",
+  short: "DSSSB PE",
+  body: "Delhi Subordinate Services Selection Board",
+  tests: 20,
+  questions: 3100,
+  difficulty: "Moderate–Hard",
+  syllabus: ["PE Core Subjects", "General Knowledge", "Reasoning", "Delhi-specific GK"],
+  pattern: "200 MCQs · 150 minutes · +1 / −0.25",
+  color: "maroon"
+}, {
+  id: "state-psc",
+  name: "State PSC Physical Education",
+  short: "State PSC PE",
+  body: "Various State Public Service Commissions",
+  tests: 16,
+  questions: 2400,
+  difficulty: "Moderate",
+  syllabus: ["PE Core Subjects", "State GK", "General Studies"],
+  pattern: "Varies by state · typically 100–150 MCQs",
+  color: "forest"
+}, {
+  id: "bped",
+  name: "B.P.Ed Entrance",
+  short: "B.P.Ed",
+  body: "University / State-level Entrance",
+  tests: 18,
+  questions: 2800,
+  difficulty: "Easy–Moderate",
+  syllabus: ["General PE Awareness", "Sports Skill Knowledge", "Basic Anatomy & Physiology", "Aptitude"],
+  pattern: "100 MCQs · 90 minutes",
+  color: "amber"
+}, {
+  id: "mped",
+  name: "M.P.Ed Entrance",
+  short: "M.P.Ed",
+  body: "University / State-level Entrance",
+  tests: 14,
+  questions: 2100,
+  difficulty: "Moderate–Hard",
+  syllabus: ["Advanced Anatomy & Physiology", "Research Methodology", "Sports Training", "Biomechanics"],
+  pattern: "100 MCQs · 90 minutes",
+  color: "plum"
+}, {
+  id: "university",
+  name: "University Entrance Exams",
+  short: "University PE",
+  body: "Various Central & State Universities",
+  tests: 12,
+  questions: 1900,
+  difficulty: "Moderate",
+  syllabus: ["Core PE Subjects", "General Awareness", "Sports Skill Test (practical)"],
+  pattern: "Varies by university",
+  color: "slate"
+}, {
+  id: "set",
+  name: "SET Physical Education",
+  short: "SET PE",
+  body: "State Eligibility Test — Various State Universities",
+  tests: 16,
+  questions: 2200,
+  difficulty: "Hard",
+  syllabus: ["10 Units per UGC-aligned Syllabus", "Research & Statistics", "Biomechanics & Kinesiology", "Sports Psychology & Sociology", "State-specific Notification Rules"],
+  pattern: "Paper 1 (50Q) + Paper 2 (100Q) · 3 hours · No negative marking",
+  color: "crimson"
+}, {
+  id: "ctet",
+  name: "CTET Physical Education",
+  short: "CTET PE",
+  body: "Central Board of Secondary Education (CBSE)",
+  tests: 22,
+  questions: 2600,
+  difficulty: "Moderate",
+  syllabus: ["Child Development & Pedagogy", "PE Core Subjects", "Language I & II", "General Awareness"],
+  pattern: "150 MCQs · 150 minutes · No negative marking",
+  color: "steel"
+}, {
+  id: "emrs",
+  name: "EMRS TGT/PGT Physical Education",
+  short: "EMRS PE",
+  body: "National Education Society for Tribal Students (NESTS)",
+  tests: 18,
+  questions: 2400,
+  difficulty: "Moderate",
+  syllabus: ["PE Core Subjects", "General Awareness", "Reasoning", "Tribal Welfare & Education Policy"],
+  pattern: "150 MCQs · 150 minutes · +1 / −0.25",
+  color: "olive"
+}, {
+  id: "sainik-school",
+  name: "Sainik School PGT/TGT Physical Education",
+  short: "Sainik School PE",
+  body: "National Testing Agency (NTA)",
+  tests: 14,
+  questions: 1800,
+  difficulty: "Moderate–Hard",
+  syllabus: ["PE Core Subjects", "General Knowledge", "Reasoning", "Teaching Aptitude"],
+  pattern: "150 MCQs · 150 minutes · +1 / −0.33",
+  color: "coral"
+}, {
+  id: "awes",
+  name: "AWES PGT/TGT Physical Education",
+  short: "AWES PE",
+  body: "Army Welfare Education Society (Army Public Schools)",
+  tests: 16,
+  questions: 2000,
+  difficulty: "Moderate",
+  syllabus: ["PE Core Subjects", "General English", "Reasoning & Numerical Ability", "General Awareness"],
+  pattern: "100 MCQs · 90 minutes · +1 / −0.25",
+  color: "violet"
+}];
+const SUBJECTS = [{
+  id: "history",
+  name: "History of Physical Education",
+  group: "Foundations",
+  count: 12
+}, {
+  id: "foundations",
+  name: "Foundations of Physical Education",
+  group: "Foundations",
+  count: 18
+}, {
+  id: "philosophy",
+  name: "Philosophy of Physical Education",
+  group: "Foundations",
+  count: 10
+}, {
+  id: "sociology",
+  name: "Sociology of Physical Education",
+  group: "Foundations",
+  count: 12
+}, {
+  id: "sports-psychology",
+  name: "Sports Psychology",
+  group: "Behavioural Science",
+  count: 38
+}, {
+  id: "anatomy",
+  name: "Anatomy",
+  group: "Sports Science",
+  count: 64
+}, {
+  id: "physiology",
+  name: "Physiology",
+  group: "Sports Science",
+  count: 58
+}, {
+  id: "exercise-physiology",
+  name: "Exercise Physiology",
+  group: "Sports Science",
+  count: 42
+}, {
+  id: "kinesiology",
+  name: "Kinesiology",
+  group: "Sports Science",
+  count: 26
+}, {
+  id: "biomechanics",
+  name: "Biomechanics",
+  group: "Sports Science",
+  count: 24
+}, {
+  id: "sports-training",
+  name: "Sports Training",
+  group: "Coaching",
+  count: 52
+}, {
+  id: "training-methods",
+  name: "Training Methods",
+  group: "Coaching",
+  count: 30
+}, {
+  id: "fitness-wellness",
+  name: "Fitness and Wellness",
+  group: "Coaching",
+  count: 22
+}, {
+  id: "health-education",
+  name: "Health Education",
+  group: "Health",
+  count: 16
+}, {
+  id: "nutrition",
+  name: "Nutrition",
+  group: "Health",
+  count: 14
+}, {
+  id: "sports-nutrition",
+  name: "Sports Nutrition",
+  group: "Health",
+  count: 18
+}, {
+  id: "first-aid",
+  name: "First Aid",
+  group: "Health",
+  count: 16
+}, {
+  id: "sports-injuries",
+  name: "Sports Injuries",
+  group: "Health",
+  count: 14
+}, {
+  id: "rehabilitation",
+  name: "Rehabilitation",
+  group: "Health",
+  count: 12
+}, {
+  id: "tme",
+  name: "Test, Measurement & Evaluation",
+  group: "Research",
+  count: 34
+}, {
+  id: "statistics",
+  name: "Statistics",
+  group: "Research",
+  count: 20
+}, {
+  id: "research-methodology",
+  name: "Research Methodology",
+  group: "Research",
+  count: 16
+}, {
+  id: "sports-management",
+  name: "Sports Management",
+  group: "Administration",
+  count: 18
+}, {
+  id: "sports-administration",
+  name: "Sports Administration",
+  group: "Administration",
+  count: 14
+}, {
+  id: "edu-tech",
+  name: "Educational Technology",
+  group: "Pedagogy",
+  count: 10
+}, {
+  id: "teaching-methods",
+  name: "Teaching Methods",
+  group: "Pedagogy",
+  count: 20
+}, {
+  id: "curriculum",
+  name: "Curriculum in Physical Education",
+  group: "Pedagogy",
+  count: 12
+}, {
+  id: "adapted-pe",
+  name: "Adapted Physical Education",
+  group: "Pedagogy",
+  count: 10
+}, {
+  id: "yoga",
+  name: "Yoga",
+  group: "Indian Traditions",
+  count: 36
+}, {
+  id: "olympic-movement",
+  name: "Olympic Movement",
+  group: "Sports Events",
+  count: 34
+}, {
+  id: "asian-games",
+  name: "Asian Games",
+  group: "Sports Events",
+  count: 16
+}, {
+  id: "commonwealth-games",
+  name: "Commonwealth Games",
+  group: "Sports Events",
+  count: 14
+}, {
+  id: "national-sports",
+  name: "National Sports",
+  group: "Sports Events",
+  count: 12
+}, {
+  id: "international-sports",
+  name: "International Sports",
+  group: "Sports Events",
+  count: 12
+}, {
+  id: "sports-rules",
+  name: "Rules and Regulations of Games",
+  group: "Sports Rules",
+  count: 48
+}, {
+  id: "sports-awards",
+  name: "Sports Awards",
+  group: "General Awareness",
+  count: 14
+}, {
+  id: "sports-organizations",
+  name: "Sports Organizations",
+  group: "General Awareness",
+  count: 12
+}, {
+  id: "major-events",
+  name: "Major Sports Events",
+  group: "General Awareness",
+  count: 14
+}, {
+  id: "current-affairs",
+  name: "Current Sports Affairs",
+  group: "General Awareness",
+  count: 60
+}];
+const SPORTS_RULES_DB = [{
+  sport: "Athletics",
+  players: "Individual",
+  equipment: "Spikes, starting blocks, batons (relay)",
+  dimensions: "400m standard track, 8-9 lanes",
+  scoring: "Time (track) / Distance or Height (field)",
+  officials: "Starter, Timekeepers, Judges, Referee",
+  fouls: ["False start (0.1s rule)", "Stepping out of lane (track events)", "Running-through / dropping baton (relay)"],
+  terminology: ["PB (Personal Best)", "Split time", "Baton exchange zone (20m)"],
+  recentChanges: "Zero-tolerance false start rule since 2010; mixed-gender relay events added to global championships."
+}, {
+  sport: "Badminton",
+  players: "1v1 (Singles) or 2v2 (Doubles)",
+  equipment: "Racket, Shuttlecock (feather/synthetic), Net",
+  dimensions: "Court: 13.4m x 6.1m (doubles) / 5.18m (singles)",
+  scoring: "Rally point, 21 points/game, best of 3, win by 2 (cap 30)",
+  officials: "Umpire, Service Judge, Line Judges",
+  fouls: ["Foot fault at service", "Racket/body touching the net", "Shuttle hitting outside boundary"],
+  terminology: ["Smash", "Drop shot", "Let", "Rally"],
+  recentChanges: "Instant Review System (IRS/Hawk-Eye) now standard at BWF World Tour events."
+}, {
+  sport: "Basketball",
+  players: "5v5 (12-15 squad)",
+  equipment: "Basketball, hoop at 3.05m height",
+  dimensions: "FIBA Court: 28m x 15m",
+  scoring: "2pts (inside arc), 3pts (beyond arc), 1pt (free throw)",
+  officials: "2-3 Referees, Table Officials, Shot-clock operator",
+  fouls: ["Personal foul", "Technical foul", "Travelling", "24-second shot clock violation"],
+  terminology: ["Pick and roll", "Zone defense", "Fast break", "Rebound"],
+  recentChanges: "FIBA now uses 4 x 10-minute quarters with extended replay review for last 2 minutes."
+}, {
+  sport: "Volleyball",
+  players: "6v6",
+  equipment: "Volleyball, Net (2.43m men / 2.24m women)",
+  dimensions: "Court: 18m x 9m",
+  scoring: "Rally point, 25 points/set (win by 2), best of 5",
+  officials: "1st & 2nd Referee, Line Judges, Scorer",
+  fouls: ["Four touches", "Double contact", "Net touch", "Foot fault on serve"],
+  terminology: ["Libero", "Dig", "Block", "Rotation"],
+  recentChanges: "Video Challenge System expanded to more FIVB-sanctioned tournaments."
+}, {
+  sport: "Football",
+  players: "11v11 (7 substitutes)",
+  equipment: "Football, goalposts (7.32m x 2.44m)",
+  dimensions: "Pitch: 100-110m x 64-75m",
+  scoring: "1 goal = 1 point, most goals wins",
+  officials: "Referee, 2 Assistant Referees, 4th Official, VAR",
+  fouls: ["Offside", "Handball", "Direct/indirect free kick fouls"],
+  terminology: ["Offside trap", "Nutmeg", "Clean sheet", "Extra time"],
+  recentChanges: "VAR (Video Assistant Referee) now used in all major FIFA/continental tournaments."
+}, {
+  sport: "Hockey",
+  players: "11v11 (including goalkeeper)",
+  equipment: "Hockey stick, ball, shin guards",
+  dimensions: "Pitch: 91.4m x 55m",
+  scoring: "1 goal from inside the 'shooting circle'",
+  officials: "2 Umpires, Video Umpire, Technical Officials",
+  fouls: ["Obstruction", "High stick", "Dangerous play", "Foot foul"],
+  terminology: ["Penalty corner", "Penalty stroke", "Bully", "Self-pass"],
+  recentChanges: "Match format changed to 4 quarters of 15 minutes since 2019."
+}, {
+  sport: "Cricket",
+  players: "11v11",
+  equipment: "Bat, ball, stumps, pads, helmet",
+  dimensions: "Pitch: 20.12m (22 yards); boundary varies",
+  scoring: "Runs; wickets taken determine bowling success",
+  officials: "2 On-field Umpires, 1 Third Umpire, Match Referee",
+  fouls: ["No-ball", "Wide", "Run-out technicalities", "Obstructing the field"],
+  terminology: ["Googly", "Yorker", "Duck", "Powerplay"],
+  recentChanges: "DRS (Decision Review System) reviews expanded; Impact Player rule introduced in T20 leagues."
+}, {
+  sport: "Handball",
+  players: "7v7 (6 outfield + 1 goalkeeper)",
+  equipment: "Handball, goal (3m x 2m)",
+  dimensions: "Court: 40m x 20m",
+  scoring: "1 goal = 1 point",
+  officials: "2 Court Referees, Timekeeper, Scorekeeper",
+  fouls: ["3-second/3-step violation", "Charging", "Double dribble"],
+  terminology: ["7m throw", "Pivot", "Fast break", "Man-to-man defense"],
+  recentChanges: "'Fly goalkeeper' tactic (extra attacker) rules clarified for empty-net situations."
+}, {
+  sport: "Kabaddi",
+  players: "7v7 (12 squad)",
+  equipment: "None (bare hands); court markings",
+  dimensions: "Court: 13m x 10m (men)",
+  scoring: "Touch points, bonus points, 'Lona' (all-out)",
+  officials: "Referee, 2 Umpires, Scorer",
+  fouls: ["Crossing boundary line", "Holding the lobby illegally", "Not chanting 'Kabaddi' continuously (traditional format)"],
+  terminology: ["Raid", "Lona", "Anti (defender)", "Cant (kabaddi chant)"],
+  recentChanges: "Pro Kabaddi League introduced 'Super Tackle' and 'Do-or-Die raid' rules for professional format."
+}, {
+  sport: "Kho-Kho",
+  players: "9 on field (12 squad)",
+  equipment: "Two poles (called 'Kho' poles)",
+  dimensions: "Rectangular field: 29m x 16m",
+  scoring: "Points for dismissals & turns completed",
+  officials: "3 Umpires, 1 Referee, Timekeeper",
+  fouls: ["Illegal 'Kho' (touching without proper turn)", "Entering the wrong lane", "Foul chasing"],
+  terminology: ["Kho", "Chain formation", "Pole dive", "Active chaser"],
+  recentChanges: "Ultimate Kho Kho league introduced turn-based limited-time format for TV broadcast."
+}, {
+  sport: "Wrestling",
+  players: "Individual (weight categories)",
+  equipment: "Wrestling mat, singlet",
+  dimensions: "Circular mat: 9m diameter",
+  scoring: "Points for takedowns, exposure, pins",
+  officials: "Referee, Judge, Mat Chairman",
+  fouls: ["Illegal holds", "Passivity", "Fleeing the mat"],
+  terminology: ["Takedown", "Pin (fall)", "Freestyle vs Greco-Roman"],
+  recentChanges: "Scoring/period rules revised periodically by UWW (United World Wrestling)."
+}, {
+  sport: "Boxing",
+  players: "Individual (weight categories)",
+  equipment: "Gloves, headgear (amateur), mouthguard",
+  dimensions: "Ring: 6.1m x 6.1m (min. 4.9m)",
+  scoring: "Points per round; KO/TKO ends bout",
+  officials: "Referee (in ring), 3-5 Judges (scoring)",
+  fouls: ["Below-the-belt hit", "Holding", "Head-butting"],
+  terminology: ["Jab", "TKO", "Southpaw", "Clinch"],
+  recentChanges: "Olympic boxing scoring moved to 10-point-must system judged by 5 ringside judges."
+}, {
+  sport: "Table Tennis",
+  players: "1v1 or 2v2",
+  equipment: "Paddle (racket), ball (40mm)",
+  dimensions: "Table: 2.74m x 1.525m, net height 15.25cm",
+  scoring: "11 points/game, win by 2, best of 5/7",
+  officials: "Umpire, Assistant Umpire",
+  fouls: ["Double bounce", "Hand touching table", "Illegal serve (ball toss <16cm)"],
+  terminology: ["Loop", "Chop", "Let", "Penhold grip"],
+  recentChanges: "Ball material changed from celluloid to plastic (poly) balls in 2014."
+}, {
+  sport: "Swimming",
+  players: "Individual / Relay (4 members)",
+  equipment: "Swimsuit, cap, goggles",
+  dimensions: "Pool: 50m (long course) or 25m (short course)",
+  scoring: "Fastest time wins",
+  officials: "Starter, Referee, Stroke Judges, Timekeepers",
+  fouls: ["False start", "Illegal stroke technique", "Touching lane rope for advantage"],
+  terminology: ["Freestyle", "IM (Individual Medley)", "Flip turn", "False start"],
+  recentChanges: "Updated high-tech swimsuit regulations (banned post-2010 'supersuits') remain in force."
+}, {
+  sport: "Gymnastics",
+  players: "Individual / Team",
+  equipment: "Apparatus-specific (vault, beam, bars, floor)",
+  dimensions: "Varies by apparatus",
+  scoring: "D-Score (difficulty) + E-Score (execution)",
+  officials: "Panel of Judges (D-panel & E-panel)",
+  fouls: ["Out-of-bounds landing", "Fall from apparatus (deduction)", "Time violations"],
+  terminology: ["Vault", "Dismount", "Amplitude", "Landing stick"],
+  recentChanges: "Open-ended scoring system (no perfect '10' cap) used since 2006."
+}, {
+  sport: "Archery",
+  players: "Individual / Team",
+  equipment: "Bow (recurve/compound), arrows",
+  dimensions: "Target: 122cm (70m) or 80cm (indoor), 10-ring scoring",
+  scoring: "1-10 points per arrow (X for inner 10)",
+  officials: "Judges, Field Captains",
+  fouls: ["Shooting out of turn", "Touching the shooting line early", "Equipment violations"],
+  terminology: ["End", "Group / grouping", "X-ring", "Recurve vs Compound"],
+  recentChanges: "Mixed team events added to Olympic archery program since Tokyo 2020."
+}, {
+  sport: "Shooting",
+  players: "Individual / Team",
+  equipment: "Air rifle/pistol, ammunition, targets",
+  dimensions: "10m (air events), 25m/50m (other events)",
+  scoring: "Decimal scoring up to 10.9 in finals",
+  officials: "Range Officers, Jury",
+  fouls: ["Unsafe weapon handling", "Shooting before/after signal", "Equipment non-compliance"],
+  terminology: ["Inner ten", "Prone/standing/kneeling position", "Finals format"],
+  recentChanges: "Decimal (0.1) scoring adopted for electronic targets at elite competitions."
+}];
+const FLASHCARDS = [{
+  id: "fc-1",
+  subject: "Physiology",
+  front: "VO₂ Max",
+  back: "The maximum rate of oxygen consumption during intense exercise, measured in ml/kg/min. The gold-standard indicator of aerobic fitness."
+}, {
+  id: "fc-2",
+  subject: "Sports Training",
+  front: "Fartlek Training",
+  back: "A Swedish term meaning 'speed play' — continuous training with unstructured variation in pace and terrain, blending aerobic and anaerobic work."
+}, {
+  id: "fc-3",
+  subject: "Test & Measurement",
+  front: "Validity",
+  back: "The degree to which a test measures exactly what it is intended to measure. Considered the most important test criterion."
+}, {
+  id: "fc-4",
+  subject: "Anatomy",
+  front: "Gluteus Maximus",
+  back: "The largest muscle in the human body; a primary hip extensor essential for running, jumping and climbing."
+}, {
+  id: "fc-5",
+  subject: "Olympic Movement",
+  front: "Baron Pierre de Coubertin",
+  back: "French educator who founded the IOC in 1894 and is regarded as the father of the Modern Olympic Games (Athens, 1896)."
+}, {
+  id: "fc-6",
+  subject: "Physiology",
+  front: "Karvonen Formula",
+  back: "THR = ((HRmax − HRrest) × Intensity%) + HRrest — used to calculate individualized target heart rate training zones."
+}, {
+  id: "fc-7",
+  subject: "Yoga",
+  front: "Ashtanga (8 limbs)",
+  back: "Yama, Niyama, Asana, Pranayama, Pratyahara, Dharana, Dhyana, Samadhi — Patanjali's eight-limbed path of yoga."
+}, {
+  id: "fc-8",
+  subject: "Sports Psychology",
+  front: "Inverted-U Hypothesis",
+  back: "Performance is optimal at a moderate level of arousal; too little or too much arousal impairs performance (Yerkes-Dodson Law)."
+}, {
+  id: "fc-9",
+  subject: "Sports Training",
+  front: "Progressive Overload",
+  back: "Systematically increasing training demands (load, volume, frequency) over time to continue driving adaptation."
+}, {
+  id: "fc-10",
+  subject: "Anatomy",
+  front: "Muscle Spindle",
+  back: "A stretch receptor within the muscle belly that detects changes in muscle length, triggering the stretch reflex."
+}, {
+  id: "fc-11",
+  subject: "Physiology",
+  front: "EPOC",
+  back: "Excess Post-exercise Oxygen Consumption — the elevated oxygen use after exercise as the body restores itself to resting state ('afterburn')."
+}, {
+  id: "fc-12",
+  subject: "Sports Rules",
+  front: "Badminton Scoring",
+  back: "Best of 3 games, first to 21 points, must win by 2, hard cap at 30 (30-29 wins)."
+}, {
+  id: "fc-13",
+  subject: "First Aid",
+  front: "RICE Protocol",
+  back: "Rest, Ice, Compression, Elevation — standard first-aid management for acute soft-tissue injuries."
+}, {
+  id: "fc-14",
+  subject: "Biomechanics",
+  front: "Newton's Third Law in Sport",
+  back: "Every action has an equal and opposite reaction — explains starting-block push-off, swimming turns, and jumping takeoffs."
+}, {
+  id: "fc-15",
+  subject: "Olympic Movement",
+  front: "Olympic Rings",
+  back: "Five interlocking rings representing the union of the five inhabited continents in friendship and competition."
+}, {
+  id: "fc-16",
+  subject: "Sports Training",
+  front: "SAID Principle",
+  back: "Specific Adaptation to Imposed Demand — the body adapts specifically to the type of training stress applied."
+}, {
+  id: "fc-17",
+  subject: "Test & Measurement",
+  front: "Cooper 12-Minute Run Test",
+  back: "VO2 Max = (Distance in metres − 504.9) ÷ 44.73 — a field test estimating aerobic capacity from distance covered in 12 minutes."
+}, {
+  id: "fc-18",
+  subject: "Sports Psychology",
+  front: "Social Loafing",
+  back: "The tendency for individuals to exert less effort in a group task than when working alone."
+}];
+const FORMULAS = [{
+  id: "FML-001",
+  name: "Cooper 12-Minute Run (VO2 Max estimate)",
+  formula: "VO2 Max = (Distance in metres − 504.9) ÷ 44.73",
+  category: "Fitness Testing",
+  note: "Distance is the total metres covered in a 12-minute maximal run."
+}, {
+  id: "FML-002",
+  name: "Karvonen Formula (Target Heart Rate)",
+  formula: "THR = ((HRmax − HRrest) × %Intensity) + HRrest",
+  category: "Training",
+  note: "HRmax commonly estimated as 220 − age. Uses Heart Rate Reserve for individualized zones."
+}, {
+  id: "FML-003",
+  name: "Body Mass Index (BMI)",
+  formula: "BMI = Weight (kg) ÷ Height² (m²)",
+  category: "Health",
+  note: "Underweight <18.5 · Normal 18.5-24.9 · Overweight 25-29.9 · Obese ≥30."
+}, {
+  id: "FML-004",
+  name: "Basal Metabolic Rate (Harris-Benedict, men)",
+  formula: "BMR = 88.36 + (13.4 × weight kg) + (4.8 × height cm) − (5.7 × age)",
+  category: "Health",
+  note: "Separate formula exists for women; multiplied by activity factor for TDEE."
+}, {
+  id: "FML-005",
+  name: "One-Rep Max Estimate (Epley Formula)",
+  formula: "1RM = Weight × (1 + Reps ÷ 30)",
+  category: "Strength Training",
+  note: "Used to estimate maximal strength from a sub-maximal set without testing true 1RM directly."
+}, {
+  id: "FML-006",
+  name: "Cardiac Output",
+  formula: "Q (L/min) = Heart Rate × Stroke Volume",
+  category: "Physiology",
+  note: "Resting ~5 L/min; can reach 20-40 L/min at maximal exertion in trained athletes."
+}, {
+  id: "FML-007",
+  name: "Estimated Maximum Heart Rate",
+  formula: "HRmax = 220 − Age",
+  category: "Training",
+  note: "A widely used (though approximate) population estimate; individual variation is significant."
+}, {
+  id: "FML-008",
+  name: "Power Output",
+  formula: "Power = (Force × Distance) ÷ Time",
+  category: "Biomechanics",
+  note: "Measured in Watts; relevant to jump testing, cycling and Olympic lifting analysis."
+}];
+const CURRENT_AFFAIRS = [{
+  id: "ca-1",
+  category: "Olympics",
+  date: "2026-08-28",
+  title: "IOC confirms sport additions for LA 2028 Olympic programme",
+  summary: "The International Olympic Committee finalized the addition of new events to the Los Angeles 2028 roster as part of the ongoing push for gender parity and youth appeal.",
+  tags: ["IOC", "LA2028"]
+}, {
+  id: "ca-2",
+  category: "Indian Sports",
+  date: "2026-08-25",
+  title: "Khelo India Youth Games concludes with record participation",
+  summary: "The latest edition of the Khelo India Youth Games saw record state-level participation across athletics, wrestling, and traditional games including Kho-Kho and Kabaddi.",
+  tags: ["Khelo India", "Indian Sports"]
+}, {
+  id: "ca-3",
+  category: "Sports Awards",
+  date: "2026-08-20",
+  title: "Major National Sports Awards announced ahead of National Sports Day",
+  summary: "National Sports Day (29 August, marking Major Dhyan Chand's birth anniversary) saw the announcement of the Khel Ratna, Arjuna, and Dronacharya awardees for the year.",
+  tags: ["Awards", "National Sports Day"]
+}, {
+  id: "ca-4",
+  category: "Asian Games",
+  date: "2026-08-15",
+  title: "Preparations intensify for the next Asian Games cycle",
+  summary: "The Olympic Council of Asia and host organizers continued venue and qualification-pathway announcements for the upcoming Asian Games cycle.",
+  tags: ["Asian Games", "OCA"]
+}, {
+  id: "ca-5",
+  category: "Athletics",
+  date: "2026-08-10",
+  title: "World Athletics updates competition calendar for the season",
+  summary: "World Athletics released updates to the Diamond League and Continental Tour calendar, with implications for Indian athletes' qualification pathways.",
+  tags: ["Athletics", "World Athletics"]
+}, {
+  id: "ca-6",
+  category: "Government Sports Schemes",
+  date: "2026-08-05",
+  title: "TOPS scheme review highlights support for Olympic-bound athletes",
+  summary: "The Target Olympic Podium Scheme (TOPS) under the Sports Authority of India reviewed funding and support structures for athletes preparing for major international events.",
+  tags: ["TOPS", "SAI", "Government Scheme"]
+}];
+const PYQ_PAPERS = [{
+  id: "pyq-1",
+  exam: "KVS PGT PE",
+  year: 2025,
+  questions: 100,
+  duration: 120,
+  attempted: 0,
+  tag: "Latest"
+}, {
+  id: "pyq-2",
+  exam: "KVS PGT PE",
+  year: 2023,
+  questions: 100,
+  duration: 120,
+  attempted: 0,
+  tag: ""
+}, {
+  id: "pyq-3",
+  exam: "KVS PGT PE",
+  year: 2021,
+  questions: 100,
+  duration: 120,
+  attempted: 0,
+  tag: ""
+}, {
+  id: "pyq-4",
+  exam: "UGC NET PE",
+  year: 2025,
+  questions: 150,
+  duration: 180,
+  attempted: 0,
+  tag: "Latest"
+}, {
+  id: "pyq-5",
+  exam: "UGC NET PE",
+  year: 2024,
+  questions: 150,
+  duration: 180,
+  attempted: 0,
+  tag: ""
+}, {
+  id: "pyq-6",
+  exam: "UGC NET PE",
+  year: 2022,
+  questions: 150,
+  duration: 180,
+  attempted: 0,
+  tag: ""
+}, {
+  id: "pyq-7",
+  exam: "NVS PE",
+  year: 2024,
+  questions: 150,
+  duration: 150,
+  attempted: 0,
+  tag: ""
+}, {
+  id: "pyq-8",
+  exam: "DSSSB PE",
+  year: 2023,
+  questions: 200,
+  duration: 150,
+  attempted: 0,
+  tag: ""
+}, {
+  id: "pyq-9",
+  exam: "State PSC PE",
+  year: 2022,
+  questions: 120,
+  duration: 150,
+  attempted: 0,
+  tag: ""
+}, {
+  id: "pyq-10",
+  exam: "SET PE",
+  year: 2025,
+  questions: 150,
+  duration: 180,
+  attempted: 0,
+  tag: "Latest"
+}, {
+  id: "pyq-11",
+  exam: "SET PE",
+  year: 2023,
+  questions: 150,
+  duration: 180,
+  attempted: 0,
+  tag: ""
+}, {
+  id: "pyq-12",
+  exam: "CTET PE",
+  year: 2025,
+  questions: 150,
+  duration: 150,
+  attempted: 0,
+  tag: "Latest"
+}, {
+  id: "pyq-13",
+  exam: "CTET PE",
+  year: 2024,
+  questions: 150,
+  duration: 150,
+  attempted: 0,
+  tag: ""
+}, {
+  id: "pyq-14",
+  exam: "EMRS PE",
+  year: 2024,
+  questions: 150,
+  duration: 150,
+  attempted: 0,
+  tag: ""
+}, {
+  id: "pyq-15",
+  exam: "Sainik School PE",
+  year: 2023,
+  questions: 150,
+  duration: 150,
+  attempted: 0,
+  tag: ""
+}, {
+  id: "pyq-16",
+  exam: "AWES PE",
+  year: 2024,
+  questions: 100,
+  duration: 90,
+  attempted: 0,
+  tag: ""
+}];
+const STUDY_NOTES = [{
+  id: "note-1",
+  type: "Short Notes",
+  subject: "Anatomy",
+  title: "Skeletal System — Quick Reference",
+  summary: "Bone count, classification, and joint types condensed into a one-page revision sheet."
+}, {
+  id: "note-2",
+  type: "One-Liners",
+  subject: "Olympic Movement",
+  title: "100 Olympic One-Liners",
+  summary: "Founders, host cities, symbols, mottos and India-specific Olympic facts in quick-fire format."
+}, {
+  id: "note-3",
+  type: "Formula Sheets",
+  subject: "Test & Measurement",
+  title: "All Fitness-Test Formulas in One Page",
+  summary: "Cooper test, Harvard Step Test, BMI, Karvonen — every formula with worked examples."
+}, {
+  id: "note-4",
+  type: "Sports Rules",
+  subject: "Sports Rules",
+  title: "Scoring Systems Across 15 Sports",
+  summary: "Side-by-side comparison of scoring, match duration and player counts across major sports."
+}, {
+  id: "note-5",
+  type: "Yoga Charts",
+  subject: "Yoga",
+  title: "Asana Reference Chart",
+  summary: "Visual-style reference of 25 key asanas with benefits and classification (balance/backbend/forward-fold)."
+}, {
+  id: "note-6",
+  type: "Anatomy Diagrams",
+  subject: "Anatomy",
+  title: "Labelled Muscular System Diagram Set",
+  summary: "Anterior and posterior muscle-group diagrams with names and primary actions."
+}, {
+  id: "note-7",
+  type: "Physiology Tables",
+  subject: "Physiology",
+  title: "Energy Systems Comparison Table",
+  summary: "ATP-PC vs Glycolytic vs Aerobic systems — duration, fuel, and byproducts side by side."
+}, {
+  id: "note-8",
+  type: "Training Methods",
+  subject: "Sports Training",
+  title: "Training Methods At a Glance",
+  summary: "Fartlek, Interval, Continuous, Circuit and Plyometric training compared for exam-ready recall."
+}, {
+  id: "note-9",
+  type: "Sports Psychology Concepts",
+  subject: "Sports Psychology",
+  title: "Core Theories Cheat-Sheet",
+  summary: "Inverted-U, Drive Theory, Catastrophe Theory and goal-setting theory summarized with examples."
+}, {
+  id: "note-10",
+  type: "Important Facts",
+  subject: "Current Affairs",
+  title: "This Month's Must-Know Sports Facts",
+  summary: "Curated list of the 30 most exam-relevant current-affairs facts from this month's capsule."
+}];
+const BADGES = [{
+  id: "b1",
+  icon: "🏆",
+  name: "PE Master",
+  desc: "Complete 10 full mock tests",
+  earned: false
+}, {
+  id: "b2",
+  icon: "🔥",
+  name: "30-Day Streak",
+  desc: "Practice for 30 consecutive days",
+  earned: false
+}, {
+  id: "b3",
+  icon: "🎯",
+  name: "90% Accuracy",
+  desc: "Achieve 90%+ accuracy in a mock test",
+  earned: false
+}, {
+  id: "b4",
+  icon: "📚",
+  name: "10,000 Questions",
+  desc: "Attempt 10,000 practice questions",
+  earned: false
+}, {
+  id: "b5",
+  icon: "⚡",
+  name: "Speed Demon",
+  desc: "Average under 40 sec/question in a mock",
+  earned: false
+}, {
+  id: "b6",
+  icon: "🥇",
+  name: "Mock Test Champion",
+  desc: "Rank #1 on a weekly mock leaderboard",
+  earned: false
+}, {
+  id: "b7",
+  icon: "🧠",
+  name: "Concept Collector",
+  desc: "Complete 50 'Learn the Concept' modules",
+  earned: false
+}, {
+  id: "b8",
+  icon: "🌅",
+  name: "Early Bird",
+  desc: "Complete the Daily Challenge before 8 AM, 10 times",
+  earned: false
+}];
+const BADGE_CRITERIA = {
+  b1: ({
+    profile
+  }) => (profile.mockTestsTaken || 0) >= 10,
+  b2: ({
+    profile
+  }) => (profile.streak || 0) >= 30,
+  b3: ({
+    mockHistory
+  }) => (mockHistory || []).some(m => m.accuracy >= 90),
+  b4: ({
+    profile
+  }) => (profile.questionsSolved || 0) >= 10000,
+  b5: ({
+    mockHistory
+  }) => (mockHistory || []).some(m => m.avgTimePerQ != null && m.avgTimePerQ < 40),
+  b6: () => false,
+  b7: () => false,
+  b8: () => false
+};
+function isBadgeEarned(badgeId, ctx) {
+  const fn = BADGE_CRITERIA[badgeId];
+  return fn ? !!fn(ctx) : false;
+}
+
+/* ---- data-school.js ---- */
+const SCHOOL_CLASSES = [{
+  id: "xi",
+  grade: "Class XI",
+  jobRole: "Physical Education Assistant (Primary Years)",
+  examTag: "PAT-11",
+  totalMarks: 100,
+  blurb: "Works in a primary school, apartment or club teaching the basics of sports to build sports skills and fitness in children up to 12 years old.",
+  units: [{
+    id: "cd",
+    name: "Role of PE in Child Development",
+    subject: "PAT XI — Role of PE in Child Development",
+    marks: 13,
+    subtopics: ["Physical & emotional needs of children", "Factors influencing physical activities", "Planning physical activities for children"]
+  }, {
+    id: "pe",
+    name: "Props and Equipment",
+    subject: "PAT XI — Props and Equipment",
+    marks: 6,
+    subtopics: ["Types & tools of assessment", "Preparing an equipment list", "Inspection of the playfield"]
+  }, {
+    id: "hs",
+    name: "Hygiene and Safety",
+    subject: "PAT XI — Hygiene and Safety",
+    marks: 8,
+    subtopics: ["Maintaining hygiene in the play area", "Basic first aid", "Emergency response & casualty management"]
+  }, {
+    id: "sf",
+    name: "Sports and Fitness",
+    subject: "PAT XI — Sports and Fitness",
+    marks: 13,
+    subtopics: ["Selecting yearly sports activities", "Resources for organising competitions", "Conducting fitness sessions"]
+  }],
+  pyqSubject: "PAT XI — Practice Questions (Exam Pattern)",
+  pyqNote: "CBSE does not hold a board exam for Class XI skill subjects (it's assessed internally by the school), so no official Class XI question paper is published. These are practice questions written in the same style and difficulty as the real CBSE Class XII paper below, covering the Class XI syllabus."
+}, {
+  id: "xii",
+  grade: "Class XII",
+  jobRole: "Primary Years Physical Activity Facilitator",
+  examTag: "PAT-12",
+  totalMarks: 100,
+  blurb: "An Assistant to the Sports Teacher / PE Teacher / PT Teacher who conducts play activities, coaching, mentoring, assessment and emergency response for primary-level students.",
+  units: [{
+    id: "ov",
+    name: "Overview of PE & Sports Sector",
+    subject: "PAT XII — Overview of PE & Sports Sector",
+    marks: 10,
+    subtopics: ["Career paths in the sports sector", "Games, Sports, Physical Activity & Recreation", "Employability skills"]
+  }, {
+    id: "as",
+    name: "Assessment of Students",
+    subject: "PAT XII — Assessment of Students",
+    marks: 10,
+    subtopics: ["Types of assessment", "Assessment tools & rubrics", "Qualitative & quantitative assessment", "Fitness testing", "Reporting to parents"]
+  }, {
+    id: "em",
+    name: "Emergency Management",
+    subject: "PAT XII — Emergency Management",
+    marks: 10,
+    subtopics: ["Meaning & importance of emergency response", "Emergency Action Plans", "Common conditions & first aid"]
+  }, {
+    id: "hh",
+    name: "Health and Hygiene in Play Area",
+    subject: "PAT XII — Health and Hygiene in Play Area",
+    marks: 10,
+    subtopics: ["Kits for games & practice", "Inspection of the play area", "Maintenance of hygiene"]
+  }],
+  pyqSubject: "PAT XII — Board PYQs (CBSE SQP)",
+  pyqNote: "These are the real objective-type questions from CBSE's official Sample Question Paper for Physical Activity Trainer, Class XII (Subject Code 845, 2025-26 cycle, cbseacademic.nic.in) — not modeled questions."
+}];
+const SCHOOL_QUESTION_BANK = [{
+  id: "PAT11-CD-001",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Role of PE in Child Development",
+  topic: "Physical & Emotional Needs",
+  subtopic: "Health Triangle",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "The 'Health Triangle' taught in this unit divides a child's overall health into which three components?",
+  options: ["Physical, Mental, Social", "Physical, Emotional, Financial", "Mental, Spiritual, Academic", "Physical, Social, Academic"],
+  correctIndex: 0,
+  explanation: "The textbook's Health Triangle diagram splits overall health into Physical, Mental and Social health — all three must be balanced for a child's holistic wellbeing.",
+  concept: {
+    title: "The Health Triangle",
+    definition: "A model showing that true health is not just the absence of illness but a balance of physical, mental and social wellbeing.",
+    points: ["Physical Health — built from exercise, nutrition and rest", "Mental Health traits — confidence, resilience, positive outlook", "Social Health — the ability to form healthy relationships"],
+    memoryTrick: "Think 'Body, Mind, Friends' — the three corners of the triangle.",
+    sportsRelevance: "A Physical Education Assistant plans activities that build all three sides of the triangle, not just physical fitness."
+  },
+  relatedIds: ["PAT11-CD-002"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 1.1",
+  tags: ["child-development", "health"]
+}, {
+  id: "PAT11-CD-002",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Role of PE in Child Development",
+  topic: "Physical & Emotional Needs",
+  subtopic: "Physical Health",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "According to the Physical Health diagram in the textbook, which three elements make up a child's physical health?",
+  options: ["Exercise, Nutrition, Rest", "Exercise, Sleep, Screen-time", "Diet, Height, Weight", "Strength, Speed, Stamina"],
+  correctIndex: 0,
+  explanation: "The Physical Health sub-diagram lists Exercise, Nutrition and Rest as its three pillars.",
+  concept: {
+    title: "Pillars of Physical Health",
+    definition: "Physical health in children is built and maintained through a balance of activity, food intake and recovery.",
+    points: ["Exercise — regular age-appropriate physical activity", "Nutrition — quality and quantity of food intake", "Rest — adequate sleep and recovery time"],
+    memoryTrick: "E-N-R: Exercise, Nutrition, Rest.",
+    sportsRelevance: "A PE Assistant's fitness sessions only work if nutrition and rest are also in place — fitness advice should always cover all three."
+  },
+  relatedIds: ["PAT11-CD-001"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 1.1",
+  tags: ["child-development", "health"]
+}, {
+  id: "PAT11-CD-003",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Role of PE in Child Development",
+  topic: "Course Overview",
+  subtopic: "About the Course",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "As per the course description, a 'Physical Education Assistant (Primary Years)' builds sports skills and fitness in children up to what age?",
+  options: ["8 years", "10 years", "12 years", "15 years"],
+  correctIndex: 2,
+  explanation: "The course overview states the role covers children 'up to the age of 12 years' at the primary level.",
+  concept: {
+    title: "Scope of the Job Role",
+    definition: "The Class XI job role is specifically scoped to primary-years children, distinguishing it from secondary-level PE roles.",
+    points: ["Works in primary schools, apartments and clubs", "Target age group: up to 12 years", "Focus: basic sports skills and general fitness, not specialization"],
+    memoryTrick: "'Primary Years' = up to 12.",
+    sportsRelevance: "Knowing the age scope tells you which activities are appropriate — see the 'Structuring Physical Activity Sessions' diamond model."
+  },
+  relatedIds: ["PAT11-CD-008"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, About the Course",
+  tags: ["child-development", "course-overview"]
+}, {
+  id: "PAT11-CD-004",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Role of PE in Child Development",
+  topic: "Factors Influencing Physical Activity",
+  subtopic: "Factors Affecting Fitness",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of the following is NOT listed in the textbook as a factor affecting an individual's physical fitness?",
+  options: ["Age", "Body composition", "Climatic conditions", "Handwriting"],
+  correctIndex: 3,
+  explanation: "The textbook lists seven factors affecting physical fitness: Age, Gender, Body composition, Nutrition, Climatic conditions, Lifestyle habits and Physical activity itself. Handwriting is not one of them.",
+  concept: {
+    title: "Factors Affecting Physical Fitness",
+    definition: "Physical fitness varies between individuals because of a combination of biological and lifestyle factors.",
+    points: ["Age & Gender — biological/physiological differences", "Body composition — somatotype (Endomorph, Mesomorph, Ectomorph)", "Nutrition, Climatic conditions, Lifestyle habits, Physical activity"],
+    memoryTrick: "'A-G-B-N-C-L-P' — Age, Gender, Body, Nutrition, Climate, Lifestyle, Physical activity.",
+    sportsRelevance: "A PE Assistant adapts session plans differently for different body types and lifestyles rather than using one plan for every child."
+  },
+  relatedIds: ["PAT11-CD-005"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 1.2",
+  tags: ["child-development", "fitness-factors"]
+}, {
+  id: "PAT11-CD-005",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Role of PE in Child Development",
+  topic: "Factors Influencing Physical Activity",
+  subtopic: "Body Composition",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Which somatotype is described in the textbook as having a 'lean and thin body frame', making it unrealistic to expect the same muscular strength as another type?",
+  options: ["Endomorph", "Mesomorph", "Ectomorph", "Isomorph"],
+  correctIndex: 2,
+  explanation: "The textbook explicitly describes the Ectomorph as a lean, thin body frame, contrasting it with the more muscular Mesomorph and heavier-set Endomorph.",
+  concept: {
+    title: "The Three Somatotypes",
+    definition: "Somatotyping classifies body shape/physique into three broad categories, each with different natural fitness advantages.",
+    points: ["Ectomorph — lean, thin frame", "Mesomorph — naturally muscular frame", "Endomorph — larger, rounder frame"],
+    memoryTrick: "'Ecto = Extra thin.'",
+    sportsRelevance: "Understanding somatotypes helps a PE Assistant set realistic, encouraging expectations rather than comparing children unfairly."
+  },
+  relatedIds: ["PAT11-CD-004"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 1.2",
+  tags: ["child-development", "body-composition"]
+}, {
+  id: "PAT11-CD-006",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Role of PE in Child Development",
+  topic: "Factors Influencing Physical Activity",
+  subtopic: "Influence of Society",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "The textbook cites the rise of the IPL and BCCI's wealth as an example of which societal factor influencing sport?",
+  options: ["Environment", "Economy", "Political stability", "Technology"],
+  correctIndex: 1,
+  explanation: "The textbook discusses the Economy as a factor, explaining how BCCI's revenue enabled high-quality tournaments like the IPL, attracting top global talent.",
+  concept: {
+    title: "Society's Influence on Sport",
+    definition: "The textbook identifies four broad societal factors shaping which sports thrive in a region: Environment, Economy, Technology and Political conditions.",
+    points: ["Environment — e.g. water sports in Kerala, volleyball in Ladakh", "Economy — infrastructure spend, media/advertising revenue", "Technology — e.g. astro-turf's impact on Indian hockey", "Political — e.g. Olympic boycotts, regional instability"],
+    memoryTrick: "'E-E-T-P' — Environment, Economy, Technology, Political.",
+    sportsRelevance: "Recognising these factors helps explain why certain sports are more accessible or popular in different communities."
+  },
+  relatedIds: ["PAT11-CD-007"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 1.2",
+  tags: ["child-development", "society-and-sport"]
+}, {
+  id: "PAT11-CD-007",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Role of PE in Child Development",
+  topic: "Factors Influencing Physical Activity",
+  subtopic: "Influence of Society",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "The textbook attributes the decline of Indian hockey's dominance partly to the country's slow adoption of which factor?",
+  options: ["Coaching methods", "Technology (e.g. astro-turf)", "Player salaries", "Television coverage"],
+  correctIndex: 1,
+  explanation: "The textbook links India's slow adoption of astro-turf technology to the decline of its once-dominant hockey team, in contrast to Australia and Germany.",
+  concept: {
+    title: "Technology and Sport",
+    definition: "Advances in playing surfaces, equipment and training tools directly affect which nations lead in a given sport.",
+    points: ["Astro-turf changed the technical demands of field hockey", "Countries that adopted it early (Australia, Germany) gained an edge", "India's slower adoption coincided with its declining results"],
+    memoryTrick: "'No turf, no team.'",
+    sportsRelevance: "A PE Assistant should understand that access to modern equipment/facilities directly affects a school's sporting outcomes."
+  },
+  relatedIds: ["PAT11-CD-006"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 1.2",
+  tags: ["child-development", "society-and-sport"]
+}, {
+  id: "PAT11-CD-008",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Role of PE in Child Development",
+  topic: "Planning Physical Activities",
+  subtopic: "Structuring Sessions",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "In the textbook's 'diamond' model for structuring physical activity by grade, what is the focus for Grades 9–12?",
+  options: ["Building fundamental movement concepts", "Exploring multiple games", "Sports of choice (specialization)", "Free play only"],
+  correctIndex: 2,
+  explanation: "The diamond model progresses from movement concepts (N–2) to fundamental/sports skills (3–5) to exploring multiple games (6–8) to sports of choice/specialization (9–12).",
+  concept: {
+    title: "Structuring Physical Activity by Grade",
+    definition: "A progressive model matching the type of physical activity to a child's developmental stage.",
+    points: ["Grade N–2 — movement concepts (action, balance, coordination)", "Grade 3–5 — fundamental & sports skills", "Grade 6–8 — exploring multiple sports", "Grade 9–12 — specialization / sport of choice"],
+    memoryTrick: "'Move → Build → Explore → Choose.'",
+    sportsRelevance: "This model explains why the Class XI/XII job roles (Primary Years) intentionally avoid early specialization."
+  },
+  relatedIds: ["PAT11-CD-009"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 1.3",
+  tags: ["child-development", "session-planning"]
+}, {
+  id: "PAT11-CD-009",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Role of PE in Child Development",
+  topic: "Planning Physical Activities",
+  subtopic: "Macro/Meso/Micro Planning",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "In the textbook's Macro–Meso–Micro planning model, 'Meso-planning' refers to a breakdown covering roughly what period?",
+  options: ["A single day", "A week or pair of weeks", "An entire academic year", "A single activity session"],
+  correctIndex: 1,
+  explanation: "Meso-planning is defined as a breakdown of each week (or pair of weeks) targeting one or two specific improvements.",
+  concept: {
+    title: "Macro, Meso and Micro Planning",
+    definition: "A three-level planning hierarchy that moves from a long-term goal down to daily execution.",
+    points: ["Macro — the big-picture, long-term goal", "Meso — weekly (or fortnightly) breakdown of that goal", "Micro — a single day or session's specific plan"],
+    memoryTrick: "'Macro = Months, Meso = Weeks, Micro = Minutes (a session).'",
+    sportsRelevance: "A PE Assistant uses this hierarchy to turn a broad skill goal (e.g. 'learn basic football') into an actual weekly lesson-plan table."
+  },
+  relatedIds: ["PAT11-CD-008"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 1.3",
+  tags: ["child-development", "session-planning"]
+}, {
+  id: "PAT11-CD-010",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Role of PE in Child Development",
+  topic: "Planning Physical Activities",
+  subtopic: "Yoga",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "According to the textbook, how many steps make up the Surya Namaskar (Sun Salutation) sequence?",
+  options: ["8 steps", "10 steps", "12 steps", "14 steps"],
+  correctIndex: 2,
+  explanation: "The textbook lists exactly 12 steps of Surya Namaskar, from Pranamasana through to returning the hands to prayer position.",
+  concept: {
+    title: "Surya Namaskar",
+    definition: "A sequence of 12 postures performed as a 'worship to the sun', best practised in the morning.",
+    points: ["Step 1: Pranamasana (prayer position)", "Step 6: Ashtanga Namaskara — 8 body parts touch the floor", "Step 12: return to prayer position"],
+    memoryTrick: "'12 steps, 12 hours in a sun cycle.'",
+    sportsRelevance: "Yoga is included in the syllabus as part of a well-rounded physical activity plan for children, alongside sports skills."
+  },
+  relatedIds: ["PAT11-SF-005"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 1.3",
+  tags: ["child-development", "yoga"]
+}, {
+  id: "PAT11-PE-001",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Props and Equipment",
+  topic: "Props vs Equipment",
+  subtopic: "Definitions",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "How does the textbook distinguish 'Props' from 'Equipment'?",
+  options: ["Props are tools/learning aids used to mark spaces and build skills; Equipment is the material needed to actually play the sport", "Props are expensive; Equipment is cheap", "Props are for indoor use only; Equipment is for outdoor use only", "There is no difference — the terms are interchangeable"],
+  correctIndex: 0,
+  explanation: "The textbook defines Props as tools/learning aids (to mark spaces, practice skills, improve fitness) while Equipment is the material associated with the sport needed to actually play it.",
+  concept: {
+    title: "Props vs Equipment",
+    definition: "Two related but distinct categories of training material used in physical education.",
+    points: ["Props — cones, hoops, agility ladders, bean bags (teaching aids)", "Equipment — balls, bats, nets, goalposts (needed to play the sport)", "Props also add variety, colour and age-appropriate challenge"],
+    memoryTrick: "'Props help you PRACTISE; Equipment lets you PLAY.'",
+    sportsRelevance: "Choosing the right mix of props and equipment keeps sessions engaging and safe for different age groups."
+  },
+  relatedIds: ["PAT11-PE-002"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 2",
+  tags: ["props-equipment"]
+}, {
+  id: "PAT11-PE-002",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Props and Equipment",
+  topic: "Factors Affecting Selection",
+  subtopic: "Selection Criteria",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of these is NOT one of the six factors the textbook lists for selecting sports props and equipment?",
+  options: ["Age appropriateness", "Industry standard", "Group size", "Player's favourite colour"],
+  correctIndex: 3,
+  explanation: "The six factors are: Age appropriateness, Industry standard, Sports type, Infrastructure, Group size and Budget. Colour preference is not among them.",
+  concept: {
+    title: "Factors Affecting Selection of Props & Equipment",
+    definition: "A checklist to guide any purchase or usage decision for sports material.",
+    points: ["Age appropriateness & Industry standard (e.g. rubber tennis balls, wooden cricket bats)", "Sports type & Infrastructure (indoor vs outdoor, permanent vs mobile)", "Group size & Budget"],
+    memoryTrick: "'A-I-S-I-G-B.'",
+    sportsRelevance: "Getting this wrong (e.g. using adult-size equipment for young children) directly causes injuries or disengagement."
+  },
+  relatedIds: ["PAT11-PE-003"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 2.2",
+  tags: ["props-equipment"]
+}, {
+  id: "PAT11-PE-003",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Props and Equipment",
+  topic: "Factors Affecting Selection",
+  subtopic: "Age Appropriateness",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "If age-inappropriate props (meant for an older group) are given to younger children, what does the textbook say this can lead to?",
+  options: ["Injury", "Better performance", "Lower cost", "Faster skill acquisition"],
+  correctIndex: 0,
+  explanation: "The textbook states that using higher-age-bracket props on a younger group can lead to injury, while lower-age-bracket props on an older group leads to lack of interest.",
+  concept: {
+    title: "Consequences of Wrong Age-Fit",
+    definition: "Age-appropriateness in equipment selection is a safety issue, not just an engagement issue.",
+    points: ["Props for a higher age bracket used on younger children → risk of injury", "Props for a lower age bracket used on an older group → boredom/disengagement"],
+    memoryTrick: "'Too big = danger. Too small = boring.'",
+    sportsRelevance: "This is a direct safety responsibility of the Physical Education Assistant when planning sessions."
+  },
+  relatedIds: ["PAT11-PE-002"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 2.2",
+  tags: ["props-equipment", "safety"]
+}, {
+  id: "PAT11-PE-004",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Props and Equipment",
+  topic: "Common Props",
+  subtopic: "Prop Usage",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "Which prop, according to the textbook's equipment table, is used for 'teaching various levels of space awareness and coordination among team members'?",
+  options: ["Saucer cone", "Parachute", "Agility ladder", "Skipping rope"],
+  correctIndex: 1,
+  explanation: "The Parachute is listed specifically for teaching space awareness (high, mid, low) and coordination among team members.",
+  concept: {
+    title: "Common Props and Their Uses",
+    definition: "Each prop in the equipment list has a specific developmental purpose.",
+    points: ["Parachute — space awareness & team coordination", "Agility ladder — jumping, hopping, twist & turn", "Sit and Reach box — measuring back flexibility"],
+    memoryTrick: "Picture a parachute needing the WHOLE team to move it together.",
+    sportsRelevance: "Matching the right prop to the right skill is core to writing an effective session/lesson plan."
+  },
+  relatedIds: ["PAT11-PE-005"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 2.2",
+  tags: ["props-equipment"]
+}, {
+  id: "PAT11-PE-005",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Props and Equipment",
+  topic: "Ball Maintenance",
+  subtopic: "Inflation Pressure",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2026,
+  question: "As per the textbook's ball-maintenance chart, which range is the correct inflation pressure for a basketball?",
+  options: ["5.5–16 PSI", "7–9 PSI", "5.8–6.5 PSI", "10–20 PSI"],
+  correctIndex: 1,
+  explanation: "The textbook specifies: Football 5.5–16 PSI, Basketball 7–9 PSI, Volleyball 5.8–6.5 PSI.",
+  concept: {
+    title: "Correct Ball Pressures",
+    definition: "Balls must be inflated within their specified pressure range to avoid damaging the bladder or affecting play.",
+    points: ["Football — 5.5 to 16 PSI", "Basketball — 7 to 9 PSI", "Volleyball — 5.8 to 6.5 PSI"],
+    memoryTrick: "'Football has the widest range; volleyball the narrowest and lowest.'",
+    sportsRelevance: "Over-inflating with a machine can damage the ball — the textbook warns to inflate gradually by hand."
+  },
+  relatedIds: ["PAT11-PE-006"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 2.3",
+  tags: ["props-equipment", "maintenance"]
+}, {
+  id: "PAT11-PE-006",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Props and Equipment",
+  topic: "Inspection & Maintenance",
+  subtopic: "Inspection Frequency",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "'Low frequency' inspections of playfields and equipment, per the textbook, are typically performed how often?",
+  options: ["Daily", "Weekly", "Quarterly or semi-annually", "Only once a decade"],
+  correctIndex: 2,
+  explanation: "Low frequency inspections are in-depth investigations for wear and tear, typically performed quarterly or semi-annually. High frequency inspections are done daily or weekly.",
+  concept: {
+    title: "Inspection Frequency",
+    definition: "Playfields need both routine and periodic in-depth checks to stay safe.",
+    points: ["High frequency — daily/weekly, checks changing conditions (litter, loose surfacing)", "Low frequency — quarterly/semi-annually, in-depth wear-and-tear checks"],
+    memoryTrick: "'Low frequency = Long gap.'",
+    sportsRelevance: "A PE Assistant is expected to know which checklist items belong to daily checks versus periodic deep inspections."
+  },
+  relatedIds: ["PAT11-PE-005"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 2.3",
+  tags: ["props-equipment", "maintenance"]
+}, {
+  id: "PAT11-PE-007",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Props and Equipment",
+  topic: "Inspection & Maintenance",
+  subtopic: "Cleaning Rules",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "According to the textbook's care instructions, what should NEVER be applied to leather props and equipment when cleaning them?",
+  options: ["Water", "A dry cloth", "Sunlight-free storage", "Regular condition checks"],
+  correctIndex: 0,
+  explanation: "The textbook explicitly instructs: 'Do not apply water on any leather props and equipment. Always use dry cloth to clean.'",
+  concept: {
+    title: "Caring for Leather Equipment",
+    definition: "Leather items (like leather cricket balls) require dry-cleaning methods to avoid damage.",
+    points: ["Never use water on leather props/equipment", "Always use a dry cloth", "Store away from direct sunlight and dampness (to prevent rust on metal parts)"],
+    memoryTrick: "'Leather + water = damage.'",
+    sportsRelevance: "Following correct maintenance extends the life of expensive sports equipment on a school's limited budget."
+  },
+  relatedIds: ["PAT11-PE-006"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 2.3",
+  tags: ["props-equipment", "maintenance"]
+}, {
+  id: "PAT11-PE-008",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Props and Equipment",
+  topic: "Common Equipment",
+  subtopic: "Equipment Usage",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "In the textbook's equipment list, what is a 'Bib' used for?",
+  options: ["Storage of props", "To differentiate team members from opponents, like a jersey", "Measuring distance", "Inflating balls"],
+  correctIndex: 1,
+  explanation: "The textbook lists Bibs as used in team games as a jersey substitute to visually differentiate a team from its opponents.",
+  concept: {
+    title: "Common Equipment Uses",
+    definition: "Every listed item of equipment has a defined role in organising a session.",
+    points: ["Bib — differentiates teams", "Duffle/Tote bag — storage of props", "Foot pump — inflating balls"],
+    memoryTrick: "Bib = 'Badge' for a team.",
+    sportsRelevance: "Using bibs is a quick, low-cost way to run organised team games with large class sizes."
+  },
+  relatedIds: ["PAT11-PE-004"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 2.2",
+  tags: ["props-equipment"]
+}, {
+  id: "PAT11-PE-009",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Props and Equipment",
+  topic: "Playfield Maintenance",
+  subtopic: "Surface Care",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of the following is listed as a regular maintenance task to keep the quality of a sports surface?",
+  options: ["Removing leaves, stones and sharp objects from the pitch", "Watering the pitch with salt water", "Leaving the goal posts unchecked", "Avoiding all cleaning to preserve the turf"],
+  correctIndex: 0,
+  explanation: "The textbook lists removing leaves/stones/sharp objects, sweeping cemented floors daily, and periodically checking goal posts and poles as regular maintenance tasks.",
+  concept: {
+    title: "Maintaining Sports Surfaces",
+    definition: "Routine surface maintenance prevents both injuries and long-term damage to the playfield.",
+    points: ["Remove debris from the pitch regularly", "Sweep cemented floors daily", "Periodically check goal posts, volleyball poles, basketball posts", "Special maintenance (e.g. drainage repair) at least once a year"],
+    memoryTrick: "'Clear it, sweep it, check it.'",
+    sportsRelevance: "A well-maintained surface directly reduces the risk of trips, falls and equipment failure during play."
+  },
+  relatedIds: ["PAT11-PE-006"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 2.3",
+  tags: ["props-equipment", "maintenance"]
+}, {
+  id: "PAT11-PE-010",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Props and Equipment",
+  topic: "Common Props",
+  subtopic: "Measurement Equipment",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "Which piece of equipment from the textbook's list is used specifically 'to measure back flexibility'?",
+  options: ["Weighing scale", "Height chart", "Sit and Reach box", "Measuring tape"],
+  correctIndex: 2,
+  explanation: "The Sit and Reach box is listed with the usage 'to measure back flexibility', distinct from the weighing scale (weight), height chart (height) and measuring tape (distance).",
+  concept: {
+    title: "Measurement Equipment",
+    definition: "Fitness assessment relies on specific, purpose-built measuring tools.",
+    points: ["Weighing scale — weight", "Height chart — height", "Sit and Reach box — back flexibility", "Measuring tape — distance"],
+    memoryTrick: "'Sit, Reach, Stretch' → flexibility.",
+    sportsRelevance: "These same tools reappear in Class XII's fitness-testing unit for quantitative assessment."
+  },
+  relatedIds: ["PAT12-AS-006"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 2.2",
+  tags: ["props-equipment", "measurement"]
+}, {
+  id: "PAT11-HS-001",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Hygiene and Safety",
+  topic: "Personal Hygiene",
+  subtopic: "Definition",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "How does the textbook define 'Hygiene'?",
+  options: ["The practice of keeping yourself and your surroundings clean, especially to prevent the spread of disease", "A type of sports equipment", "A category of physical fitness test", "A rule used only in swimming pools"],
+  correctIndex: 0,
+  explanation: "The textbook defines hygiene as the practice of keeping yourself and your surroundings clean, especially to prevent the spread of disease.",
+  concept: {
+    title: "What is Hygiene?",
+    definition: "Hygiene practices protect both the individual and the people around them from illness.",
+    points: ["Personal hygiene: bathing, washing hands, brushing, clean clothes", "Protects you from poor health", "Protects others around you too"],
+    memoryTrick: "'Hygiene = Health Guard.'",
+    sportsRelevance: "A PE Assistant models and enforces good hygiene habits as part of every session, not as a separate topic."
+  },
+  relatedIds: ["PAT11-HS-002"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 3",
+  tags: ["hygiene-safety"]
+}, {
+  id: "PAT11-HS-002",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Hygiene and Safety",
+  topic: "Playground Hygiene",
+  subtopic: "Waste Management",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "The textbook asks students to segregate playground waste into which two categories?",
+  options: ["Plastic and paper", "Biodegradable and non-biodegradable", "Wet and dry only", "Recyclable and food waste"],
+  correctIndex: 1,
+  explanation: "Among the playground hygiene rules, the textbook lists 'Segregate waste into biodegradable and non-biodegradable categories.'",
+  concept: {
+    title: "Playground Hygiene Rules",
+    definition: "Simple daily habits that keep a shared play area clean and safe.",
+    points: ["Never litter — carry a bag for waste", "Throw garbage only in a dustbin", "Don't spit in public places", "Segregate waste: biodegradable vs non-biodegradable"],
+    memoryTrick: "'Bio vs Non-bio.'",
+    sportsRelevance: "Teaching this habit to children builds long-term civic responsibility alongside sports skills."
+  },
+  relatedIds: ["PAT11-HS-001"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 3.1",
+  tags: ["hygiene-safety"]
+}, {
+  id: "PAT11-HS-003",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Hygiene and Safety",
+  topic: "Safety While Playing",
+  subtopic: "General Safety Rules",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "Per the 'Safety while playing' guidelines, what should never be started without a proper warm-up?",
+  options: ["A cool-down stretch", "Vigorous physical activity", "Filling out an attendance sheet", "Watching a demonstration video"],
+  correctIndex: 1,
+  explanation: "The textbook states: 'Do not start a vigorous physical activity without a proper warm-up.'",
+  concept: {
+    title: "Safety While Playing",
+    definition: "A short set of rules to prevent avoidable injuries during any activity session.",
+    points: ["Always warm up before vigorous activity", "Wear correct sports attire (shoes, clothes)", "Never use sports equipment as weapons", "Seek immediate help from a teacher/coach if injured"],
+    memoryTrick: "'Warm up first, play safe after.'",
+    sportsRelevance: "Enforcing warm-ups is one of the most basic, high-impact safety duties of a PE Assistant."
+  },
+  relatedIds: ["PAT11-HS-004"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 3",
+  tags: ["hygiene-safety"]
+}, {
+  id: "PAT11-HS-004",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Hygiene and Safety",
+  topic: "Safety in the Swimming Pool",
+  subtopic: "Pool Safety Rules",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "According to the textbook's swimming pool safety list, what should a child do if they are suffering from an infection, skin disease or open wound?",
+  options: ["Swim only in the shallow end", "Not go to the pool", "Wear extra swimming gear and swim as normal", "Ask a friend to supervise them"],
+  correctIndex: 1,
+  explanation: "The textbook states clearly: 'If you are suffering from any infections/skin disease/open wounds, do not go to the pool.'",
+  concept: {
+    title: "Swimming Pool Safety",
+    definition: "Pool-specific safety rules protect both the individual and other swimmers from injury and infection.",
+    points: ["Never dive in shallow water", "Never enter without proper supervision, even if a good swimmer", "Skip the pool if you have an infection, skin disease, or open wound", "Never try to rescue a drowning person yourself — call for help"],
+    memoryTrick: "'Sick? Skip the swim.'",
+    sportsRelevance: "This rule protects the health of the whole group, not just the individual child."
+  },
+  relatedIds: ["PAT11-HS-003"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 3",
+  tags: ["hygiene-safety"]
+}, {
+  id: "PAT11-HS-005",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Hygiene and Safety",
+  topic: "Safety in the Swimming Pool",
+  subtopic: "Pool Safety Rules",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "If someone is drowning, what does the textbook instruct you to do?",
+  options: ["Try to rescue them yourself immediately", "Do not try to rescue them yourself — call for help", "Imitate drowning to alert others", "Ignore it if you are not a lifeguard"],
+  correctIndex: 1,
+  explanation: "The textbook specifically warns: 'Do not try to rescue a drowning person, call for help' and also 'Do not imitate drowning.'",
+  concept: {
+    title: "Responding to a Drowning Emergency",
+    definition: "Untrained rescue attempts can put the rescuer at risk too — calling trained help is the safer first response.",
+    points: ["Do not attempt a solo rescue if untrained", "Call for help immediately", "Never imitate drowning as a prank — it causes real panic"],
+    memoryTrick: "'Call, don't fall in yourself.'",
+    sportsRelevance: "This is the core reason pools must always have proper, supervised staffing during school activities."
+  },
+  relatedIds: ["PAT11-HS-004"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 3",
+  tags: ["hygiene-safety", "emergency"]
+}, {
+  id: "PAT11-HS-006",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Hygiene and Safety",
+  topic: "Playground Equipment Safety",
+  subtopic: "Equipment Condition",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Per the equipment safety checklist, what condition should wooden playground equipment NOT be in?",
+  options: ["Painted", "Cracked or splintered", "Recently installed", "Age-appropriate"],
+  correctIndex: 1,
+  explanation: "The textbook checklist states 'wooden equipment should not be cracked or splintered' and 'metal equipment should not be rusted.'",
+  concept: {
+    title: "Equipment Condition Checks",
+    definition: "Regular visual inspection prevents equipment failure from causing injury.",
+    points: ["Wooden equipment — check for cracks/splinters", "Metal equipment — check for rust", "No broken equipment or props should remain in use", "Report any damaged equipment immediately"],
+    memoryTrick: "'Wood cracks, metal rusts — check both.'",
+    sportsRelevance: "This overlaps directly with the Props & Equipment unit's inspection checklist."
+  },
+  relatedIds: ["PAT11-PE-006"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 3.1",
+  tags: ["hygiene-safety"]
+}, {
+  id: "PAT11-HS-007",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Hygiene and Safety",
+  topic: "Personal Hygiene",
+  subtopic: "General Rules",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of these is listed among the textbook's 'general hygiene and sanitation rules'?",
+  options: ["Wash hands before and after meals with water and soap", "Skip bathing on non-school days", "Eat fruits and vegetables without washing them to save time", "Reuse the same clothes for multiple days to save water"],
+  correctIndex: 0,
+  explanation: "The textbook lists washing hands before and after meals with soap and water as one of the core sanitation rules, along with daily bathing and not eating unwashed produce.",
+  concept: {
+    title: "General Hygiene & Sanitation Rules",
+    definition: "A basic personal-hygiene checklist recommended for every student.",
+    points: ["Bathe every day", "Wash hands before/after meals", "Wash hands, face and feet after playing a game", "Don't eat unwashed fruits/vegetables"],
+    memoryTrick: "'Before you eat, wash your hands — every time.'",
+    sportsRelevance: "Post-game hand/face/feet washing is specifically called out because sports activity increases contact with dirt and sweat."
+  },
+  relatedIds: ["PAT11-HS-001"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 3",
+  tags: ["hygiene-safety"]
+}, {
+  id: "PAT11-HS-008",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Hygiene and Safety",
+  topic: "Playground Hygiene",
+  subtopic: "Sandpit Safety",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "What does the textbook recommend doing to a playground sandpit when it is not in use?",
+  options: ["Leave it uncovered for ventilation", "Cover it to prevent contamination from animals", "Fill it with water", "Remove all the sand permanently"],
+  correctIndex: 1,
+  explanation: "The textbook advises covering sand pits when not in use to prevent contamination from animals, and checking for hazardous debris like sharp sticks or broken glass.",
+  concept: {
+    title: "Sandpit Safety & Hygiene",
+    definition: "Sandpits are a common playground feature but need active upkeep to remain safe and hygienic.",
+    points: ["Cover when not in use — prevents animal contamination", "Check regularly for broken glass or sharp sticks", "Ensure sand is free of bugs"],
+    memoryTrick: "'Cover it, or animals will discover it.'",
+    sportsRelevance: "This directly connects to the Class XII 'Health and Hygiene in Play Area' unit's play-area inspection checklist."
+  },
+  relatedIds: ["PAT12-HH-003"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 3.1",
+  tags: ["hygiene-safety"]
+}, {
+  id: "PAT11-HS-009",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Hygiene and Safety",
+  topic: "Safety While Playing",
+  subtopic: "General Safety Rules",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "What does the textbook say a child should carry to the ground and use to 'stay hydrated'?",
+  options: ["A first-aid kit", "A water bottle", "A spare pair of shoes", "A stopwatch"],
+  correctIndex: 1,
+  explanation: "The safety-while-playing list instructs: 'Always carry your water bottle to the ground and stay hydrated.'",
+  concept: {
+    title: "Staying Hydrated During Play",
+    definition: "Hydration is treated as a basic, non-negotiable safety habit, not an optional extra.",
+    points: ["Carry a water bottle to every session", "Stay alert to moving people/objects on the ground", "Never push your body beyond its limit"],
+    memoryTrick: "'No bottle, no ground time.'",
+    sportsRelevance: "Dehydration risk connects directly to the Class XII Emergency Management unit's coverage of heatstroke."
+  },
+  relatedIds: ["PAT12-EM-002"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 3",
+  tags: ["hygiene-safety"]
+}, {
+  id: "PAT11-HS-010",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Hygiene and Safety",
+  topic: "Safety While Playing",
+  subtopic: "General Safety Rules",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "According to the textbook, sports equipment should never be used as what?",
+  options: ["A prop for a game", "Weapons", "A demonstration tool", "A measuring device"],
+  correctIndex: 1,
+  explanation: "The safety-while-playing rules explicitly state: 'Do not use sports equipment as weapons.'",
+  concept: {
+    title: "Proper Use of Sports Equipment",
+    definition: "Equipment must always be used only for its intended sporting purpose.",
+    points: ["Never use equipment as weapons", "Keep the playground free of sharp objects (nails, stones, glass, metal)", "Never use damaged or worn-out equipment"],
+    memoryTrick: "'A bat is for batting, not for hitting.'",
+    sportsRelevance: "This rule is enforced strictly by PE staff to avoid deliberate or accidental injury during play."
+  },
+  relatedIds: ["PAT11-HS-003"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 3",
+  tags: ["hygiene-safety"]
+}, {
+  id: "PAT11-SF-001",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Sports and Fitness",
+  topic: "Session Structure",
+  subtopic: "Lesson Plan Format",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "In the textbook's standard lesson-plan format (e.g. 'Ball Control – 1'), what comes immediately after the Warm-Up segment?",
+  options: ["Cool-Down", "Team Activity", "Game Play", "EduQuette"],
+  correctIndex: 1,
+  explanation: "Every sample lesson plan follows the order: EduQuette → Warm-Up → Team Activity → Game Play → Cool-Down.",
+  concept: {
+    title: "The Standard Lesson Plan Format",
+    definition: "A consistent five-part structure used across every sport-skill lesson in the textbook.",
+    points: ["EduQuette (2 min) — brief discussion/etiquette talk", "Warm-Up (5 min)", "Team Activity (10 min)", "Game Play (15 min)", "Cool-Down (3 min)"],
+    memoryTrick: "'Educate, Warm, Team, Play, Cool.'",
+    sportsRelevance: "Following this exact structure ensures every 35-minute session has a safe warm-up and cool-down built in."
+  },
+  relatedIds: ["PAT11-SF-002"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 4",
+  tags: ["sports-fitness", "lesson-planning"]
+}, {
+  id: "PAT11-SF-002",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Sports and Fitness",
+  topic: "Session Structure",
+  subtopic: "Lesson Plan Timing",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "Adding up the standard segment durations (EduQuette 2 + Warm-Up 5 + Team Activity 10 + Game Play 15 + Cool-Down 3), how long is a full sample lesson in the textbook?",
+  options: ["25 minutes", "30 minutes", "35 minutes", "45 minutes"],
+  correctIndex: 2,
+  explanation: "2 + 5 + 10 + 15 + 3 = 35 minutes, matching every sample lesson plan (Football, Basketball, Volleyball, Cricket) in the textbook.",
+  concept: {
+    title: "Lesson Plan Duration",
+    definition: "The textbook's sample sessions are consistently timed at 35 minutes total.",
+    points: ["Consistent across all sample sports (football, basketball, volleyball, cricket)", "Game Play gets the largest time share (15 of 35 minutes)", "Cool-down is always kept short but non-negotiable (3 minutes)"],
+    memoryTrick: "'35 minutes, every time.'",
+    sportsRelevance: "This fits within a typical school period, making the format easy to slot into a timetable."
+  },
+  relatedIds: ["PAT11-SF-001"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 4",
+  tags: ["sports-fitness", "lesson-planning"]
+}, {
+  id: "PAT11-SF-003",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Sports and Fitness",
+  topic: "Athletics",
+  subtopic: "Sprint Technique",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "In the sprint-start sequence taught in the textbook, what is the correct order of commands?",
+  options: ["Set → On your marks → Go", "On your marks → Set → Go/Clap/Fire", "Go → Set → On your marks", "On your marks → Go → Set"],
+  correctIndex: 1,
+  explanation: "The textbook's sprint-start coaching sequence is: 'On your marks' → 'Set' → 'Go/Clap/Fire'.",
+  concept: {
+    title: "The Sprint Start Sequence",
+    definition: "A fixed three-command sequence used to start a fair, safe sprint race.",
+    points: ["'On your marks' — assume the crouch position", "'Set' — raise the seat, weight equally on arms and legs", "'Go/Clap/Fire' — vigorously extend the front leg and drive forward"],
+    memoryTrick: "'Marks, Set, Go' — the universal race start.",
+    sportsRelevance: "Teaching this exact sequence prepares children for real athletics meets and PE assessments."
+  },
+  relatedIds: ["PAT11-SF-004"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 4",
+  tags: ["sports-fitness", "athletics"]
+}, {
+  id: "PAT11-SF-004",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Sports and Fitness",
+  topic: "Athletics",
+  subtopic: "Sprint Technique",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "At the 'Set' position of a sprint start, how should the athlete's body weight be distributed, per the textbook?",
+  options: ["Entirely on the arms", "Entirely on the legs", "Equally supported by arms and legs", "Entirely on the front foot"],
+  correctIndex: 2,
+  explanation: "The textbook states that at 'Set', the body weight is equally supported by arms and legs, comparing the position to 'a coiled spring'.",
+  concept: {
+    title: "The 'Set' Position",
+    definition: "A balanced, tensed posture that allows an explosive start on the 'Go' command.",
+    points: ["Seat raised above the shoulders", "Weight equally on arms and legs — 'like a coiled spring'", "Back and head form a straight line, eyes looking at the ground"],
+    memoryTrick: "'Coiled spring = ready to release.'",
+    sportsRelevance: "Correct 'Set' posture prevents false starts and improves reaction time off the blocks."
+  },
+  relatedIds: ["PAT11-SF-003"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 4",
+  tags: ["sports-fitness", "athletics"]
+}, {
+  id: "PAT11-SF-005",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Sports and Fitness",
+  topic: "Yoga",
+  subtopic: "Asanas",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Which asana does the textbook say should be performed at the very end, after completion of all yogic exercises?",
+  options: ["Vrikshasana", "Bhujangasana", "Shavasana", "Trikonasana"],
+  correctIndex: 2,
+  explanation: "The textbook specifies Shavasana ('corpse pose') is performed after all yogic exercises are complete, lying on the back with eyes closed for 2–3 minutes.",
+  concept: {
+    title: "Shavasana — The Closing Pose",
+    definition: "A relaxation posture that allows the body to absorb the benefits of a yoga session.",
+    points: ["Performed after completing all other asanas", "Lie on the back, arms slightly apart, palms up", "Stay in position for 2–3 minutes with natural breathing"],
+    memoryTrick: "'Sha-vasana' sounds like 'shhh' — total stillness.",
+    sportsRelevance: "Ending every yoga session with Shavasana mirrors the cool-down principle used in sports lesson plans."
+  },
+  relatedIds: ["PAT11-CD-010"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 1.3",
+  tags: ["sports-fitness", "yoga"]
+}, {
+  id: "PAT11-SF-006",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Sports and Fitness",
+  topic: "Yoga",
+  subtopic: "Surya Namaskar",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2026,
+  question: "In Surya Namaskar's Step 6 ('Ashtanga Namaskara'), how many body parts touch the floor?",
+  options: ["Four", "Six", "Eight", "Ten"],
+  correctIndex: 2,
+  explanation: "The textbook explains that in Ashtanga Namaskara, eight body parts — feet, knees, palms, chest and forehead — touch the floor, hence it is also called 'Sastanga Namaskara' (eight-limbed salutation).",
+  concept: {
+    title: "Ashtanga Namaskara",
+    definition: "A specific pose within the Surya Namaskar sequence named for the eight points of body contact with the ground.",
+    points: ["'Ashta' = eight in Sanskrit", "Feet, knees, palms, chest, forehead touch the floor", "Buttocks stay raised in this position"],
+    memoryTrick: "'Ashta = 8.'",
+    sportsRelevance: "Correct form here avoids strain on the lower back and shoulders during the pose."
+  },
+  relatedIds: ["PAT11-SF-005"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 1.3",
+  tags: ["sports-fitness", "yoga"]
+}, {
+  id: "PAT11-SF-007",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Sports and Fitness",
+  topic: "Session Planning",
+  subtopic: "Timing Guidance",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "The textbook recommends that on-ground physical activities be performed at what point relative to a meal?",
+  options: ["Immediately after eating", "2 hours after having a meal", "On a completely empty stomach only", "It doesn't matter"],
+  correctIndex: 1,
+  explanation: "The textbook's activity instructions specify: 'Best Time to perform these activities: 2 hours after having a meal — it will provide sufficient energy to the body for these kinds of activities.'",
+  concept: {
+    title: "Timing Physical Activity Around Meals",
+    definition: "Timing activity correctly around meals balances energy availability with digestive comfort.",
+    points: ["2 hours after a meal is the recommended gap for ground activities", "This allows enough energy without digestive discomfort", "Yoga specifically is best practised early morning"],
+    memoryTrick: "'Eat, wait 2 hours, then play.'",
+    sportsRelevance: "A PE Assistant scheduling sessions after lunch periods should build in this gap."
+  },
+  relatedIds: ["PAT11-SF-001"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 1.3",
+  tags: ["sports-fitness"]
+}, {
+  id: "PAT11-SF-008",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Sports and Fitness",
+  topic: "Game Modifications",
+  subtopic: "Throwball",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "When teaching Volleyball basics to young children, the textbook modifies the game into 'Throwball' by allowing what?",
+  options: ["Two bounces before returning the ball", "One drop before playing the ball", "Unlimited touches per side", "Only underarm serves"],
+  correctIndex: 1,
+  explanation: "The textbook's Volleyball Basics sessions modify the rules to a 'Throwball' format, allowing one drop, to make the game accessible for beginners.",
+  concept: {
+    title: "Modifying Games for Beginners",
+    definition: "Simplifying official rules helps young or beginner players stay engaged while learning core skills.",
+    points: ["Throwball = Volleyball with one drop allowed", "Reduces point targets so all teams get a turn to play", "Builds toward the full-rules version over time"],
+    memoryTrick: "'One drop, still counts.'",
+    sportsRelevance: "Modifying games for age/skill level is a core coaching competency for the Physical Education Assistant role."
+  },
+  relatedIds: ["PAT11-SF-001"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 4",
+  tags: ["sports-fitness"]
+}, {
+  id: "PAT11-SF-009",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Sports and Fitness",
+  topic: "Basketball Skills",
+  subtopic: "Ball Handling Drills",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "In the textbook's basketball warm-up drills, exercises named 'Crab Walk' and 'Make Figure-8' are primarily designed to build which skill?",
+  options: ["Shooting accuracy", "Ball handling / dribbling control around the body", "Rebounding technique", "Defensive footwork only"],
+  correctIndex: 1,
+  explanation: "Both drills are listed under 'Group C and D' ball-handling warm-ups, focused on moving the ball skilfully around the body and between the legs.",
+  concept: {
+    title: "Ball-Handling Warm-Up Drills",
+    definition: "Basic ball-control drills build the foundation needed before introducing game play.",
+    points: ["Dribble around the body — alternating hands behind the back", "Figure-8 — pass the ball around each leg in a figure-eight pattern", "Crab Walk — pass the ball hand-to-hand under each leg while stepping"],
+    memoryTrick: "'Crab and Figure-8 = control, not speed.'",
+    sportsRelevance: "These drills come before any team activity or game play in the lesson-plan structure."
+  },
+  relatedIds: ["PAT11-SF-001"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 4",
+  tags: ["sports-fitness"]
+}, {
+  id: "PAT11-SF-010",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Sports and Fitness",
+  topic: "Child Development",
+  subtopic: "Avoiding Early Specialization",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Per the textbook, why should children aged 8–11 years NOT be encouraged to specialize in a single sport, even if they show talent in it?",
+  options: ["Specialization is too expensive for schools", "Their bodies are still developing and need practice across all skills for holistic development", "Rules only allow specialization after age 15", "Single-sport training is banned by CBSE"],
+  correctIndex: 1,
+  explanation: "The textbook states that at this age the body is still developing, so all skills need to be practised for holistic development, and children should be encouraged to try different sports rather than specialize.",
+  concept: {
+    title: "Why Avoid Early Specialization",
+    definition: "The textbook's core coaching philosophy for the primary years age group.",
+    points: ["Body is still developing at 8–11 years", "Practising varied skills supports holistic (all-round) development", "Specialization is appropriate later — see the Grade 9–12 stage of the diamond model"],
+    memoryTrick: "'Young body, wide skills — not one sport yet.'",
+    sportsRelevance: "This principle underpins the entire Class XI 'Primary Years' philosophy of the job role."
+  },
+  relatedIds: ["PAT11-CD-008"],
+  source: "CBSE Physical Activity Trainer — Class XI Textbook, Unit 1.3",
+  tags: ["sports-fitness", "child-development"]
+}, {
+  id: "PAT11-PYQ-001",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Practice Questions (Exam Pattern)",
+  topic: "Employability Skills",
+  subtopic: "Communication",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of the following is an example of non-verbal communication?",
+  options: ["Sending a text message", "Maintaining eye contact", "Writing an email", "Making a phone call"],
+  correctIndex: 1,
+  explanation: "Maintaining eye contact is a form of non-verbal communication — it conveys attention and confidence without using words.",
+  concept: {
+    title: "Verbal vs Non-Verbal Communication",
+    definition: "Employability Skills (a common part of every CBSE skill subject) distinguishes spoken/written communication from body-language cues.",
+    points: ["Verbal — speaking, writing, emailing", "Non-verbal — eye contact, posture, gestures, tone"],
+    memoryTrick: "'No words = non-verbal.'",
+    sportsRelevance: "A good PE Assistant reads children's non-verbal cues (hesitation, discomfort) to adjust a session in real time."
+  },
+  relatedIds: ["PAT12-OV-006"],
+  source: "Modelled on the CBSE Employability Skills curriculum (common to all skill subjects)",
+  tags: ["practice", "employability"]
+}, {
+  id: "PAT11-PYQ-002",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Practice Questions (Exam Pattern)",
+  topic: "Employability Skills",
+  subtopic: "Self-Management",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "A student exercises daily purely because they enjoy how it makes them feel, not for any reward. This is an example of:",
+  options: ["Extrinsic motivation", "Intrinsic motivation", "Peer pressure", "Time management"],
+  correctIndex: 1,
+  explanation: "Intrinsic motivation comes from genuine personal enjoyment or interest, as opposed to extrinsic motivation, which is driven by external rewards or recognition.",
+  concept: {
+    title: "Intrinsic vs Extrinsic Motivation",
+    definition: "Understanding the two motivation types helps a PE Assistant encourage children in the right way.",
+    points: ["Intrinsic — done for personal enjoyment/interest", "Extrinsic — done for a reward, grade or praise"],
+    memoryTrick: "'Intrinsic = Inside; Extrinsic = External reward.'",
+    sportsRelevance: "Building intrinsic motivation in children creates lifelong fitness habits, not just short-term compliance."
+  },
+  relatedIds: ["PAT12-OV-007"],
+  source: "Modelled on the CBSE Employability Skills curriculum (common to all skill subjects)",
+  tags: ["practice", "employability"]
+}, {
+  id: "PAT11-PYQ-003",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Practice Questions (Exam Pattern)",
+  topic: "Child Development",
+  subtopic: "Health Triangle",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "A child who eats well, exercises regularly, sleeps enough, has healthy friendships and manages stress well is demonstrating balance across which model?",
+  options: ["The Fitness Pyramid", "The Health Triangle", "The Skill Diamond", "The Assessment Rubric"],
+  correctIndex: 1,
+  explanation: "This scenario reflects balance across all three sides of the Health Triangle: Physical (eating, exercise, sleep), Social (friendships) and Mental (stress management).",
+  concept: {
+    title: "Applying the Health Triangle",
+    definition: "Real-world scenarios are used in exams to test whether students can identify the Health Triangle in practice, not just recite its definition.",
+    points: ["Physical — nutrition, exercise, rest", "Mental — stress management, positive outlook", "Social — friendships and relationships"],
+    memoryTrick: "'Body-Mind-Friends, all in balance.'",
+    sportsRelevance: "Exam questions often frame concepts as short scenarios — practise spotting the underlying concept."
+  },
+  relatedIds: ["PAT11-CD-001"],
+  source: "Modelled on the CBSE Physical Activity Trainer exam pattern",
+  tags: ["practice", "child-development"]
+}, {
+  id: "PAT11-PYQ-004",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Practice Questions (Exam Pattern)",
+  topic: "Props and Equipment",
+  subtopic: "Selection Factors",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "A school with only 15 children in a class decides to buy smaller, lighter goal posts than a school with 40 children per class. Which factor primarily explains this decision?",
+  options: ["Budget only", "Group size", "Industry standard", "Climatic conditions"],
+  correctIndex: 1,
+  explanation: "Group size directly affects equipment selection — smaller groups can use smaller, more customizable equipment (like mobile/mini goal posts) without needing to split into many sub-groups.",
+  concept: {
+    title: "Group Size and Equipment Choice",
+    definition: "The number of learners affects both the size and quantity of equipment needed for a session.",
+    points: ["Large groups need more (or larger) equipment, or division into smaller groups", "Small groups can use compact, customized equipment"],
+    memoryTrick: "'More kids, more/bigger kit.'",
+    sportsRelevance: "This is a practical planning decision a PE Assistant makes before every term."
+  },
+  relatedIds: ["PAT11-PE-002"],
+  source: "Modelled on the CBSE Physical Activity Trainer exam pattern",
+  tags: ["practice", "props-equipment"]
+}, {
+  id: "PAT11-PYQ-005",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Practice Questions (Exam Pattern)",
+  topic: "Hygiene and Safety",
+  subtopic: "Applying Pool Rules",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "A child wants to enter the swimming pool wearing inflatable arm floats even though they claim to be a confident swimmer, and no lifeguard is present. What should happen?",
+  options: ["They should be allowed to swim since floats make it safe", "They should not enter without proper supervision, regardless of floats or swimming ability", "They should swim only in the deep end", "They should remove the floats and swim without them"],
+  correctIndex: 1,
+  explanation: "The textbook rule is explicit: never enter a pool without proper supervision, 'even if you have inflated teaching aids (floats) or are a good swimmer.'",
+  concept: {
+    title: "Supervision Overrides Confidence or Aids",
+    definition: "Pool safety rules apply uniformly regardless of a child's stated skill level or use of flotation aids.",
+    points: ["Supervision is mandatory, always", "Floats and swimming skill do not replace supervision"],
+    memoryTrick: "'No lifeguard, no swim — no exceptions.'",
+    sportsRelevance: "This scenario style (applying a rule to a specific situation) is common in the real Class XII SQP."
+  },
+  relatedIds: ["PAT11-HS-004"],
+  source: "Modelled on the CBSE Physical Activity Trainer exam pattern",
+  tags: ["practice", "hygiene-safety"]
+}, {
+  id: "PAT11-PYQ-006",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Practice Questions (Exam Pattern)",
+  topic: "Sports and Fitness",
+  subtopic: "Session Timing",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "A PE Assistant has a 35-minute period and wants to follow the standard lesson-plan format. How many minutes should be allocated to 'Game Play'?",
+  options: ["5 minutes", "10 minutes", "15 minutes", "20 minutes"],
+  correctIndex: 2,
+  explanation: "In the standard 35-minute format (EduQuette 2 + Warm-Up 5 + Team Activity 10 + Game Play 15 + Cool-Down 3), Game Play always receives the largest share: 15 minutes.",
+  concept: {
+    title: "Time Allocation in a Lesson Plan",
+    definition: "Applying the standard format to a real scheduling scenario.",
+    points: ["EduQuette — 2 min", "Warm-Up — 5 min", "Team Activity — 10 min", "Game Play — 15 min", "Cool-Down — 3 min"],
+    memoryTrick: "'Game Play always gets the biggest slice.'",
+    sportsRelevance: "Being able to reconstruct this breakdown from memory is a common exam-style application question."
+  },
+  relatedIds: ["PAT11-SF-002"],
+  source: "Modelled on the CBSE Physical Activity Trainer exam pattern",
+  tags: ["practice", "sports-fitness"]
+}, {
+  id: "PAT11-PYQ-007",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Practice Questions (Exam Pattern)",
+  topic: "Employability Skills",
+  subtopic: "Green Skills",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of these is the most responsible way to dispose of old, broken sports equipment containing electronic parts (e.g. a digital stopwatch)?",
+  options: ["Throw it in the regular household dustbin", "Recycle it through an authorized e-waste program", "Burn it to dispose of it quickly", "Bury it in the school garden"],
+  correctIndex: 1,
+  explanation: "Recycling electronic waste through an authorized program prevents environmental contamination — a core 'Green Skills' concept in the employability curriculum.",
+  concept: {
+    title: "Responsible E-Waste Disposal",
+    definition: "Green Skills is one of the five common employability modules in every CBSE skill subject.",
+    points: ["E-waste needs authorized recycling, not regular trash", "Burning or burying releases harmful substances into soil/air"],
+    memoryTrick: "'E-waste needs a special place.'",
+    sportsRelevance: "A PE department accumulates electronic gear (stopwatches, scales) over time that eventually needs proper disposal."
+  },
+  relatedIds: ["PAT12-OV-005"],
+  source: "Modelled on the CBSE Employability Skills curriculum (common to all skill subjects)",
+  tags: ["practice", "employability"]
+}, {
+  id: "PAT11-PYQ-008",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Practice Questions (Exam Pattern)",
+  topic: "Props and Equipment",
+  subtopic: "Maintenance",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "After a football session, a PE Assistant notices the football has lost some air. What is the correct next step per the textbook's ball-care instructions?",
+  options: ["Leave it deflated until the next session", "Deflate it further to prevent any expansion", "Re-inflate it to the correct pressure and store it in a well-ventilated place away from sunlight", "Store it in a hot, closed cupboard to keep it warm"],
+  correctIndex: 2,
+  explanation: "The textbook instructs inflating balls to correct pressure and storing them in a well-ventilated place, out of direct sunlight, to prevent expansion, deformity or damage.",
+  concept: {
+    title: "Ball Storage Best Practice",
+    definition: "Proper storage extends equipment life and keeps balls ready for the next session.",
+    points: ["Inflate to correct pressure before storing", "Store in a well-ventilated place", "Keep out of direct sunlight and damp/hot places"],
+    memoryTrick: "'Right pressure, cool and dry.'",
+    sportsRelevance: "This is a routine end-of-session task expected of anyone managing school sports equipment."
+  },
+  relatedIds: ["PAT11-PE-005"],
+  source: "Modelled on the CBSE Physical Activity Trainer exam pattern",
+  tags: ["practice", "props-equipment"]
+}, {
+  id: "PAT11-PYQ-009",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Practice Questions (Exam Pattern)",
+  topic: "Child Development",
+  subtopic: "Session Design",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2026,
+  question: "A PE Assistant is designing a session for Grade 7 students. According to the textbook's diamond model, what should the primary focus of this session be?",
+  options: ["Basic movement concepts like action and balance", "Building fundamental sports skills for the first time", "Exploring multiple different games", "Specializing in one competitive sport"],
+  correctIndex: 2,
+  explanation: "Per the diamond model, Grades 6–8 are in the 'Exploring multiple games' stage — building on fundamentals learned in Grades 3–5, before specialization begins at Grades 9–12.",
+  concept: {
+    title: "Applying the Diamond Model",
+    definition: "Matching a grade level to its correct stage in the progression model.",
+    points: ["Grade N–2 — movement concepts", "Grade 3–5 — fundamental skills", "Grade 6–8 — exploring multiple games", "Grade 9–12 — specialization"],
+    memoryTrick: "'Grade 7 sits in the exploring stage, not yet specializing.'",
+    sportsRelevance: "This kind of 'which grade, which stage' question tests real understanding, not memorization."
+  },
+  relatedIds: ["PAT11-CD-008"],
+  source: "Modelled on the CBSE Physical Activity Trainer exam pattern",
+  tags: ["practice", "child-development"]
+}, {
+  id: "PAT11-PYQ-010",
+  exam: ["PAT-11"],
+  subject: "PAT XI — Practice Questions (Exam Pattern)",
+  topic: "Hygiene and Safety",
+  subtopic: "Equipment Safety",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "During a routine equipment check, a PE Assistant finds a basketball post with a visibly rusted, loose bolt. What is the correct immediate action?",
+  options: ["Continue using it since it still stands", "Designate it off-limits, report it, and follow up until it is repaired", "Tighten the bolt yourself using any available tool and continue the session", "Ignore it since rust does not affect safety"],
+  correctIndex: 1,
+  explanation: "The textbook instructs that any equipment that seems broken, loose or in need of maintenance should be designated off-limits immediately, reported to the appropriate authorities, and followed up until repaired.",
+  concept: {
+    title: "Responding to Unsafe Equipment",
+    definition: "A clear, three-step protocol for handling damaged or hazardous equipment.",
+    points: ["Designate the item off-limits immediately", "Report the problem to the appropriate authority", "Follow up until the repair is completed"],
+    memoryTrick: "'Stop it, Report it, Track it.'",
+    sportsRelevance: "This protocol appears almost identically in both the Class XI Hygiene & Safety unit and the Class XII Health & Hygiene in Play Area unit."
+  },
+  relatedIds: ["PAT12-HH-002"],
+  source: "Modelled on the CBSE Physical Activity Trainer exam pattern",
+  tags: ["practice", "hygiene-safety"]
+}, {
+  id: "PAT12-OV-001",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Overview of PE & Sports Sector",
+  topic: "Career Paths",
+  subtopic: "Sports Sector Careers",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of the following is NOT a recognized career path within the Physical Education and Sports sector?",
+  options: ["Sports Psychology", "Sports Nutritionist", "Engineering", "Fitness Sector roles"],
+  correctIndex: 2,
+  explanation: "Engineering is unrelated to the sports sector career map, whereas Sports Psychology, Sports Nutrition and the Fitness Sector are all recognized specializations within it.",
+  concept: {
+    title: "Careers in the Sports Sector",
+    definition: "The sports and physical education industry supports many specialized, non-coaching careers.",
+    points: ["Sports Medicine — diagnosis/treatment of sports injuries", "Sports Psychology — mental performance and wellbeing", "Sports Nutritionist — diet planning for athletes", "Sports Journalism, Equipment Management, Fitness Sector roles"],
+    memoryTrick: "'Sport touches medicine, mind, food, media and gear.'",
+    sportsRelevance: "A Class XII graduate of this course can see a clear map of where a PE career can lead beyond just teaching."
+  },
+  relatedIds: ["PAT12-OV-002"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q3.1",
+  tags: ["overview", "careers"]
+}, {
+  id: "PAT12-OV-002",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Overview of PE & Sports Sector",
+  topic: "Career Paths",
+  subtopic: "Sports Medicine",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Which career path is primarily responsible for the diagnosis and treatment of sports injuries?",
+  options: ["Sports Journalism", "Sports Psychology", "Sports Medicine", "Equipment Management"],
+  correctIndex: 2,
+  explanation: "Sports Medicine professionals specialize in diagnosing and treating injuries that occur during sports and physical activity.",
+  concept: {
+    title: "Sports Medicine as a Career",
+    definition: "A specialized medical field focused specifically on injuries and conditions related to physical activity.",
+    points: ["Diagnoses and treats sports injuries", "Works closely with coaches and physiotherapists", "Distinct from general sports coaching roles"],
+    memoryTrick: "'Medicine = treats the injury.'",
+    sportsRelevance: "A PE Assistant/Facilitator often coordinates with sports medicine professionals when a child is injured."
+  },
+  relatedIds: ["PAT12-OV-001"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q5.2",
+  tags: ["overview", "careers"]
+}, {
+  id: "PAT12-OV-003",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Overview of PE & Sports Sector",
+  topic: "Games, Sports & Recreation",
+  subtopic: "Definitions",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "What is the key distinguishing feature that separates a 'Sport' from a general 'Game'?",
+  options: ["The level of physical exertion required", "Whether it involves a team", "The presence of official rules and regulations", "Whether it is played outdoors"],
+  correctIndex: 2,
+  explanation: "The official curriculum distinguishes Sport from Game primarily by the presence of official rules and regulations governing how it is played and officiated.",
+  concept: {
+    title: "Games vs Sports vs Recreation",
+    definition: "Three related but distinct categories of physical activity.",
+    points: ["Game — a structured but informal form of play", "Sport — governed by official rules and regulations, often competitive", "Recreation — activity done for leisure/enjoyment (e.g. hiking, gardening)"],
+    memoryTrick: "'Sport = rules + regulation.'",
+    sportsRelevance: "This distinction matters for how each activity is officiated, scored and organized at a school level."
+  },
+  relatedIds: ["PAT12-OV-004"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q4.2",
+  tags: ["overview", "terminology"]
+}, {
+  id: "PAT12-OV-004",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Overview of PE & Sports Sector",
+  topic: "Games, Sports & Recreation",
+  subtopic: "Recreation",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Activities like hiking and gardening are best categorized under which term in the sports sector framework?",
+  options: ["Physical Activity", "Games", "Sports", "Recreation"],
+  correctIndex: 3,
+  explanation: "Hiking and gardening are classified as Recreation — activities done for leisure and enjoyment, distinct from structured Games or rule-bound Sports.",
+  concept: {
+    title: "Recreation as a Category",
+    definition: "Recreation covers leisure-based physical activities that aren't necessarily competitive or rule-governed.",
+    points: ["Recreation — leisure activities like hiking, gardening", "Physical Activity — any bodily movement using energy (broadest category)", "Games and Sports are more structured subsets"],
+    memoryTrick: "'Recreation = Re-creating yourself through leisure.'",
+    sportsRelevance: "Understanding this hierarchy helps categorize the huge variety of activities a Facilitator might introduce to children."
+  },
+  relatedIds: ["PAT12-OV-003"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q4.3",
+  tags: ["overview", "terminology"]
+}, {
+  id: "PAT12-OV-005",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Overview of PE & Sports Sector",
+  topic: "Employability Skills",
+  subtopic: "Green Skills",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "What is the responsible way to dispose of old electronic equipment (e-waste) used in a sports facility?",
+  options: ["Donate it to anyone who wants it, regardless of condition", "Sell it online without checking its safety", "Recycle it via an authorized recycling program", "Bury it in the backyard"],
+  correctIndex: 2,
+  explanation: "Recycling e-waste through an authorized program is the environmentally responsible approach, preventing hazardous materials from contaminating soil or water.",
+  concept: {
+    title: "E-Waste Disposal",
+    definition: "Part of the Green Skills employability module common across CBSE skill subjects.",
+    points: ["Use authorized e-waste recycling programs", "Avoid burying or informally discarding electronics"],
+    memoryTrick: "'Authorized recycling, always.'",
+    sportsRelevance: "Sports facilities accumulate electronic gear (timers, scales, scoreboards) that eventually need safe disposal."
+  },
+  relatedIds: ["PAT11-PYQ-007"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q1.6",
+  tags: ["overview", "employability"]
+}, {
+  id: "PAT12-OV-006",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Overview of PE & Sports Sector",
+  topic: "Employability Skills",
+  subtopic: "Communication",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of the following best exemplifies non-verbal communication?",
+  options: ["Sending a text message", "Speaking loudly", "Maintaining eye contact", "Writing an email"],
+  correctIndex: 2,
+  explanation: "Maintaining eye contact is a classic example of non-verbal communication, conveying attentiveness and confidence without spoken or written words.",
+  concept: {
+    title: "Non-Verbal Communication",
+    definition: "Communication that happens through means other than words — body language, posture, gestures and eye contact.",
+    points: ["Eye contact conveys confidence and attentiveness", "Posture and gestures are also non-verbal signals"],
+    memoryTrick: "'No words spoken = non-verbal.'",
+    sportsRelevance: "A Facilitator relies heavily on non-verbal cues when working with very young children who may not verbalize discomfort."
+  },
+  relatedIds: ["PAT11-PYQ-001"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q1.1",
+  tags: ["overview", "employability"]
+}, {
+  id: "PAT12-OV-007",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Overview of PE & Sports Sector",
+  topic: "Employability Skills",
+  subtopic: "Self-Management",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "A student exercises purely for the health benefits, not for a reward. This best illustrates:",
+  options: ["Extrinsic motivation", "Enjoying the subject genuinely (intrinsic motivation)", "Peer pressure", "Poor time management"],
+  correctIndex: 1,
+  explanation: "Genuinely exercising for personal health benefit, rather than for an external reward, reflects intrinsic motivation.",
+  concept: {
+    title: "Motivation Types",
+    definition: "Recognizing motivation types helps design better engagement strategies for students.",
+    points: ["Intrinsic — internal enjoyment or value", "Extrinsic — external reward, praise or recognition"],
+    memoryTrick: "'Health benefit = internal reward = intrinsic.'",
+    sportsRelevance: "Facilitators aim to nurture intrinsic motivation so fitness habits continue beyond school years."
+  },
+  relatedIds: ["PAT11-PYQ-002"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q1.2",
+  tags: ["overview", "employability"]
+}, {
+  id: "PAT12-OV-008",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Overview of PE & Sports Sector",
+  topic: "Employability Skills",
+  subtopic: "Leadership",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of the following is considered a key leadership trait?",
+  options: ["Shyness", "Aggressiveness", "Empathy", "Introversion"],
+  correctIndex: 2,
+  explanation: "Empathy — the ability to understand and share the feelings of others — is identified as a key leadership trait in the employability skills curriculum.",
+  concept: {
+    title: "Leadership Traits",
+    definition: "Core qualities that make someone effective at guiding and motivating a team or group.",
+    points: ["Empathy — understanding others' feelings and perspectives", "Contrasts with traits like aggressiveness or shyness, which are not leadership strengths here"],
+    memoryTrick: "'Empathy = Every-body's feelings matter.'",
+    sportsRelevance: "A Facilitator leading a group of children benefits directly from empathetic leadership."
+  },
+  relatedIds: ["PAT12-OV-006"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q1.3",
+  tags: ["overview", "employability"]
+}, {
+  id: "PAT12-OV-009",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Overview of PE & Sports Sector",
+  topic: "Career Paths",
+  subtopic: "PE Assistant Careers",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Career opportunities for a Physical Education Assistant include which combination of roles?",
+  options: ["Teaching only", "Teaching, Coaching and Equipment Management", "Teaching and Journalism only", "Sports Medicine and Journalism only"],
+  correctIndex: 1,
+  explanation: "The official SQP identifies Teaching, Coaching and Equipment Management as realistic career pathways stemming from the PE Assistant role.",
+  concept: {
+    title: "Career Progression from PE Assistant",
+    definition: "The Class XI/XII qualification opens multiple related career pathways, not just classroom teaching.",
+    points: ["Teaching — classroom/PE instruction", "Coaching — sport-specific skill development", "Equipment Management — overseeing sports facilities and gear"],
+    memoryTrick: "'Teach, Coach, Manage.'",
+    sportsRelevance: "Knowing this career map helps students see the qualification's real-world value beyond the exam."
+  },
+  relatedIds: ["PAT12-OV-001"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q2.1",
+  tags: ["overview", "careers"]
+}, {
+  id: "PAT12-OV-010",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Overview of PE & Sports Sector",
+  topic: "Physical Activity",
+  subtopic: "Definitions",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of these is the clearest example of 'physical activity' as defined in the syllabus?",
+  options: ["Watching a soccer match on TV", "Playing chess", "Running a marathon", "Reading a sports magazine"],
+  correctIndex: 2,
+  explanation: "Physical activity is any bodily movement that uses energy — running a marathon clearly qualifies, unlike watching sport, playing chess, or reading about sport.",
+  concept: {
+    title: "What Counts as Physical Activity",
+    definition: "Physical activity is defined broadly as any energy-using bodily movement, distinct from passive or purely mental activities.",
+    points: ["Physical activity — uses energy through bodily movement", "Watching or reading about sport does not count, however sport-related it feels"],
+    memoryTrick: "'If your body isn't moving and burning energy, it isn't physical activity.'",
+    sportsRelevance: "This basic distinction underlies how PE curricula define and measure 'active minutes' for children."
+  },
+  relatedIds: ["PAT12-OV-004"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q2.2",
+  tags: ["overview", "terminology"]
+}, {
+  id: "PAT12-AS-001",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Assessment of Students",
+  topic: "Meaning of Assessment",
+  subtopic: "Purpose",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "According to the textbook, assessment should answer which two core questions?",
+  options: ["'Who taught it?' and 'When was it taught?'", "'What was learnt?' and 'How well was it learnt?'", "'Is it graded?' and 'Is it optional?'", "'Who is the best student?' and 'Who is the worst?'"],
+  correctIndex: 1,
+  explanation: "The textbook states assessment should answer: 'What was learnt?' and 'How well was it learnt?' — it is about understanding learning, not ranking students.",
+  concept: {
+    title: "The Purpose of Assessment",
+    definition: "Assessment exists to measure and improve learning, not simply to assign grades or rank students.",
+    points: ["Answers 'what' was learnt and 'how well'", "Is an ongoing process, not a one-off event", "Should never be designed without a clear teaching goal behind it"],
+    memoryTrick: "'What + How well = Assessment.'",
+    sportsRelevance: "This mindset shift — from grading to understanding learning — is central to the Facilitator's assessment role."
+  },
+  relatedIds: ["PAT12-AS-002"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q3.3 & Textbook Unit 1.1",
+  tags: ["assessment"]
+}, {
+  id: "PAT12-AS-002",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Assessment of Students",
+  topic: "Types of Assessment",
+  subtopic: "Teacher Observation",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "Which type of assessment is described in the textbook as 'the most common form of assessment utilised in physical education classes'?",
+  options: ["Peer observation", "Self-assessment", "Teacher observation", "Homework"],
+  correctIndex: 2,
+  explanation: "The textbook explicitly states teacher observation is the most common form of assessment used in PE classes, well-suited for assessing psychomotor performance.",
+  concept: {
+    title: "Types of Assessment in PE",
+    definition: "Multiple assessment methods are used together to build a complete picture of a student's progress.",
+    points: ["Teacher observation — most common, assesses psychomotor skill", "Peer observation — students observe and give feedback to each other", "Self-assessment — students evaluate their own performance", "Homework — practice or written tasks done outside class"],
+    memoryTrick: "'Teacher watches most; peers and self also help.'",
+    sportsRelevance: "A Facilitator uses checklists (like the running skill checklist) to structure teacher observation objectively."
+  },
+  relatedIds: ["PAT12-AS-001"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q3.3",
+  tags: ["assessment"]
+}, {
+  id: "PAT12-AS-003",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Assessment of Students",
+  topic: "Assessment Tools",
+  subtopic: "Rubrics",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "What is the primary purpose of a rubric in skill assessment?",
+  options: ["To measure how many answers were correct on a written test", "To provide clear performance criteria that describe levels of skill quality", "To evaluate the colour of the equipment used", "To replace the need for any assessment at all"],
+  correctIndex: 1,
+  explanation: "A rubric is a coherent set of criteria describing levels of performance quality — its purpose is to provide clear, consistent performance criteria, not to grade written tests.",
+  concept: {
+    title: "Rubrics as an Assessment Tool",
+    definition: "Rubrics translate subjective observation into consistent, describable performance levels.",
+    points: ["The word 'rubric' comes from the Latin word for 'red'", "Provides criteria describing different quality levels (e.g. Proficient / Developing / Needs Development)", "Used heavily in qualitative, skill-based assessment"],
+    memoryTrick: "'Rubric = Ruler for skill quality.'",
+    sportsRelevance: "Every skill checklist and grading table in the textbook (e.g. the running skill rubric) is built on this principle."
+  },
+  relatedIds: ["PAT12-AS-004"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q3.3 & Textbook Unit 1.4",
+  tags: ["assessment", "rubrics"]
+}, {
+  id: "PAT12-AS-004",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Assessment of Students",
+  topic: "Assessment Tools",
+  subtopic: "Grading Scales",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "On the textbook's 3-point grading rubric, what does a grade of 'B' represent?",
+  options: ["Proficient", "Developing", "Needs Development", "Excellent"],
+  correctIndex: 1,
+  explanation: "On the 3-point scale, A = Proficient (3 points), B = Developing (2 points), C = Needs Development (1 point).",
+  concept: {
+    title: "The 3-Point Grading Scale",
+    definition: "A simple qualitative scale used to record a student's skill level against a rubric.",
+    points: ["A — Proficient (3 points)", "B — Developing (2 points)", "C — Needs Development (1 point)"],
+    memoryTrick: "'A is Ahead, B is Building, C is Coming along.'",
+    sportsRelevance: "This scale is used directly in sample report cards shown in the textbook (e.g. skill grades for running, catching)."
+  },
+  relatedIds: ["PAT12-AS-003"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q4.1 & Textbook Unit 1.4",
+  tags: ["assessment", "rubrics"]
+}, {
+  id: "PAT12-AS-005",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Assessment of Students",
+  topic: "Qualitative vs Quantitative Assessment",
+  subtopic: "Assessment vs Evaluation",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2026,
+  question: "What is the key difference between 'assessment' and 'evaluation' as explained in the textbook?",
+  options: ["They mean exactly the same thing", "Evaluation improves learning quality while assessment judges the final level reached", "Assessment is ongoing and provides feedback; evaluation provides closure and judges the outcome", "Assessment only applies to written tests"],
+  correctIndex: 2,
+  explanation: "The textbook explains: 'Assessment is ongoing and evaluation provides closure', 'Assessment improves learning quality and evaluation judges learning level', and 'Assessment provides feedback and evaluation shows shortfalls.'",
+  concept: {
+    title: "Assessment vs Evaluation",
+    definition: "Two related but functionally different processes in tracking student progress.",
+    points: ["Assessment — ongoing, feedback-oriented, process-focused", "Evaluation — a final review/closure, judgment-oriented, outcome-focused"],
+    memoryTrick: "'Assessment = Along the way. Evaluation = End of the way.'",
+    sportsRelevance: "A Facilitator assesses continuously through the term, then evaluates at reporting time (e.g. before a Parent-Teacher Meeting)."
+  },
+  relatedIds: ["PAT12-AS-001"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q5.3 & Textbook Unit 1.5",
+  tags: ["assessment"]
+}, {
+  id: "PAT12-AS-006",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Assessment of Students",
+  topic: "Fitness Testing",
+  subtopic: "Aerobic Capacity",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of these fitness tests is used to measure a child's aerobic capacity?",
+  options: ["Sit and Reach test", "Beep Test / 600m Run-Walk", "Standing Broad Jump", "Overhead Medicine Ball Throw"],
+  correctIndex: 1,
+  explanation: "The textbook's Fitness Assessment table lists the Beep Test and 600m Run/Walk (among others) as tests for Aerobic Capacity.",
+  concept: {
+    title: "Matching Fitness Tests to Capacities",
+    definition: "Each physical capacity in the textbook's fitness framework has its own specific, standardized test.",
+    points: ["Aerobic Capacity — Beep Test, 600m Run/Walk", "Anaerobic Capacity — 30m Sprint", "Flexibility — Sit & Reach Test", "Explosive Strength (Lower) — Standing Broad Jump", "Explosive Strength (Upper) — Overhead Medicine Ball Throw", "Abdominal Strength — Sit-ups/Curl-ups"],
+    memoryTrick: "'Beep for breath (aerobic).'",
+    sportsRelevance: "Facilitators use exactly these tests to fill in the quantitative assessment input sheets shown in the textbook."
+  },
+  relatedIds: ["PAT12-AS-007"],
+  source: "CBSE Physical Activity Trainer Class XII Textbook, Unit 1.7",
+  tags: ["assessment", "fitness-testing"]
+}, {
+  id: "PAT12-AS-007",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Assessment of Students",
+  topic: "Fitness Testing",
+  subtopic: "Flexibility & Strength Tests",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Which test does the textbook use to measure explosive strength of the upper body?",
+  options: ["Standing Broad Jump", "Sit and Reach Test", "Overhead Medicine Ball Throw", "30m Sprint"],
+  correctIndex: 2,
+  explanation: "The textbook specifies the Overhead Medicine Ball Throw (measured by the maximum distance the ball travels at its first bounce) as the test for upper-body explosive strength.",
+  concept: {
+    title: "Explosive Strength Tests",
+    definition: "Explosive strength is tested separately for upper and lower body using distance-based throws/jumps.",
+    points: ["Upper body — Overhead Medicine Ball Throw", "Lower body — Standing Broad Jump", "Both measured in metres, at first bounce/landing point"],
+    memoryTrick: "'Throw = upper. Jump = lower.'",
+    sportsRelevance: "These same two tests appear in the Class XI Props & Equipment list — the Medicine Ball is the key prop involved."
+  },
+  relatedIds: ["PAT12-AS-006"],
+  source: "CBSE Physical Activity Trainer Class XII Textbook, Unit 1.7",
+  tags: ["assessment", "fitness-testing"]
+}, {
+  id: "PAT12-AS-008",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Assessment of Students",
+  topic: "Assessment Planning",
+  subtopic: "Pre-Assessment Steps",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Before an assessment day, the textbook requires that students with any physical or medical issue be identified and:",
+  options: ["Made to participate anyway to avoid special treatment", "Not allowed to participate, with the information shared with the school coordinator", "Given extra credit automatically", "Excluded from the school records"],
+  correctIndex: 1,
+  explanation: "The Pre-Assessment checklist states that students having any physical/medical issue should be identified, should not participate in the test, and this information should be provided to the school coordinator.",
+  concept: {
+    title: "Pre-Assessment Safety Steps",
+    definition: "Careful preparation before an assessment day protects students with medical conditions from harm.",
+    points: ["Identify students with physical/medical issues in advance", "Exclude them from participating in that specific test", "Inform the school coordinator of the exclusion"],
+    memoryTrick: "'Identify, exclude, inform.'",
+    sportsRelevance: "This is a direct safety safeguard tied into the Emergency Management unit's broader risk-prevention philosophy."
+  },
+  relatedIds: ["PAT12-EM-001"],
+  source: "CBSE Physical Activity Trainer Class XII Textbook, Unit 1.6",
+  tags: ["assessment", "safety"]
+}, {
+  id: "PAT12-AS-009",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Assessment of Students",
+  topic: "Types of Evaluation",
+  subtopic: "Formative & Summative",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Which type of evaluation is used to monitor a student's learning progress DURING instruction, with the purpose of giving ongoing feedback?",
+  options: ["Summative Evaluation", "Diagnostic Evaluation", "Formative Evaluation", "Final Evaluation"],
+  correctIndex: 2,
+  explanation: "Formative Evaluation is an ongoing process used to monitor learning progress during instruction and give continuous feedback to students and teachers.",
+  concept: {
+    title: "Formative, Summative & Diagnostic Evaluation",
+    definition: "Three evaluation types serve different purposes across a course.",
+    points: ["Formative — ongoing, during instruction, feedback-focused", "Summative — at the end, evaluates final mastery of outcomes", "Diagnostic — finds the exact problem/cause behind a learning difficulty"],
+    memoryTrick: "'Formative = Forming (in progress). Summative = Summary (final).'",
+    sportsRelevance: "A Facilitator uses formative checks weekly, but a summative evaluation feeds into the term report card."
+  },
+  relatedIds: ["PAT12-AS-005"],
+  source: "CBSE Physical Activity Trainer Class XII Textbook, Unit 1.5",
+  tags: ["assessment"]
+}, {
+  id: "PAT12-AS-010",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Assessment of Students",
+  topic: "Reporting to Parents",
+  subtopic: "Parent-Teacher Meetings",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "During a Parent-Teacher Meeting (PTM), what does the textbook recommend if you don't know the answer to a parent's question?",
+  options: ["Make up a plausible-sounding answer", "Politely say you don't know and direct them to write in for an answer", "Avoid the parent for the rest of the meeting", "End the meeting immediately"],
+  correctIndex: 1,
+  explanation: "The textbook advises: 'Understand the question first before you answer it. If you don't have an answer, ask them to write to us at the designated email for a proper response.'",
+  concept: {
+    title: "Managing a Parent-Teacher Meeting",
+    definition: "PTMs require professionalism, honesty and a two-way conversation approach.",
+    points: ["Treat it as a two-way conversation, not a lecture", "Be honest when you don't know an answer — offer to follow up", "Stay positive when discussing the child, school or program"],
+    memoryTrick: "'Don't know? Say so, and follow up properly.'",
+    sportsRelevance: "Honest communication builds parent trust in the Facilitator's professional judgment."
+  },
+  relatedIds: ["PAT12-AS-001"],
+  source: "CBSE Physical Activity Trainer Class XII Textbook, Unit 1.8",
+  tags: ["assessment", "parent-communication"]
+}, {
+  id: "PAT12-EM-001",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Emergency Management",
+  topic: "Emergency Response",
+  subtopic: "Emergency Action Plans",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "What is the primary purpose of an Emergency Action Plan (EAP) in a school sports setting?",
+  options: ["To organize sports equipment inventory", "To guide a quick, appropriate response to serious or life-threatening medical events", "To help win sports competitions", "To determine the yearly sports schedule"],
+  correctIndex: 1,
+  explanation: "An Emergency Action Plan provides a systematic approach for responding quickly to sports-related injuries and medical conditions that are serious or life-threatening.",
+  concept: {
+    title: "Emergency Action Plans (EAPs)",
+    definition: "A pre-prepared, systematic plan that guides staff response during medical, environmental or security emergencies.",
+    points: ["Addresses medical, environmental and security emergencies", "Puts critical training, equipment and protocols in place before they are needed", "Reduces panic and delay during a real emergency"],
+    memoryTrick: "'Plan before the panic.'",
+    sportsRelevance: "Every Facilitator should know their school's EAP before running any physical session, especially outdoors."
+  },
+  relatedIds: ["PAT12-EM-002"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q2.4 & Textbook Unit 2",
+  tags: ["emergency-management"]
+}, {
+  id: "PAT12-EM-002",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Emergency Management",
+  topic: "Common Conditions",
+  subtopic: "Heatstroke",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Which combination of signs is characteristic of heatstroke, per the textbook and official curriculum?",
+  options: ["Runny nose and coughing", "Rapid pulse and flushed skin", "Cold extremities and shivering", "Nausea and vomiting only"],
+  correctIndex: 1,
+  explanation: "The textbook lists heatstroke signs including fever of 104°F or greater, hot/dry or heavily sweating skin, rapid pulse, rapid breathing, flushed skin and confusion — rapid pulse and flushed skin are hallmark signs.",
+  concept: {
+    title: "Recognizing Heatstroke",
+    definition: "Heatstroke is a life-threatening condition caused by rapid, uncontrolled rise in body temperature.",
+    points: ["Fever of 104°F or greater", "Hot, dry skin or heavy sweating; flushed skin", "Rapid pulse and rapid breathing", "Confusion, agitation or slurred speech; fainting"],
+    memoryTrick: "'Hot, Fast, Flushed, Confused.'",
+    sportsRelevance: "Facilitators running outdoor sessions in hot weather must watch for these exact signs and act immediately."
+  },
+  relatedIds: ["PAT12-EM-003"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q2.5 & Textbook Unit 2",
+  tags: ["emergency-management", "heatstroke"]
+}, {
+  id: "PAT12-EM-003",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Emergency Management",
+  topic: "Common Conditions",
+  subtopic: "Heatstroke First Aid",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of these is a recommended first-aid step for a child showing signs of heatstroke?",
+  options: ["Wrap them in extra warm blankets", "Place ice packs or cool wet towels on the neck, armpits and groin", "Give them a hot drink immediately", "Make them continue light exercise to 'sweat it out'"],
+  correctIndex: 1,
+  explanation: "The textbook lists placing ice packs or cool wet towels on the neck, armpits and groin (along with cool showers, sponging, and misting with cool water) as emergency first aid for heatstroke.",
+  concept: {
+    title: "First Aid for Heatstroke",
+    definition: "The goal of first aid is to cool the body down as quickly and safely as possible.",
+    points: ["Cool shower or tub of cool water", "Sponge with cool water / spray with a water pipe", "Ice packs or cool wet towels on neck, armpits, groin", "Fan while misting with cool water"],
+    memoryTrick: "'Cool it down, fast — never warm it up.'",
+    sportsRelevance: "Quick, correct first aid can prevent heatstroke from becoming life-threatening while waiting for medical help."
+  },
+  relatedIds: ["PAT12-EM-002"],
+  source: "CBSE Physical Activity Trainer Class XII Textbook, Unit 2",
+  tags: ["emergency-management", "first-aid"]
+}, {
+  id: "PAT12-EM-004",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Emergency Management",
+  topic: "First Aid Procedures",
+  subtopic: "DRABC",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2026,
+  question: "In the DRABC first-aid sequence, what does the 'R' stand for?",
+  options: ["Rescue", "Response", "Recovery", "Resuscitation"],
+  correctIndex: 1,
+  explanation: "DRABC stands for Danger, Response, Airway, Breathing, Circulation — 'R' stands for Response (checking if the casualty is responsive).",
+  concept: {
+    title: "The DRABC First Aid Sequence",
+    definition: "A standard step-by-step check used before administering further first aid.",
+    points: ["D — Danger (check the scene is safe)", "R — Response (check if the person responds)", "A — Airway (check it's clear)", "B — Breathing (check they are breathing)", "C — Circulation (check for pulse/severe bleeding)"],
+    memoryTrick: "'D-R-A-B-C: Danger, Response, Airway, Breathing, Circulation.'",
+    sportsRelevance: "This is the very first check any Facilitator performs before doing anything else in a medical emergency."
+  },
+  relatedIds: ["PAT12-EM-005"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q5.4",
+  tags: ["emergency-management", "first-aid"]
+}, {
+  id: "PAT12-EM-005",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Emergency Management",
+  topic: "First Aid Procedures",
+  subtopic: "DRABC",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of the following is NOT a step in the DRABC first-aid sequence?",
+  options: ["D for Danger", "R for Response", "A for Airways", "M for Medication"],
+  correctIndex: 3,
+  explanation: "DRABC consists of Danger, Response, Airway, Breathing and Circulation — 'Medication' is not part of this sequence at all.",
+  concept: {
+    title: "What DRABC Does NOT Include",
+    definition: "DRABC is a safety and vital-signs check — it does not involve administering medication.",
+    points: ["DRABC = Danger, Response, Airway, Breathing, Circulation", "Administering medication is a separate, specialized action — never part of basic first aid checks"],
+    memoryTrick: "'DRABC has 5 letters, and none of them is M.'",
+    sportsRelevance: "Untrained first-aiders should never administer medication — this is explicitly excluded from the basic response sequence."
+  },
+  relatedIds: ["PAT12-EM-004"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q3.4",
+  tags: ["emergency-management", "first-aid"]
+}, {
+  id: "PAT12-EM-006",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Emergency Management",
+  topic: "First Aid Procedures",
+  subtopic: "CPR",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2026,
+  question: "As per the official curriculum's marking scheme, what is the recommended minimum chest compression depth during CPR?",
+  options: ["At least 1 inch (2.5 cm)", "At least 2 inches (5 cm)", "At least 3 inches (7.5 cm)", "At least 4 inches (10 cm)"],
+  correctIndex: 1,
+  explanation: "The official CBSE marking scheme confirms the correct answer is 'at least 2 inches (5 cm)' for adult CPR chest compression depth.",
+  concept: {
+    title: "CPR Chest Compressions",
+    definition: "Correct compression depth is critical for CPR to be effective without causing unnecessary injury.",
+    points: ["Minimum depth: at least 2 inches (5 cm)", "Compressions should be firm and at a steady rate", "CPR is only ever a bridge to professional medical help, not a replacement for it"],
+    memoryTrick: "'2 inches, every time.'",
+    sportsRelevance: "CPR knowledge is core first-aid training expected of anyone supervising children's physical activity."
+  },
+  relatedIds: ["PAT12-EM-004"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q5.4",
+  tags: ["emergency-management", "first-aid", "cpr"]
+}, {
+  id: "PAT12-EM-007",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Emergency Management",
+  topic: "First Aid Procedures",
+  subtopic: "First Aid Kit",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "What is the primary purpose of keeping a first-aid kit at the sports field?",
+  options: ["As decoration for the equipment shed", "To respond to common injuries quickly", "To store extra sports equipment", "To demonstrate props during a lesson"],
+  correctIndex: 1,
+  explanation: "A first-aid kit's core purpose is to allow a quick response to common injuries occurring during physical activity, not as a demonstration prop or storage item.",
+  concept: {
+    title: "The Role of a First Aid Kit",
+    definition: "A readily-available first-aid kit is a baseline safety requirement at any sports session.",
+    points: ["Must be available before every assessment/session (per the Pre-Assessment checklist)", "Used to respond immediately to common injuries", "Should be checked regularly for missing/expired items"],
+    memoryTrick: "'Kit ready = respond ready.'",
+    sportsRelevance: "The Pre-Assessment checklist explicitly requires confirming first-aid availability before any session begins."
+  },
+  relatedIds: ["PAT12-AS-008"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q4.4",
+  tags: ["emergency-management", "first-aid"]
+}, {
+  id: "PAT12-EM-008",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Emergency Management",
+  topic: "Common Conditions",
+  subtopic: "Allergic Reactions",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of these is listed as a symptom of a severe allergic reaction in the textbook?",
+  options: ["Improved breathing", "Swelling of the tongue", "Increased appetite", "Better colour vision"],
+  correctIndex: 1,
+  explanation: "The textbook lists difficult or noisy breathing and swelling of the tongue among the symptoms of a severe allergic reaction.",
+  concept: {
+    title: "Recognizing a Severe Allergic Reaction",
+    definition: "Severe allergic reactions (anaphylaxis) require immediate recognition and emergency response.",
+    points: ["Difficult or noisy breathing", "Swelling of the tongue", "Requires urgent medical attention"],
+    memoryTrick: "'Swelling + struggling to breathe = emergency.'",
+    sportsRelevance: "Facilitators should know which children in their group have known allergies before starting any activity."
+  },
+  relatedIds: ["PAT12-EM-002"],
+  source: "CBSE Physical Activity Trainer Class XII Textbook, Unit 2",
+  tags: ["emergency-management"]
+}, {
+  id: "PAT12-EM-009",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Emergency Management",
+  topic: "Emergency Response",
+  subtopic: "Meaning & Importance",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "According to the textbook, emergency response is best described as what kind of process?",
+  options: ["A one-time event that never repeats", "A cyclical process involving repeated assessment, planning, action and review", "A purely administrative paperwork exercise", "An activity only relevant to professional athletes"],
+  correctIndex: 1,
+  explanation: "The textbook describes emergency response as 'sometimes a cyclical process, involving repeated assessment, planning, action and review.'",
+  concept: {
+    title: "Emergency Response as a Cycle",
+    definition: "Emergency preparedness is never 'finished' — it's continuously reassessed and improved.",
+    points: ["Assessment → Planning → Action → Review, repeated over time", "Can start with an initial assessment or be triggered by an actual event"],
+    memoryTrick: "'Assess, Plan, Act, Review — then repeat.'",
+    sportsRelevance: "Schools review and update their Emergency Action Plans periodically, not just once."
+  },
+  relatedIds: ["PAT12-EM-001"],
+  source: "CBSE Physical Activity Trainer Class XII Textbook, Unit 2.1",
+  tags: ["emergency-management"]
+}, {
+  id: "PAT12-EM-010",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Emergency Management",
+  topic: "Common Conditions",
+  subtopic: "Hygiene's Role in Prevention",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "What is described as the core purpose of maintaining good hygiene in a play/sports setting?",
+  options: ["To impress visiting officials", "To protect yourself and others from illness", "To save money on cleaning supplies", "To pass a written exam only"],
+  correctIndex: 1,
+  explanation: "Good hygiene's core purpose, per the official curriculum, is to protect yourself and others from illness — a preventive measure, not just a formality.",
+  concept: {
+    title: "Hygiene as Illness Prevention",
+    definition: "Hygiene practices directly reduce the risk of infections spreading in group physical activity settings.",
+    points: ["Prevents spread of illness between children", "Reduces risk during shared equipment use", "Is a proactive, preventive form of 'emergency management'"],
+    memoryTrick: "'Clean now, prevent illness later.'",
+    sportsRelevance: "This links Emergency Management directly to the separate Health & Hygiene in Play Area unit."
+  },
+  relatedIds: ["PAT12-HH-004"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q2.6",
+  tags: ["emergency-management", "hygiene"]
+}, {
+  id: "PAT12-HH-001",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Health and Hygiene in Play Area",
+  topic: "Kits for Games & Practice",
+  subtopic: "Cleaning PPE",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of these should NEVER be used to clean sports protective equipment (PPE)?",
+  options: ["Warm soapy water", "Baby soap", "Harsh chemicals", "White vinegar"],
+  correctIndex: 2,
+  explanation: "The official curriculum specifically excludes harsh chemicals from acceptable PPE cleaning methods, favouring gentler options like warm soapy water, baby soap or white vinegar.",
+  concept: {
+    title: "Cleaning Sports PPE Safely",
+    definition: "Protective gear must be cleaned gently to avoid damaging materials that protect the wearer.",
+    points: ["Acceptable: warm soapy water, baby soap, white vinegar", "Not acceptable: harsh chemicals, which can degrade protective materials"],
+    memoryTrick: "'Gentle in, harsh out.'",
+    sportsRelevance: "Damaged PPE from harsh cleaning agents can fail to protect a child properly during play."
+  },
+  relatedIds: ["PAT12-HH-002"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q3.5",
+  tags: ["health-hygiene", "ppe"]
+}, {
+  id: "PAT12-HH-002",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Health and Hygiene in Play Area",
+  topic: "Inspection of Play Area",
+  subtopic: "Reporting Damage",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "If damaged playground equipment is discovered during an inspection, what is the correct action?",
+  options: ["Leave it as is until the next scheduled inspection", "Report it to the authorities and follow up on repairs", "Use it carefully to avoid wasting resources", "Discard it immediately without informing anyone"],
+  correctIndex: 1,
+  explanation: "The correct protocol is to report damaged equipment to the relevant authorities and follow up until it is repaired — not to keep using it or quietly discard it.",
+  concept: {
+    title: "Responding to Damaged Equipment",
+    definition: "A clear reporting protocol ensures hazards are fixed rather than ignored or hidden.",
+    points: ["Report damage to the relevant authority immediately", "Follow up to confirm the repair is completed", "Never continue using clearly damaged equipment"],
+    memoryTrick: "'See damage, report damage, track the fix.'",
+    sportsRelevance: "This mirrors the same protocol taught in the Class XI Hygiene & Safety unit."
+  },
+  relatedIds: ["PAT11-PYQ-010"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q3.6",
+  tags: ["health-hygiene"]
+}, {
+  id: "PAT12-HH-003",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Health and Hygiene in Play Area",
+  topic: "Inspection of Play Area",
+  subtopic: "Sandpit & Surfacing",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "A playground sandpit should be covered when not in use primarily to prevent:",
+  options: ["Sand from blowing away in the wind", "Contamination from animals", "The sand from getting too dry", "Children from finding it"],
+  correctIndex: 1,
+  explanation: "Covering a sandpit when not in use is specifically recommended to prevent contamination from animals, alongside checking regularly for hazardous debris.",
+  concept: {
+    title: "Sandpit Hygiene",
+    definition: "Sandpits require active management to remain a safe, hygienic play surface.",
+    points: ["Cover when not in use — prevents animal contamination", "Regularly check for sharp debris like glass or sticks", "Ensure sand is kept free of bugs"],
+    memoryTrick: "'Cover it, or critters discover it.'",
+    sportsRelevance: "This exact rule also appears in the Class XI Hygiene & Safety unit — the two units reinforce each other."
+  },
+  relatedIds: ["PAT11-HS-008"],
+  source: "CBSE Physical Activity Trainer Class XII Textbook, Unit 3",
+  tags: ["health-hygiene"]
+}, {
+  id: "PAT12-HH-004",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Health and Hygiene in Play Area",
+  topic: "Maintenance of Hygiene",
+  subtopic: "Disinfection",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "What is the main goal of using disinfectants and cleaning agents in a play area?",
+  options: ["To improve the smell of the equipment room", "To add colour to worn equipment", "To provide a germ-free environment", "To make equipment shinier for photos"],
+  correctIndex: 2,
+  explanation: "The core goal of disinfectants and cleaners in a play area is to provide a germ-free environment, protecting health rather than serving cosmetic purposes.",
+  concept: {
+    title: "Purpose of Disinfection",
+    definition: "Regular disinfection is a proactive hygiene measure, not a cosmetic one.",
+    points: ["Goal: a germ-free environment", "Prevents the spread of illness among children sharing equipment/space"],
+    memoryTrick: "'Germ-free, not just nice-smelling.'",
+    sportsRelevance: "This directly supports the Emergency Management unit's framing of hygiene as illness prevention."
+  },
+  relatedIds: ["PAT12-EM-010"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q5.6",
+  tags: ["health-hygiene"]
+}, {
+  id: "PAT12-HH-005",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Health and Hygiene in Play Area",
+  topic: "Maintenance of Hygiene",
+  subtopic: "Waste Disposal",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "Where should waste generated in the play area be disposed of?",
+  options: ["Left where it is for groundskeepers to find later", "Buried underground", "In a dustbin", "Thrown into any nearby water source"],
+  correctIndex: 2,
+  explanation: "Waste in the play area should always be disposed of properly in a dustbin — never left on the ground, buried, or thrown into water.",
+  concept: {
+    title: "Correct Waste Disposal",
+    definition: "Simple, consistent waste disposal keeps a play area both hygienic and safe from tripping/slipping hazards.",
+    points: ["Always use a dustbin", "Never leave waste on the ground or bury it", "Never dispose of waste in water sources"],
+    memoryTrick: "'Waste belongs in the bin — always.'",
+    sportsRelevance: "Litter left on a playground is both a hygiene issue and a physical safety hazard (tripping, cuts)."
+  },
+  relatedIds: ["PAT11-HS-002"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Q5.5",
+  tags: ["health-hygiene"]
+}, {
+  id: "PAT12-HH-006",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Health and Hygiene in Play Area",
+  topic: "Inspection of Play Area",
+  subtopic: "Walkway Standards",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2026,
+  question: "Per the playground inspection checklist, what is the minimum recommended width for a walkway/pathway?",
+  options: ["0.5 metres", "1.22 metres", "2.5 metres", "5 metres"],
+  correctIndex: 1,
+  explanation: "The inspection checklist specifically asks whether 'pathways are at least 1.22 m wide', setting this as the minimum recommended standard.",
+  concept: {
+    title: "Walkway Width Standards",
+    definition: "Adequate walkway width prevents overcrowding and collisions near active play equipment.",
+    points: ["Minimum recommended width: 1.22 metres", "Walkways should be located away from equipment in active use", "Walkways should be free of loose materials, irregularities or slippery substances"],
+    memoryTrick: "'1.22 — the magic number for pathway width.'",
+    sportsRelevance: "This kind of precise numeric standard is exactly the type of detail CBSE tests in objective questions."
+  },
+  relatedIds: ["PAT12-HH-002"],
+  source: "CBSE Physical Activity Trainer Class XII Textbook, Unit 3 (Playground Inspection Checklist)",
+  tags: ["health-hygiene", "inspection"]
+}, {
+  id: "PAT12-HH-007",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Health and Hygiene in Play Area",
+  topic: "Inspection of Play Area",
+  subtopic: "Equipment Hazards",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2026,
+  question: "The playground inspection checklist asks whether adjacent structural elements of equipment form a vertex angle greater than a certain threshold, to avoid head-entrapment risk. What is that threshold?",
+  options: ["25 degrees", "45 degrees", "55 degrees", "90 degrees"],
+  correctIndex: 2,
+  explanation: "The checklist specifically asks: 'Do adjacent structural elements form a vertex angle greater than 55 degrees?' — angles equal to or below this threshold pose a greater entrapment risk.",
+  concept: {
+    title: "Head-Entrapment Hazard Checks",
+    definition: "Certain playground equipment geometries can trap a child's head if angles are too narrow.",
+    points: ["Checklist threshold: vertex angle greater than 55 degrees is the safer standard", "Equipment should also be fabricated to eliminate head-entrapment areas generally"],
+    memoryTrick: "'55 degrees — the entrapment checkpoint.'",
+    sportsRelevance: "This shows the level of technical detail a Facilitator's inspection checklist actually covers — not just visible damage."
+  },
+  relatedIds: ["PAT12-HH-006"],
+  source: "CBSE Physical Activity Trainer Class XII Textbook, Unit 3 (Playground Inspection Checklist)",
+  tags: ["health-hygiene", "inspection"]
+}, {
+  id: "PAT12-HH-008",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Health and Hygiene in Play Area",
+  topic: "Kits for Games & Practice",
+  subtopic: "Food & Drinking Supply",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "Why is ensuring a drinking water supply near the play area considered a hygiene and safety priority?",
+  options: ["It is only relevant for competitive athletes", "It helps prevent dehydration-related conditions like heatstroke during activity", "It has no real safety relevance", "It is only needed once a year during sports day"],
+  correctIndex: 1,
+  explanation: "Access to drinking water helps prevent dehydration-related conditions, directly connecting the Health & Hygiene unit to the Emergency Management unit's coverage of heatstroke.",
+  concept: {
+    title: "Drinking Water as a Safety Priority",
+    definition: "Hydration access is treated as a basic safety requirement, not an optional convenience.",
+    points: ["Directly reduces the risk of dehydration and heatstroke", "Checked as part of the pre-assessment safety checklist", "Should be located close to the playground for quick access"],
+    memoryTrick: "'No water, higher risk.'",
+    sportsRelevance: "This is one of the clearest links between the Health & Hygiene unit and the Emergency Management unit."
+  },
+  relatedIds: ["PAT12-EM-002"],
+  source: "CBSE Physical Activity Trainer Class XII Textbook, Unit 3",
+  tags: ["health-hygiene"]
+}, {
+  id: "PAT12-HH-009",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Health and Hygiene in Play Area",
+  topic: "Inspection of Play Area",
+  subtopic: "Supervision",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "According to the playground inspection checklist, which of these is a required 'Supervision' check?",
+  options: ["Whether the playground is actively supervised and the supervisor is trained", "Whether the playground has colourful equipment", "Whether the equipment is imported", "Whether attendance was taken in class that day"],
+  correctIndex: 0,
+  explanation: "Under the 'Supervision' section, the checklist asks whether the playground is actively supervised and whether the supervisor is trained to perform the required duties.",
+  concept: {
+    title: "Supervision Standards",
+    definition: "Active, trained supervision is treated as its own dedicated inspection category, alongside equipment and hygiene checks.",
+    points: ["Is the playground actively supervised?", "Is the supervisor trained for the required duties?", "Are records kept of playground and equipment repairs?"],
+    memoryTrick: "'Supervised AND trained — both matter.'",
+    sportsRelevance: "This is a direct professional responsibility of the Physical Activity Facilitator role itself."
+  },
+  relatedIds: ["PAT12-HH-002"],
+  source: "CBSE Physical Activity Trainer Class XII Textbook, Unit 3 (Playground Inspection Checklist)",
+  tags: ["health-hygiene", "inspection"]
+}, {
+  id: "PAT12-HH-010",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Health and Hygiene in Play Area",
+  topic: "Maintenance of Hygiene",
+  subtopic: "Personal Strengths",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of these best reflects 'personal strengths of individuals' as a topic within this unit?",
+  options: ["A student's exam marks only", "A student's individual physical and hygiene habits that support their own wellbeing", "A student's family's income level", "A student's popularity among peers"],
+  correctIndex: 1,
+  explanation: "'Personal strengths of individuals' in this unit refers to the individual habits and practices (hygiene, self-care) that support a student's own health and wellbeing — not academic or social metrics.",
+  concept: {
+    title: "Personal Strengths and Hygiene",
+    definition: "This sub-topic connects individual self-care habits to the broader goal of a hygienic, healthy play environment.",
+    points: ["Focuses on the individual's own hygiene and self-care habits", "Complements the play-area-level hygiene and inspection topics in the same unit"],
+    memoryTrick: "'Personal strength starts with personal habits.'",
+    sportsRelevance: "A Facilitator models these personal habits for children, reinforcing what's taught in the Class XI Hygiene unit."
+  },
+  relatedIds: ["PAT11-HS-001"],
+  source: "CBSE Physical Activity Trainer Class XII Textbook, Unit 3.1",
+  tags: ["health-hygiene"]
+}, {
+  id: "PAT12-PYQ-001",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Employability Skills",
+  subtopic: "Communication",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of the following is an example of non-verbal communication?",
+  options: ["Sending a text message", "Speaking loudly", "Maintaining eye contact", "Writing an email"],
+  correctIndex: 2,
+  explanation: "Official answer: Maintaining eye contact — a form of non-verbal communication.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "This is an unmodified question from the official 2025-26 Sample Question Paper, Section A (Objective), Q1.1.",
+    points: ["Tests basic Employability Skills concepts common to all CBSE skill subjects", "Section A carries 24 of the paper's 50 marks"],
+    memoryTrick: "N/A — this is a real exam question, memorize the concept directly.",
+    sportsRelevance: "Practising real board questions builds familiarity with the actual exam's phrasing and difficulty."
+  },
+  relatedIds: ["PAT12-OV-006"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q1.1",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-002",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Employability Skills",
+  subtopic: "Self-Management",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of the following best describes extrinsic motivation?",
+  options: ["Enjoying a subject genuinely", "Exercising for personal health", "Completing a task for a reward or praise", "Pursuing a hobby purely for personal interest"],
+  correctIndex: 2,
+  explanation: "Official answer: Completing a task for a reward or praise defines extrinsic motivation.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q1.2.",
+    points: ["Extrinsic motivation = driven by external reward or recognition"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Understanding motivation types is directly useful when designing engagement strategies for young students."
+  },
+  relatedIds: ["PAT12-OV-007"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q1.2",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-003",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Employability Skills",
+  subtopic: "Leadership",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of the following is considered a leadership trait?",
+  options: ["Shyness", "Aggressiveness", "Empathy", "Introversion"],
+  correctIndex: 2,
+  explanation: "Official answer: Empathy.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q1.3.",
+    points: ["Empathy is identified as a core leadership trait in the employability curriculum"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Empathetic leadership is central to effectively guiding groups of young children."
+  },
+  relatedIds: ["PAT12-OV-008"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q1.3",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-004",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Employability Skills",
+  subtopic: "ICT Skills",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Which set correctly matches the Microsoft Word keyboard shortcuts — A: New document, B: Save, C: Undo?",
+  options: ["A→Ctrl+N; B→Ctrl+S; C→Ctrl+Z", "A→Ctrl+S; B→Ctrl+N; C→Ctrl+Z", "A→Ctrl+N; B→Ctrl+Z; C→Ctrl+S", "A→Ctrl+Z; B→Ctrl+S; C→Ctrl+N"],
+  correctIndex: 0,
+  explanation: "Official answer: A→Ctrl+N (New); B→Ctrl+S (Save); C→Ctrl+Z (Undo).",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q1.4 — tests basic ICT/MS Word shortcuts.",
+    points: ["Ctrl+N — New document", "Ctrl+S — Save", "Ctrl+Z — Undo"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "MS Excel/Word skills are directly required for the 'maintenance of records' course outcome."
+  },
+  relatedIds: [],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q1.4",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-005",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Employability Skills",
+  subtopic: "Entrepreneurial Skills",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Priya's small sports-equipment business faced a supply shortage, but she quickly found an alternate supplier and kept the business running smoothly. This best demonstrates:",
+  options: ["Leadership", "Resilience", "Creativity", "Time management"],
+  correctIndex: 1,
+  explanation: "Official answer: Resilience — the ability to adapt and recover quickly from a setback.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q1.5.",
+    points: ["Resilience is a core entrepreneurial trait: recovering from setbacks quickly"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Entrepreneurial thinking applies to running an independent coaching or equipment business after graduation."
+  },
+  relatedIds: [],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q1.5",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-006",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Employability Skills",
+  subtopic: "Green Skills",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "What is the responsible way to dispose of e-waste?",
+  options: ["Donate it locally without checking condition", "Sell it online", "Recycle it via an authorized program", "Bury it in the backyard"],
+  correctIndex: 2,
+  explanation: "Official answer: Recycle via an authorized program.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q1.6.",
+    points: ["Authorized recycling is the correct, environmentally responsible disposal method for e-waste"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Applies to disposing of old digital fitness-tracking or scoring equipment."
+  },
+  relatedIds: ["PAT12-OV-005"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q1.6",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-007",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Careers",
+  subtopic: "PE Assistant Careers",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Career opportunities for a Physical Education Assistant include:",
+  options: ["Teaching only", "Sports Medicine, Teaching", "Teaching, Coaching, Journalism", "Teaching, Coaching, Equipment Management"],
+  correctIndex: 3,
+  explanation: "Official answer: Teaching, Coaching, Equipment Management.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q2.1.",
+    points: ["Official career map for this specific job role: Teaching, Coaching, Equipment Management"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Directly answers 'what can I do with this qualification?'"
+  },
+  relatedIds: ["PAT12-OV-009"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q2.1",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-008",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Overview",
+  subtopic: "Physical Activity",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of the following qualifies as a physical activity?",
+  options: ["Watching a soccer match", "Running a marathon", "Playing chess", "Reading about sports"],
+  correctIndex: 1,
+  explanation: "Official answer: Running a marathon qualifies as physical activity (the source paper also notes a basketball match would qualify).",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q2.2.",
+    points: ["Physical activity requires actual bodily movement using energy"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Basic terminology question testing the Physical Activity vs Sport vs Recreation distinctions."
+  },
+  relatedIds: ["PAT12-OV-010"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q2.2",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-009",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Assessment",
+  subtopic: "Purpose of Assessment",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "What is the primary purpose of assessment?",
+  options: ["To compete with students", "To measure learned content", "To assign grades randomly", "To create competition among teachers"],
+  correctIndex: 1,
+  explanation: "Official answer: To measure learned content.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q2.3.",
+    points: ["Assessment's core function is measuring what has actually been learned"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Reinforces the 'what was learnt / how well' framing from the textbook's Unit 1."
+  },
+  relatedIds: ["PAT12-AS-001"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q2.3",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-010",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Emergency Management",
+  subtopic: "EAP",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "What is the purpose of an Emergency Action Plan?",
+  options: ["To win competitions", "To guide response to medical events", "To organize equipment", "To determine schedules"],
+  correctIndex: 1,
+  explanation: "Official answer: To guide response to medical events.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q2.4.",
+    points: ["Confirms the core purpose of an EAP as tested in the actual board exam"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Matches directly with the textbook's Unit 2 introduction."
+  },
+  relatedIds: ["PAT12-EM-001"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q2.4",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-011",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Emergency Management",
+  subtopic: "Heatstroke",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of these are signs/symptoms of heatstroke?",
+  options: ["Runny nose, coughing", "Rapid pulse, flushed skin", "Cold extremities, shivering", "Nausea, vomiting"],
+  correctIndex: 1,
+  explanation: "Official answer: Rapid pulse, flushed skin.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q2.5.",
+    points: ["Rapid pulse and flushed skin are hallmark heatstroke signs"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Critical safety knowledge for outdoor sessions in hot weather."
+  },
+  relatedIds: ["PAT12-EM-002"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q2.5",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-012",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Health & Hygiene",
+  subtopic: "Purpose of Hygiene",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "What is the purpose of good hygiene?",
+  options: ["Prevent clothing damage", "Impress others", "Protect self/others from illness", "Save money"],
+  correctIndex: 2,
+  explanation: "Official answer: Protect self/others from illness.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q2.6.",
+    points: ["Confirms hygiene's core preventive purpose as tested in the actual board exam"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Ties together the Hygiene, Emergency Management and Health & Hygiene in Play Area units."
+  },
+  relatedIds: ["PAT12-EM-010"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q2.6",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-013",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Careers",
+  subtopic: "Sports Sector Careers",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of these is NOT a career path in the Physical Education/Sports sector?",
+  options: ["Sports Psychology", "Sports Nutritionist", "Engineering", "Fitness Sector"],
+  correctIndex: 2,
+  explanation: "Official answer: Engineering.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q3.1.",
+    points: ["Engineering is unrelated to the sports-sector career map tested here"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Reinforces the career-path map covered in the Overview unit."
+  },
+  relatedIds: ["PAT12-OV-001"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q3.1",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-014",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Assessment",
+  subtopic: "Fitness Testing",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Which tests are used to measure Upper Body Strength?",
+  options: ["Seated Medicine Ball Throw, Pushups", "Lower Body Strength tests", "Anaerobic Capacity tests", "Flexibility tests"],
+  correctIndex: 0,
+  explanation: "Official answer: Seated Medicine Ball Throw, Pushups.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q3.2.",
+    points: ["Confirms Seated Medicine Ball Throw and Pushups as Upper Body Strength tests"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Complements the Overhead Medicine Ball Throw test also covered for upper-body explosive strength."
+  },
+  relatedIds: ["PAT12-AS-007"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q3.2",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-015",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Assessment",
+  subtopic: "Rubrics",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "What is the purpose of a rubric?",
+  options: ["Measure correct answers", "Evaluate colours", "Provide performance criteria", "Assess physical fitness"],
+  correctIndex: 2,
+  explanation: "Official answer: Provide performance criteria.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q3.3.",
+    points: ["Confirms a rubric's purpose is to provide performance criteria, not to grade fitness or written answers directly"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Matches the textbook's definition of a rubric exactly."
+  },
+  relatedIds: ["PAT12-AS-003"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q3.3",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-016",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Emergency Management",
+  subtopic: "DRABC",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of the following is NOT part of DRABC first aid?",
+  options: ["D for Danger", "R for Response", "A for Airways", "M for Medication"],
+  correctIndex: 3,
+  explanation: "Official answer: M for Medication (not part of DRABC).",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q3.4.",
+    points: ["DRABC = Danger, Response, Airway, Breathing, Circulation — no 'M'"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "A commonly tested exclusion-style question in first-aid sections."
+  },
+  relatedIds: ["PAT12-EM-004"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q3.4",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-017",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Health & Hygiene",
+  subtopic: "PPE Cleaning",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Which of these should NOT be used for cleaning PPE?",
+  options: ["Warm soapy water", "Baby soap", "Harsh chemicals", "White vinegar"],
+  correctIndex: 2,
+  explanation: "Official answer: Harsh chemicals.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q3.5.",
+    points: ["Harsh chemicals damage protective equipment materials and are excluded"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Directly matches the Health & Hygiene unit's PPE cleaning guidance."
+  },
+  relatedIds: ["PAT12-HH-001"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q3.5",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-018",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Health & Hygiene",
+  subtopic: "Reporting Damage",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "If playground equipment is damaged, what should you do?",
+  options: ["Leave as is", "Report to authorities, follow repairs", "Use carefully", "Discard in trash"],
+  correctIndex: 1,
+  explanation: "Official answer: Report to authorities, follow repairs.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q3.6.",
+    points: ["Confirms the correct damaged-equipment protocol as tested on the real exam"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Same protocol appears in both Class XI and Class XII units."
+  },
+  relatedIds: ["PAT12-HH-002"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q3.6",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-019",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Assessment",
+  subtopic: "Grading Scales",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "On a 3-point rubric, what does grade 'B' represent?",
+  options: ["Proficient", "Developing", "Needs Improvement", "Excellent"],
+  correctIndex: 1,
+  explanation: "Official answer: Developing.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q4.1.",
+    points: ["Confirms B = Developing on the official 3-point grading scale"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Matches the textbook's rubric definitions exactly."
+  },
+  relatedIds: ["PAT12-AS-004"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q4.1",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-020",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Overview",
+  subtopic: "Games vs Sports",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "What distinguishes Games from Sports?",
+  options: ["Competitive element", "Physical exertion", "Team involvement", "Official rules/regulations"],
+  correctIndex: 3,
+  explanation: "Official answer: Official rules/regulations.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q4.2.",
+    points: ["Official rules/regulations is the key distinguishing feature between the two terms"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Frequently tested terminology distinction."
+  },
+  relatedIds: ["PAT12-OV-003"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q4.2",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-021",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Overview",
+  subtopic: "Recreation",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "Hiking and gardening are categorized under which term?",
+  options: ["Physical Activity", "Games", "Sports", "Recreation"],
+  correctIndex: 3,
+  explanation: "Official answer: Recreation.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q4.3.",
+    points: ["Confirms hiking/gardening are classified as Recreation, not Sport or Game"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Matches the Overview unit's terminology hierarchy exactly."
+  },
+  relatedIds: ["PAT12-OV-004"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q4.3",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-022",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Health & Hygiene",
+  subtopic: "First Aid Kit",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "What is the purpose of a first aid kit?",
+  options: ["Equipment for sports", "Demonstration prop", "Respond to common injuries", "Store snacks"],
+  correctIndex: 2,
+  explanation: "Official answer: Respond to common injuries.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q4.4.",
+    points: ["Confirms a first-aid kit's role is responding to common injuries, not storage or demonstration"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Basic but frequently tested safety-equipment question."
+  },
+  relatedIds: ["PAT12-EM-007"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q4.4",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-023",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Emergency Management",
+  subtopic: "ABC First Aid",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2026,
+  question: "In ABC first aid, what does 'B' stand for?",
+  options: ["Breathing", "Bandaging", "Broken bones", "Bleeding"],
+  correctIndex: 0,
+  explanation: "Official answer: Breathing.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q4.5.",
+    points: ["Confirms 'B' in ABC/DRABC first aid stands for Breathing, not bandaging or bleeding"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Consistent with the fuller DRABC sequence tested elsewhere in the paper."
+  },
+  relatedIds: ["PAT12-EM-004"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q4.5",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-024",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Health & Hygiene",
+  subtopic: "Equipment Storage",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "How should leather equipment be stored?",
+  options: ["Expose to sunlight", "Keep damp", "Use wet cloth", "Store away from direct sunlight"],
+  correctIndex: 3,
+  explanation: "Official answer: Store away from direct sunlight.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q4.6.",
+    points: ["Confirms leather equipment storage rule as tested on the real exam"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Matches the Class XI Props & Equipment unit's leather-care instructions exactly."
+  },
+  relatedIds: ["PAT11-PE-007"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q4.6",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-025",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Assessment",
+  subtopic: "Planning",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Why is a clear assessment plan important?",
+  options: ["Confuse students", "Make assessment difficult", "Ensure all pieces connected", "Eliminate assessment"],
+  correctIndex: 2,
+  explanation: "Official answer: Ensure all pieces connected.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q5.1.",
+    points: ["A clear plan ensures assessment activities form a coherent, connected whole"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Matches the textbook's warning against unplanned, disconnected assessment pieces."
+  },
+  relatedIds: ["PAT12-AS-001"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q5.1",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-026",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Careers",
+  subtopic: "Sports Injury Careers",
+  difficulty: "Moderate",
+  type: "MCQ",
+  year: 2026,
+  question: "Which career path focuses on diagnosis and treatment of sports injuries?",
+  options: ["Sports Journalism", "Sports Psychology", "Equipment Managers", "Sports Medicine"],
+  correctIndex: 3,
+  explanation: "Official answer: Sports Medicine.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q5.2.",
+    points: ["Confirms Sports Medicine as the correct career path for injury diagnosis/treatment"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Direct repeat of the concept tested earlier in the paper (Q3.1) from a different angle."
+  },
+  relatedIds: ["PAT12-OV-002"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q5.2",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-027",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Assessment",
+  subtopic: "Assessment vs Evaluation",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2026,
+  question: "What is the difference between Assessment and Evaluation?",
+  options: ["Assessment grades; evaluation is product-oriented", "Same concepts", "Evaluation is ongoing; assessment provides closure", "Evaluation improves quality; assessment judges level"],
+  correctIndex: 3,
+  explanation: "Official answer (per the marking scheme): Evaluation improves quality; assessment judges level. Note this option phrasing is the official paper's own wording of the distinction — it is the credited answer choice.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q5.3 — a deliberately tricky, close-option question.",
+    points: ["Read this question's options very carefully — the phrasing differs subtly from the textbook's own explanation", "Always check the official marking scheme's exact credited option when two options sound similar"],
+    memoryTrick: "N/A — real exam question; practise the exact official phrasing.",
+    sportsRelevance: "This question style — subtly reworded options — is common in board exams and worth practising specifically."
+  },
+  relatedIds: ["PAT12-AS-005"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q5.3",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-028",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Emergency Management",
+  subtopic: "CPR",
+  difficulty: "Hard",
+  type: "MCQ",
+  year: 2026,
+  question: "What is the recommended CPR chest compression depth?",
+  options: ["At least 3 inches (7.5 cm)", "At least 2 inches (5 cm)", "At least 4 inches (10 cm)", "At least 1 inch (2.5 cm)"],
+  correctIndex: 1,
+  explanation: "Official answer: At least 2 inches (5 cm).",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q5.4.",
+    points: ["Confirms the standard 2-inch/5cm minimum compression depth"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Same fact tested from a slightly different question angle elsewhere in this bank — repetition aids retention."
+  },
+  relatedIds: ["PAT12-EM-006"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q5.4",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-029",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Health & Hygiene",
+  subtopic: "Waste Disposal",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "Where should play area waste be disposed of?",
+  options: ["Leave where it is", "Bury underground", "Dispose in dustbin", "Throw in water"],
+  correctIndex: 2,
+  explanation: "Official answer: Dispose in dustbin.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q5.5.",
+    points: ["Confirms proper dustbin disposal as the only correct option tested"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "Basic hygiene fact tested plainly — an easy mark if the rule is known."
+  },
+  relatedIds: ["PAT12-HH-005"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q5.5",
+  tags: ["pyq", "real-exam"]
+}, {
+  id: "PAT12-PYQ-030",
+  exam: ["PAT-12"],
+  subject: "PAT XII — Board PYQs (CBSE SQP)",
+  topic: "Health & Hygiene",
+  subtopic: "Disinfectants",
+  difficulty: "Easy",
+  type: "MCQ",
+  year: 2026,
+  question: "What is the goal of using disinfectants/cleaners in a play area?",
+  options: ["Improve smell", "Add colour", "Provide germ-free environment", "Shine equipment"],
+  correctIndex: 2,
+  explanation: "Official answer: Provide germ-free environment.",
+  concept: {
+    title: "Real CBSE Exam Question",
+    definition: "From the official 2025-26 Sample Question Paper, Section A, Q5.6 — the final objective question in the sample paper.",
+    points: ["Confirms the health-focused (not cosmetic) purpose of disinfection"],
+    memoryTrick: "N/A — real exam question.",
+    sportsRelevance: "A fitting close to the objective section, tying hygiene back to health outcomes."
+  },
+  relatedIds: ["PAT12-HH-004"],
+  source: "CBSE Physical Activity Trainer Class XII — Official Sample Question Paper 2025-26 (Subject Code 845), Section A, Q5.6",
+  tags: ["pyq", "real-exam"]
+}];
+QUESTION_BANK.push(...SCHOOL_QUESTION_BANK);
+const SCHOOL_SUBJECT_ENTRIES = [];
+SCHOOL_CLASSES.forEach(cls => {
+  cls.units.forEach(u => {
+    SCHOOL_SUBJECT_ENTRIES.push({
+      id: "school-" + cls.id + "-" + u.id,
+      name: u.subject,
+      group: "School — Physical Activity Trainer (" + cls.grade + ")",
+      count: u.marks
+    });
+  });
+  SCHOOL_SUBJECT_ENTRIES.push({
+    id: "school-" + cls.id + "-pyq",
+    name: cls.pyqSubject,
+    group: "School — Physical Activity Trainer (" + cls.grade + ")",
+    count: 20
+  });
+});
+SUBJECTS.push(...SCHOOL_SUBJECT_ENTRIES);
+
+/* ---- data-exam-config.js ---- */
+const EXAM_CONFIG = {
+  "kvs-pgt": {
+    tag: "KVS PGT",
+    negative: 0,
+    negativeKnown: false,
+    patternNote: "Pattern changes by cycle (recent reports: 180 MCQs, 3 hours, no negative marking) — confirm in the current KVS notification."
+  },
+  "ugc-net": {
+    tag: "UGC NET",
+    negative: 0,
+    negativeKnown: true,
+    patternNote: "Paper 1 (50Q) + Paper 2 (100Q) · 2 marks each · 3 hours · no negative marking (NTA) — confirm in the current NTA bulletin."
+  },
+  "nvs": {
+    tag: "NVS",
+    negative: 0.25,
+    negativeKnown: true,
+    patternNote: "Reported: 150 MCQs · 3 hours · −¼ per wrong answer — confirm in the current NVS notification."
+  },
+  "dsssb": {
+    tag: "DSSSB",
+    negative: 0.25,
+    negativeKnown: true,
+    patternNote: "Reported: −0.25 per wrong answer; question count and duration vary by post — confirm in the DSSSB advertisement."
+  },
+  "state-psc": {
+    tag: "State PSC",
+    negative: 0,
+    negativeKnown: false,
+    patternNote: "Varies by state and post — check your state commission's notification."
+  },
+  "bped": {
+    tag: "B.P.Ed",
+    negative: 0,
+    negativeKnown: false,
+    patternNote: "Varies by university/state entrance — check the admission brochure."
+  },
+  "mped": {
+    tag: "M.P.Ed",
+    negative: 0,
+    negativeKnown: false,
+    patternNote: "Varies by university/state entrance — check the admission brochure."
+  },
+  "university": {
+    tag: null,
+    negative: 0,
+    negativeKnown: false,
+    patternNote: "Varies by university — check the entrance notification."
+  },
+  "set": {
+    tag: "SET",
+    negative: 0,
+    negativeKnown: false,
+    patternNote: "Conducted by state agencies; usually Paper 1 + Paper 2 on the UGC-NET model, but varies by state — confirm in the state notification."
+  },
+  "ctet": {
+    tag: "CTET",
+    negative: 0,
+    negativeKnown: false,
+    patternNote: "CTET itself has no dedicated Physical Education paper (it tests pedagogy and child development) — this track is pedagogy-linked practice. Confirm the current CBSE pattern."
+  },
+  "emrs": {
+    tag: "EMRS",
+    negative: 0,
+    negativeKnown: false,
+    patternNote: "Pattern not confirmed — check the current NESTS notification."
+  },
+  "sainik-school": {
+    tag: "Sainik School",
+    negative: 0,
+    negativeKnown: false,
+    patternNote: "Pattern not confirmed — check the current Sainik School recruitment notification."
+  },
+  "awes": {
+    tag: "AWES",
+    negative: 0,
+    negativeKnown: false,
+    patternNote: "Pattern not confirmed — check the current AWES notification."
+  }
+};
+const isSchoolQuestion = q => (q.exam || []).some(e => String(e).startsWith("PAT-"));
+function questionsForExam(examId) {
+  const cfg = EXAM_CONFIG[examId];
+  const nonSchool = QUESTION_BANK.filter(q => !isSchoolQuestion(q));
+  if (!cfg || !cfg.tag) return nonSchool;
+  return nonSchool.filter(q => q.exam.includes(cfg.tag));
+}
+EXAMS.forEach(ex => {
+  const cfg = EXAM_CONFIG[ex.id];
+  if (!cfg) return;
+  ex.pattern = cfg.patternNote;
+  ex.questions = questionsForExam(ex.id).length;
+  ex.tests = null;
+});
+const MARKING_OPTIONS = [{
+  id: "none",
+  label: "No negative marking",
+  negative: 0
+}, {
+  id: "q25",
+  label: "−0.25 per wrong",
+  negative: 0.25
+}, {
+  id: "q33",
+  label: "−0.33 per wrong",
+  negative: 1 / 3
+}];
+function computeMockScore(questions, responses, negative) {
+  const neg = Number.isFinite(negative) && negative > 0 ? negative : 0;
+  let correct = 0,
+    incorrect = 0,
+    unattempted = 0;
+  questions.forEach(q => {
+    const r = responses && responses[q.id] || {};
+    if (r.selected == null) unattempted++;else if (r.selected === q.correctIndex) correct++;else incorrect++;
+  });
+  const round2 = x => Math.round(x * 100) / 100;
+  return {
+    correct,
+    incorrect,
+    unattempted,
+    attempted: correct + incorrect,
+    score: round2(correct - incorrect * neg),
+    maxScore: questions.length,
+    marksLost: round2(incorrect * neg),
+    negative: neg
+  };
+}
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    computeMockScore
+  };
+}
+
+/* ---- app-01-core.jsx ---- */
+const {
+  useState,
+  useEffect,
+  useMemo,
+  useRef,
+  useCallback,
+  createContext,
+  useContext,
+  useReducer
+} = React;
+function Icon({
+  name,
+  size = 18,
+  ...props
+}) {
+  const s = {
+    width: size,
+    height: size,
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.8,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    viewBox: "0 0 24 24"
+  };
+  const paths = {
+    home: "M4 11.5 12 4l8 7.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1Z",
+    exam: "M9 3h6l1 3H8l1-3ZM6 6h12v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V6Zm3 5h6M9 14h6M9 17h4",
+    practice: "M4 19.5V5a2 2 0 0 1 2-2h11.5v15H6a2 2 0 0 0-2 2Zm0 0a2 2 0 0 0 2 2h13.5M9 7h6M9 10.5h6",
+    mock: "M12 22c5 0 9-4 9-9V6l-9-4-9 4v7c0 5 4 9 9 9Zm-3.5-9 2 2 4.5-4.5",
+    bank: "M3 10 12 4l9 6v1H3v-1Zm1 1v8h2v-8m4 0v8h2v-8m4 0v8h2v-8m4 0v8h2v-8M2 21h20",
+    material: "M4 19.5V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14.5M6 3v18M6 8h6M6 12h6",
+    affairs: "M4 5h16v13a1 1 0 0 1-1 1H8l-4 3V5Zm3 4h10M7 12h10M7 15h6",
+    pyq: "M14 3v5h5M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Zm2 10h8m-8 4h5",
+    performance: "M4 20V10m6 10V4m6 16v-7m6 7V8",
+    leaderboard: "M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4Zm-3 2H3v2a4 4 0 0 0 4 4M20 6h1v2a4 4 0 0 1-4 4",
+    pricing: "M12 2v20M17 5.5c0-1.7-2-3-5-3s-5 1.3-5 3 2 2.4 5 3 5 1.3 5 3-2 3-5 3-5-1.3-5-3",
+    search: "M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm10 2-5.5-5.5",
+    bookmark: "M6 3.5h12v18l-6-4-6 4v-18Z",
+    flame: "M12 2c1.5 4-4 5-4 10a4 4 0 0 0 8 0c0-1.5-1-2-1-3.5 2 1 3 3.5 3 6a6 6 0 1 1-12 0C6 9 9 7 12 2Z",
+    star: "M12 2.5 15 9l7 1-5.2 5 1.3 7-6.1-3.4-6.1 3.4 1.3-7L2 10l7-1 3-6.5Z",
+    clock: "M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18Zm0-14v5l3.5 2",
+    check: "m5 13 4 4L19 7",
+    close: "m6 6 12 12M18 6 6 18",
+    chevronRight: "m9 6 6 6-6 6",
+    chevronLeft: "m15 6-6 6 6 6",
+    chevronDown: "m6 9 6 6 6-6",
+    flag: "M6 21V4m0 0h11l-2 4 2 4H6",
+    menu: "M4 7h16M4 12h16M4 17h16",
+    user: "M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm-8 9c1-4.5 4.5-7 8-7s7 2.5 8 7",
+    target: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0-4a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-3a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z",
+    trophy: "M8 4h8v4a4 4 0 0 1-8 0V4ZM5 5H3v2a4 4 0 0 0 4 3M19 5h2v2a4 4 0 0 1-4 3M10 15h4v3h-4zM8 21h8",
+    lightning: "M13 2 4 14h6l-1 8 9-12h-6l1-8Z",
+    brain: "M9 3a3 3 0 0 0-3 3v.2A3.5 3.5 0 0 0 4.5 12 3.5 3.5 0 0 0 6 18.7V19a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3Zm6 0a3 3 0 0 1 3 3v.2A3.5 3.5 0 0 1 19.5 12 3.5 3.5 0 0 1 18 18.7V19a3 3 0 0 1-6 0",
+    book: "M4 19.5V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2Zm0 0a2 2 0 0 0 2 2h13",
+    yoga: "M12 3v4M9 8l3-1 3 1M6 21l3-8 3 3 3-3 3 8M9 13l-3-4M15 13l3-4",
+    olympic: "M4 15a4 4 0 1 0 8 0 4 4 0 0 0-8 0Zm8 0a4 4 0 1 0 8 0 4 4 0 0 0-8 0Zm4-7 2-4",
+    rules: "M9 3h6l3 5-3 4H9L6 8l3-5Zm-3 9h12l-2 9H8l-2-9Z",
+    admin: "M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Zm-2 9 2 2 4-4",
+    plus: "M12 5v14M5 12h14",
+    trash: "M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13",
+    edit: "M4 20h4L18.5 9.5a2 2 0 0 0 0-2.8l-1.2-1.2a2 2 0 0 0-2.8 0L4 15v5Z",
+    sun: "M12 4V2m0 20v-2M4 12H2m20 0h-2M5.6 5.6 4.2 4.2m15.6 15.6-1.4-1.4M5.6 18.4l-1.4 1.4M18.4 5.6l1.4-1.4M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z",
+    moon: "M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z",
+    fire2: "M12 2c1.5 4-4 5-4 10a4 4 0 0 0 8 0c0-1.5-1-2-1-3.5 2 1 3 3.5 3 6a6 6 0 1 1-12 0C6 9 9 7 12 2Z",
+    lock: "M7 10.5V8a5 5 0 0 1 10 0v2.5M5.5 10.5h13a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1h-13a1 1 0 0 1-1-1v-8.5a1 1 0 0 1 1-1ZM12 14.5v3"
+  };
+  return React.createElement("svg", {
+    ...s,
+    ...props
+  }, React.createElement("path", {
+    d: paths[name] || paths.home
+  }));
+}
+function safeGet(key, fallback) {
+  try {
+    const v = localStorage.getItem(key);
+    return v ? JSON.parse(v) : fallback;
+  } catch (e) {
+    return fallback;
+  }
+}
+function safeSet(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (e) {}
+}
+function usePersistentState(key, initial) {
+  const [state, setState] = useState(() => safeGet(key, initial));
+  useEffect(() => {
+    safeSet(key, state);
+  }, [key, state]);
+  return [state, setState];
+}
+function fmtTime(sec) {
+  sec = Math.max(0, Math.round(sec));
+  const h = Math.floor(sec / 3600),
+    m = Math.floor(sec % 3600 / 60),
+    s = sec % 60;
+  const pad = n => String(n).padStart(2, "0");
+  return h > 0 ? `${pad(h)}:${pad(m)}:${pad(s)}` : `${pad(m)}:${pad(s)}`;
+}
+function todayStr(d = new Date()) {
+  return d.toISOString().slice(0, 10);
+}
+function daysBetween(a, b) {
+  return Math.round((new Date(b) - new Date(a)) / 86400000);
+}
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function pick(arr, n) {
+  return shuffle(arr).slice(0, n);
+}
+function byId(arr) {
+  const m = {};
+  arr.forEach(x => m[x.id] = x);
+  return m;
+}
+const QUESTIONS_BY_ID = byId(QUESTION_BANK);
+function clamp(n, min, max) {
+  return Math.max(min, Math.min(max, n));
+}
+function letters(i) {
+  return ["A", "B", "C", "D", "E", "F"][i];
+}
+const AppCtx = createContext(null);
+function useApp() {
+  return useContext(AppCtx);
+}
+const DEFAULT_PROFILE = {
+  name: "Aspirant",
+  xp: 0,
+  streak: 0,
+  lastActiveDate: null,
+  questionsSolved: 0,
+  accuracySum: 0,
+  mockTestsTaken: 0,
+  joined: todayStr(),
+  loggedIn: true,
+  plan: "free",
+  preferredExam: null,
+  examPasses: []
+};
+const FREE_MOCK_LIMIT = 1;
+const FREE_PRACTICE_LIMIT_PER_SUBJECT = 5;
+const ADMIN_EMAILS = ["aswinkrishna98@gmail.com"];
+function examIdForName(name) {
+  if (!name) return null;
+  const hit = EXAMS.find(e => e.name === name || e.short === name || EXAM_CONFIG[e.id] && EXAM_CONFIG[e.id].tag === name);
+  return hit ? hit.id : null;
+}
+const OPTION_REFERENCE_RE = /\b(all|none|neither|both)\s+of\s+(the\s+)?(above|these|them)\b|\babove\b|\b[a-d]\s*(and|&)\s*[a-d]\b/i;
+function shuffleQuestionOptions(q) {
+  if (!q || !Array.isArray(q.options) || q.options.length < 2) return q;
+  if (q.type && q.type !== "MCQ") return q;
+  if (q.options.some(o => OPTION_REFERENCE_RE.test(String(o)))) return q;
+  const order = q.options.map((_, i) => i);
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  return {
+    ...q,
+    options: order.map(i => q.options[i]),
+    correctIndex: order.indexOf(q.correctIndex)
+  };
+}
+const PAYMENTS = {
+  backendUrl: "https://pe-prep-payments.onrender.com"
+};
+const RAZORPAY_CHECKOUT_SRC = "https://checkout.razorpay.com/v1/checkout.js";
+const PLAN_LABELS = {
+  pro: "Pro",
+  proplus: "Pro+"
+};
+const EXAM_PASS_PRICE_INR = 149;
+const AUTH_API = PAYMENTS.backendUrl;
+const GOOGLE_CLIENT_ID = "";
+const GOOGLE_GSI_SRC = "https://accounts.google.com/gsi/client";
+function loadGoogleScript() {
+  return new Promise((resolve, reject) => {
+    if (window.google?.accounts?.id) {
+      resolve();
+      return;
+    }
+    const existing = document.querySelector('script[data-google-gsi]');
+    if (existing) {
+      existing.addEventListener("load", () => resolve());
+      existing.addEventListener("error", () => reject(new Error("script-blocked")));
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = GOOGLE_GSI_SRC;
+    script.setAttribute("data-google-gsi", "1");
+    script.async = true;
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error("script-blocked"));
+    document.head.appendChild(script);
+    setTimeout(() => {
+      if (!window.google?.accounts?.id) reject(new Error("script-timeout"));
+    }, 6000);
+  });
+}
+function getOrCreateUserId() {
+  let id = safeGet("pep_user_id", null);
+  if (!id) {
+    id = "u_" + Math.random().toString(36).slice(2) + Date.now().toString(36);
+    safeSet("pep_user_id", id);
+  }
+  return id;
+}
+function loadRazorpayScript() {
+  return new Promise((resolve, reject) => {
+    if (window.Razorpay) {
+      resolve();
+      return;
+    }
+    const existing = document.querySelector('script[data-razorpay-checkout]');
+    if (existing) {
+      existing.addEventListener("load", () => resolve());
+      existing.addEventListener("error", () => reject(new Error("script-blocked")));
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = RAZORPAY_CHECKOUT_SRC;
+    script.setAttribute("data-razorpay-checkout", "1");
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error("script-blocked"));
+    document.head.appendChild(script);
+    setTimeout(() => {
+      if (!window.Razorpay) reject(new Error("script-timeout"));
+    }, 6000);
+  });
+}
+function AppProvider({
+  children
+}) {
+  const [route, setRoute] = useState(() => (location.hash || "#/").replace(/^#/, "") || "/");
+  const [routeParams, setRouteParams] = useState({});
+  const [theme, setTheme] = usePersistentState("pep_theme", "system");
+  const [profile, setProfile] = usePersistentState("pep_profile", DEFAULT_PROFILE);
+  const [attempts, setAttempts] = usePersistentState("pep_attempts", {});
+  const attemptsRef = useRef(attempts);
+  attemptsRef.current = attempts;
+  const [bookmarks, setBookmarks] = usePersistentState("pep_bookmarks", {
+    questions: [],
+    notes: [],
+    flashcards: [],
+    tests: []
+  });
+  const [wrongLog, setWrongLog] = usePersistentState("pep_wrong", {});
+  const [mockHistory, setMockHistory] = usePersistentState("pep_mock_history", []);
+  const [toast, setToast] = useState(null);
+  const [dailyState, setDailyState] = usePersistentState("pep_daily", {
+    lastCompleted: null,
+    lastQOTD: null,
+    qotdAnswer: null
+  });
+  const [studyPlan, setStudyPlan] = usePersistentState("pep_study_plan", null);
+  const [revealedIds, setRevealedIds] = usePersistentState("pep_practice_revealed", {});
+  const [authToken, setAuthToken] = usePersistentState("pep_auth_token", null);
+  const [authAccountId, setAuthAccountId] = useState(null);
+  const [authEmail, setAuthEmail] = useState(null);
+  const [authBusy, setAuthBusy] = useState(false);
+  const skipNextSync = useRef(false);
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme === "system" ? "" : theme);
+  }, [theme]);
+  useEffect(() => {
+    function onHash() {
+      setRoute((location.hash || "#/").replace(/^#/, "") || "/");
+    }
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+  const goto = useCallback((path, params = {}) => {
+    setRouteParams(params);
+    setRoute(path);
+    location.hash = path;
+    window.scrollTo({
+      top: 0,
+      behavior: "instant" in window ? "instant" : "auto"
+    });
+  }, []);
+  const notify = useCallback((msg, ms = 2600) => {
+    setToast(msg);
+    window.clearTimeout(notify._t);
+    notify._t = window.setTimeout(() => setToast(null), ms);
+  }, []);
+  const addXp = useCallback(amount => {
+    setProfile(p => ({
+      ...p,
+      xp: p.xp + amount
+    }));
+  }, [setProfile]);
+  const touchStreak = useCallback(() => {
+    setProfile(p => {
+      const today = todayStr();
+      if (p.lastActiveDate === today) return p;
+      const diff = p.lastActiveDate ? daysBetween(p.lastActiveDate, today) : 1;
+      const streak = diff === 1 ? p.streak + 1 : diff === 0 ? p.streak : 1;
+      return {
+        ...p,
+        streak,
+        lastActiveDate: today
+      };
+    });
+  }, [setProfile]);
+  const recordAttempt = useCallback((question, selectedIndex, timeSpent) => {
+    const correct = selectedIndex === question.correctIndex;
+    const firstTime = !attemptsRef.current[question.id];
+    attemptsRef.current = {
+      ...attemptsRef.current,
+      [question.id]: true
+    };
+    setAttempts(prev => {
+      const existing = prev[question.id];
+      return {
+        ...prev,
+        [question.id]: {
+          correct,
+          ts: Date.now(),
+          timeSpent: timeSpent || 0,
+          count: (existing?.count || 0) + 1,
+          subject: question.subject,
+          difficulty: question.difficulty
+        }
+      };
+    });
+    if (!correct) {
+      setWrongLog(prev => ({
+        ...prev,
+        [question.id]: (prev[question.id] || 0) + 1
+      }));
+    } else {
+      setWrongLog(prev => {
+        if (!prev[question.id]) return prev;
+        const cp = {
+          ...prev
+        };
+        delete cp[question.id];
+        return cp;
+      });
+    }
+    if (firstTime) {
+      setProfile(p => ({
+        ...p,
+        questionsSolved: p.questionsSolved + 1
+      }));
+      addXp(correct ? 10 : 2);
+    }
+    touchStreak();
+    return correct;
+  }, [setAttempts, setWrongLog, setProfile, addXp, touchStreak]);
+  const toggleBookmark = useCallback((type, id) => {
+    setBookmarks(prev => {
+      const list = prev[type] || [];
+      const has = list.includes(id);
+      const next = has ? list.filter(x => x !== id) : [...list, id];
+      notify(has ? "Removed from bookmarks" : "Bookmarked");
+      return {
+        ...prev,
+        [type]: next
+      };
+    });
+  }, [setBookmarks, notify]);
+  const saveMockResult = useCallback(result => {
+    setMockHistory(prev => [result, ...prev].slice(0, 30));
+    setProfile(p => ({
+      ...p,
+      mockTestsTaken: p.mockTestsTaken + 1
+    }));
+    addXp(Math.round(result.score * 2));
+    touchStreak();
+  }, [setMockHistory, setProfile, addXp, touchStreak]);
+  const isPro = (profile.plan || "free") !== "free";
+  const freeMocksUsed = mockHistory.length;
+  const mockLocked = !isPro && freeMocksUsed >= FREE_MOCK_LIMIT;
+  const hasExamAccess = useCallback(examId => {
+    if (isPro) return true;
+    if (!examId) return false;
+    return (profile.examPasses || []).includes(examId);
+  }, [isPro, profile.examPasses]);
+  const practicedBySubject = useMemo(() => {
+    const m = {};
+    Object.values(revealedIds).forEach(subj => {
+      if (subj) m[subj] = (m[subj] || 0) + 1;
+    });
+    return m;
+  }, [revealedIds]);
+  const isSubjectLocked = useCallback((subject, qid, examNames) => {
+    if (isPro) return false;
+    if (examNames && examNames.some(n => hasExamAccess(examIdForName(n)))) return false;
+    if (qid && revealedIds[qid]) return false;
+    return (practicedBySubject[subject] || 0) >= FREE_PRACTICE_LIMIT_PER_SUBJECT;
+  }, [isPro, revealedIds, practicedBySubject, hasExamAccess]);
+  const freeQuestionsLeft = useCallback(subject => {
+    if (isPro) return Infinity;
+    return Math.max(0, FREE_PRACTICE_LIMIT_PER_SUBJECT - (practicedBySubject[subject] || 0));
+  }, [isPro, practicedBySubject]);
+  const markRevealed = useCallback(question => {
+    setRevealedIds(prev => prev[question.id] ? prev : {
+      ...prev,
+      [question.id]: question.subject
+    });
+  }, [setRevealedIds]);
+  const [checkoutBusy, setCheckoutBusy] = useState(false);
+  const paymentsLive = !!PAYMENTS.backendUrl;
+  useEffect(() => {
+    if (!paymentsLive || authToken) return;
+    const userId = getOrCreateUserId();
+    fetch(`${PAYMENTS.backendUrl}/api/plan/${userId}`).then(r => r.ok ? r.json() : null).then(data => {
+      if (data?.plan) setProfile(p => ({
+        ...p,
+        plan: data.plan,
+        examPasses: data.examPasses || p.examPasses || []
+      }));
+    }).catch(() => {});
+  }, [paymentsLive, authToken, setProfile]);
+  const applyAccount = useCallback(user => {
+    skipNextSync.current = true;
+    setAuthAccountId(user.id);
+    setAuthEmail(user.email || null);
+    setProfile(p => ({
+      ...p,
+      name: user.name ?? p.name,
+      xp: user.xp ?? p.xp,
+      streak: user.streak ?? p.streak,
+      lastActiveDate: user.lastActiveDate ?? p.lastActiveDate,
+      questionsSolved: user.questionsSolved ?? p.questionsSolved,
+      accuracySum: user.accuracySum ?? p.accuracySum,
+      mockTestsTaken: user.mockTestsTaken ?? p.mockTestsTaken,
+      plan: user.plan ?? p.plan,
+      preferredExam: user.preferredExam ?? p.preferredExam,
+      examPasses: user.examPasses ?? p.examPasses ?? []
+    }));
+    if (user.revealedIds) setRevealedIds(user.revealedIds);
+  }, [setProfile, setRevealedIds]);
+  useEffect(() => {
+    if (!paymentsLive || !authToken) {
+      setAuthAccountId(null);
+      setAuthEmail(null);
+      return;
+    }
+    fetch(`${AUTH_API}/api/auth/me`, {
+      headers: {
+        Authorization: `Bearer ${authToken}`
+      }
+    }).then(r => {
+      if (!r.ok) throw new Error("session-invalid");
+      return r.json();
+    }).then(data => {
+      if (data?.user) applyAccount(data.user);
+    }).catch(() => {
+      setAuthToken(null);
+      setAuthAccountId(null);
+      setAuthEmail(null);
+    });
+  }, [authToken, paymentsLive]);
+  useEffect(() => {
+    if (!paymentsLive || !authToken || !authAccountId) return;
+    if (skipNextSync.current) {
+      skipNextSync.current = false;
+      return;
+    }
+    const t = setTimeout(() => {
+      fetch(`${AUTH_API}/api/profile`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`
+        },
+        body: JSON.stringify({
+          name: profile.name,
+          xp: profile.xp,
+          streak: profile.streak,
+          lastActiveDate: profile.lastActiveDate,
+          questionsSolved: profile.questionsSolved,
+          accuracySum: profile.accuracySum,
+          mockTestsTaken: profile.mockTestsTaken,
+          preferredExam: profile.preferredExam,
+          revealedIds
+        })
+      }).catch(() => {});
+    }, 800);
+    return () => clearTimeout(t);
+  }, [profile, revealedIds, authToken, authAccountId, paymentsLive]);
+  const authRequest = useCallback(async (path, body) => {
+    const res = await fetch(`${AUTH_API}${path}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || "Something went wrong — please try again.");
+    return data;
+  }, []);
+  const signup = useCallback(async (email, password, name, preferredExam) => {
+    setAuthBusy(true);
+    try {
+      const data = await authRequest("/api/auth/signup", {
+        email,
+        password,
+        name,
+        preferredExam: preferredExam || null
+      });
+      setAuthToken(data.token);
+      applyAccount(data.user);
+      notify("Welcome to PE Prep, " + data.user.name + "! Your progress will now follow you across devices.", 4000);
+    } finally {
+      setAuthBusy(false);
+    }
+  }, [authRequest, applyAccount, notify, setAuthToken]);
+  const setPreferredExam = useCallback(examId => {
+    setProfile(p => ({
+      ...p,
+      preferredExam: examId || null
+    }));
+  }, [setProfile]);
+  const login = useCallback(async (email, password) => {
+    setAuthBusy(true);
+    try {
+      const data = await authRequest("/api/auth/login", {
+        email,
+        password
+      });
+      setAuthToken(data.token);
+      applyAccount(data.user);
+      notify("Welcome back, " + data.user.name + "!", 3000);
+    } finally {
+      setAuthBusy(false);
+    }
+  }, [authRequest, applyAccount, notify, setAuthToken]);
+  const googleSignIn = useCallback(async credential => {
+    setAuthBusy(true);
+    try {
+      const data = await authRequest("/api/auth/google", {
+        credential
+      });
+      setAuthToken(data.token);
+      applyAccount(data.user);
+      notify("Welcome, " + data.user.name + "!", 3000);
+    } finally {
+      setAuthBusy(false);
+    }
+  }, [authRequest, applyAccount, notify, setAuthToken]);
+  const logout = useCallback(() => {
+    setAuthToken(null);
+    setAuthAccountId(null);
+    setAuthEmail(null);
+    setProfile(DEFAULT_PROFILE);
+    notify("Signed out — your progress on this device is cleared. Sign in again anytime to get it back.", 3400);
+  }, [setAuthToken, setProfile, notify]);
+  const isLoggedIn = !!authToken;
+  const isAdmin = !!authEmail && ADMIN_EMAILS.includes(authEmail.toLowerCase());
+  const upgradePlanDemo = useCallback((plan, examId) => {
+    if (plan === "exampass") {
+      const examShort = EXAMS.find(e => e.id === examId)?.short || "This exam";
+      setProfile(p => ({
+        ...p,
+        examPasses: p.examPasses?.includes(examId) ? p.examPasses : [...(p.examPasses || []), examId]
+      }));
+      notify(examShort + " Pass unlocked — payment isn't wired up in this prototype, but this exam's mock tests, results and PYQs are now open.", 3800);
+      return;
+    }
+    setProfile(p => ({
+      ...p,
+      plan
+    }));
+    notify((PLAN_LABELS[plan] || plan) + " unlocked — payment isn't wired up in this prototype, but every gated feature is now open.", 3600);
+  }, [setProfile, notify]);
+  const upgradePlanReal = useCallback(async (plan, examId) => {
+    const userId = authAccountId || getOrCreateUserId();
+    const examShort = examId ? EXAMS.find(e => e.id === examId)?.short || "Exam" : null;
+    setCheckoutBusy(true);
+    try {
+      const orderRes = await fetch(`${PAYMENTS.backendUrl}/api/create-order`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(authToken ? {
+            Authorization: "Bearer " + authToken
+          } : {})
+        },
+        body: JSON.stringify({
+          userId,
+          plan,
+          examId
+        })
+      });
+      if (!orderRes.ok) {
+        const err = await orderRes.json().catch(() => ({}));
+        throw new Error(err.error || "Could not start checkout");
+      }
+      const order = await orderRes.json();
+      await loadRazorpayScript();
+      const rzp = new window.Razorpay({
+        key: order.keyId,
+        amount: order.amount,
+        currency: order.currency,
+        order_id: order.orderId,
+        name: "PE Prep",
+        description: plan === "exampass" ? examShort + " Pass" : (PLAN_LABELS[plan] || plan) + " (one-time)",
+        prefill: {
+          name: profile.name || ""
+        },
+        theme: {
+          color: "#FF5A36"
+        },
+        handler: async response => {
+          try {
+            const verifyRes = await fetch(`${PAYMENTS.backendUrl}/api/verify-payment`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                userId,
+                plan,
+                examId,
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature
+              })
+            });
+            if (!verifyRes.ok) throw new Error("Payment could not be verified");
+            const result = await verifyRes.json();
+            if (plan === "exampass") {
+              setProfile(p => ({
+                ...p,
+                examPasses: result.examPasses || p.examPasses || []
+              }));
+              notify(examShort + " Pass unlocked — payment verified.", 3600);
+            } else {
+              setProfile(p => ({
+                ...p,
+                plan: result.plan
+              }));
+              notify((PLAN_LABELS[plan] || plan) + " unlocked — payment verified.", 3600);
+            }
+          } catch (e) {
+            notify("Payment succeeded but verification failed — please contact support before retrying.", 5000);
+          } finally {
+            setCheckoutBusy(false);
+          }
+        },
+        modal: {
+          ondismiss: () => setCheckoutBusy(false)
+        }
+      });
+      rzp.on("payment.failed", () => {
+        notify("Payment failed or was cancelled — your plan hasn't changed.", 4000);
+        setCheckoutBusy(false);
+      });
+      rzp.open();
+    } catch (e) {
+      setCheckoutBusy(false);
+      if (e.message === "script-blocked" || e.message === "script-timeout") {
+        notify("Real checkout can't open in this hosting environment (Razorpay's script is blocked here). Deploy the app with server/ per its README to enable real payments.", 6000);
+      } else {
+        notify(e.message || "Couldn't start checkout — please try again.", 4000);
+      }
+    }
+  }, [setProfile, notify, profile.name, authAccountId, authToken]);
+  const upgradePlan = paymentsLive ? upgradePlanReal : upgradePlanDemo;
+  const accuracy = useMemo(() => {
+    const list = Object.values(attempts);
+    if (list.length === 0) return null;
+    const correct = list.filter(a => a.correct).length;
+    return Math.round(correct / list.length * 100);
+  }, [attempts]);
+  const subjectStats = useMemo(() => {
+    const stats = {};
+    Object.values(attempts).forEach(a => {
+      if (!a.subject) return;
+      stats[a.subject] = stats[a.subject] || {
+        correct: 0,
+        total: 0
+      };
+      stats[a.subject].total++;
+      if (a.correct) stats[a.subject].correct++;
+    });
+    const rows = Object.entries(stats).map(([subject, s]) => ({
+      subject,
+      accuracy: Math.round(s.correct / s.total * 100),
+      total: s.total
+    }));
+    return rows.sort((a, b) => a.accuracy - b.accuracy);
+  }, [attempts]);
+  const value = {
+    route,
+    routeParams,
+    goto,
+    theme,
+    setTheme,
+    profile,
+    setProfile,
+    addXp,
+    touchStreak,
+    attempts,
+    recordAttempt,
+    accuracy,
+    subjectStats,
+    bookmarks,
+    toggleBookmark,
+    wrongLog,
+    setWrongLog,
+    mockHistory,
+    saveMockResult,
+    toast,
+    notify,
+    dailyState,
+    setDailyState,
+    studyPlan,
+    setStudyPlan,
+    isPro,
+    freeMocksUsed,
+    mockLocked,
+    upgradePlan,
+    paymentsLive,
+    checkoutBusy,
+    hasExamAccess,
+    FREE_PRACTICE_LIMIT_PER_SUBJECT,
+    practicedBySubject,
+    isSubjectLocked,
+    freeQuestionsLeft,
+    markRevealed,
+    isLoggedIn,
+    authBusy,
+    signup,
+    login,
+    googleSignIn,
+    logout,
+    setPreferredExam,
+    authEmail,
+    isAdmin,
+    authToken
+  };
+  return React.createElement(AppCtx.Provider, {
+    value
+  }, children);
+}
+
+/* ---- app-02-shell.jsx ---- */
+const NAV_ITEMS = [{
+  path: "/",
+  label: "Home",
+  icon: "home"
+}, {
+  path: "/exams",
+  label: "Exams",
+  icon: "exam"
+}, {
+  path: "/practice",
+  label: "Practice",
+  icon: "practice"
+}, {
+  path: "/mock-tests",
+  label: "Mock Tests",
+  icon: "mock"
+}, {
+  path: "/study-material",
+  label: "Study Material",
+  icon: "material"
+}, {
+  path: "/school",
+  label: "School (11/12)",
+  icon: "book"
+}, {
+  path: "/current-affairs",
+  label: "Current Affairs",
+  icon: "affairs"
+}, {
+  path: "/dashboard",
+  label: "Performance",
+  icon: "performance"
+}, {
+  path: "/pricing",
+  label: "Pricing",
+  icon: "pricing"
+}];
+const MOBILE_NAV = [{
+  path: "/",
+  label: "Home",
+  icon: "home"
+}, {
+  path: "/practice",
+  label: "Practice",
+  icon: "practice"
+}, {
+  path: "/mock-tests",
+  label: "Tests",
+  icon: "mock"
+}, {
+  path: "/study-material",
+  label: "Learn",
+  icon: "material"
+}, {
+  path: "/dashboard",
+  label: "Profile",
+  icon: "user"
+}];
+function isActive(route, path) {
+  if (path === "/") return route === "/" || route === "";
+  return route.startsWith(path);
+}
+function GlobalSearchModal({
+  open,
+  onClose
+}) {
+  const {
+    goto
+  } = useApp();
+  const [q, setQ] = useState("");
+  const inputRef = useRef(null);
+  useEffect(() => {
+    if (open) {
+      setTimeout(() => inputRef.current?.focus(), 30);
+    } else setQ("");
+  }, [open]);
+  const results = useMemo(() => {
+    if (q.trim().length < 2) return null;
+    const term = q.trim().toLowerCase();
+    const qs = QUESTION_BANK.filter(x => x.question.toLowerCase().includes(term) || x.topic.toLowerCase().includes(term)).slice(0, 5).map(x => ({
+      type: "Question",
+      label: x.question.slice(0, 80),
+      sub: x.subject,
+      action: () => goto("/question-detail", {
+        id: x.id
+      })
+    }));
+    const notes = STUDY_NOTES.filter(x => x.title.toLowerCase().includes(term) || x.subject.toLowerCase().includes(term)).slice(0, 4).map(x => ({
+      type: "Note",
+      label: x.title,
+      sub: x.subject,
+      action: () => goto("/study-material", {})
+    }));
+    const flash = FLASHCARDS.filter(x => x.front.toLowerCase().includes(term)).slice(0, 4).map(x => ({
+      type: "Flashcard",
+      label: x.front,
+      sub: x.subject,
+      action: () => goto("/flashcards", {})
+    }));
+    const rules = SPORTS_RULES_DB.filter(x => x.sport.toLowerCase().includes(term)).slice(0, 3).map(x => ({
+      type: "Sport Rules",
+      label: x.sport,
+      sub: "Know Your Sport",
+      action: () => goto("/sports-rules", {
+        sport: x.sport
+      })
+    }));
+    const formulas = FORMULAS.filter(x => x.name.toLowerCase().includes(term)).slice(0, 3).map(x => ({
+      type: "Formula",
+      label: x.name,
+      sub: x.category,
+      action: () => goto("/formula-hub", {})
+    }));
+    const subs = SUBJECTS.filter(x => x.name.toLowerCase().includes(term)).slice(0, 3).map(x => ({
+      type: "Subject",
+      label: x.name,
+      sub: x.group,
+      action: () => goto("/question-bank", {
+        subject: x.name
+      })
+    }));
+    return [...qs, ...notes, ...flash, ...rules, ...formulas, ...subs];
+  }, [q, goto]);
+  if (!open) return null;
+  return React.createElement("div", {
+    style: {
+      position: "fixed",
+      inset: 0,
+      background: "rgba(10,15,25,.5)",
+      zIndex: 200,
+      display: "flex",
+      alignItems: "flex-start",
+      justifyContent: "center",
+      padding: "12vh 16px"
+    },
+    onClick: onClose
+  }, React.createElement("div", {
+    className: "card",
+    style: {
+      width: "100%",
+      maxWidth: 560,
+      padding: 0,
+      overflow: "hidden"
+    },
+    onClick: e => e.stopPropagation()
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      padding: "14px 18px",
+      borderBottom: "1px solid var(--border)"
+    }
+  }, React.createElement(Icon, {
+    name: "search",
+    size: 18
+  }), React.createElement("input", {
+    ref: inputRef,
+    className: "input",
+    style: {
+      border: "none",
+      flex: 1,
+      padding: "6px 0"
+    },
+    placeholder: "Search questions, notes, flashcards, sports rules, formulas…",
+    value: q,
+    onChange: e => setQ(e.target.value)
+  }), React.createElement("span", {
+    className: "kbd"
+  }, "Esc")), React.createElement("div", {
+    style: {
+      maxHeight: 380,
+      overflowY: "auto"
+    }
+  }, results === null ? React.createElement("div", {
+    className: "empty-state small"
+  }, "Type at least 2 characters to search across the whole platform.") : results.length === 0 ? React.createElement("div", {
+    className: "empty-state small"
+  }, "No results found for “" + q + "”.") : results.map((r, i) => React.createElement("div", {
+    key: i,
+    onClick: () => {
+      r.action();
+      onClose();
+    },
+    style: {
+      padding: "12px 18px",
+      display: "flex",
+      justifyContent: "space-between",
+      gap: 12,
+      cursor: "pointer",
+      borderBottom: "1px solid var(--border)"
+    },
+    onMouseEnter: e => e.currentTarget.style.background = "var(--surface-2)",
+    onMouseLeave: e => e.currentTarget.style.background = "transparent"
+  }, React.createElement("div", null, React.createElement("div", {
+    className: "small",
+    style: {
+      fontWeight: 600
+    }
+  }, r.label), React.createElement("div", {
+    className: "tiny muted"
+  }, r.sub)), React.createElement("span", {
+    className: "pill pill-info"
+  }, r.type))))));
+}
+function ThemeToggle() {
+  const {
+    theme,
+    setTheme
+  } = useApp();
+  const next = theme === "dark" ? "light" : theme === "light" ? "system" : "dark";
+  const icon = theme === "dark" ? "moon" : theme === "light" ? "sun" : "sun";
+  return React.createElement("button", {
+    className: "btn btn-ghost btn-icon",
+    title: "Theme: " + theme,
+    onClick: () => setTheme(next)
+  }, React.createElement(Icon, {
+    name: icon,
+    size: 17
+  }));
+}
+function PromoBanner() {
+  const {
+    goto,
+    isPro
+  } = useApp();
+  const [dismissed, setDismissed] = usePersistentState("pep_promo_dismissed_v1", false);
+  if (dismissed || isPro) return null;
+  return React.createElement("div", {
+    className: "promo-banner"
+  }, React.createElement("div", {
+    className: "promo-banner-inner"
+  }, React.createElement("span", {
+    className: "promo-banner-live"
+  }, "🔴 LIVE"), React.createElement("span", {
+    className: "small",
+    style: {
+      fontWeight: 600
+    }
+  }, "Unlimited mock tests, full result analysis and practice sets for " + EXAMS.length + " PE exams — go Pro today."), React.createElement("button", {
+    className: "btn btn-sm promo-banner-cta",
+    onClick: () => goto("/pricing")
+  }, "Explore Plans"), React.createElement("button", {
+    className: "promo-banner-close",
+    "aria-label": "Dismiss",
+    onClick: () => setDismissed(true)
+  }, React.createElement(Icon, {
+    name: "close",
+    size: 16
+  }))));
+}
+function AccountMenu() {
+  const {
+    isLoggedIn,
+    profile,
+    goto,
+    logout
+  } = useApp();
+  const [open, setOpen] = useState(false);
+  const boxRef = useRef(null);
+  useEffect(() => {
+    if (!open) return;
+    function onDocClick(e) {
+      if (boxRef.current && !boxRef.current.contains(e.target)) setOpen(false);
+    }
+    function onKey(e) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("mousedown", onDocClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDocClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+  if (!isLoggedIn) {
+    return React.createElement("button", {
+      className: "btn btn-primary btn-sm",
+      onClick: () => goto("/login")
+    }, "Get Started");
+  }
+  return React.createElement("div", {
+    ref: boxRef,
+    style: {
+      position: "relative"
+    }
+  }, React.createElement("button", {
+    className: "btn btn-outline btn-sm",
+    onClick: () => setOpen(o => !o),
+    "aria-expanded": open
+  }, React.createElement(Icon, {
+    name: "user",
+    size: 15
+  }), profile.name, React.createElement(Icon, {
+    name: "chevronDown",
+    size: 13
+  })), open && React.createElement("div", {
+    className: "card",
+    style: {
+      position: "absolute",
+      right: 0,
+      top: "calc(100% + 8px)",
+      minWidth: 200,
+      padding: 8,
+      zIndex: 150
+    }
+  }, React.createElement("div", {
+    className: "tiny muted",
+    style: {
+      padding: "4px 10px 8px",
+      marginBottom: 4,
+      borderBottom: "1px solid var(--border)"
+    }
+  }, profile.name), React.createElement("button", {
+    className: "btn btn-ghost btn-sm btn-block",
+    style: {
+      justifyContent: "flex-start",
+      gap: 8
+    },
+    onClick: () => {
+      setOpen(false);
+      goto("/dashboard");
+    }
+  }, React.createElement(Icon, {
+    name: "performance",
+    size: 14
+  }), "Dashboard"), React.createElement("button", {
+    className: "btn btn-ghost btn-sm btn-block",
+    style: {
+      justifyContent: "flex-start",
+      gap: 8,
+      color: "var(--danger)"
+    },
+    onClick: () => {
+      setOpen(false);
+      logout();
+    }
+  }, React.createElement(Icon, {
+    name: "close",
+    size: 14
+  }), "Sign Out")));
+}
+function TopNav() {
+  const {
+    route,
+    goto
+  } = useApp();
+  const [searchOpen, setSearchOpen] = useState(false);
+  useEffect(() => {
+    function onKey(e) {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+      if (e.key === "Escape") setSearchOpen(false);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+  return React.createElement(React.Fragment, null, React.createElement("div", {
+    className: "topnav"
+  }, React.createElement("div", {
+    className: "topnav-inner"
+  }, React.createElement("a", {
+    href: "#/",
+    className: "brand",
+    onClick: e => {
+      e.preventDefault();
+      goto("/");
+    }
+  }, React.createElement("span", {
+    className: "brand-mark"
+  }, "PE"), React.createElement("span", null, "PE Prep")), React.createElement("nav", {
+    className: "navlinks"
+  }, NAV_ITEMS.map(item => React.createElement("a", {
+    key: item.path,
+    href: "#" + item.path,
+    className: "navlink" + (isActive(route, item.path) ? " active" : ""),
+    onClick: e => {
+      e.preventDefault();
+      goto(item.path);
+    }
+  }, item.label))), React.createElement("div", {
+    className: "navcta"
+  }, React.createElement("button", {
+    className: "btn btn-ghost btn-icon",
+    title: "Search (Ctrl+K)",
+    onClick: () => setSearchOpen(true)
+  }, React.createElement(Icon, {
+    name: "search"
+  })), React.createElement(ThemeToggle, null), React.createElement("button", {
+    className: "btn btn-ghost btn-icon",
+    title: "Bookmarks",
+    onClick: () => goto("/bookmarks")
+  }, React.createElement(Icon, {
+    name: "bookmark"
+  })), React.createElement(AccountMenu, null)))), React.createElement(GlobalSearchModal, {
+    open: searchOpen,
+    onClose: () => setSearchOpen(false)
+  }));
+}
+function MobileAccountItem({
+  item,
+  active
+}) {
+  const {
+    goto,
+    isLoggedIn,
+    logout
+  } = useApp();
+  const [open, setOpen] = useState(false);
+  const boxRef = useRef(null);
+  useEffect(() => {
+    if (!open) return;
+    function onDocClick(e) {
+      if (boxRef.current && !boxRef.current.contains(e.target)) setOpen(false);
+    }
+    document.addEventListener("mousedown", onDocClick);
+    return () => document.removeEventListener("mousedown", onDocClick);
+  }, [open]);
+  if (!isLoggedIn) {
+    return React.createElement("a", {
+      href: "#" + item.path,
+      className: active ? "active" : "",
+      onClick: e => {
+        e.preventDefault();
+        goto(item.path);
+      }
+    }, React.createElement(Icon, {
+      name: item.icon,
+      size: 20
+    }), React.createElement("span", null, item.label));
+  }
+  return React.createElement("div", {
+    ref: boxRef,
+    style: {
+      position: "relative"
+    }
+  }, React.createElement("a", {
+    href: "#" + item.path,
+    className: active ? "active" : "",
+    onClick: e => {
+      e.preventDefault();
+      setOpen(o => !o);
+    }
+  }, React.createElement(Icon, {
+    name: item.icon,
+    size: 20
+  }), React.createElement("span", null, item.label)), open && React.createElement("div", {
+    className: "card",
+    style: {
+      position: "absolute",
+      bottom: "calc(100% + 12px)",
+      right: -10,
+      minWidth: 170,
+      padding: 8,
+      zIndex: 150
+    }
+  }, React.createElement("button", {
+    className: "btn btn-ghost btn-sm btn-block",
+    style: {
+      justifyContent: "flex-start",
+      gap: 8
+    },
+    onClick: () => {
+      setOpen(false);
+      goto("/dashboard");
+    }
+  }, React.createElement(Icon, {
+    name: "performance",
+    size: 14
+  }), "Dashboard"), React.createElement("button", {
+    className: "btn btn-ghost btn-sm btn-block",
+    style: {
+      justifyContent: "flex-start",
+      gap: 8,
+      color: "var(--danger)"
+    },
+    onClick: () => {
+      setOpen(false);
+      logout();
+    }
+  }, React.createElement(Icon, {
+    name: "close",
+    size: 14
+  }), "Sign Out")));
+}
+function MobileNav() {
+  const {
+    route,
+    goto
+  } = useApp();
+  return React.createElement("div", {
+    className: "mobilebar"
+  }, React.createElement("div", {
+    className: "mobilebar-inner"
+  }, MOBILE_NAV.map(item => item.path === "/dashboard" ? React.createElement(MobileAccountItem, {
+    key: item.path,
+    item,
+    active: isActive(route, item.path)
+  }) : React.createElement("a", {
+    key: item.path,
+    href: "#" + item.path,
+    className: isActive(route, item.path) ? "active" : "",
+    onClick: e => {
+      e.preventDefault();
+      goto(item.path);
+    }
+  }, React.createElement(Icon, {
+    name: item.icon,
+    size: 20
+  }), React.createElement("span", null, item.label)))));
+}
+function Toast() {
+  const {
+    toast
+  } = useApp();
+  if (!toast) return null;
+  return React.createElement("div", {
+    className: "toast"
+  }, React.createElement(Icon, {
+    name: "check",
+    size: 15
+  }), toast);
+}
+function Footer() {
+  const {
+    goto
+  } = useApp();
+  return React.createElement("footer", {
+    className: "footer"
+  }, React.createElement("div", {
+    className: "container flex justify-between wrap gap-24"
+  }, React.createElement("div", {
+    style: {
+      maxWidth: 320
+    }
+  }, React.createElement("div", {
+    className: "brand",
+    style: {
+      fontSize: 17,
+      marginBottom: 8
+    }
+  }, React.createElement("span", {
+    className: "brand-mark",
+    style: {
+      width: 26,
+      height: 26,
+      fontSize: 12
+    }
+  }, "PE"), "PE Prep"), React.createElement("p", {
+    className: "small muted"
+  }, "India's dedicated preparation platform for Physical Education examinations. Prepare. Practice. Perform.")), React.createElement("div", {
+    className: "flex gap-24 wrap"
+  }, React.createElement("div", {
+    className: "flex-col gap-8"
+  }, React.createElement("span", {
+    className: "small",
+    style: {
+      fontWeight: 700
+    }
+  }, "Platform"), ["Exams", "Question Bank", "Mock Tests", "Practice Sets", "Leaderboard"].map((t, i) => React.createElement("a", {
+    key: t,
+    className: "small muted",
+    href: "#/",
+    onClick: e => {
+      e.preventDefault();
+      goto(["/exams", "/question-bank", "/mock-tests", "/previous-papers", "/leaderboard"][i]);
+    }
+  }, t))), React.createElement("div", {
+    className: "flex-col gap-8"
+  }, React.createElement("span", {
+    className: "small",
+    style: {
+      fontWeight: 700
+    }
+  }, "Resources"), ["Sports Rules DB", "Formula Hub", "Current Affairs", "Flashcards", "Quick Revision", "Question of the Day"].map((t, i) => React.createElement("a", {
+    key: t,
+    className: "small muted",
+    href: "#/",
+    onClick: e => {
+      e.preventDefault();
+      goto(["/sports-rules", "/formula-hub", "/current-affairs", "/flashcards", "/quick-revision", "/question-of-the-day"][i]);
+    }
+  }, t))), React.createElement("div", {
+    className: "flex-col gap-8"
+  }, React.createElement("span", {
+    className: "small",
+    style: {
+      fontWeight: 700
+    }
+  }, "Company"), ["Pricing", "About Us", "Contact Us", "Terms of Service", "Privacy Policy", "Refund Policy"].map((t, i) => React.createElement("a", {
+    key: t,
+    className: "small muted",
+    href: "#/",
+    onClick: e => {
+      e.preventDefault();
+      goto(["/pricing", "/about", "/contact", "/terms", "/privacy", "/refund-policy"][i]);
+    }
+  }, t))))), React.createElement("div", {
+    className: "container",
+    style: {
+      marginTop: 28
+    }
+  }, React.createElement("div", {
+    className: "lane-divider",
+    style: {
+      marginBottom: 18
+    }
+  }), React.createElement("p", {
+    className: "tiny muted"
+  }, "PE Prep is an independent practice platform. Exam patterns are indicative — always confirm against the official notification. © 2026 PE Prep.")));
+}
+function Layout({
+  children
+}) {
+  return React.createElement("div", {
+    className: "app-shell"
+  }, React.createElement(PromoBanner, null), React.createElement(TopNav, null), React.createElement("main", {
+    className: "app-main",
+    style: {
+      flex: 1
+    }
+  }, children), React.createElement(Footer, null), React.createElement(MobileNav, null), React.createElement(Toast, null));
+}
+function StatTile({
+  label,
+  value,
+  sub,
+  subClass
+}) {
+  return React.createElement("div", {
+    className: "stat-tile"
+  }, React.createElement("div", {
+    className: "stat-label"
+  }, label), React.createElement("div", {
+    className: "stat-value num"
+  }, value), sub ? React.createElement("div", {
+    className: "stat-sub " + (subClass || "muted")
+  }, sub) : null);
+}
+function SectionHeading({
+  eyebrow,
+  title,
+  lede,
+  right
+}) {
+  return React.createElement("div", {
+    className: "flex justify-between wrap gap-16",
+    style: {
+      marginBottom: 24,
+      alignItems: "flex-end"
+    }
+  }, React.createElement("div", null, eyebrow && React.createElement("div", {
+    className: "eyebrow",
+    style: {
+      marginBottom: 8
+    }
+  }, eyebrow), React.createElement("h2", {
+    className: "h1"
+  }, title), lede && React.createElement("p", {
+    className: "lede",
+    style: {
+      marginTop: 8
+    }
+  }, lede)), right || null);
+}
+function DifficultyPill({
+  level
+}) {
+  const map = {
+    Easy: "pill-success",
+    Moderate: "pill-warning",
+    Hard: "pill-danger",
+    Expert: "pill-danger"
+  };
+  return React.createElement("span", {
+    className: "pill " + (map[level] || "pill-info")
+  }, level);
+}
+function BookmarkButton({
+  type,
+  id
+}) {
+  const {
+    bookmarks,
+    toggleBookmark
+  } = useApp();
+  const active = (bookmarks[type] || []).includes(id);
+  return React.createElement("button", {
+    className: "btn btn-ghost btn-icon",
+    title: "Bookmark",
+    onClick: () => toggleBookmark(type, id)
+  }, React.createElement(Icon, {
+    name: "bookmark",
+    size: 16,
+    style: {
+      fill: active ? "var(--accent)" : "none",
+      stroke: active ? "var(--accent)" : "currentColor"
+    }
+  }));
+}
+function PlanBadge() {
+  const {
+    isPro,
+    profile
+  } = useApp();
+  if (!isPro) return React.createElement("span", {
+    className: "pill pill-warning"
+  }, "Free Plan");
+  return React.createElement("span", {
+    className: "pill pill-gold"
+  }, (profile.plan === "proplus" ? "Pro+" : "Pro") + " Member");
+}
+function MockPaywall({
+  title,
+  desc,
+  examId,
+  examShort
+}) {
+  const {
+    goto,
+    upgradePlan,
+    paymentsLive,
+    checkoutBusy
+  } = useApp();
+  return React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      textAlign: "center",
+      padding: "48px 28px",
+      background: "linear-gradient(150deg, var(--ink) 0%, var(--info) 160%)",
+      color: "#fff"
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 34,
+      marginBottom: 10
+    }
+  }, "🔒"), React.createElement("h3", {
+    className: "h1",
+    style: {
+      color: "#fff"
+    }
+  }, title || "You've used your free mock test"), React.createElement("p", {
+    className: "small",
+    style: {
+      color: "rgba(255,255,255,.8)",
+      margin: "10px auto 24px",
+      maxWidth: 440
+    }
+  }, desc || "Free plan includes one full-length mock test to try the experience. Upgrade to Pro for unlimited mock tests, practice sets, and full performance analytics."), React.createElement("div", {
+    className: "flex gap-12 wrap",
+    style: {
+      justifyContent: "center"
+    }
+  }, React.createElement("button", {
+    className: "btn btn-primary",
+    disabled: checkoutBusy,
+    onClick: () => upgradePlan("pro")
+  }, checkoutBusy ? "Opening secure checkout…" : "Upgrade to Pro"), examId && React.createElement("button", {
+    className: "btn btn-outline",
+    style: {
+      borderColor: "rgba(255,255,255,.5)",
+      color: "#fff"
+    },
+    disabled: checkoutBusy,
+    onClick: () => upgradePlan("exampass", examId)
+  }, "Get " + (examShort || "this") + " Pass · ₹" + EXAM_PASS_PRICE_INR), React.createElement("button", {
+    className: "btn btn-outline",
+    style: {
+      borderColor: "rgba(255,255,255,.5)",
+      color: "#fff"
+    },
+    onClick: () => goto("/pricing")
+  }, "Compare Plans")), !paymentsLive && React.createElement("p", {
+    className: "tiny",
+    style: {
+      color: "rgba(255,255,255,.65)",
+      marginTop: 16
+    }
+  }, "Demo mode — no real payment gateway is connected yet."));
+}
+function PracticeContentLock({
+  subject
+}) {
+  const {
+    goto,
+    upgradePlan,
+    paymentsLive,
+    checkoutBusy
+  } = useApp();
+  return React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      textAlign: "center",
+      padding: "28px 22px",
+      background: "linear-gradient(150deg, var(--ink) 0%, var(--info) 160%)",
+      color: "#fff"
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 26,
+      marginBottom: 6
+    }
+  }, "🔒"), React.createElement("h4", {
+    className: "h3",
+    style: {
+      color: "#fff"
+    }
+  }, "Free quota used in " + subject), React.createElement("p", {
+    className: "tiny",
+    style: {
+      color: "rgba(255,255,255,.8)",
+      margin: "6px auto 16px",
+      maxWidth: 400
+    }
+  }, "You've unlocked the free explanation for 5 questions in this subject. Upgrade to Pro for unlimited detailed explanations, concept notes and related questions across all subjects."), React.createElement("div", {
+    className: "flex gap-10 wrap",
+    style: {
+      justifyContent: "center"
+    }
+  }, React.createElement("button", {
+    className: "btn btn-primary btn-sm",
+    disabled: checkoutBusy,
+    onClick: () => upgradePlan("pro")
+  }, checkoutBusy ? "Opening secure checkout…" : "Upgrade to Pro"), React.createElement("button", {
+    className: "btn btn-outline btn-sm",
+    style: {
+      borderColor: "rgba(255,255,255,.5)",
+      color: "#fff"
+    },
+    onClick: () => goto("/pricing")
+  }, "Compare Plans")), !paymentsLive && React.createElement("p", {
+    className: "tiny",
+    style: {
+      color: "rgba(255,255,255,.65)",
+      marginTop: 10
+    }
+  }, "Demo mode — no real payment gateway is connected yet."));
+}
+
+/* ---- app-03-charts.jsx ---- */
+function BarChart({
+  data,
+  height = 220,
+  valueSuffix = "%",
+  colorFn
+}) {
+  const max = Math.max(100, ...data.map(d => d.value));
+  const padL = 34,
+    padB = 34,
+    padT = 26,
+    padR = 10;
+  const w = Math.max(360, data.length * 70);
+  const plotH = height - padT - padB;
+  const plotW = w - padL - padR;
+  const barW = Math.min(46, plotW / data.length - 16);
+  const ticks = [0, 25, 50, 75, 100];
+  return React.createElement("div", {
+    className: "overflow-x"
+  }, React.createElement("svg", {
+    viewBox: `0 0 ${w} ${height}`,
+    width: "100%",
+    style: {
+      minWidth: w,
+      height
+    }
+  }, ticks.map(t => {
+    const y = padT + plotH - (t / max > 1 ? 1 : t / max) * plotH;
+    return React.createElement("g", {
+      key: t
+    }, React.createElement("line", {
+      x1: padL,
+      x2: w - padR,
+      y1: y,
+      y2: y,
+      className: "chart-grid"
+    }), React.createElement("text", {
+      x: padL - 8,
+      y: y + 4,
+      textAnchor: "end",
+      className: "chart-label"
+    }, t));
+  }), data.map((d, i) => {
+    const x = padL + i * (plotW / data.length) + (plotW / data.length - barW) / 2;
+    const barH = Math.min(d.value, max) / max * plotH;
+    const y = padT + plotH - barH;
+    const color = colorFn ? colorFn(d) : d.value >= 75 ? "var(--success)" : d.value >= 55 ? "var(--warning)" : "var(--danger)";
+    return React.createElement("g", {
+      key: i
+    }, React.createElement("rect", {
+      x,
+      y,
+      width: barW,
+      height: barH,
+      rx: 6,
+      style: {
+        fill: color
+      }
+    }), React.createElement("text", {
+      x: x + barW / 2,
+      y: y - 8,
+      textAnchor: "middle",
+      className: "chart-value"
+    }, d.value + valueSuffix), React.createElement("text", {
+      x: x + barW / 2,
+      y: height - 12,
+      textAnchor: "middle",
+      className: "chart-label"
+    }, d.label.length > 10 ? d.label.slice(0, 9) + "…" : d.label));
+  })));
+}
+function LineChart({
+  points,
+  height = 180,
+  color = "var(--info)",
+  valueSuffix = ""
+}) {
+  const max = Math.max(...points.map(p => p.value), 10);
+  const min = Math.min(...points.map(p => p.value), 0);
+  const padL = 30,
+    padR = 14,
+    padT = 16,
+    padB = 28;
+  const w = Math.max(360, points.length * 60);
+  const plotW = w - padL - padR,
+    plotH = height - padT - padB;
+  const xy = points.map((p, i) => ({
+    x: padL + (points.length === 1 ? 0 : i * (plotW / (points.length - 1))),
+    y: padT + plotH - (p.value - min) / (max - min || 1) * plotH,
+    ...p
+  }));
+  const path = xy.map((p, i) => (i === 0 ? "M" : "L") + p.x.toFixed(1) + "," + p.y.toFixed(1)).join(" ");
+  const area = path + ` L${xy[xy.length - 1].x},${padT + plotH} L${xy[0].x},${padT + plotH} Z`;
+  return React.createElement("div", {
+    className: "overflow-x"
+  }, React.createElement("svg", {
+    viewBox: `0 0 ${w} ${height}`,
+    width: "100%",
+    style: {
+      minWidth: w,
+      height
+    }
+  }, React.createElement("defs", null, React.createElement("linearGradient", {
+    id: "lcGrad",
+    x1: "0",
+    y1: "0",
+    x2: "0",
+    y2: "1"
+  }, React.createElement("stop", {
+    offset: "0%",
+    style: {
+      stopColor: color,
+      stopOpacity: .28
+    }
+  }), React.createElement("stop", {
+    offset: "100%",
+    style: {
+      stopColor: color,
+      stopOpacity: 0
+    }
+  }))), React.createElement("line", {
+    x1: padL,
+    x2: w - padR,
+    y1: padT + plotH,
+    y2: padT + plotH,
+    className: "chart-grid"
+  }), React.createElement("path", {
+    d: area,
+    style: {
+      fill: "url(#lcGrad)"
+    }
+  }), React.createElement("path", {
+    d: path,
+    style: {
+      fill: "none",
+      stroke: color,
+      strokeWidth: 2.5,
+      strokeLinejoin: "round",
+      strokeLinecap: "round"
+    }
+  }), xy.map((p, i) => React.createElement("g", {
+    key: i
+  }, React.createElement("circle", {
+    cx: p.x,
+    cy: p.y,
+    r: i === xy.length - 1 ? 4.5 : 3,
+    style: {
+      fill: color
+    }
+  }), React.createElement("text", {
+    x: p.x,
+    y: height - 8,
+    textAnchor: "middle",
+    className: "chart-label"
+  }, p.label)))));
+}
+function DonutChart({
+  value,
+  size = 140,
+  color = "var(--accent)",
+  label,
+  sub
+}) {
+  const r = size / 2 - 14,
+    c = 2 * Math.PI * r,
+    off = c * (1 - value / 100);
+  return React.createElement("div", {
+    style: {
+      position: "relative",
+      width: size,
+      height: size
+    }
+  }, React.createElement("svg", {
+    width: size,
+    height: size,
+    viewBox: `0 0 ${size} ${size}`
+  }, React.createElement("circle", {
+    cx: size / 2,
+    cy: size / 2,
+    r,
+    style: {
+      fill: "none",
+      stroke: "var(--surface-3)",
+      strokeWidth: 14
+    }
+  }), React.createElement("circle", {
+    cx: size / 2,
+    cy: size / 2,
+    r,
+    style: {
+      fill: "none",
+      stroke: color,
+      strokeWidth: 14,
+      strokeLinecap: "round",
+      strokeDasharray: c,
+      strokeDashoffset: off,
+      transform: `rotate(-90deg)`,
+      transformOrigin: "center",
+      transition: "stroke-dashoffset .6s ease"
+    }
+  })), React.createElement("div", {
+    style: {
+      position: "absolute",
+      inset: 0,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center"
+    }
+  }, React.createElement("div", {
+    className: "num",
+    style: {
+      fontSize: size * .19,
+      fontWeight: 700
+    }
+  }, label !== undefined ? label : value + "%"), sub && React.createElement("div", {
+    className: "tiny muted"
+  }, sub)));
+}
+function HBarRow({
+  label,
+  value,
+  max = 100,
+  color
+}) {
+  const c = color || (value >= 75 ? "var(--success)" : value >= 55 ? "var(--warning)" : "var(--danger)");
+  return React.createElement("div", {
+    style: {
+      marginBottom: 14
+    }
+  }, React.createElement("div", {
+    className: "flex justify-between small",
+    style: {
+      marginBottom: 5
+    }
+  }, React.createElement("span", null, label), React.createElement("span", {
+    className: "num",
+    style: {
+      fontWeight: 600
+    }
+  }, value + "%")), React.createElement("div", {
+    className: "progress-track"
+  }, React.createElement("div", {
+    className: "progress-fill",
+    style: {
+      width: clamp(value, 0, max) + "%",
+      background: c
+    }
+  })));
+}
+
+/* ---- app-04-home.jsx ---- */
+function TrackCurves() {
+  return React.createElement("svg", {
+    className: "hero-track",
+    viewBox: "0 0 900 500",
+    preserveAspectRatio: "none",
+    "aria-hidden": "true"
+  }, [0, 1, 2, 3, 4].map(i => React.createElement("path", {
+    key: i,
+    d: `M -50 ${90 + i * 70} C 250 ${10 + i * 70}, 650 ${170 + i * 70}, 950 ${60 + i * 70}`,
+    style: {
+      fill: "none",
+      stroke: "var(--track-line)",
+      strokeWidth: i === 2 ? 2.5 : 1.4
+    }
+  })));
+}
+function HeroPreviewCard() {
+  const q = QUESTION_BANK[1];
+  return React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      position: "relative"
+    }
+  }, React.createElement("div", {
+    className: "flex justify-between items-center",
+    style: {
+      marginBottom: 14
+    }
+  }, React.createElement("span", {
+    className: "pill pill-info"
+  }, "Question 7/50"), React.createElement("span", {
+    className: "timer-badge"
+  }, React.createElement(Icon, {
+    name: "clock",
+    size: 14
+  }), "18:42")), React.createElement("p", {
+    className: "small",
+    style: {
+      fontWeight: 600,
+      marginBottom: 14
+    }
+  }, q.question), React.createElement("div", {
+    className: "flex-col gap-8"
+  }, q.options.map((o, i) => React.createElement("div", {
+    key: i,
+    className: "option" + (i === q.correctIndex ? " correct" : "")
+  }, React.createElement("span", {
+    className: "option-letter"
+  }, letters(i)), React.createElement("span", null, o)))), React.createElement("div", {
+    className: "lane-divider",
+    style: {
+      margin: "16px 0"
+    }
+  }), React.createElement("div", {
+    className: "grid grid-3"
+  }, React.createElement(StatTile, {
+    label: "Accuracy",
+    value: "84%",
+    sub: "+6% this week",
+    subClass: "pill-success"
+  }), React.createElement(StatTile, {
+    label: "Avg Time/Q",
+    value: "38s"
+  }), React.createElement(StatTile, {
+    label: "Rank",
+    value: "#142",
+    sub: "Top 8%",
+    subClass: "pill-gold"
+  })));
+}
+function Home() {
+  const {
+    goto,
+    profile
+  } = useApp();
+  const preferredExam = EXAMS.find(e => e.id === profile.preferredExam) || null;
+  const featuredExams = useMemo(() => {
+    if (!preferredExam) return EXAMS.slice(0, 4);
+    return [preferredExam, ...EXAMS.filter(e => e.id !== preferredExam.id)].slice(0, 4);
+  }, [preferredExam]);
+  return React.createElement(React.Fragment, null, React.createElement("section", {
+    className: "hero"
+  }, React.createElement(TrackCurves, null), React.createElement("div", {
+    className: "container hero-grid"
+  }, React.createElement("div", null, React.createElement("div", {
+    className: "eyebrow",
+    style: {
+      marginBottom: 14
+    }
+  }, "PREPARE · PRACTICE · PERFORM"), React.createElement("h1", {
+    className: "display-1"
+  }, "Master Physical Education. Crack Your Exam."), React.createElement("p", {
+    className: "lede",
+    style: {
+      marginTop: 18,
+      fontSize: 18
+    }
+  }, "Practice thousands of Physical Education questions, attempt realistic mock tests, revise important concepts and track your preparation — all in one place."), React.createElement("div", {
+    className: "flex gap-16 wrap",
+    style: {
+      marginTop: 28
+    }
+  }, React.createElement("button", {
+    className: "btn btn-primary",
+    onClick: () => goto("/question-bank")
+  }, "Start Practising", React.createElement(Icon, {
+    name: "chevronRight",
+    size: 16
+  })), React.createElement("button", {
+    className: "btn btn-outline",
+    onClick: () => goto("/mock-tests")
+  }, "Take a Free Mock Test")), preferredExam && React.createElement("p", {
+    className: "small",
+    style: {
+      marginTop: 16
+    }
+  }, "🎯 Preparing for ", React.createElement("b", null, preferredExam.short), " — ", React.createElement("a", {
+    href: "#",
+    onClick: e => {
+      e.preventDefault();
+      goto("/mock-test-setup", {
+        examId: preferredExam.id
+      });
+    }
+  }, "jump into a mock test")), React.createElement("div", {
+    className: "hero-stats"
+  }, [[QUESTION_BANK.length.toLocaleString(), "Practice questions (and growing)"], [String(EXAMS.length), "Exams covered"], [String(SUBJECTS.length), "Subjects & units mapped"], ["Free", "First full mock test"]].map(([n, l]) => React.createElement("div", {
+    key: l,
+    className: "hero-stat"
+  }, React.createElement("b", null, n), React.createElement("span", {
+    className: "small muted"
+  }, l))))), React.createElement(HeroPreviewCard, null))), React.createElement("section", {
+    className: "container",
+    style: {
+      padding: "36px 24px 8px"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Why PE Aspirants Choose Us",
+    title: "Built exclusively for Physical Education exams",
+    lede: "Not a generic quiz app — focused entirely on Physical Education competitive exams in India."
+  }), React.createElement("div", {
+    className: "grid grid-4"
+  }, [{
+    icon: "bank",
+    t: QUESTION_BANK.length.toLocaleString() + " Questions",
+    d: "PE-only question bank, tagged by exam, subject, topic and difficulty — growing steadily, with explanations on every question."
+  }, {
+    icon: "target",
+    t: "Exam-Focused Content",
+    d: "Every module maps directly to KVS, NET, DSSSB, NVS, PSC and university syllabi."
+  }, {
+    icon: "brain",
+    t: "Detailed Explanations",
+    d: "Concept breakdowns, memory tricks and sports relevance for every question."
+  }, {
+    icon: "performance",
+    t: "Smart Analytics",
+    d: "Track accuracy, speed, and topic-wise strength with your Preparation Coach."
+  }].map(f => React.createElement("div", {
+    key: f.t,
+    className: "card card-pad card-hover"
+  }, React.createElement("div", {
+    className: "exam-swatch",
+    style: {
+      background: "var(--ink)",
+      marginBottom: 14
+    }
+  }, React.createElement(Icon, {
+    name: f.icon,
+    size: 20
+  })), React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 8
+    }
+  }, f.t), React.createElement("p", {
+    className: "small muted"
+  }, f.d))))), React.createElement("section", {
+    className: "container",
+    style: {
+      padding: "48px 24px 8px"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Choose Your Exam",
+    title: preferredExam ? "Picking up where you left off" : "A tailored dashboard for every PE exam",
+    right: React.createElement("button", {
+      className: "btn btn-ghost btn-sm",
+      onClick: () => goto("/exams")
+    }, "View all exams", React.createElement(Icon, {
+      name: "chevronRight",
+      size: 14
+    }))
+  }), React.createElement("div", {
+    className: "grid grid-4"
+  }, featuredExams.map(ex => React.createElement(ExamCard, {
+    key: ex.id,
+    exam: ex
+  })))), React.createElement("section", {
+    className: "container",
+    style: {
+      padding: "48px 24px 8px"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "The PE Prep Method",
+    title: "One continuous preparation loop"
+  }), React.createElement("div", {
+    className: "grid grid-4"
+  }, [["Learn", "Structured concepts, notes & flashcards", "book"], ["Practice", "Topic-wise MCQs with instant explanations", "practice"], ["Test", "Full-length & sectional mock exams", "mock"], ["Analyze", "Subject & difficulty-wise performance", "performance"], ["Revise", "Quick-revision, mistakes notebook, SRS flashcards", "flame"], ["Improve", "Personalized coach recommendations", "target"]].map(([t, d, icon], i) => React.createElement("div", {
+    key: t,
+    className: "card card-pad",
+    style: {
+      position: "relative"
+    }
+  }, React.createElement("div", {
+    className: "flex items-center gap-12",
+    style: {
+      marginBottom: 10
+    }
+  }, React.createElement("div", {
+    className: "exam-swatch",
+    style: {
+      width: 36,
+      height: 36,
+      background: "var(--accent)",
+      fontSize: 13
+    }
+  }, i + 1), React.createElement("h3", {
+    className: "h3"
+  }, t)), React.createElement("p", {
+    className: "small muted"
+  }, d))))), React.createElement("section", {
+    className: "container",
+    style: {
+      padding: "48px 24px 8px"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "40+ Subjects Mapped",
+    title: "Every Physical Education subject, organized",
+    right: React.createElement("button", {
+      className: "btn btn-ghost btn-sm",
+      onClick: () => goto("/subjects")
+    }, "Browse all subjects", React.createElement(Icon, {
+      name: "chevronRight",
+      size: 14
+    }))
+  }), React.createElement("div", {
+    className: "grid grid-4"
+  }, SUBJECTS.filter(s => ["anatomy", "physiology", "sports-training", "sports-psychology", "tme", "yoga", "olympic-movement", "sports-rules"].includes(s.id)).map(s => React.createElement("div", {
+    key: s.id,
+    className: "subject-card card card-hover",
+    onClick: () => goto("/question-bank", {
+      subject: s.name
+    })
+  }, React.createElement("span", {
+    className: "pill pill-info",
+    style: {
+      alignSelf: "flex-start"
+    }
+  }, s.group), React.createElement("h3", {
+    className: "h3"
+  }, s.name), React.createElement("span", {
+    className: "small muted"
+  }, s.count + " questions"))))), React.createElement("section", {
+    className: "container",
+    style: {
+      padding: "48px 24px 8px"
+    }
+  }, React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      background: "linear-gradient(120deg, var(--ink) 0%, var(--info) 150%)",
+      color: "#fff",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      flexWrap: "wrap",
+      gap: 20
+    }
+  }, React.createElement("div", null, React.createElement("div", {
+    className: "eyebrow",
+    style: {
+      color: "var(--gold)"
+    }
+  }, "🔥 Today's PE Challenge"), React.createElement("h3", {
+    className: "h1",
+    style: {
+      color: "#fff",
+      marginTop: 6
+    }
+  }, "10 Questions · 5 Minutes · Mixed Difficulty"), React.createElement("p", {
+    className: "small",
+    style: {
+      color: "rgba(255,255,255,.75)",
+      marginTop: 6
+    }
+  }, "Keep your streak alive with a quick daily practice habit.")), React.createElement("button", {
+    className: "btn btn-primary",
+    onClick: () => goto("/daily-challenge")
+  }, "Start Challenge"))), React.createElement("section", {
+    className: "container",
+    style: {
+      padding: "48px 24px 72px"
+    }
+  }, React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      textAlign: "center",
+      padding: "48px 24px"
+    }
+  }, React.createElement("h2", {
+    className: "display-2"
+  }, "A prep platform focused only on Physical Education"), React.createElement("p", {
+    className: "lede",
+    style: {
+      margin: "14px auto 0"
+    }
+  }, "Practice for KVS, NET, NVS, DSSSB, State PSC, B.P.Ed and M.P.Ed exams."), React.createElement("div", {
+    className: "flex gap-16",
+    style: {
+      justifyContent: "center",
+      marginTop: 24,
+      flexWrap: "wrap"
+    }
+  }, React.createElement("button", {
+    className: "btn btn-primary",
+    onClick: () => goto("/question-bank")
+  }, "Start Practising Free"), React.createElement("button", {
+    className: "btn btn-outline",
+    onClick: () => goto("/pricing")
+  }, "See Pricing")))));
+}
+function ExamCard({
+  exam
+}) {
+  const {
+    goto
+  } = useApp();
+  const colorMap = {
+    navy: "var(--ink)",
+    indigo: "var(--info)",
+    teal: "#0E8F84",
+    maroon: "#8A2A3B",
+    forest: "#2F6B3C",
+    amber: "var(--gold)",
+    plum: "#6B3C7A",
+    slate: "#4B5A70",
+    crimson: "#A6323F",
+    steel: "#2E5E7E",
+    olive: "#5C6B2F",
+    coral: "#C2603E",
+    violet: "#5B4B8A"
+  };
+  return React.createElement("div", {
+    className: "card exam-card card-hover"
+  }, React.createElement("div", {
+    className: "exam-card-top"
+  }, React.createElement("div", {
+    className: "exam-swatch",
+    style: {
+      background: colorMap[exam.color] || "var(--ink)"
+    }
+  }, exam.short.slice(0, 2)), React.createElement(DifficultyPill, {
+    level: exam.difficulty.split("–")[0].trim()
+  })), React.createElement("h3", {
+    className: "h3"
+  }, exam.name), React.createElement("p", {
+    className: "tiny muted"
+  }, exam.body), React.createElement("div", {
+    className: "flex gap-16 small",
+    style: {
+      margin: "4px 0"
+    }
+  }, React.createElement("span", null, React.createElement("b", {
+    className: "num"
+  }, exam.questions.toLocaleString()), " tagged Qs")), React.createElement("button", {
+    className: "btn btn-outline btn-sm btn-block",
+    onClick: () => goto("/exam-detail", {
+      id: exam.id
+    })
+  }, "Explore Exam"));
+}
+
+/* ---- app-05-exams-subjects.jsx ---- */
+function ExamsPage() {
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "40px 24px 64px"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Exams",
+    title: "Choose Your Exam",
+    lede: "Every exam has a customized dashboard, question set and mock-test pattern matched to its real syllabus."
+  }), React.createElement("div", {
+    className: "grid grid-4"
+  }, EXAMS.map(ex => React.createElement(ExamCard, {
+    key: ex.id,
+    exam: ex
+  }))));
+}
+function ExamDetailPage() {
+  const {
+    routeParams,
+    goto
+  } = useApp();
+  const exam = EXAMS.find(e => e.id === routeParams.id) || EXAMS[0];
+  const relatedQuestions = QUESTION_BANK.filter(q => q.exam.some(e => exam.name.toLowerCase().includes(e.toLowerCase().split(" ")[0])));
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "40px 24px 64px"
+    }
+  }, React.createElement("button", {
+    className: "btn btn-ghost btn-sm",
+    onClick: () => goto("/exams")
+  }, React.createElement(Icon, {
+    name: "chevronLeft",
+    size: 14
+  }), "All Exams"), React.createElement("div", {
+    className: "flex items-center gap-16",
+    style: {
+      margin: "18px 0"
+    }
+  }, React.createElement("div", {
+    className: "exam-swatch",
+    style: {
+      width: 60,
+      height: 60,
+      fontSize: 20,
+      background: "var(--ink)"
+    }
+  }, exam.short.slice(0, 2)), React.createElement("div", null, React.createElement("h1", {
+    className: "h1"
+  }, exam.name), React.createElement("p", {
+    className: "small muted"
+  }, exam.body))), React.createElement("div", {
+    className: "grid grid-4",
+    style: {
+      marginBottom: 28
+    }
+  }, React.createElement(StatTile, {
+    label: "Mock Tests",
+    value: "Unlimited*",
+    sub: "*generated from the bank"
+  }), React.createElement(StatTile, {
+    label: "Tagged Questions",
+    value: exam.questions.toLocaleString()
+  }), React.createElement(StatTile, {
+    label: "Difficulty",
+    value: exam.difficulty
+  }), React.createElement(StatTile, {
+    label: "Pattern",
+    value: "See below",
+    sub: "verify officially"
+  })), React.createElement("div", {
+    className: "grid grid-2"
+  }, React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 14
+    }
+  }, "Syllabus Coverage"), React.createElement("div", {
+    className: "chip-select"
+  }, exam.syllabus.map(s => React.createElement("span", {
+    key: s,
+    className: "chip"
+  }, s))), React.createElement("div", {
+    className: "lane-divider",
+    style: {
+      margin: "18px 0"
+    }
+  }), React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 10
+    }
+  }, "Test Pattern"), React.createElement("p", {
+    className: "small muted"
+  }, exam.pattern)), React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 14
+    }
+  }, "Get Started"), React.createElement("div", {
+    className: "flex-col gap-12"
+  }, React.createElement("button", {
+    className: "btn btn-primary btn-block",
+    onClick: () => goto("/question-bank", {
+      exam: exam.name
+    })
+  }, "Practice " + exam.short + " Questions"), React.createElement("button", {
+    className: "btn btn-outline btn-block",
+    onClick: () => goto("/mock-test-setup", {
+      examId: exam.id
+    })
+  }, "Take a Full Mock Test"), React.createElement("button", {
+    className: "btn btn-ghost btn-block",
+    onClick: () => goto("/previous-papers", {
+      exam: exam.short
+    })
+  }, "Exam-style Practice Sets")))), relatedQuestions.length > 0 && React.createElement("div", {
+    style: {
+      marginTop: 32
+    }
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 14
+    }
+  }, "Sample Questions for " + exam.short), React.createElement("div", {
+    className: "flex-col gap-10"
+  }, relatedQuestions.slice(0, 3).map(q => React.createElement("div", {
+    key: q.id,
+    className: "card card-pad small"
+  }, React.createElement("div", {
+    className: "flex justify-between",
+    style: {
+      marginBottom: 6
+    }
+  }, React.createElement("span", {
+    className: "pill pill-info"
+  }, q.subject), React.createElement(DifficultyPill, {
+    level: q.difficulty
+  })), q.question.split("\n")[0])))));
+}
+function SubjectsPage() {
+  const {
+    goto
+  } = useApp();
+  const liveCounts = useMemo(() => {
+    const c = {};
+    QUESTION_BANK.forEach(q => {
+      c[q.subject] = (c[q.subject] || 0) + 1;
+    });
+    return c;
+  }, []);
+  const groups = useMemo(() => {
+    const g = {};
+    SUBJECTS.forEach(s => {
+      g[s.group] = g[s.group] || [];
+      g[s.group].push(s);
+    });
+    return g;
+  }, []);
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "40px 24px 64px"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Subject Taxonomy",
+    title: SUBJECTS.length + " Physical Education Subject Categories",
+    lede: "The full PE curriculum, organized into groups so you always know what to study next."
+  }), Object.entries(groups).map(([group, list]) => React.createElement("div", {
+    key: group
+  }, React.createElement("div", {
+    className: "subject-group-label"
+  }, group), React.createElement("div", {
+    className: "grid grid-4"
+  }, list.map(s => {
+    const liveCount = liveCounts[s.name] || 0;
+    return React.createElement("div", {
+      key: s.id,
+      className: "subject-card card card-hover",
+      onClick: () => goto("/question-bank", {
+        subject: s.name
+      })
+    }, React.createElement("h3", {
+      className: "h3"
+    }, s.name), React.createElement("span", {
+      className: "small muted"
+    }, liveCount + " question" + (liveCount === 1 ? "" : "s") + " in bank"), React.createElement("span", {
+      className: "tiny muted",
+      style: {
+        display: "block",
+        marginTop: 2
+      }
+    }, "Full syllabus weight: " + s.count + "+ expected"));
+  })))));
+}
+
+/* ---- app-06-question-bank.jsx ---- */
+const DIFFICULTIES = ["Easy", "Moderate", "Hard", "Expert"];
+const QUESTION_TYPES = ["MCQ", "Assertion & Reason", "Match the Following", "Statement-based", "Multiple Correct", "Case-based"];
+function FilterChipGroup({
+  label,
+  options,
+  value,
+  onChange,
+  multi
+}) {
+  return React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, label), React.createElement("div", {
+    className: "chip-select"
+  }, options.map(opt => {
+    const active = multi ? value.includes(opt) : value === opt;
+    return React.createElement("button", {
+      key: opt,
+      type: "button",
+      className: "chip" + (active ? " active" : ""),
+      onClick: () => {
+        if (multi) {
+          onChange(active ? value.filter(v => v !== opt) : [...value, opt]);
+        } else {
+          onChange(active ? null : opt);
+        }
+      }
+    }, opt);
+  })));
+}
+function QuestionBankPage() {
+  const {
+    routeParams,
+    goto,
+    isPro,
+    hasExamAccess
+  } = useApp();
+  const [exam, setExam] = useState(routeParams.exam || null);
+  const [subject, setSubject] = useState(routeParams.subject || null);
+  const [difficulty, setDifficulty] = useState([]);
+  const [qtype, setQtype] = useState([]);
+  const [count, setCount] = useState(20);
+  const [engine, setEngine] = useState(null);
+  const examNames = EXAMS.map(e => e.name);
+  const subjectNames = useMemo(() => [...new Set(QUESTION_BANK.map(q => q.subject))].sort(), []);
+  const filtered = useMemo(() => {
+    return QUESTION_BANK.filter(q => {
+      if (exam && !q.exam.some(e => exam.toLowerCase().includes(e.toLowerCase()) || e.toLowerCase().includes(exam.toLowerCase().split(" ")[0]))) return false;
+      if (subject && q.subject !== subject) return false;
+      if (difficulty.length && !difficulty.includes(q.difficulty)) return false;
+      if (qtype.length && !qtype.includes(q.type)) return false;
+      return true;
+    });
+  }, [exam, subject, difficulty, qtype]);
+  const examObj = exam ? EXAMS.find(e => e.name === exam) : null;
+  const unlocked = isPro || examObj && hasExamAccess(examObj.id);
+  if (engine) {
+    return React.createElement(TestEngine, {
+      mode: "practice",
+      questions: engine.questions,
+      title: engine.title,
+      onExit: () => setEngine(null)
+    });
+  }
+  if (!unlocked) {
+    return React.createElement("div", {
+      className: "container",
+      style: {
+        padding: "36px 24px 64px"
+      }
+    }, React.createElement(SectionHeading, {
+      eyebrow: "Question Bank",
+      title: "Build your own practice set",
+      lede: "Question Bank and Practice are a Pro feature — Mock Tests stay free to try."
+    }), React.createElement(MockPaywall, {
+      title: "Practice is a Pro feature",
+      desc: "Upgrade to Pro for unlimited practice across every subject and exam, or grab a single-exam pass for just the exam you're preparing for. Mock tests remain free to try."
+    }), React.createElement("div", {
+      className: "card card-pad",
+      style: {
+        marginTop: 16
+      }
+    }, React.createElement("span", {
+      className: "label"
+    }, "Already hold a single-exam pass? Pick your exam to unlock it"), React.createElement("select", {
+      className: "select",
+      style: {
+        marginTop: 8
+      },
+      value: exam || "",
+      onChange: e => setExam(e.target.value || null)
+    }, React.createElement("option", {
+      value: ""
+    }, "Choose your exam…"), examNames.map(n => React.createElement("option", {
+      key: n,
+      value: n
+    }, n)))));
+  }
+  const sliderMax = Math.max(5, filtered.length);
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "36px 24px 64px"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Question Bank",
+    title: "Build your own practice set",
+    lede: "Filter by exam, subject, difficulty and question type — then start practising with instant explanations."
+  }), React.createElement("div", {
+    className: "practice-shell",
+    style: {
+      gridTemplateColumns: "300px 1fr"
+    }
+  }, React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      position: "sticky",
+      top: 88
+    }
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 16
+    }
+  }, "Filters"), React.createElement("div", {
+    className: "flex-col gap-16"
+  }, React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Exam"), React.createElement("select", {
+    className: "select",
+    value: exam || "",
+    onChange: e => setExam(e.target.value || null)
+  }, React.createElement("option", {
+    value: ""
+  }, "All Exams"), examNames.map(n => React.createElement("option", {
+    key: n,
+    value: n
+  }, n)))), React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Subject"), React.createElement("select", {
+    className: "select",
+    value: subject || "",
+    onChange: e => setSubject(e.target.value || null)
+  }, React.createElement("option", {
+    value: ""
+  }, "All Subjects"), subjectNames.map(n => React.createElement("option", {
+    key: n,
+    value: n
+  }, n)))), React.createElement(FilterChipGroup, {
+    label: "Difficulty",
+    options: DIFFICULTIES,
+    value: difficulty,
+    onChange: setDifficulty,
+    multi: true
+  }), React.createElement(FilterChipGroup, {
+    label: "Question Type",
+    options: QUESTION_TYPES,
+    value: qtype,
+    onChange: setQtype,
+    multi: true
+  }), React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Number of Questions: " + Math.min(count, sliderMax)), React.createElement("input", {
+    type: "range",
+    min: Math.min(5, sliderMax),
+    max: sliderMax,
+    value: Math.min(count, sliderMax),
+    onChange: e => setCount(+e.target.value)
+  })), React.createElement("button", {
+    className: "btn btn-outline btn-sm",
+    onClick: () => {
+      setExam(null);
+      setSubject(null);
+      setDifficulty([]);
+      setQtype([]);
+    }
+  }, "Clear Filters"))), React.createElement("div", null, React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      marginBottom: 20,
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      flexWrap: "wrap",
+      gap: 14
+    }
+  }, React.createElement("div", null, React.createElement("div", {
+    className: "h2"
+  }, filtered.length + " questions match your filters"), React.createElement("div", {
+    className: "small muted"
+  }, "Ready to practice " + Math.min(count, filtered.length || 0) + " questions now")), React.createElement("button", {
+    className: "btn btn-primary",
+    disabled: filtered.length === 0,
+    onClick: () => setEngine({
+      questions: pick(filtered, Math.min(count, filtered.length)),
+      title: subject || exam || "Custom Practice Set"
+    })
+  }, "Start Practice", React.createElement(Icon, {
+    name: "chevronRight",
+    size: 16
+  }))), filtered.length === 0 ? React.createElement("div", {
+    className: "empty-state card"
+  }, React.createElement(Icon, {
+    name: "search",
+    size: 34
+  }), React.createElement("p", {
+    style: {
+      marginTop: 10
+    }
+  }, "No questions match these filters yet. Try widening your selection — the architecture supports thousands more once the full bank is loaded.")) : React.createElement("div", {
+    className: "flex-col gap-10"
+  }, filtered.slice(0, 12).map(q => React.createElement("div", {
+    key: q.id,
+    className: "card card-pad card-hover",
+    style: {
+      cursor: "pointer"
+    },
+    onClick: () => setEngine({
+      questions: [q, ...pick(filtered.filter(x => x.id !== q.id), Math.min(9, filtered.length - 1))],
+      title: q.subject
+    })
+  }, React.createElement("div", {
+    className: "flex justify-between wrap gap-8",
+    style: {
+      marginBottom: 8
+    }
+  }, React.createElement("div", {
+    className: "flex gap-8 wrap"
+  }, React.createElement("span", {
+    className: "pill pill-info"
+  }, q.subject), React.createElement(DifficultyPill, {
+    level: q.difficulty
+  }), React.createElement("span", {
+    className: "pill"
+  }, q.type)), React.createElement(BookmarkButton, {
+    type: "questions",
+    id: q.id
+  })), React.createElement("p", {
+    className: "small",
+    style: {
+      fontWeight: 500
+    }
+  }, q.question.split("\n")[0]))), filtered.length > 12 && React.createElement("p", {
+    className: "small muted",
+    style: {
+      textAlign: "center",
+      padding: 12
+    }
+  }, "+ " + (filtered.length - 12) + " more questions in this filter — start practice to work through the full set.")))));
+}
+
+/* ---- app-07-test-engine.jsx ---- */
+function QuestionPalette({
+  questions,
+  responses,
+  idx,
+  onJump,
+  groupBySubject
+}) {
+  const groups = useMemo(() => {
+    if (!groupBySubject) return [{
+      label: null,
+      items: questions.map((q, i) => i)
+    }];
+    const map = {};
+    questions.forEach((q, i) => {
+      map[q.subject] = map[q.subject] || [];
+      map[q.subject].push(i);
+    });
+    return Object.entries(map).map(([label, items]) => ({
+      label,
+      items
+    }));
+  }, [questions, groupBySubject]);
+  function statusOf(i) {
+    const r = responses[questions[i].id] || {};
+    if (r.marked && r.selected != null) return "review answered";
+    if (r.marked) return "review";
+    if (r.selected != null) return "answered";
+    if (r.visited) return "visited notvisited";
+    return "notvisited";
+  }
+  return React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      position: "sticky",
+      top: 88
+    }
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 4
+    }
+  }, "Question Palette"), React.createElement("p", {
+    className: "tiny muted",
+    style: {
+      marginBottom: 14
+    }
+  }, questions.length + " questions total"), groups.map(g => React.createElement("div", {
+    key: g.label || "all",
+    style: {
+      marginBottom: 14
+    }
+  }, g.label && React.createElement("div", {
+    className: "tiny muted",
+    style: {
+      fontWeight: 700,
+      marginBottom: 8,
+      textTransform: "uppercase",
+      letterSpacing: ".05em"
+    }
+  }, g.label), React.createElement("div", {
+    className: "palette-grid"
+  }, g.items.map(i => {
+    const st = statusOf(i);
+    const cls = "pnode " + (st.includes("review") ? "review" : st.includes("answered") ? "answered" : st.includes("notvisited") && !st.includes("visited ") ? "notvisited" : "") + (i === idx ? " current" : "");
+    const label = "Question " + (i + 1) + ": " + (st.includes("review") ? st.includes("answered") ? "answered and marked for review" : "marked for review" : st.includes("answered") ? "answered" : "not answered");
+    return React.createElement("button", {
+      key: i,
+      className: cls,
+      onClick: () => onJump(i),
+      "aria-label": label,
+      "aria-current": i === idx ? "true" : undefined,
+      title: label
+    }, i + 1);
+  })))), React.createElement("div", {
+    className: "lane-divider",
+    style: {
+      margin: "14px 0"
+    }
+  }), React.createElement("div", {
+    className: "flex-col gap-8"
+  }, [["var(--success)", "Answered"], ["var(--gold)", "Marked for Review"], ["var(--surface-2)", "Not Visited"], ["var(--surface)", "Not Answered"]].map(([c, l]) => React.createElement("div", {
+    key: l,
+    className: "legend-item"
+  }, React.createElement("span", {
+    className: "legend-dot",
+    style: {
+      background: c,
+      border: "1px solid var(--border-strong)"
+    }
+  }), l))));
+}
+function ConceptBox({
+  concept
+}) {
+  if (!concept) return null;
+  return React.createElement("div", {
+    className: "concept-box"
+  }, React.createElement("div", {
+    className: "flex items-center gap-8",
+    style: {
+      marginBottom: 6
+    }
+  }, React.createElement(Icon, {
+    name: "brain",
+    size: 17
+  }), React.createElement("span", {
+    style: {
+      fontWeight: 700
+    }
+  }, "Learn the Concept: " + concept.title)), React.createElement("p", {
+    className: "small",
+    style: {
+      marginBottom: 8
+    }
+  }, concept.definition), React.createElement("ul", null, concept.points.map((p, i) => React.createElement("li", {
+    key: i
+  }, p))), React.createElement("p", {
+    className: "small",
+    style: {
+      marginTop: 10
+    }
+  }, React.createElement("b", null, "Memory Trick: "), concept.memoryTrick), React.createElement("p", {
+    className: "small",
+    style: {
+      marginTop: 6
+    }
+  }, React.createElement("b", null, "Sports Relevance: "), concept.sportsRelevance));
+}
+function TestEngine(props) {
+  if (!props.questions || props.questions.length === 0) {
+    return React.createElement("div", {
+      className: "container",
+      style: {
+        padding: "60px 24px"
+      }
+    }, React.createElement("div", {
+      className: "empty-state"
+    }, "There are no questions available for this selection yet.", React.createElement("div", {
+      style: {
+        marginTop: 14
+      }
+    }, React.createElement("button", {
+      className: "btn btn-primary",
+      onClick: props.onExit || (() => history.back())
+    }, "Go back"))));
+  }
+  return React.createElement(TestEngineInner, props);
+}
+function TestEngineInner({
+  mode,
+  questions: initialQuestions,
+  title,
+  examMeta,
+  onExit,
+  onFinish
+}) {
+  const {
+    recordAttempt,
+    notify,
+    toggleBookmark,
+    bookmarks,
+    goto,
+    isSubjectLocked,
+    markRevealed
+  } = useApp();
+  const [questions, setQuestions] = useState(() => initialQuestions.map(shuffleQuestionOptions));
+  const [idx, setIdx] = useState(0);
+  const [responses, setResponses] = useState(() => {
+    const r = {};
+    initialQuestions.forEach(q => r[q.id] = {
+      selected: null,
+      checked: false,
+      marked: false,
+      visited: false,
+      timeSpent: 0
+    });
+    return r;
+  });
+  const [showSummary, setShowSummary] = useState(false);
+  const isMock = mode === "mock";
+  const durationSec = examMeta ? examMeta.duration * 60 : null;
+  const [secondsLeft, setSecondsLeft] = useState(durationSec);
+  const [secondsElapsed, setSecondsElapsed] = useState(0);
+  const startRef = useRef(Date.now());
+  const submittedRef = useRef(false);
+  const [confirmSubmit, setConfirmSubmit] = useState(false);
+  const submitRef = useRef(null);
+  const q = questions[idx];
+  const resp = responses[q.id] || {
+    selected: null,
+    checked: false,
+    marked: false,
+    visited: false,
+    timeSpent: 0
+  };
+  useEffect(() => {
+    setResponses(prev => prev[q.id] ? prev[q.id].visited ? prev : {
+      ...prev,
+      [q.id]: {
+        ...prev[q.id],
+        visited: true
+      }
+    } : {
+      ...prev,
+      [q.id]: {
+        selected: null,
+        checked: false,
+        marked: false,
+        visited: true,
+        timeSpent: 0
+      }
+    });
+    startRef.current = Date.now();
+  }, [idx, q.id]);
+  useEffect(() => {
+    const t = setInterval(() => {
+      if (isMock) {
+        setSecondsLeft(s => {
+          if (s <= 1) {
+            clearInterval(t);
+            setTimeout(() => submitRef.current && submitRef.current(true), 0);
+            return 0;
+          }
+          return s - 1;
+        });
+      } else {
+        setSecondsElapsed(s => s + 1);
+      }
+    }, 1000);
+    return () => clearInterval(t);
+  }, []);
+  useEffect(() => {
+    if (!isMock) return;
+    const warn = e => {
+      if (!submittedRef.current) {
+        e.preventDefault();
+        e.returnValue = "";
+      }
+    };
+    window.addEventListener("beforeunload", warn);
+    return () => window.removeEventListener("beforeunload", warn);
+  }, [isMock]);
+  function touchTime(qid) {
+    const spent = (Date.now() - startRef.current) / 1000;
+    setResponses(prev => ({
+      ...prev,
+      [qid]: {
+        ...prev[qid],
+        timeSpent: (prev[qid]?.timeSpent || 0) + spent
+      }
+    }));
+    startRef.current = Date.now();
+  }
+  function selectOption(i) {
+    if (!isMock && resp.checked) return;
+    setResponses(prev => ({
+      ...prev,
+      [q.id]: {
+        ...prev[q.id],
+        selected: i
+      }
+    }));
+  }
+  function toggleMark() {
+    setResponses(prev => ({
+      ...prev,
+      [q.id]: {
+        ...prev[q.id],
+        marked: !prev[q.id].marked
+      }
+    }));
+  }
+  function clearResponse() {
+    if (!isMock && resp.checked) return;
+    setResponses(prev => ({
+      ...prev,
+      [q.id]: {
+        ...prev[q.id],
+        selected: null,
+        checked: false
+      }
+    }));
+  }
+  function checkAnswer() {
+    if (resp.selected == null) {
+      notify("Select an option first");
+      return;
+    }
+    touchTime(q.id);
+    recordAttempt(q, resp.selected, resp.timeSpent);
+    if (mode === "practice" && !isSubjectLocked(q.subject, q.id, q.exam)) {
+      markRevealed(q);
+    }
+    setResponses(prev => ({
+      ...prev,
+      [q.id]: {
+        ...prev[q.id],
+        checked: true
+      }
+    }));
+  }
+  function goNext() {
+    touchTime(q.id);
+    setIdx(i => Math.min(questions.length - 1, i + 1));
+  }
+  function goPrev() {
+    touchTime(q.id);
+    setIdx(i => Math.max(0, i - 1));
+  }
+  function jump(i) {
+    touchTime(q.id);
+    setIdx(i);
+  }
+  function addRelated(rid) {
+    const rq = QUESTIONS_BY_ID[rid];
+    if (!rq) return;
+    let targetIdx = questions.findIndex(x => x.id === rid);
+    if (targetIdx === -1) {
+      setQuestions(prev => [...prev, shuffleQuestionOptions(rq)]);
+      setResponses(prev => ({
+        ...prev,
+        [rq.id]: prev[rq.id] || {
+          selected: null,
+          checked: false,
+          marked: false,
+          visited: false,
+          timeSpent: 0
+        }
+      }));
+      targetIdx = questions.length;
+      notify("Added related question to this set");
+    }
+    touchTime(q.id);
+    setIdx(targetIdx);
+  }
+  function handleSubmit(auto) {
+    if (submittedRef.current) return;
+    submittedRef.current = true;
+    setConfirmSubmit(false);
+    if (mode === "practice") {
+      setShowSummary(true);
+      return;
+    }
+    touchTime(q.id);
+    const neg = Number.isFinite(examMeta?.negativeMarking) ? examMeta.negativeMarking : 0;
+    const tally = computeMockScore(questions, responses, neg);
+    const subjectMap = {};
+    const diffMap = {};
+    let totalTime = 0;
+    const review = [];
+    questions.forEach(qq => {
+      const r = responses[qq.id] || {};
+      totalTime += r.timeSpent || 0;
+      subjectMap[qq.subject] = subjectMap[qq.subject] || {
+        correct: 0,
+        total: 0
+      };
+      subjectMap[qq.subject].total++;
+      diffMap[qq.difficulty] = diffMap[qq.difficulty] || {
+        correct: 0,
+        total: 0
+      };
+      diffMap[qq.difficulty].total++;
+      if (r.selected != null) {
+        if (r.selected === qq.correctIndex) {
+          subjectMap[qq.subject].correct++;
+          diffMap[qq.difficulty].correct++;
+        }
+        recordAttempt(qq, r.selected, r.timeSpent);
+      }
+      review.push({
+        id: qq.id,
+        selectedText: r.selected == null ? null : qq.options[r.selected],
+        correctText: qq.options[qq.correctIndex]
+      });
+    });
+    totalTime += (Date.now() - startRef.current) / 1000;
+    const accuracy = tally.attempted > 0 ? Math.round(tally.correct / tally.attempted * 100) : 0;
+    const subjectPerf = Object.entries(subjectMap).map(([subject, s]) => ({
+      subject,
+      accuracy: s.total ? Math.round(s.correct / s.total * 100) : 0,
+      total: s.total
+    }));
+    const diffPerf = Object.entries(diffMap).map(([difficulty, s]) => ({
+      difficulty,
+      accuracy: s.total ? Math.round(s.correct / s.total * 100) : 0,
+      total: s.total
+    }));
+    const result = {
+      id: "mock-" + Date.now(),
+      title: title || "Mock Test",
+      date: new Date().toISOString(),
+      totalQuestions: questions.length,
+      correct: tally.correct,
+      incorrect: tally.incorrect,
+      unattempted: tally.unattempted,
+      attempted: tally.attempted,
+      score: tally.score,
+      maxScore: tally.maxScore,
+      marksLost: tally.marksLost,
+      accuracy,
+      totalTime: Math.round(totalTime),
+      avgTimePerQ: tally.attempted ? Math.round(totalTime / tally.attempted) : 0,
+      subjectPerf,
+      diffPerf,
+      negativeMarking: neg,
+      auto: !!auto,
+      review
+    };
+    onFinish(result);
+  }
+  submitRef.current = handleSubmit;
+  if (showSummary && mode === "practice") {
+    const answered = Object.values(responses).filter(r => r.selected != null);
+    const correct = questions.filter(qq => responses[qq.id]?.selected === qq.correctIndex).length;
+    const wrong = questions.filter(qq => responses[qq.id]?.checked && responses[qq.id]?.selected !== qq.correctIndex);
+    return React.createElement("div", {
+      className: "container",
+      style: {
+        padding: "40px 24px 64px",
+        maxWidth: 820
+      }
+    }, React.createElement("div", {
+      className: "card card-pad",
+      style: {
+        textAlign: "center"
+      }
+    }, React.createElement(DonutChart, {
+      value: answered.length ? Math.round(correct / answered.length * 100) : 0,
+      size: 150,
+      color: "var(--success)"
+    }), React.createElement("h2", {
+      className: "h1",
+      style: {
+        marginTop: 16
+      }
+    }, "Practice Session Complete"), React.createElement("p", {
+      className: "muted small",
+      style: {
+        marginTop: 6
+      }
+    }, correct + " correct out of " + answered.length + " attempted (" + questions.length + " total)")), React.createElement("div", {
+      className: "grid grid-4",
+      style: {
+        margin: "24px 0"
+      }
+    }, React.createElement(StatTile, {
+      label: "Attempted",
+      value: answered.length
+    }), React.createElement(StatTile, {
+      label: "Correct",
+      value: correct,
+      subClass: "pill-success"
+    }), React.createElement(StatTile, {
+      label: "Incorrect",
+      value: answered.length - correct,
+      subClass: "pill-danger"
+    }), React.createElement(StatTile, {
+      label: "Time Spent",
+      value: fmtTime(secondsElapsed)
+    })), wrong.length > 0 && React.createElement("div", {
+      className: "card card-pad",
+      style: {
+        marginBottom: 20
+      }
+    }, React.createElement("h3", {
+      className: "h3",
+      style: {
+        marginBottom: 12
+      }
+    }, "Review Your Mistakes"), React.createElement("div", {
+      className: "flex-col gap-10"
+    }, wrong.map(wq => React.createElement("div", {
+      key: wq.id,
+      className: "small",
+      style: {
+        padding: "10px 0",
+        borderBottom: "1px solid var(--border)"
+      }
+    }, React.createElement("div", {
+      style: {
+        fontWeight: 600,
+        marginBottom: 4
+      }
+    }, wq.question.split("\n")[0]), React.createElement("div", {
+      className: "muted tiny"
+    }, "Correct answer: " + wq.options[wq.correctIndex]))))), React.createElement("div", {
+      className: "flex gap-12 wrap"
+    }, React.createElement("button", {
+      className: "btn btn-primary",
+      onClick: onExit
+    }, "Back to Question Bank"), React.createElement("button", {
+      className: "btn btn-outline",
+      onClick: () => goto("/my-mistakes")
+    }, "Go to My Mistakes"), React.createElement("button", {
+      className: "btn btn-outline",
+      onClick: () => goto("/dashboard")
+    }, "View Dashboard")));
+  }
+  const timeDisplay = isMock ? fmtTime(secondsLeft) : fmtTime(secondsElapsed);
+  const low = isMock && secondsLeft < 120;
+  const isBookmarked = (bookmarks.questions || []).includes(q.id);
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "24px 24px 64px"
+    }
+  }, React.createElement("div", {
+    className: "flex justify-between items-center wrap gap-12",
+    style: {
+      marginBottom: 18
+    }
+  }, React.createElement("div", null, React.createElement("h2", {
+    className: "h2"
+  }, title || (isMock ? "Mock Test" : "Practice Session")), React.createElement("p", {
+    className: "tiny muted"
+  }, isMock ? "Timed exam mode · " + (examMeta?.negativeMarking > 0 ? "Negative marking: −" + Math.round(examMeta.negativeMarking * 100) / 100 + " per wrong answer" : "No negative marking") : "Practice mode · instant explanations")), React.createElement("div", {
+    className: "flex items-center gap-10"
+  }, React.createElement("span", {
+    className: "timer-badge" + (low ? " low" : ""),
+    role: isMock ? "timer" : undefined,
+    "aria-label": (isMock ? "Time left " : "Time elapsed ") + timeDisplay
+  }, React.createElement(Icon, {
+    name: "clock",
+    size: 14
+  }), timeDisplay), React.createElement("button", {
+    className: "btn btn-outline btn-sm",
+    onClick: () => setConfirmSubmit(true)
+  }, isMock ? "Submit Test" : "End Practice"))), React.createElement("div", {
+    className: "practice-shell"
+  }, React.createElement("div", {
+    className: "card qcard"
+  }, React.createElement("div", {
+    className: "qmeta"
+  }, React.createElement("span", {
+    className: "pill pill-info"
+  }, "Question " + (idx + 1) + "/" + questions.length), React.createElement("span", {
+    className: "pill"
+  }, q.subject), React.createElement(DifficultyPill, {
+    level: q.difficulty
+  }), React.createElement("span", {
+    className: "pill"
+  }, q.type), !isMock && React.createElement("span", {
+    style: {
+      marginLeft: "auto"
+    }
+  }, React.createElement(BookmarkButton, {
+    type: "questions",
+    id: q.id
+  }))), React.createElement("p", {
+    className: "qtext"
+  }, q.question), React.createElement("div", {
+    className: "options",
+    role: "radiogroup",
+    "aria-label": "Answer options"
+  }, q.options.map((opt, i) => {
+    let cls = "option";
+    if (!isMock && resp.checked) {
+      if (i === q.correctIndex) cls += " correct";else if (i === resp.selected) cls += " incorrect";
+    } else if (resp.selected === i) cls += " selected";
+    return React.createElement("div", {
+      key: i,
+      className: cls,
+      onClick: () => selectOption(i),
+      role: "radio",
+      "aria-checked": resp.selected === i,
+      tabIndex: 0,
+      onKeyDown: e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          selectOption(i);
+        } else if (e.key >= "1" && e.key <= "4" && Number(e.key) - 1 === i) {
+          selectOption(i);
+        }
+      }
+    }, React.createElement("span", {
+      className: "option-letter"
+    }, letters(i)), React.createElement("span", null, opt));
+  })), React.createElement("div", {
+    className: "qactions"
+  }, React.createElement("div", {
+    className: "flex gap-8 wrap"
+  }, React.createElement("button", {
+    className: "btn btn-outline btn-sm",
+    onClick: goPrev,
+    disabled: idx === 0
+  }, React.createElement(Icon, {
+    name: "chevronLeft",
+    size: 14
+  }), "Previous"), React.createElement("button", {
+    className: "btn btn-outline btn-sm",
+    onClick: toggleMark
+  }, React.createElement(Icon, {
+    name: "flag",
+    size: 14
+  }), resp.marked ? "Unmark" : "Mark for Review"), React.createElement("button", {
+    className: "btn btn-ghost btn-sm",
+    onClick: clearResponse
+  }, "Clear Response")), React.createElement("div", {
+    className: "flex gap-8 wrap"
+  }, !isMock && !resp.checked && React.createElement("button", {
+    className: "btn btn-dark btn-sm",
+    onClick: checkAnswer
+  }, "Check Answer"), idx < questions.length - 1 ? React.createElement("button", {
+    className: "btn btn-primary btn-sm",
+    onClick: goNext
+  }, "Next", React.createElement(Icon, {
+    name: "chevronRight",
+    size: 14
+  })) : React.createElement("button", {
+    className: "btn btn-primary btn-sm",
+    onClick: () => setConfirmSubmit(true)
+  }, isMock ? "Submit Test" : "Finish Practice"))), !isMock && resp.checked && (isSubjectLocked(q.subject, q.id, q.exam) ? React.createElement("div", {
+    style: {
+      marginTop: 4
+    }
+  }, React.createElement(PracticeContentLock, {
+    subject: q.subject
+  })) : React.createElement(React.Fragment, null, React.createElement("div", {
+    className: "explain-box"
+  }, React.createElement("h4", {
+    className: "h3"
+  }, resp.selected === q.correctIndex ? "✅ Correct!" : "❌ Not quite — here's why"), React.createElement("p", {
+    className: "small",
+    style: {
+      marginTop: 6
+    }
+  }, q.explanation), React.createElement("p", {
+    className: "tiny muted",
+    style: {
+      marginTop: 8
+    }
+  }, "Source: " + q.source)), React.createElement(ConceptBox, {
+    concept: q.concept
+  }), q.relatedIds?.length > 0 && React.createElement("div", {
+    style: {
+      marginTop: 14
+    }
+  }, React.createElement("span", {
+    className: "label"
+  }, "Related Questions"), React.createElement("div", {
+    className: "flex gap-8 wrap",
+    style: {
+      marginTop: 8
+    }
+  }, q.relatedIds.map(rid => {
+    const rq = QUESTIONS_BY_ID[rid];
+    if (!rq) return null;
+    return React.createElement("button", {
+      key: rid,
+      className: "chip",
+      onClick: () => addRelated(rid)
+    }, rq.topic);
+  })))))), React.createElement(QuestionPalette, {
+    questions,
+    responses,
+    idx,
+    onJump: jump,
+    groupBySubject: isMock
+  })), confirmSubmit && (() => {
+    const answeredN = questions.filter(x => responses[x.id]?.selected != null).length;
+    const markedN = questions.filter(x => responses[x.id]?.marked).length;
+    return React.createElement("div", {
+      className: "modal-backdrop",
+      role: "dialog",
+      "aria-modal": "true",
+      "aria-label": "Confirm submit",
+      style: {
+        position: "fixed",
+        inset: 0,
+        background: "rgba(0,0,0,.5)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 1000,
+        padding: 16
+      },
+      onKeyDown: e => {
+        if (e.key === "Escape") setConfirmSubmit(false);
+      }
+    }, React.createElement("div", {
+      className: "card card-pad",
+      style: {
+        maxWidth: 420,
+        width: "100%"
+      }
+    }, React.createElement("h3", {
+      className: "h2"
+    }, isMock ? "Submit the test?" : "End this practice session?"), React.createElement("p", {
+      className: "small muted",
+      style: {
+        margin: "10px 0 16px"
+      }
+    }, "You have answered " + answeredN + " of " + questions.length + " questions" + (markedN ? " · " + markedN + " marked for review" : "") + (isMock && answeredN < questions.length ? ". Unanswered questions score 0." : ".")), React.createElement("div", {
+      className: "flex gap-10",
+      style: {
+        justifyContent: "flex-end"
+      }
+    }, React.createElement("button", {
+      className: "btn btn-outline btn-sm",
+      autoFocus: true,
+      onClick: () => setConfirmSubmit(false)
+    }, "Keep going"), React.createElement("button", {
+      className: "btn btn-primary btn-sm",
+      onClick: () => handleSubmit(false)
+    }, isMock ? "Submit now" : "End session"))));
+  })());
+}
+
+/* ---- app-08-mock.jsx ---- */
+const TEST_LENGTHS = [{
+  id: "quick",
+  label: "Quick",
+  questions: 15,
+  minutes: 20
+}, {
+  id: "standard",
+  label: "Standard",
+  questions: 25,
+  minutes: 35
+}, {
+  id: "full",
+  label: "Full Length",
+  questions: 40,
+  minutes: 60
+}];
+function MockTestsPage() {
+  const {
+    goto,
+    isPro,
+    profile
+  } = useApp();
+  const examsSorted = useMemo(() => {
+    if (!profile.preferredExam) return EXAMS;
+    const idx = EXAMS.findIndex(e => e.id === profile.preferredExam);
+    if (idx <= 0) return EXAMS;
+    const copy = [...EXAMS];
+    const [pref] = copy.splice(idx, 1);
+    copy.unshift(pref);
+    return copy;
+  }, [profile.preferredExam]);
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "36px 24px 64px"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Mock Tests",
+    title: "Realistic, timed exam simulations",
+    lede: "Timed test mode with a question palette, configurable negative marking and auto-submit. Check each exam's current official pattern — ours is a practice simulation.",
+    right: !isPro && React.createElement("span", {
+      className: "pill pill-warning"
+    }, "Free Plan · full result analysis needs Pro")
+  }), React.createElement("div", {
+    className: "grid grid-4"
+  }, examsSorted.map(ex => React.createElement("div", {
+    key: ex.id,
+    className: "card card-pad card-hover"
+  }, React.createElement("div", {
+    className: "flex justify-between items-center",
+    style: {
+      marginBottom: 12
+    }
+  }, React.createElement("div", {
+    className: "exam-swatch",
+    style: {
+      background: "var(--ink)"
+    }
+  }, ex.short.slice(0, 2)), ex.id === profile.preferredExam && React.createElement("span", {
+    className: "pill pill-gold",
+    style: {
+      fontSize: 10
+    }
+  }, "Your Exam")), React.createElement("h3", {
+    className: "h3"
+  }, ex.short), React.createElement("p", {
+    className: "tiny muted",
+    style: {
+      margin: "6px 0 12px"
+    }
+  }, ex.pattern), React.createElement("button", {
+    className: "btn btn-outline btn-sm btn-block",
+    onClick: () => goto("/mock-test-setup", {
+      examId: ex.id
+    })
+  }, "Configure Mock Test")))));
+}
+function MockTestSetupPage() {
+  const {
+    routeParams,
+    goto,
+    isPro
+  } = useApp();
+  const exam = EXAMS.find(e => e.id === routeParams.examId) || EXAMS[0];
+  const [length, setLength] = useState(TEST_LENGTHS[1]);
+  const [engineConfig, setEngineConfig] = useState(null);
+  const cfg = EXAM_CONFIG[exam.id] || {
+    negative: 0,
+    negativeKnown: false
+  };
+  const defaultMarking = (MARKING_OPTIONS.find(m => Math.abs(m.negative - cfg.negative) < 0.001) || MARKING_OPTIONS[0]).id;
+  const [markingId, setMarkingId] = useState(defaultMarking);
+  const marking = MARKING_OPTIONS.find(m => m.id === markingId) || MARKING_OPTIONS[0];
+  const examPool = useMemo(() => questionsForExam(exam.id), [exam.id]);
+  const generalPool = useMemo(() => QUESTION_BANK.filter(q => !isSchoolQuestion(q)), []);
+  const taggedCount = examPool.length;
+  const effectiveCount = Math.min(length.questions, generalPool.length);
+  const topUp = Math.max(0, effectiveCount - taggedCount);
+  if (engineConfig) {
+    return React.createElement(TestEngine, {
+      mode: "mock",
+      questions: engineConfig.questions,
+      title: exam.short + " Mock Test",
+      examMeta: {
+        duration: length.minutes,
+        negativeMarking: marking.negative,
+        examName: exam.short
+      },
+      onFinish: result => goto("/mock-result", {
+        result: {
+          ...result,
+          examShort: exam.short,
+          examId: exam.id
+        }
+      })
+    });
+  }
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "36px 24px 64px",
+      maxWidth: 760
+    }
+  }, React.createElement("button", {
+    className: "btn btn-ghost btn-sm",
+    onClick: () => goto("/mock-tests")
+  }, React.createElement(Icon, {
+    name: "chevronLeft",
+    size: 14
+  }), "All Mock Tests"), React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      marginTop: 16
+    }
+  }, React.createElement("div", {
+    className: "flex items-center gap-14",
+    style: {
+      marginBottom: 20
+    }
+  }, React.createElement("div", {
+    className: "exam-swatch",
+    style: {
+      width: 52,
+      height: 52,
+      background: "var(--ink)"
+    }
+  }, exam.short.slice(0, 2)), React.createElement("div", null, React.createElement("h2", {
+    className: "h1"
+  }, exam.short + " Mock Test"), React.createElement("p", {
+    className: "small muted"
+  }, exam.pattern))), !isPro && React.createElement("div", {
+    className: "pill pill-warning",
+    style: {
+      marginBottom: 18
+    }
+  }, "Free Plan · your score is always free — full analysis needs Pro or the " + exam.short + " Pass"), React.createElement("div", {
+    className: "field",
+    style: {
+      marginBottom: 20
+    }
+  }, React.createElement("span", {
+    className: "label"
+  }, "Test Length"), React.createElement("div", {
+    className: "chip-select",
+    style: {
+      marginTop: 8
+    }
+  }, TEST_LENGTHS.map(l => React.createElement("button", {
+    key: l.id,
+    className: "chip" + (length.id === l.id ? " active" : ""),
+    onClick: () => setLength(l)
+  }, l.label + " · " + l.questions + "Q / " + l.minutes + "min")))), React.createElement("div", {
+    className: "field",
+    style: {
+      marginBottom: 12
+    }
+  }, React.createElement("span", {
+    className: "label"
+  }, "Negative marking"), React.createElement("div", {
+    className: "chip-select",
+    style: {
+      marginTop: 8
+    }
+  }, MARKING_OPTIONS.map(m => React.createElement("button", {
+    key: m.id,
+    className: "chip" + (markingId === m.id ? " active" : ""),
+    onClick: () => setMarkingId(m.id),
+    "aria-pressed": markingId === m.id
+  }, m.label))), React.createElement("p", {
+    className: "tiny muted",
+    style: {
+      marginTop: 8
+    }
+  }, cfg.negativeKnown ? "Default set from reported " + exam.short + " pattern — confirm in the official notification." : "The official scheme for " + exam.short + " isn't confirmed here. Pick the one your notification specifies.")), React.createElement("div", {
+    className: "grid grid-3",
+    style: {
+      marginBottom: 22
+    }
+  }, React.createElement(StatTile, {
+    label: "Questions",
+    value: effectiveCount
+  }), React.createElement(StatTile, {
+    label: "Duration",
+    value: length.minutes + " min"
+  }), React.createElement(StatTile, {
+    label: "Negative Marking",
+    value: marking.negative > 0 ? "−" + Math.round(marking.negative * 100) / 100 : "None"
+  })), React.createElement("p", {
+    className: "tiny muted",
+    style: {
+      marginBottom: 18
+    }
+  }, taggedCount === 0 ? "No questions are tagged specifically for " + exam.short + " yet, so this test uses general Physical Education questions (" + generalPool.length + " in the bank)." : taggedCount >= effectiveCount ? "Questions are drawn from the " + taggedCount + " " + exam.short + "-tagged questions in the bank." : "Only " + taggedCount + " questions in the bank are tagged for " + exam.short + "; the other " + topUp + " are general Physical Education questions to fill the test."), React.createElement("button", {
+    className: "btn btn-primary btn-block",
+    onClick: () => {
+      const chosen = pick(examPool, Math.min(effectiveCount, examPool.length));
+      const have = new Set(chosen.map(q => q.id));
+      const fill = pick(generalPool.filter(q => !have.has(q.id)), Math.max(0, effectiveCount - chosen.length));
+      setEngineConfig({
+        questions: [...chosen, ...fill]
+      });
+    }
+  }, "Begin Mock Test", React.createElement(Icon, {
+    name: "chevronRight",
+    size: 16
+  }))));
+}
+function CoachInsights({
+  result,
+  weakest,
+  strongest
+}) {
+  const lines = [];
+  if (strongest) lines.push(`You performed strongly in ${strongest.subject} (${strongest.accuracy}% accuracy) — keep reinforcing it with weekly revision.`);
+  if (weakest) lines.push(`Your accuracy in ${weakest.subject} is ${weakest.accuracy}%, noticeably below your average. This should be your next practice priority.`);
+  if (result.accuracy < 60) lines.push("Your overall accuracy suggests concepts need reinforcement before attempting another full mock — revisit short notes first.");else if (result.avgTimePerQ > 70) lines.push("You're accurate but slower than ideal — timed sectional drills will help build speed without losing accuracy.");else lines.push("Your pace and accuracy are well balanced. Focus on consistency across sections in your next attempt.");
+  return React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      background: "linear-gradient(120deg, var(--info-100), var(--surface))"
+    }
+  }, React.createElement("div", {
+    className: "flex items-center gap-10",
+    style: {
+      marginBottom: 14
+    }
+  }, React.createElement("div", {
+    className: "exam-swatch",
+    style: {
+      width: 36,
+      height: 36,
+      background: "var(--info)"
+    }
+  }, React.createElement(Icon, {
+    name: "brain",
+    size: 18
+  })), React.createElement("h3", {
+    className: "h3"
+  }, "Your Preparation Coach")), React.createElement("div", {
+    className: "flex-col gap-10"
+  }, lines.map((l, i) => React.createElement("p", {
+    key: i,
+    className: "small"
+  }, "• " + l))));
+}
+function AnswerReview({
+  review
+}) {
+  const [filter, setFilter] = useState("wrong");
+  const rows = review.map((r, i) => ({
+    ...r,
+    n: i + 1,
+    q: QUESTIONS_BY_ID[r.id]
+  })).filter(r => r.q);
+  const status = r => r.selectedText == null ? "skipped" : r.selectedText === r.correctText ? "right" : "wrong";
+  const shown = rows.filter(r => filter === "all" ? true : filter === "wrong" ? status(r) !== "right" : status(r) === filter);
+  return React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      marginBottom: 24
+    }
+  }, React.createElement("div", {
+    className: "flex justify-between items-center wrap gap-12",
+    style: {
+      marginBottom: 12
+    }
+  }, React.createElement("h3", {
+    className: "h3"
+  }, "Answer Review"), React.createElement("div", {
+    className: "chip-select"
+  }, [["wrong", "Wrong & skipped"], ["right", "Correct"], ["all", "All"]].map(([id, l]) => React.createElement("button", {
+    key: id,
+    className: "chip" + (filter === id ? " active" : ""),
+    onClick: () => setFilter(id),
+    "aria-pressed": filter === id
+  }, l)))), shown.length === 0 && React.createElement("p", {
+    className: "small muted"
+  }, "Nothing to show for this filter."), React.createElement("div", {
+    className: "flex-col gap-10"
+  }, shown.map(r => React.createElement("div", {
+    key: r.id,
+    style: {
+      padding: "12px 0",
+      borderBottom: "1px solid var(--border)"
+    }
+  }, React.createElement("div", {
+    className: "small",
+    style: {
+      fontWeight: 600
+    }
+  }, "Q" + r.n + ". " + r.q.question.split("\n")[0]), React.createElement("div", {
+    className: "tiny",
+    style: {
+      marginTop: 6
+    }
+  }, React.createElement("span", {
+    className: "pill " + (status(r) === "right" ? "pill-success" : status(r) === "wrong" ? "pill-danger" : "")
+  }, status(r) === "right" ? "Correct" : status(r) === "wrong" ? "Wrong" : "Not attempted"), " ", r.selectedText != null && "Your answer: " + r.selectedText + " · ", "Correct: " + r.correctText), React.createElement("p", {
+    className: "tiny muted",
+    style: {
+      marginTop: 6
+    }
+  }, r.q.explanation)))));
+}
+function MockResultPage() {
+  const {
+    routeParams,
+    goto,
+    mockHistory,
+    saveMockResult,
+    isPro,
+    hasExamAccess,
+    upgradePlan,
+    paymentsLive,
+    checkoutBusy
+  } = useApp();
+  const result = routeParams.result;
+  const savedRef = useRef(false);
+  useEffect(() => {
+    if (result && !savedRef.current) {
+      saveMockResult(result);
+      savedRef.current = true;
+    }
+  }, [result]);
+  if (!result) return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: 60
+    }
+  }, React.createElement("div", {
+    className: "empty-state"
+  }, "No recent mock test result found.", React.createElement("div", {
+    style: {
+      marginTop: 14
+    }
+  }, React.createElement("button", {
+    className: "btn btn-primary",
+    onClick: () => goto("/mock-tests")
+  }, "Take a Mock Test"))));
+  const unlocked = isPro || hasExamAccess(result.examId);
+  const examShort = result.examShort || "this exam";
+  const sorted = [...result.subjectPerf].sort((a, b) => a.accuracy - b.accuracy);
+  const weakest = sorted[0],
+    strongest = sorted[sorted.length - 1];
+  const pctScore = result.maxScore ? Math.round(result.score / result.maxScore * 1000) / 10 : 0;
+  const trend = [...mockHistory].slice(0, 6).reverse().map((m, i) => ({
+    label: "T" + (i + 1),
+    value: m.accuracy
+  }));
+  if (trend.length === 0) trend.push({
+    label: "T1",
+    value: result.accuracy
+  });
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "36px 24px 72px"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: result.examShort || "Mock Test",
+    title: "Your Result",
+    lede: new Date(result.date).toLocaleString()
+  }), React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      textAlign: "center",
+      marginBottom: 24,
+      padding: "40px 24px"
+    }
+  }, React.createElement("div", {
+    className: "stat-label"
+  }, "Your Score"), React.createElement("div", {
+    className: "num",
+    style: {
+      fontSize: 44,
+      fontWeight: 700,
+      margin: "10px 0"
+    }
+  }, result.score + " / " + result.maxScore), React.createElement("p", {
+    className: "small muted"
+  }, result.attempted + " of " + result.totalQuestions + " questions attempted · " + result.accuracy + "% accuracy")), !unlocked ? React.createElement("div", {
+    style: {
+      marginBottom: 24
+    }
+  }, React.createElement(MockPaywall, {
+    title: "Unlock Your Full Result Analysis",
+    desc: "Your score is always free to see. Upgrade to Pro (unlocks every exam) or get the " + examShort + " Pass — ₹" + EXAM_PASS_PRICE_INR + " for unlimited " + examShort + " mock tests, answer review, subject/difficulty breakdowns, accuracy trend and coaching insights for this exam only.",
+    examId: result.examId,
+    examShort
+  })) : React.createElement(React.Fragment, null, React.createElement("div", {
+    className: "grid grid-3",
+    style: {
+      marginBottom: 24
+    }
+  }, React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      textAlign: "center"
+    }
+  }, React.createElement(DonutChart, {
+    value: result.accuracy,
+    size: 90,
+    color: "var(--info)",
+    label: result.accuracy + "%"
+  }), React.createElement("div", {
+    className: "tiny muted",
+    style: {
+      marginTop: 6
+    }
+  }, "Accuracy")), React.createElement(StatTile, {
+    label: "Score %",
+    value: pctScore + "%",
+    sub: result.negativeMarking > 0 ? "after −" + Math.round(result.negativeMarking * 100) / 100 + " negative marking" : "no negative marking"
+  }), React.createElement(StatTile, {
+    label: "Marks lost to wrong answers",
+    value: result.marksLost != null ? result.marksLost : "—",
+    sub: "Rank & percentile need real cohort data — coming once enough aspirants have tested",
+    subClass: ""
+  })), React.createElement("div", {
+    className: "grid grid-4",
+    style: {
+      marginBottom: 28
+    }
+  }, React.createElement(StatTile, {
+    label: "Attempted",
+    value: result.attempted + "/" + result.totalQuestions
+  }), React.createElement(StatTile, {
+    label: "Correct",
+    value: result.correct,
+    subClass: "pill-success",
+    sub: "correct"
+  }), React.createElement(StatTile, {
+    label: "Incorrect",
+    value: result.incorrect,
+    subClass: "pill-danger",
+    sub: "incorrect"
+  }), React.createElement(StatTile, {
+    label: "Unattempted",
+    value: result.unattempted
+  })), React.createElement("div", {
+    className: "grid grid-2",
+    style: {
+      marginBottom: 24
+    }
+  }, React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 14
+    }
+  }, "Subject-wise Performance"), React.createElement(BarChart, {
+    data: result.subjectPerf.map(s => ({
+      label: s.subject,
+      value: s.accuracy
+    }))
+  })), React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 14
+    }
+  }, "Difficulty-wise Performance"), React.createElement(BarChart, {
+    data: result.diffPerf.map(s => ({
+      label: s.difficulty,
+      value: s.accuracy
+    })),
+    colorFn: () => "var(--info)"
+  }))), React.createElement("div", {
+    className: "grid grid-2",
+    style: {
+      marginBottom: 24
+    }
+  }, React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 14
+    }
+  }, "Accuracy Trend (recent mocks)"), React.createElement(LineChart, {
+    points: trend
+  })), React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 6
+    }
+  }, "Time Analysis"), React.createElement("div", {
+    className: "grid grid-2",
+    style: {
+      marginTop: 12
+    }
+  }, React.createElement(StatTile, {
+    label: "Total Time",
+    value: fmtTime(result.totalTime)
+  }), React.createElement(StatTile, {
+    label: "Avg Time / Question",
+    value: result.avgTimePerQ + "s"
+  })))), React.createElement("div", {
+    className: "grid grid-2",
+    style: {
+      marginBottom: 24
+    }
+  }, React.createElement(CoachInsights, {
+    result,
+    weakest,
+    strongest
+  }), weakest && React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("div", {
+    className: "eyebrow",
+    style: {
+      marginBottom: 8
+    }
+  }, "What should you study next?"), React.createElement("h3", {
+    className: "h1",
+    style: {
+      fontSize: 22
+    }
+  }, weakest.subject + " — Needs Improvement"), React.createElement("p", {
+    className: "small muted",
+    style: {
+      margin: "8px 0 16px"
+    }
+  }, "Accuracy: " + weakest.accuracy + "%"), React.createElement("button", {
+    className: "btn btn-primary",
+    onClick: () => goto("/question-bank", {
+      subject: weakest.subject
+    })
+  }, "Practice " + weakest.subject))), result.review && React.createElement(AnswerReview, {
+    review: result.review
+  })), React.createElement("div", {
+    className: "flex gap-12 wrap"
+  }, React.createElement("button", {
+    className: "btn btn-primary",
+    onClick: () => goto("/mock-tests")
+  }, "Take Another Mock Test"), React.createElement("button", {
+    className: "btn btn-outline",
+    onClick: () => goto("/dashboard")
+  }, "View Full Dashboard"), React.createElement("button", {
+    className: "btn btn-outline",
+    onClick: () => goto("/my-mistakes")
+  }, "Review Mistakes")));
+}
+
+/* ---- app-09-dashboard.jsx ---- */
+function greeting() {
+  const h = new Date().getHours();
+  return h < 12 ? "Good Morning" : h < 17 ? "Good Afternoon" : "Good Evening";
+}
+function DashboardPage() {
+  const {
+    profile,
+    setProfile,
+    setPreferredExam,
+    accuracy,
+    subjectStats,
+    goto,
+    wrongLog,
+    bookmarks,
+    mockHistory,
+    isPro,
+    isLoggedIn,
+    logout
+  } = useApp();
+  const editName = () => {
+    const next = window.prompt("What should we call you?", profile.name);
+    if (next && next.trim()) setProfile(p => ({
+      ...p,
+      name: next.trim().slice(0, 40)
+    }));
+  };
+  const weak = subjectStats.slice(0, 3);
+  const strong = [...subjectStats].sort((a, b) => b.accuracy - a.accuracy).slice(0, 2);
+  const mistakesCount = Object.keys(wrongLog).length;
+  const level = Math.floor(profile.xp / 1000) + 1;
+  const levelProgress = profile.xp % 1000 / 10;
+  const recommendedExam = EXAMS.find(e => e.id === profile.preferredExam) || EXAMS.find(e => e.id === "kvs-pgt") || EXAMS[0];
+  const recommended = [weak[0] && {
+    t: weak[0].subject + " Practice Set",
+    d: "20 questions targeting your weakest area",
+    action: () => goto("/question-bank", {
+      subject: weak[0].subject
+    })
+  }, {
+    t: recommendedExam.short + " Mock Test",
+    d: "Full-length simulation with negative marking",
+    action: () => goto("/mock-test-setup", {
+      examId: recommendedExam.id
+    })
+  }, weak[1] && {
+    t: weak[1].subject + " Revision",
+    d: "Quick facts and flashcards",
+    action: () => goto("/flashcards")
+  }, {
+    t: "Today's PE Challenge",
+    d: "10 questions · 5 minutes",
+    action: () => goto("/daily-challenge")
+  }].filter(Boolean);
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "36px 24px 72px"
+    }
+  }, React.createElement("div", {
+    className: "flex justify-between wrap gap-16",
+    style: {
+      marginBottom: 26,
+      alignItems: "flex-end"
+    }
+  }, React.createElement("div", null, React.createElement("h1", {
+    className: "h1",
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 10
+    }
+  }, greeting() + ", " + profile.name + " 👋", React.createElement("button", {
+    className: "btn btn-ghost btn-icon",
+    title: "Change your name",
+    onClick: editName,
+    style: {
+      width: 28,
+      height: 28
+    }
+  }, React.createElement(Icon, {
+    name: "edit",
+    size: 14
+  }))), React.createElement("p", {
+    className: "small muted",
+    style: {
+      marginTop: 6
+    }
+  }, "Your Preparation Overview"), isLoggedIn ? React.createElement("p", {
+    className: "small muted",
+    style: {
+      marginTop: 4
+    }
+  }, "Signed in — your progress follows you to any device. ", React.createElement("a", {
+    href: "#",
+    onClick: e => {
+      e.preventDefault();
+      logout();
+    }
+  }, "Sign out")) : React.createElement("p", {
+    className: "small muted",
+    style: {
+      marginTop: 4
+    }
+  }, "Browsing as a guest — progress stays on this device only. ", React.createElement("a", {
+    href: "#/login",
+    onClick: e => {
+      e.preventDefault();
+      goto("/login");
+    }
+  }, "Sign in to save it")), React.createElement("div", {
+    className: "flex items-center gap-8",
+    style: {
+      marginTop: 8
+    }
+  }, React.createElement("span", {
+    className: "small muted"
+  }, "Preparing for:"), React.createElement("select", {
+    className: "select",
+    style: {
+      padding: "6px 10px",
+      fontSize: 13
+    },
+    value: profile.preferredExam || "",
+    onChange: e => setPreferredExam(e.target.value)
+  }, React.createElement("option", {
+    value: ""
+  }, "Not set — showing general content"), EXAMS.map(ex => React.createElement("option", {
+    key: ex.id,
+    value: ex.id
+  }, ex.short))))), React.createElement("div", {
+    className: "flex items-center gap-10"
+  }, React.createElement(PlanBadge, null), React.createElement("div", {
+    className: "pill pill-gold"
+  }, "Level " + level + " · " + profile.xp.toLocaleString() + " XP"), !isPro && React.createElement("button", {
+    className: "btn btn-primary btn-sm",
+    onClick: () => goto("/pricing")
+  }, "Upgrade"))), !isPro && mockHistory.length > 0 && React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      marginBottom: 20,
+      borderColor: "var(--warning)",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      flexWrap: "wrap",
+      gap: 12
+    }
+  }, React.createElement("div", null, React.createElement("span", {
+    className: "pill pill-warning",
+    style: {
+      marginBottom: 6
+    }
+  }, "Free Plan"), React.createElement("p", {
+    className: "small muted"
+  }, "Your mock test scores are always free. Upgrade to Pro to unlock rank, percentile, subject-wise breakdowns and full previous-year papers.")), React.createElement("button", {
+    className: "btn btn-outline btn-sm",
+    onClick: () => goto("/pricing")
+  }, "View Plans")), React.createElement("div", {
+    className: "grid grid-4",
+    style: {
+      marginBottom: 12
+    }
+  }, React.createElement(StatTile, {
+    label: "Questions Solved",
+    value: profile.questionsSolved.toLocaleString()
+  }), React.createElement(StatTile, {
+    label: "Accuracy",
+    value: accuracy == null ? "—" : accuracy + "%"
+  }), React.createElement(StatTile, {
+    label: "Mock Tests",
+    value: profile.mockTestsTaken
+  }), React.createElement(StatTile, {
+    label: "Study Streak",
+    value: profile.streak + " days",
+    sub: "🔥 keep it going",
+    subClass: "pill-warning"
+  })), React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      marginBottom: 28
+    }
+  }, React.createElement("div", {
+    className: "flex justify-between small",
+    style: {
+      marginBottom: 6
+    }
+  }, React.createElement("span", null, "Level " + level + " progress"), React.createElement("span", {
+    className: "num"
+  }, profile.xp % 1000 + " / 1000 XP")), React.createElement("div", {
+    className: "progress-track"
+  }, React.createElement("div", {
+    className: "progress-fill",
+    style: {
+      width: levelProgress + "%"
+    }
+  }))), React.createElement("div", {
+    className: "grid grid-2",
+    style: {
+      marginBottom: 28,
+      alignItems: "start"
+    }
+  }, React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 14
+    }
+  }, "Your Weak Areas"), weak.length === 0 ? React.createElement("p", {
+    className: "small muted"
+  }, "Attempt a few practice sets to see personalized weak-area analysis.") : weak.map(w => React.createElement(HBarRow, {
+    key: w.subject,
+    label: w.subject,
+    value: w.accuracy
+  })), React.createElement("button", {
+    className: "btn btn-outline btn-sm",
+    style: {
+      marginTop: 6
+    },
+    onClick: () => goto("/dashboard-analytics")
+  }, "View Full Analytics")), React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 14
+    }
+  }, "Recommended For You"), React.createElement("div", {
+    className: "flex-col gap-10"
+  }, recommended.map((r, i) => React.createElement("div", {
+    key: i,
+    className: "flex justify-between items-center",
+    style: {
+      padding: "10px 0",
+      borderBottom: i < recommended.length - 1 ? "1px solid var(--border)" : "none"
+    },
+    onClick: r.action,
+    role: "button"
+  }, React.createElement("div", null, React.createElement("div", {
+    className: "small",
+    style: {
+      fontWeight: 600
+    }
+  }, i + 1 + ". " + r.t), React.createElement("div", {
+    className: "tiny muted"
+  }, r.d)), React.createElement(Icon, {
+    name: "chevronRight",
+    size: 16
+  })))))), React.createElement("div", {
+    className: "grid grid-3",
+    style: {
+      marginBottom: 28
+    }
+  }, React.createElement("div", {
+    className: "card card-pad card-hover",
+    onClick: () => goto("/my-mistakes")
+  }, React.createElement(Icon, {
+    name: "brain",
+    size: 20
+  }), React.createElement("h3", {
+    className: "h3",
+    style: {
+      margin: "10px 0 4px"
+    }
+  }, "My Mistakes"), React.createElement("p", {
+    className: "small muted"
+  }, mistakesCount + " questions to revise")), React.createElement("div", {
+    className: "card card-pad card-hover",
+    onClick: () => goto("/bookmarks")
+  }, React.createElement(Icon, {
+    name: "bookmark",
+    size: 20
+  }), React.createElement("h3", {
+    className: "h3",
+    style: {
+      margin: "10px 0 4px"
+    }
+  }, "Bookmarks"), React.createElement("p", {
+    className: "small muted"
+  }, (bookmarks.questions?.length || 0) + " saved questions")), React.createElement("div", {
+    className: "card card-pad card-hover",
+    onClick: () => goto("/study-planner")
+  }, React.createElement(Icon, {
+    name: "target",
+    size: 20
+  }), React.createElement("h3", {
+    className: "h3",
+    style: {
+      margin: "10px 0 4px"
+    }
+  }, "Study Planner"), React.createElement("p", {
+    className: "small muted"
+  }, "Build your personalized schedule"))), React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("div", {
+    className: "flex justify-between items-center",
+    style: {
+      marginBottom: 16
+    }
+  }, React.createElement("h3", {
+    className: "h3"
+  }, "Your Badges"), React.createElement("button", {
+    className: "btn btn-ghost btn-sm",
+    onClick: () => goto("/leaderboard")
+  }, "View Leaderboard", React.createElement(Icon, {
+    name: "chevronRight",
+    size: 14
+  }))), React.createElement("div", {
+    className: "grid grid-4"
+  }, BADGES.map(b => {
+    const earned = isBadgeEarned(b.id, {
+      profile,
+      mockHistory
+    });
+    return React.createElement("div", {
+      key: b.id,
+      className: "badge-tile" + (earned ? "" : " locked")
+    }, React.createElement("div", {
+      className: "badge-icon"
+    }, b.icon), React.createElement("div", {
+      className: "small",
+      style: {
+        fontWeight: 600,
+        marginTop: 6
+      }
+    }, b.name), React.createElement("div", {
+      className: "tiny muted"
+    }, b.desc));
+  }))));
+}
+function DashboardAnalyticsPage() {
+  const {
+    subjectStats,
+    mockHistory,
+    goto
+  } = useApp();
+  const trend = [...mockHistory].slice(0, 8).reverse().map((m, i) => ({
+    label: "Mock " + (i + 1),
+    value: m.accuracy
+  }));
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "36px 24px 72px"
+    }
+  }, React.createElement("button", {
+    className: "btn btn-ghost btn-sm",
+    onClick: () => goto("/dashboard")
+  }, React.createElement(Icon, {
+    name: "chevronLeft",
+    size: 14
+  }), "Dashboard"), React.createElement(SectionHeading, {
+    eyebrow: "Performance",
+    title: "Full Performance Analytics",
+    lede: "Deep dive into your subject-wise strengths, weaknesses and progress over time."
+  }), React.createElement("div", {
+    className: "grid grid-2",
+    style: {
+      marginBottom: 24
+    }
+  }, React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 14
+    }
+  }, "Subject-wise Accuracy"), React.createElement(BarChart, {
+    data: subjectStats.map(s => ({
+      label: s.subject,
+      value: s.accuracy
+    }))
+  })), React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 14
+    }
+  }, "Mock Test Accuracy Trend"), trend.length > 0 ? React.createElement(LineChart, {
+    points: trend
+  }) : React.createElement("p", {
+    className: "small muted"
+  }, "Take a mock test to start tracking your trend."))), React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 14
+    }
+  }, "All Subjects — Ranked by Accuracy"), React.createElement("div", {
+    className: "overflow-x"
+  }, React.createElement("table", {
+    className: "datatable"
+  }, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "Subject"), React.createElement("th", null, "Accuracy"), React.createElement("th", null, "Questions Attempted"), React.createElement("th", null, "Action"))), React.createElement("tbody", null, [...subjectStats].sort((a, b) => b.accuracy - a.accuracy).map(s => React.createElement("tr", {
+    key: s.subject
+  }, React.createElement("td", null, s.subject), React.createElement("td", {
+    className: "num"
+  }, s.accuracy + "%"), React.createElement("td", {
+    className: "num"
+  }, s.total), React.createElement("td", null, React.createElement("button", {
+    className: "btn btn-ghost btn-sm",
+    onClick: () => goto("/question-bank", {
+      subject: s.subject
+    })
+  }, "Practice")))))))));
+}
+function LeaderboardPage() {
+  const {
+    profile,
+    accuracy,
+    isLoggedIn,
+    goto
+  } = useApp();
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "36px 24px 72px",
+      maxWidth: 760
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Leaderboard",
+    title: "Your progress",
+    lede: "Nationwide rankings are not live yet — we only show a leaderboard once it is based on real learners. Here are your own numbers."
+  }), React.createElement("div", {
+    className: "grid grid-4",
+    style: {
+      marginBottom: 24
+    }
+  }, React.createElement(StatTile, {
+    label: "XP",
+    value: (profile.xp || 0).toLocaleString()
+  }), React.createElement(StatTile, {
+    label: "Study streak",
+    value: (profile.streak || 0) + " days"
+  }), React.createElement(StatTile, {
+    label: "Questions solved",
+    value: (profile.questionsSolved || 0).toLocaleString()
+  }), React.createElement(StatTile, {
+    label: "Accuracy",
+    value: (accuracy || 0) + "%"
+  })), React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 8
+    }
+  }, "When will rankings appear?"), React.createElement("p", {
+    className: "small muted"
+  }, "Once enough signed-in aspirants are practising, daily / weekly / all-time boards will be switched on, ranked by XP, accuracy and streak. Sign in so your progress counts from day one."), !isLoggedIn && React.createElement("button", {
+    className: "btn btn-primary btn-sm",
+    style: {
+      marginTop: 14
+    },
+    onClick: () => goto("/login")
+  }, "Sign in")));
+}
+function DailyChallengePage() {
+  const {
+    dailyState,
+    setDailyState,
+    notify,
+    goto
+  } = useApp();
+  const [engine, setEngine] = useState(null);
+  const already = dailyState.lastCompleted === todayStr();
+  if (engine) return React.createElement(TestEngine, {
+    mode: "practice",
+    questions: engine,
+    title: "Daily PE Challenge",
+    onExit: () => {
+      setDailyState(s => ({
+        ...s,
+        lastCompleted: todayStr()
+      }));
+      notify("Daily streak updated! 🔥");
+      goto("/dashboard");
+    }
+  });
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "48px 24px 72px",
+      maxWidth: 640
+    }
+  }, React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      textAlign: "center"
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 40
+    }
+  }, "🔥"), React.createElement("h2", {
+    className: "h1",
+    style: {
+      margin: "12px 0 6px"
+    }
+  }, "Today's PE Challenge"), React.createElement("p", {
+    className: "muted small"
+  }, "10 Questions · 5 Minutes · Mixed Difficulty"), already ? React.createElement("div", {
+    className: "pill pill-success",
+    style: {
+      margin: "18px auto"
+    }
+  }, "Completed today — come back tomorrow!") : React.createElement("button", {
+    className: "btn btn-primary",
+    style: {
+      marginTop: 22
+    },
+    onClick: () => setEngine(pick(QUESTION_BANK, 10))
+  }, "Start Challenge")));
+}
+function seedIndexForDate(len) {
+  const d = todayStr();
+  let h = 0;
+  for (const c of d) h = h * 31 + c.charCodeAt(0) >>> 0;
+  return h % len;
+}
+function QuestionOfTheDayPage() {
+  const {
+    dailyState,
+    setDailyState,
+    recordAttempt
+  } = useApp();
+  const qotd = QUESTION_BANK[seedIndexForDate(QUESTION_BANK.length)];
+  const answered = dailyState.lastQOTD === todayStr();
+  const [selected, setSelected] = useState(answered ? dailyState.qotdAnswer : null);
+  function submit(i) {
+    setSelected(i);
+    recordAttempt(qotd, i, 0);
+    setDailyState(s => ({
+      ...s,
+      lastQOTD: todayStr(),
+      qotdAnswer: i
+    }));
+  }
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "36px 24px 72px",
+      maxWidth: 680
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Question of the Day",
+    title: new Date().toLocaleDateString(undefined, {
+      weekday: "long",
+      month: "long",
+      day: "numeric"
+    })
+  }), React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("div", {
+    className: "qmeta"
+  }, React.createElement("span", {
+    className: "pill pill-info"
+  }, qotd.subject), React.createElement(DifficultyPill, {
+    level: qotd.difficulty
+  }), React.createElement(BookmarkButton, {
+    type: "questions",
+    id: qotd.id
+  })), React.createElement("p", {
+    className: "qtext"
+  }, qotd.question), React.createElement("div", {
+    className: "options"
+  }, qotd.options.map((opt, i) => {
+    let cls = "option";
+    if (selected != null) {
+      if (i === qotd.correctIndex) cls += " correct";else if (i === selected) cls += " incorrect";
+    }
+    return React.createElement("div", {
+      key: i,
+      className: cls,
+      style: {
+        position: "relative",
+        overflow: "hidden"
+      },
+      onClick: () => selected == null && submit(i)
+    }, React.createElement("span", {
+      className: "option-letter",
+      style: {
+        position: "relative"
+      }
+    }, letters(i)), React.createElement("span", {
+      style: {
+        position: "relative",
+        flex: 1
+      }
+    }, opt), null);
+  })), selected != null && React.createElement("div", {
+    className: "explain-box"
+  }, React.createElement("p", {
+    className: "small"
+  }, qotd.explanation))));
+}
+
+/* ---- app-10-revision.jsx ---- */
+function FlashcardsPage() {
+  const {
+    toggleBookmark,
+    bookmarks,
+    notify
+  } = useApp();
+  const [idx, setIdx] = useState(0);
+  const [flipped, setFlipped] = useState(false);
+  const [status, setStatus] = usePersistentState("pep_flashcard_status", {});
+  const [subjectFilter, setSubjectFilter] = useState("All");
+  const subjects = ["All", ...new Set(FLASHCARDS.map(f => f.subject))];
+  const deck = useMemo(() => {
+    let d = subjectFilter === "All" ? FLASHCARDS : FLASHCARDS.filter(f => f.subject === subjectFilter);
+    return [...d].sort((a, b) => (status[b.id] === "revise" ? 1 : 0) - (status[a.id] === "revise" ? 1 : 0));
+  }, [subjectFilter, status]);
+  const card = deck[idx % deck.length] || deck[0];
+  if (!card) return null;
+  function mark(s) {
+    setStatus(prev => ({
+      ...prev,
+      [card.id]: s
+    }));
+    setFlipped(false);
+    setTimeout(() => setIdx(i => (i + 1) % deck.length), 150);
+  }
+  const known = Object.values(status).filter(s => s === "know").length;
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "36px 24px 72px",
+      maxWidth: 680
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Flashcards",
+    title: "PE Flashcards",
+    lede: "Flip, self-assess, and let cards you find hard resurface automatically — a simple spaced-repetition loop."
+  }), React.createElement("div", {
+    className: "chip-select",
+    style: {
+      marginBottom: 18
+    }
+  }, subjects.map(s => React.createElement("button", {
+    key: s,
+    className: "chip" + (subjectFilter === s ? " active" : ""),
+    onClick: () => {
+      setSubjectFilter(s);
+      setIdx(0);
+      setFlipped(false);
+    }
+  }, s))), React.createElement("div", {
+    className: "flex justify-between small muted",
+    style: {
+      marginBottom: 10
+    }
+  }, React.createElement("span", null, "Card " + (idx % deck.length + 1) + " of " + deck.length), React.createElement("span", null, known + " known · " + Object.values(status).filter(s => s === "revise").length + " need revision")), React.createElement("div", {
+    className: "flip-card" + (flipped ? " flipped" : ""),
+    onClick: () => setFlipped(f => !f)
+  }, React.createElement("div", {
+    className: "flip-inner"
+  }, React.createElement("div", {
+    className: "flip-face"
+  }, React.createElement("div", null, React.createElement("span", {
+    className: "pill pill-info",
+    style: {
+      marginBottom: 12
+    }
+  }, card.subject), React.createElement("h3", {
+    className: "h1"
+  }, card.front), React.createElement("p", {
+    className: "tiny muted",
+    style: {
+      marginTop: 14
+    }
+  }, "Tap to flip"))), React.createElement("div", {
+    className: "flip-face flip-back"
+  }, React.createElement("p", {
+    className: "small"
+  }, card.back)))), React.createElement("div", {
+    className: "flex gap-10 wrap",
+    style: {
+      marginTop: 20,
+      justifyContent: "center"
+    }
+  }, React.createElement("button", {
+    className: "btn btn-outline btn-sm",
+    onClick: e => {
+      e.stopPropagation();
+      toggleBookmark("flashcards", card.id);
+    }
+  }, React.createElement(Icon, {
+    name: "bookmark",
+    size: 14
+  }), (bookmarks.flashcards || []).includes(card.id) ? "Bookmarked" : "Bookmark"), React.createElement("button", {
+    className: "btn btn-outline btn-sm",
+    style: {
+      borderColor: "var(--warning)",
+      color: "var(--warning)"
+    },
+    onClick: () => mark("revise")
+  }, "Need Revision"), React.createElement("button", {
+    className: "btn btn-primary btn-sm",
+    onClick: () => mark("know")
+  }, "I Know This")));
+}
+function QuickRevisionPage() {
+  const facts = useMemo(() => pick(QUESTION_BANK, 25).map(q => ({
+    q: q.question.split("\n")[0],
+    a: q.options[q.correctIndex]
+  })), []);
+  const [i, setI] = useState(0);
+  const [reveal, setReveal] = useState(false);
+  const [seconds, setSeconds] = useState(300);
+  useEffect(() => {
+    const t = setInterval(() => setSeconds(s => Math.max(0, s - 1)), 1000);
+    return () => clearInterval(t);
+  }, []);
+  const f = facts[i % facts.length];
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "36px 24px 72px",
+      maxWidth: 680
+    }
+  }, React.createElement("div", {
+    className: "flex justify-between items-center",
+    style: {
+      marginBottom: 20
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Quick Revision",
+    title: "5-Minute Rapid Fire"
+  }), React.createElement("span", {
+    className: "timer-badge" + (seconds < 60 ? " low" : "")
+  }, React.createElement(Icon, {
+    name: "clock",
+    size: 14
+  }), fmtTime(seconds))), React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      textAlign: "center",
+      minHeight: 220,
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center"
+    }
+  }, React.createElement("div", {
+    className: "eyebrow",
+    style: {
+      marginBottom: 14
+    }
+  }, "Fact " + (i % facts.length + 1) + " / " + facts.length), React.createElement("h3", {
+    className: "h2"
+  }, f.q), reveal && React.createElement("p", {
+    className: "small",
+    style: {
+      marginTop: 16,
+      color: "var(--success)",
+      fontWeight: 600
+    }
+  }, f.a)), React.createElement("div", {
+    className: "flex gap-10 wrap",
+    style: {
+      marginTop: 20,
+      justifyContent: "center"
+    }
+  }, !reveal ? React.createElement("button", {
+    className: "btn btn-outline",
+    onClick: () => setReveal(true)
+  }, "Reveal Answer") : React.createElement("button", {
+    className: "btn btn-primary",
+    onClick: () => {
+      setReveal(false);
+      setI(i + 1);
+    }
+  }, "Next Fact", React.createElement(Icon, {
+    name: "chevronRight",
+    size: 15
+  }))));
+}
+function FormulaHubPage() {
+  const [q, setQ] = useState("");
+  const filtered = FORMULAS.filter(f => f.name.toLowerCase().includes(q.toLowerCase()) || f.category.toLowerCase().includes(q.toLowerCase()));
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "36px 24px 72px"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Formula & Facts Hub",
+    title: "PE Quick Facts",
+    lede: "Every measurement formula used across PE exams, in one searchable place."
+  }), React.createElement("input", {
+    className: "input",
+    placeholder: "Search formulas (e.g. BMI, Karvonen, VO2)…",
+    value: q,
+    onChange: e => setQ(e.target.value),
+    style: {
+      marginBottom: 22,
+      maxWidth: 420
+    }
+  }), React.createElement("div", {
+    className: "grid grid-2"
+  }, filtered.map(f => React.createElement("div", {
+    key: f.id,
+    className: "card card-pad"
+  }, React.createElement("span", {
+    className: "pill pill-info",
+    style: {
+      marginBottom: 10
+    }
+  }, f.category), React.createElement("h3", {
+    className: "h3"
+  }, f.name), React.createElement("div", {
+    className: "num",
+    style: {
+      background: "var(--surface-2)",
+      padding: "12px 14px",
+      borderRadius: 10,
+      margin: "10px 0",
+      fontSize: 15,
+      fontWeight: 600
+    }
+  }, f.formula), React.createElement("p", {
+    className: "tiny muted"
+  }, f.note)))));
+}
+function SportsRulesPage() {
+  const {
+    routeParams
+  } = useApp();
+  const [selected, setSelected] = useState(routeParams.sport || SPORTS_RULES_DB[0].sport);
+  const sport = SPORTS_RULES_DB.find(s => s.sport === selected) || SPORTS_RULES_DB[0];
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "36px 24px 72px"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Know Your Sport",
+    title: "Sports Rules Database",
+    lede: "Dimensions, scoring, officials and recent rule changes for every major sport in the PE syllabus."
+  }), React.createElement("div", {
+    className: "chip-select",
+    style: {
+      marginBottom: 22
+    }
+  }, SPORTS_RULES_DB.map(s => React.createElement("button", {
+    key: s.sport,
+    className: "chip" + (selected === s.sport ? " active" : ""),
+    onClick: () => setSelected(s.sport)
+  }, s.sport))), React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("h3", {
+    className: "h1",
+    style: {
+      marginBottom: 18
+    }
+  }, sport.sport), React.createElement("div", {
+    className: "grid grid-3",
+    style: {
+      marginBottom: 20
+    }
+  }, React.createElement(StatTile, {
+    label: "Players",
+    value: sport.players
+  }), React.createElement(StatTile, {
+    label: "Dimensions",
+    value: sport.dimensions
+  }), React.createElement(StatTile, {
+    label: "Scoring",
+    value: sport.scoring
+  })), React.createElement("div", {
+    className: "grid grid-2"
+  }, React.createElement("div", null, React.createElement("div", {
+    className: "label",
+    style: {
+      marginBottom: 8
+    }
+  }, "Equipment"), React.createElement("p", {
+    className: "small muted",
+    style: {
+      marginBottom: 16
+    }
+  }, sport.equipment), React.createElement("div", {
+    className: "label",
+    style: {
+      marginBottom: 8
+    }
+  }, "Officials"), React.createElement("p", {
+    className: "small muted",
+    style: {
+      marginBottom: 16
+    }
+  }, sport.officials), React.createElement("div", {
+    className: "label",
+    style: {
+      marginBottom: 8
+    }
+  }, "Recent Rule Changes"), React.createElement("p", {
+    className: "small muted"
+  }, sport.recentChanges)), React.createElement("div", null, React.createElement("div", {
+    className: "label",
+    style: {
+      marginBottom: 8
+    }
+  }, "Common Fouls"), React.createElement("ul", {
+    style: {
+      margin: "0 0 16px 18px",
+      padding: 0
+    }
+  }, sport.fouls.map((f, i) => React.createElement("li", {
+    key: i,
+    className: "small muted",
+    style: {
+      marginBottom: 4
+    }
+  }, f))), React.createElement("div", {
+    className: "label",
+    style: {
+      marginBottom: 8
+    }
+  }, "Key Terminology"), React.createElement("div", {
+    className: "chip-select"
+  }, sport.terminology.map(t => React.createElement("span", {
+    key: t,
+    className: "chip"
+  }, t)))))));
+}
+function CurrentAffairsPage() {
+  const [cat, setCat] = useState("All");
+  const cats = ["All", ...new Set(CURRENT_AFFAIRS.map(c => c.category))];
+  const filtered = cat === "All" ? CURRENT_AFFAIRS : CURRENT_AFFAIRS.filter(c => c.category === cat);
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "36px 24px 72px"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Sports Current Affairs",
+    title: "September 2026 Sports Current Affairs Capsule",
+    lede: "Daily updates across Olympics, Indian sports, awards, and government schemes — with a weekly quiz and monthly revision PDF."
+  }), React.createElement("div", {
+    className: "flex justify-between wrap gap-16",
+    style: {
+      marginBottom: 20
+    }
+  }, React.createElement("div", {
+    className: "chip-select"
+  }, cats.map(c => React.createElement("button", {
+    key: c,
+    className: "chip" + (cat === c ? " active" : ""),
+    onClick: () => setCat(c)
+  }, c))), React.createElement("div", {
+    className: "flex gap-8"
+  }, React.createElement("button", {
+    className: "btn btn-outline btn-sm"
+  }, "Weekly Quiz"), React.createElement("button", {
+    className: "btn btn-outline btn-sm"
+  }, "Download Monthly PDF"))), React.createElement("div", {
+    className: "flex-col gap-14"
+  }, filtered.map(c => React.createElement("div", {
+    key: c.id,
+    className: "card card-pad"
+  }, React.createElement("div", {
+    className: "flex justify-between wrap gap-8",
+    style: {
+      marginBottom: 8
+    }
+  }, React.createElement("span", {
+    className: "pill pill-info"
+  }, c.category), React.createElement("span", {
+    className: "tiny muted"
+  }, new Date(c.date).toLocaleDateString())), React.createElement("h3", {
+    className: "h3"
+  }, c.title), React.createElement("p", {
+    className: "small muted",
+    style: {
+      marginTop: 6
+    }
+  }, c.summary)))));
+}
+
+/* ---- app-11-remaining.jsx ---- */
+function PreviousYearPapersPage() {
+  const {
+    routeParams,
+    goto,
+    mockLocked,
+    isPro,
+    hasExamAccess
+  } = useApp();
+  const [paywallExam, setPaywallExam] = useState(null);
+  const [engine, setEngine] = useState(null);
+  if (engine) return React.createElement(TestEngine, {
+    mode: "mock",
+    questions: engine.questions,
+    title: engine.title,
+    examMeta: {
+      duration: engine.duration,
+      negativeMarking: engine.negative,
+      examName: engine.title
+    },
+    onFinish: r => goto("/mock-result", {
+      result: {
+        ...r,
+        examShort: engine.short,
+        examId: engine.examId
+      }
+    })
+  });
+  const general = QUESTION_BANK.filter(q => !isSchoolQuestion(q));
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "36px 24px 72px"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Previous Year Papers",
+    title: "Exam-style practice sets",
+    lede: "Official past papers are not in the bank yet — we only publish a paper once its source and year are verified. Until then, attempt timed practice sets built from questions tagged for each exam.",
+    right: !isPro && React.createElement("span", {
+      className: "pill " + (mockLocked ? "pill-danger" : "pill-warning")
+    }, mockLocked ? "Free mock test used" : "Free Plan · 1 free attempt")
+  }), paywallExam && !isPro && !hasExamAccess(paywallExam.id) && mockLocked && React.createElement("div", {
+    style: {
+      marginBottom: 24
+    }
+  }, React.createElement(MockPaywall, {
+    title: "Unlock unlimited practice sets",
+    examId: paywallExam.id,
+    examShort: paywallExam.short
+  })), React.createElement("div", {
+    className: "grid grid-3"
+  }, EXAMS.map(ex => {
+    const tagged = questionsForExam(ex.id);
+    const n = Math.min(20, general.length);
+    const unlocked = isPro || hasExamAccess(ex.id) || !mockLocked;
+    const cfg = EXAM_CONFIG[ex.id] || {
+      negative: 0
+    };
+    return React.createElement("div", {
+      key: ex.id,
+      className: "card card-pad"
+    }, React.createElement("div", {
+      className: "flex justify-between",
+      style: {
+        marginBottom: 8
+      }
+    }, React.createElement("span", {
+      className: "pill pill-info"
+    }, ex.short), React.createElement("span", {
+      className: "pill"
+    }, "Practice set")), React.createElement("h3", {
+      className: "h3"
+    }, ex.short + " — exam-style set"), React.createElement("p", {
+      className: "tiny muted",
+      style: {
+        margin: "6px 0 14px"
+      }
+    }, n + " questions · 30 minutes · " + tagged.length + " " + ex.short + "-tagged question" + (tagged.length === 1 ? "" : "s") + " in the bank"), React.createElement("div", {
+      className: "flex-col gap-8"
+    }, React.createElement("button", {
+      className: "btn btn-primary btn-sm",
+      onClick: () => {
+        if (!unlocked) {
+          setPaywallExam(ex);
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+          return;
+        }
+        const chosen = pick(tagged, Math.min(n, tagged.length));
+        const have = new Set(chosen.map(q => q.id));
+        const fill = pick(general.filter(q => !have.has(q.id)), Math.max(0, n - chosen.length));
+        setEngine({
+          questions: [...chosen, ...fill],
+          title: ex.short + " practice set",
+          short: ex.short,
+          examId: ex.id,
+          duration: 30,
+          negative: cfg.negative
+        });
+      }
+    }, unlocked ? "Attempt Online" : "Unlock to Attempt", !unlocked && React.createElement(Icon, {
+      name: "lock",
+      size: 13
+    })), React.createElement("button", {
+      className: "btn btn-outline btn-sm",
+      onClick: () => goto("/question-bank", {
+        exam: ex.short
+      })
+    }, "View Questions")));
+  })));
+}
+function StudyMaterialPage() {
+  const [type, setType] = useState("All");
+  const [q, setQ] = useState("");
+  const [open, setOpen] = useState(null);
+  const types = ["All", ...new Set(STUDY_NOTES.map(n => n.type))];
+  const filtered = STUDY_NOTES.filter(n => (type === "All" || n.type === type) && (n.title.toLowerCase().includes(q.toLowerCase()) || n.subject.toLowerCase().includes(q.toLowerCase())));
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "36px 24px 72px"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Study Material",
+    title: "Digital PE Library",
+    lede: "Short notes, one-liners, formula sheets, sports rules, yoga charts and more — all searchable."
+  }), React.createElement("div", {
+    className: "flex justify-between wrap gap-16",
+    style: {
+      marginBottom: 20
+    }
+  }, React.createElement("input", {
+    className: "input",
+    placeholder: "Search notes…",
+    value: q,
+    onChange: e => setQ(e.target.value),
+    style: {
+      maxWidth: 320
+    }
+  }), React.createElement("div", {
+    className: "chip-select"
+  }, types.map(t => React.createElement("button", {
+    key: t,
+    className: "chip" + (type === t ? " active" : ""),
+    onClick: () => setType(t)
+  }, t)))), React.createElement("div", {
+    className: "grid grid-3"
+  }, filtered.map(n => React.createElement("div", {
+    key: n.id,
+    className: "card card-pad card-hover",
+    style: {
+      cursor: "pointer"
+    },
+    onClick: () => setOpen(open === n.id ? null : n.id)
+  }, React.createElement("span", {
+    className: "pill pill-info",
+    style: {
+      marginBottom: 10
+    }
+  }, n.type), React.createElement("h3", {
+    className: "h3"
+  }, n.title), React.createElement("p", {
+    className: "tiny muted",
+    style: {
+      margin: "6px 0"
+    }
+  }, n.subject), React.createElement("p", {
+    className: "small muted"
+  }, n.summary), open === n.id && React.createElement("div", {
+    className: "explain-box",
+    style: {
+      marginTop: 12
+    }
+  }, React.createElement("p", {
+    className: "small"
+  }, "This " + n.type.toLowerCase() + " module condenses the highest-yield " + n.subject + " content for fast revision before your exam. In the full platform, this opens a rich, illustrated reader with bookmarking and highlight sync."), React.createElement("button", {
+    className: "btn btn-outline btn-sm",
+    style: {
+      marginTop: 10
+    }
+  }, "Open Full Note"))))));
+}
+const STUDY_PLAN_TASKS = ["Concept Study", "Topic-wise MCQs", "Quick Revision"];
+function generateStudyPlan(examName, days, hoursPerDay) {
+  const subjectCycle = SUBJECTS.filter(s => ["Sports Science", "Coaching", "Behavioural Science", "Research", "Indian Traditions", "Sports Events", "Sports Rules"].includes(s.group));
+  const plan = [];
+  for (let d = 1; d <= days; d++) {
+    const subj = subjectCycle[(d - 1) % subjectCycle.length];
+    const totalMin = Math.round(hoursPerDay * 60);
+    plan.push({
+      day: d,
+      subject: subj.name,
+      blocks: [{
+        task: "Concept Study — " + subj.name,
+        minutes: Math.round(totalMin * 0.45)
+      }, {
+        task: "Topic-wise MCQs",
+        minutes: Math.round(totalMin * 0.35)
+      }, {
+        task: "Quick Revision",
+        minutes: Math.round(totalMin * 0.2)
+      }]
+    });
+  }
+  return {
+    examName,
+    days,
+    hoursPerDay,
+    createdAt: Date.now(),
+    plan
+  };
+}
+function StudyPlannerPage() {
+  const {
+    studyPlan,
+    setStudyPlan,
+    goto
+  } = useApp();
+  const [examName, setExamName] = useState(EXAMS[0].name);
+  const [examDate, setExamDate] = useState("");
+  const [hours, setHours] = useState(2);
+  const [level, setLevel] = useState("Beginner");
+  const [progress, setProgress] = usePersistentState("pep_plan_progress", {});
+  function build() {
+    let days = 30;
+    if (examDate) {
+      const diff = daysBetween(todayStr(), examDate);
+      if (diff > 0) days = clamp(diff, 7, 90);
+    }
+    setStudyPlan(generateStudyPlan(examName, days, hours));
+    setProgress({});
+  }
+  if (studyPlan) {
+    const doneCount = Object.values(progress).filter(Boolean).length;
+    return React.createElement("div", {
+      className: "container",
+      style: {
+        padding: "36px 24px 72px"
+      }
+    }, React.createElement(SectionHeading, {
+      eyebrow: "Study Planner",
+      title: studyPlan.days + "-Day " + studyPlan.examName + " Preparation Plan",
+      right: React.createElement("button", {
+        className: "btn btn-outline btn-sm",
+        onClick: () => setStudyPlan(null)
+      }, "Rebuild Plan")
+    }), React.createElement("div", {
+      className: "card card-pad",
+      style: {
+        marginBottom: 22
+      }
+    }, React.createElement("div", {
+      className: "flex justify-between small",
+      style: {
+        marginBottom: 6
+      }
+    }, React.createElement("span", null, "Overall Completion"), React.createElement("span", {
+      className: "num"
+    }, doneCount + " / " + studyPlan.plan.length + " days")), React.createElement("div", {
+      className: "progress-track"
+    }, React.createElement("div", {
+      className: "progress-fill success",
+      style: {
+        width: doneCount / studyPlan.plan.length * 100 + "%"
+      }
+    }))), React.createElement("div", {
+      className: "flex-col gap-10"
+    }, studyPlan.plan.map(dayPlan => React.createElement("div", {
+      key: dayPlan.day,
+      className: "card card-pad",
+      style: {
+        opacity: progress[dayPlan.day] ? 0.65 : 1
+      }
+    }, React.createElement("div", {
+      className: "flex justify-between items-center wrap gap-10"
+    }, React.createElement("div", null, React.createElement("div", {
+      style: {
+        fontWeight: 700
+      }
+    }, "Day " + dayPlan.day + ": " + dayPlan.subject), React.createElement("div", {
+      className: "small muted",
+      style: {
+        marginTop: 4
+      }
+    }, dayPlan.blocks.map(b => b.task.split(" — ")[0] + " (" + b.minutes + "m)").join(" · "))), React.createElement("button", {
+      className: "btn " + (progress[dayPlan.day] ? "btn-outline" : "btn-primary") + " btn-sm",
+      onClick: () => setProgress(p => ({
+        ...p,
+        [dayPlan.day]: !p[dayPlan.day]
+      }))
+    }, progress[dayPlan.day] ? "Completed ✓" : "Mark Done"))))));
+  }
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "36px 24px 72px",
+      maxWidth: 640
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Study Planner",
+    title: "Build Your Personalized Study Plan"
+  }), React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("div", {
+    className: "flex-col gap-16"
+  }, React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Target Exam"), React.createElement("select", {
+    className: "select",
+    value: examName,
+    onChange: e => setExamName(e.target.value)
+  }, EXAMS.map(e => React.createElement("option", {
+    key: e.id,
+    value: e.name
+  }, e.name)))), React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Exam Date (optional)"), React.createElement("input", {
+    type: "date",
+    className: "input",
+    value: examDate,
+    onChange: e => setExamDate(e.target.value)
+  })), React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Daily Available Hours: " + hours), React.createElement("input", {
+    type: "range",
+    min: 1,
+    max: 8,
+    value: hours,
+    onChange: e => setHours(+e.target.value)
+  })), React.createElement(FilterChipGroup, {
+    label: "Current Level",
+    options: ["Beginner", "Intermediate", "Advanced"],
+    value: level,
+    onChange: setLevel
+  }), React.createElement("button", {
+    className: "btn btn-primary btn-block",
+    onClick: build
+  }, "Generate My Study Plan"))));
+}
+function MyMistakesPage() {
+  const {
+    wrongLog,
+    attempts,
+    goto
+  } = useApp();
+  const [engine, setEngine] = useState(null);
+  const [tab, setTab] = useState("recent");
+  const entries = Object.entries(wrongLog).map(([id, count]) => ({
+    q: QUESTIONS_BY_ID[id],
+    count,
+    ts: attempts[id]?.ts || 0
+  })).filter(e => e.q);
+  const recent = [...entries].sort((a, b) => b.ts - a.ts);
+  const repeated = entries.filter(e => e.count > 1).sort((a, b) => b.count - a.count);
+  const difficult = entries.filter(e => ["Hard", "Expert"].includes(e.q.difficulty));
+  const tabs = {
+    recent: {
+      label: "Recently Wrong",
+      data: recent
+    },
+    repeated: {
+      label: "Repeated Mistakes",
+      data: repeated
+    },
+    difficult: {
+      label: "Most Difficult",
+      data: difficult
+    },
+    all: {
+      label: "All / Needs Revision",
+      data: entries
+    }
+  };
+  const list = tabs[tab].data;
+  if (engine) return React.createElement(TestEngine, {
+    mode: "practice",
+    questions: engine,
+    title: "Practice My Mistakes",
+    onExit: () => setEngine(null)
+  });
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "36px 24px 72px"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Wrong Answer Notebook",
+    title: "My Mistakes",
+    lede: "Every question you've answered incorrectly, automatically collected here for focused revision.",
+    right: entries.length > 0 && React.createElement("button", {
+      className: "btn btn-primary",
+      onClick: () => setEngine(entries.map(e => e.q))
+    }, "Practice My Mistakes")
+  }), React.createElement("div", {
+    className: "tabs",
+    style: {
+      marginBottom: 20
+    }
+  }, Object.entries(tabs).map(([id, t]) => React.createElement("div", {
+    key: id,
+    className: "tab" + (tab === id ? " active" : ""),
+    onClick: () => setTab(id)
+  }, t.label + " (" + t.data.length + ")"))), list.length === 0 ? React.createElement("div", {
+    className: "empty-state card"
+  }, React.createElement(Icon, {
+    name: "check",
+    size: 32
+  }), React.createElement("p", {
+    style: {
+      marginTop: 10
+    }
+  }, "No mistakes in this category yet — keep practicing!")) : React.createElement("div", {
+    className: "flex-col gap-10"
+  }, list.map(e => React.createElement("div", {
+    key: e.q.id,
+    className: "card card-pad"
+  }, React.createElement("div", {
+    className: "flex justify-between wrap gap-8",
+    style: {
+      marginBottom: 8
+    }
+  }, React.createElement("div", {
+    className: "flex gap-8 wrap"
+  }, React.createElement("span", {
+    className: "pill pill-info"
+  }, e.q.subject), React.createElement(DifficultyPill, {
+    level: e.q.difficulty
+  }), e.count > 1 && React.createElement("span", {
+    className: "pill pill-danger"
+  }, "Wrong " + e.count + "x")), React.createElement("button", {
+    className: "btn btn-ghost btn-sm",
+    onClick: () => setEngine([e.q])
+  }, "Retry")), React.createElement("p", {
+    className: "small",
+    style: {
+      fontWeight: 500
+    }
+  }, e.q.question.split("\n")[0])))));
+}
+function BookmarksPage() {
+  const {
+    bookmarks,
+    toggleBookmark,
+    goto
+  } = useApp();
+  const [tab, setTab] = useState("questions");
+  const tabs = [["questions", "Questions"], ["flashcards", "Flashcards"], ["notes", "Notes"], ["tests", "Tests"]];
+  const qs = (bookmarks.questions || []).map(id => QUESTIONS_BY_ID[id]).filter(Boolean);
+  const fcs = (bookmarks.flashcards || []).map(id => FLASHCARDS.find(f => f.id === id)).filter(Boolean);
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "36px 24px 72px"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Saved",
+    title: "My Bookmarks"
+  }), React.createElement("div", {
+    className: "tabs",
+    style: {
+      marginBottom: 20
+    }
+  }, tabs.map(([id, l]) => React.createElement("div", {
+    key: id,
+    className: "tab" + (tab === id ? " active" : ""),
+    onClick: () => setTab(id)
+  }, l))), tab === "questions" && (qs.length === 0 ? React.createElement("div", {
+    className: "empty-state card"
+  }, "No bookmarked questions yet.") : React.createElement("div", {
+    className: "flex-col gap-10"
+  }, qs.map(q => React.createElement("div", {
+    key: q.id,
+    className: "card card-pad"
+  }, React.createElement("div", {
+    className: "flex justify-between",
+    style: {
+      marginBottom: 8
+    }
+  }, React.createElement("span", {
+    className: "pill pill-info"
+  }, q.subject), React.createElement("button", {
+    className: "btn btn-ghost btn-icon",
+    onClick: () => toggleBookmark("questions", q.id)
+  }, React.createElement(Icon, {
+    name: "close",
+    size: 14
+  }))), React.createElement("p", {
+    className: "small"
+  }, q.question.split("\n")[0]))))), tab === "flashcards" && (fcs.length === 0 ? React.createElement("div", {
+    className: "empty-state card"
+  }, "No bookmarked flashcards yet.") : React.createElement("div", {
+    className: "grid grid-3"
+  }, fcs.map(f => React.createElement("div", {
+    key: f.id,
+    className: "card card-pad"
+  }, React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      marginBottom: 6
+    }
+  }, f.front), React.createElement("p", {
+    className: "small muted"
+  }, f.back))))), (tab === "notes" || tab === "tests") && React.createElement("div", {
+    className: "empty-state card"
+  }, "Nothing bookmarked here yet — save items from Study Material or Mock Tests."));
+}
+function PricingPage() {
+  const {
+    notify,
+    profile,
+    isPro,
+    upgradePlan,
+    freeMocksUsed,
+    paymentsLive,
+    checkoutBusy,
+    hasExamAccess
+  } = useApp();
+  const plan = profile.plan || "free";
+  const tiers = [{
+    id: "free",
+    name: "Free",
+    price: "₹0",
+    period: "forever",
+    features: ["5 free explanations per subject", "1 full mock test, then upgrade for more", "Basic short notes", "Limited analytics", "Or buy a single-exam Pass below — cheaper than full Pro"],
+    highlight: false
+  }, {
+    id: "pro",
+    name: "Pro",
+    price: "₹499",
+    period: "one-time",
+    features: ["Unlimited practice questions", "Unlimited mock tests", "Detailed performance analytics & answer review", "Exam-style practice sets for every exam", "Full study material & flashcards", "Study planner"],
+    highlight: true
+  }, {
+    id: "proplus",
+    name: "Pro+",
+    price: "₹899",
+    period: "one-time",
+    features: ["Everything in Pro today", "Supporter tier: also gets upcoming features as they ship (AI coach, adaptive plans, live classes) — these are in development and not available yet"],
+    highlight: false
+  }];
+  const lede = paymentsLive ? "Take one full mock test free. Upgrade to Pro for unlimited mock tests and full analytics. Payments are processed securely via Razorpay — your plan unlocks the moment payment is verified." : "Take one full mock test free. Upgrade to Pro for unlimited mock tests and full analytics. (Payment processing is not wired up in this prototype — upgrading here applies the plan instantly so you can see what unlocks.)";
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "40px 24px 72px"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Pricing",
+    title: "Simple, transparent plans",
+    lede
+  }), !isPro && freeMocksUsed > 0 && React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      marginBottom: 24,
+      borderColor: "var(--warning)"
+    }
+  }, React.createElement("span", {
+    className: "pill pill-warning",
+    style: {
+      marginBottom: 8
+    }
+  }, "Free mock test used"), React.createElement("p", {
+    className: "small muted"
+  }, "You've used your one free full mock test. Upgrade to Pro below for unlimited mock tests and practice sets.")), React.createElement("div", {
+    className: "grid grid-3"
+  }, tiers.map(t => {
+    const isCurrent = plan === t.id;
+    const busyThisCard = checkoutBusy && t.id !== "free";
+    return React.createElement("div", {
+      key: t.name,
+      className: "card card-pad",
+      style: t.highlight ? {
+        border: "2px solid var(--accent)",
+        boxShadow: "var(--shadow-md)",
+        position: "relative"
+      } : {}
+    }, t.highlight && React.createElement("span", {
+      className: "pill pill-accent",
+      style: {
+        position: "absolute",
+        top: -12,
+        left: 20
+      }
+    }, "Most Popular"), React.createElement("div", {
+      className: "flex justify-between items-center"
+    }, React.createElement("h3", {
+      className: "h2"
+    }, t.name), isCurrent && React.createElement("span", {
+      className: "pill pill-success"
+    }, "Your Plan")), React.createElement("div", {
+      style: {
+        margin: "10px 0 18px"
+      }
+    }, React.createElement("span", {
+      className: "display-2 num"
+    }, t.price), React.createElement("span", {
+      className: "small muted"
+    }, " " + t.period)), React.createElement("div", {
+      className: "flex-col gap-10",
+      style: {
+        marginBottom: 22
+      }
+    }, t.features.map(f => React.createElement("div", {
+      key: f,
+      className: "flex items-center gap-8 small"
+    }, React.createElement(Icon, {
+      name: "check",
+      size: 15,
+      style: {
+        color: "var(--success)",
+        flex: "none"
+      }
+    }), f))), React.createElement("button", {
+      className: "btn " + (isCurrent ? "btn-outline" : t.highlight ? "btn-primary" : "btn-outline") + " btn-block",
+      disabled: isCurrent || checkoutBusy,
+      onClick: () => {
+        if (t.id === "free") return;
+        upgradePlan(t.id);
+      }
+    }, isCurrent ? "Current Plan" : busyThisCard ? "Opening secure checkout…" : t.id === "free" ? "Downgrade" : "Upgrade to " + t.name));
+  })), React.createElement("p", {
+    className: "tiny muted",
+    style: {
+      marginTop: 18,
+      textAlign: "center"
+    }
+  }, paymentsLive ? "Secured by Razorpay. One-time payment, no subscription — see the Refund Policy." : "Real payment gateway not connected in this deployment — see server/README.md to enable one."), React.createElement("div", {
+    style: {
+      marginTop: 56
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Prepare For Just One Exam?",
+    title: "Single-exam passes",
+    lede: "Most aspirants only prepare for one exam at a time. A Pass unlocks unlimited mock tests, full result analysis and practice sets for that one exam only — at a fraction of full Pro's price."
+  }), React.createElement("div", {
+    className: "grid grid-4"
+  }, EXAMS.map(ex => {
+    const owned = isPro || hasExamAccess(ex.id);
+    return React.createElement("div", {
+      key: ex.id,
+      className: "card card-pad"
+    }, React.createElement("div", {
+      className: "flex justify-between items-center",
+      style: {
+        marginBottom: 12
+      }
+    }, React.createElement("div", {
+      className: "exam-swatch",
+      style: {
+        background: "var(--ink)"
+      }
+    }, ex.short.slice(0, 2)), owned && React.createElement("span", {
+      className: "pill pill-success"
+    }, "Owned")), React.createElement("h3", {
+      className: "h3"
+    }, ex.short), React.createElement("p", {
+      className: "tiny muted",
+      style: {
+        margin: "6px 0 14px"
+      }
+    }, ex.body), React.createElement("div", {
+      style: {
+        margin: "0 0 14px"
+      }
+    }, React.createElement("span", {
+      className: "h1 num"
+    }, "₹" + EXAM_PASS_PRICE_INR), React.createElement("span", {
+      className: "small muted"
+    }, " one-time")), React.createElement("button", {
+      className: "btn btn-outline btn-sm btn-block",
+      disabled: owned || checkoutBusy,
+      onClick: () => upgradePlan("exampass", ex.id)
+    }, owned ? "Unlocked" : checkoutBusy ? "Opening secure checkout…" : "Get " + ex.short + " Pass"));
+  }))));
+}
+function LegalPage({
+  eyebrow,
+  title,
+  updated,
+  sections
+}) {
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "48px 24px 80px",
+      maxWidth: 760,
+      margin: "0 auto"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow,
+    title,
+    lede: "Last updated: " + updated
+  }), React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 26
+    }
+  }, sections.map((s, i) => React.createElement("div", {
+    key: i
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 10
+    }
+  }, s.h), s.body.map((p, j) => Array.isArray(p) ? React.createElement("ul", {
+    key: j,
+    style: {
+      margin: "0 0 10px",
+      paddingLeft: 20
+    }
+  }, p.map((li, k) => React.createElement("li", {
+    key: k,
+    className: "small muted",
+    style: {
+      lineHeight: 1.7,
+      marginBottom: 4
+    }
+  }, li))) : React.createElement("p", {
+    key: j,
+    className: "small muted",
+    style: {
+      lineHeight: 1.7,
+      marginBottom: 10
+    }
+  }, p))))));
+}
+const LEGAL_UPDATED = "21 September 2026";
+function TermsPage() {
+  return React.createElement(LegalPage, {
+    eyebrow: "Legal",
+    title: "Terms of Service",
+    updated: LEGAL_UPDATED,
+    sections: [{
+      h: "1. Acceptance of these Terms",
+      body: ["By creating an account, purchasing a plan, or otherwise using PE Prep (\"PE Prep\", \"the Platform\", \"we\", \"us\"), you agree to these Terms of Service. If you do not agree, please do not use the Platform."]
+    }, {
+      h: "2. What PE Prep is",
+      body: ["PE Prep is an exam-preparation platform focused exclusively on Physical Education competitive exams (including KVS, NVS, DSSSB, UGC NET, SET, State PSC, B.P.Ed and M.P.Ed), offering practice questions, mock tests, exam-style practice sets, study material and performance analytics."]
+    }, {
+      h: "3. Eligibility",
+      body: ["PE Prep is intended for users aged 18 and above who are preparing for the exams it covers. By using the Platform you confirm that you meet this age requirement."]
+    }, {
+      h: "4. Your account",
+      body: ["You are responsible for keeping your login credentials confidential and for all activity under your account. Let us know immediately via the Contact page if you suspect unauthorised access.", "You agree to provide accurate information when creating an account and to keep it up to date."]
+    }, {
+      h: "5. Plans and payments",
+      body: ["PE Prep offers a Free plan and paid upgrades: Pro, Pro+, and single-exam passes scoped to one exam. All paid plans are one-time purchases that unlock access — they are not recurring subscriptions, and you will not be auto-charged again for the same plan.", "Prices are shown in Indian Rupees (INR) and are inclusive of applicable taxes unless stated otherwise. Payments are processed by Razorpay; see our Refund & Cancellation Policy for how refunds are handled."]
+    }, {
+      h: "6. Acceptable use",
+      body: [["Share your account credentials with others, or access an account that isn't yours", "Copy, scrape, redistribute or resell PE Prep's question bank, mock tests or study material", "Use automated tools to extract content from the Platform", "Attempt to disrupt, reverse-engineer or gain unauthorised access to the Platform's systems"]]
+    }, {
+      h: "7. Intellectual property",
+      body: ["All questions, explanations, study material, branding and software on PE Prep belong to PE Prep or its licensors. Your paid plan gives you a personal, non-transferable licence to use this content for your own exam preparation — it does not transfer ownership or any right to redistribute it."]
+    }, {
+      h: "8. Educational content — no outcome guarantee",
+      body: ["PE Prep's content is prepared to help you practice and prepare. It is not a substitute for official exam notifications, syllabi or answer keys published by the conducting bodies (NTA, KVS, NVS, DSSSB, State PSCs, universities, etc.) — always cross-check exam-critical details against the official source. We do not guarantee any particular exam result, rank or outcome from using the Platform."]
+    }, {
+      h: "9. Limitation of liability",
+      body: ["PE Prep is provided \"as is\". To the extent permitted by law, we are not liable for indirect or consequential loss arising from your use of the Platform, including reliance on its content for exam-related decisions."]
+    }, {
+      h: "10. Termination",
+      body: ["We may suspend or terminate access for accounts that violate these Terms, including the acceptable-use rules above. You may stop using the Platform, or ask us to delete your account, at any time via the Contact page."]
+    }, {
+      h: "11. Changes to these Terms",
+      body: ["We may update these Terms from time to time; the \"Last updated\" date above will reflect the latest revision. Continued use of the Platform after a change means you accept the updated Terms."]
+    }, {
+      h: "12. Governing law",
+      body: ["These Terms are governed by the laws of India, and any disputes are subject to the jurisdiction of Indian courts."]
+    }, {
+      h: "13. Contact",
+      body: ["Questions about these Terms can be sent through the Contact page."]
+    }]
+  });
+}
+function PrivacyPage() {
+  return React.createElement(LegalPage, {
+    eyebrow: "Legal",
+    title: "Privacy Policy",
+    updated: LEGAL_UPDATED,
+    sections: [{
+      h: "1. Introduction",
+      body: ["This Privacy Policy explains what information PE Prep collects, how it's used, and the choices you have. Using the Platform means you agree to this Policy."]
+    }, {
+      h: "2. Information we collect",
+      body: ["Account information: your name, email address and a securely hashed password (we never store your password in plain text) when you sign up.", "Usage and progress data: mock test scores, accuracy, streaks, bookmarks, and the questions you've attempted, so the Platform can show your progress and unlock free-tier previews correctly.", "Payment information: handled entirely by Razorpay, our payment processor. PE Prep never sees or stores your card, UPI or bank account details — we only receive confirmation that a payment succeeded and a reference ID.", "Standard technical logs (such as IP address and browser type) generated automatically by our hosting provider."]
+    }, {
+      h: "3. How we use this information",
+      body: [["To provide your account, track your progress, and apply the correct plan/entitlements", "To respond to messages sent via the Contact page", "To maintain and improve the Platform's reliability and content", "To meet legal or tax obligations where applicable"]]
+    }, {
+      h: "4. Cookies and local storage",
+      body: ["PE Prep uses your browser's local storage to keep you signed in and to remember preferences (such as theme and dismissed banners) on your device. We do not use this for cross-site advertising tracking."]
+    }, {
+      h: "5. Third-party services",
+      body: ["Razorpay processes all payments under its own privacy policy and PCI-compliant security standards.", "Render hosts our servers and database. Google sign-in, where used, is handled directly by Google's own authentication flow."]
+    }, {
+      h: "6. Data retention",
+      body: ["We keep your account and progress data for as long as your account is active. If you ask us to delete your account via the Contact page, we will delete your personal information within a reasonable time, except where we're required to keep transaction records for legal or tax reasons."]
+    }, {
+      h: "7. Your rights",
+      body: ["You can ask to access, correct, or delete your personal data at any time by reaching out through the Contact page."]
+    }, {
+      h: "8. Data security",
+      body: ["We use industry-standard measures (including password hashing and encrypted connections) to protect your information, but no online service can guarantee absolute security."]
+    }, {
+      h: "9. Changes to this Policy",
+      body: ["We may update this Privacy Policy from time to time; the \"Last updated\" date above reflects the latest revision."]
+    }, {
+      h: "10. Contact",
+      body: ["Questions about this Policy, or requests to access/delete your data, can be sent through the Contact page."]
+    }]
+  });
+}
+function RefundPolicyPage() {
+  return React.createElement(LegalPage, {
+    eyebrow: "Legal",
+    title: "Refund & Cancellation Policy",
+    updated: LEGAL_UPDATED,
+    sections: [{
+      h: "1. One-time purchases, not subscriptions",
+      body: ["PE Prep's Pro, Pro+ and single-exam pass plans are one-time payments that unlock access immediately — none of them auto-renew or charge you again, so there is nothing to \"cancel\" in the subscription sense."]
+    }, {
+      h: "2. General policy",
+      body: ["Because paid plans unlock digital content and access immediately on successful payment, purchases are generally non-refundable once access has been granted — this is standard practice for digital educational products."]
+    }, {
+      h: "3. When a refund applies",
+      body: ["We will refund a payment if:", ["You were charged more than once for the same purchase (a duplicate charge)", "Your payment was debited but your plan or exam pass was not activated within 24 hours due to a technical error on our end", "The transaction was unauthorised or fraudulent"]]
+    }, {
+      h: "4. How to request a refund",
+      body: ["Contact us through the Contact page within 7 days of the transaction, including your registered email, the approximate date of payment, and (if available) the payment/order ID from your Razorpay receipt or bank/UPI app."]
+    }, {
+      h: "5. Refund timeline",
+      body: ["Approved refunds are processed within 5–7 business days back to the original payment method, though your bank or UPI app may take a few additional days to reflect it."]
+    }, {
+      h: "6. Failed or pending payments",
+      body: ["If a payment shows as \"failed\" or \"pending\" but an amount was debited from your account, this is usually auto-reversed by your bank or Razorpay within standard banking timelines without any action needed. If it isn't reversed within 7 days, contact us and we'll help track it down."]
+    }, {
+      h: "7. Contact",
+      body: ["For anything refund-related, reach us through the Contact page."]
+    }]
+  });
+}
+function AboutPage() {
+  return React.createElement(LegalPage, {
+    eyebrow: "About",
+    title: "About PE Prep",
+    updated: LEGAL_UPDATED,
+    sections: [{
+      h: "What we're building",
+      body: ["PE Prep is India's dedicated exam-preparation platform for Physical Education — built for aspirants preparing for KVS, NVS, DSSSB, UGC NET, SET, State PSC, B.P.Ed, M.P.Ed and other PE-specific exams.", "Every other major exam-prep platform treats Physical Education as one subject among dozens. PE Prep exists because this syllabus — Kinesiology, Biomechanics, Sports Psychology, Sports Training, Yoga, Olympic Movement and more — deserves the same depth of practice questions, mock tests, previous year papers and analytics that a full syllabus gets everywhere else."]
+    }, {
+      h: "How it works",
+      body: ["Learn through structured study material, practice topic-wise questions with instant explanations, take full-length mock tests under real exam conditions, and track accuracy and progress over time — all built around one continuous loop: Learn, Practice, Test, Analyze, Revise, Improve."]
+    }, {
+      h: "Get in touch",
+      body: ["Questions, feedback, or a correction to report on a question? Reach us through the Contact page — we read every message."]
+    }]
+  });
+}
+function ContactPage() {
+  const {
+    notify
+  } = useApp();
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  function submit(e) {
+    e.preventDefault();
+    if (!form.message.trim()) {
+      notify("Please write a message before sending.");
+      return;
+    }
+    if (!AUTH_API) {
+      notify("Contact form isn't connected to a backend in this environment yet.");
+      return;
+    }
+    setSending(true);
+    fetch(`${AUTH_API}/api/contact`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: form.name.trim() || null,
+        email: form.email.trim() || null,
+        message: form.message.trim()
+      })
+    }).then(r => {
+      if (!r.ok) throw new Error();
+      return r.json();
+    }).then(() => {
+      setSent(true);
+      setForm({
+        name: "",
+        email: "",
+        message: ""
+      });
+    }).catch(() => notify("Couldn't send your message — please try again in a moment.")).finally(() => setSending(false));
+  }
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "48px 24px 72px",
+      maxWidth: 640,
+      margin: "0 auto"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Support",
+    title: "Contact Us",
+    lede: "Questions, feedback, or something not working? Send us a message and we'll get back to you by email."
+  }), sent ? React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      textAlign: "center"
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 30,
+      marginBottom: 8
+    }
+  }, "✅"), React.createElement("h3", {
+    className: "h3"
+  }, "Message sent"), React.createElement("p", {
+    className: "small muted",
+    style: {
+      marginTop: 6
+    }
+  }, "Thanks — we'll get back to you soon, especially if you left an email address."), React.createElement("button", {
+    className: "btn btn-outline btn-sm",
+    style: {
+      marginTop: 16
+    },
+    onClick: () => setSent(false)
+  }, "Send another message")) : React.createElement("form", {
+    className: "card card-pad",
+    onSubmit: submit
+  }, React.createElement("div", {
+    className: "flex-col gap-14"
+  }, React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Name (optional)"), React.createElement("input", {
+    className: "input",
+    value: form.name,
+    onChange: e => setForm({
+      ...form,
+      name: e.target.value
+    })
+  })), React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Your email (optional — so we can reply)"), React.createElement("input", {
+    type: "email",
+    className: "input",
+    value: form.email,
+    onChange: e => setForm({
+      ...form,
+      email: e.target.value
+    })
+  })), React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Message"), React.createElement("textarea", {
+    className: "input",
+    rows: 5,
+    value: form.message,
+    onChange: e => setForm({
+      ...form,
+      message: e.target.value
+    })
+  })), React.createElement("button", {
+    className: "btn btn-primary",
+    type: "submit",
+    disabled: sending
+  }, sending ? "Sending…" : "Send Message"))));
+}
+const emptyQForm = {
+  question: "",
+  optionA: "",
+  optionB: "",
+  optionC: "",
+  optionD: "",
+  correct: "A",
+  explanation: "",
+  subject: SUBJECTS[0].name,
+  topic: "",
+  difficulty: "Easy",
+  exam: EXAMS[0].name,
+  year: new Date().getFullYear(),
+  negativeMarking: 0.25,
+  source: "",
+  tags: ""
+};
+function AdminPage() {
+  const {
+    notify,
+    isLoggedIn,
+    isAdmin,
+    goto
+  } = useApp();
+  useEffect(() => {
+    if (!isAdmin) {
+      notify("That page is restricted to the site admin.", 3200);
+      goto("/");
+    }
+  }, [isAdmin]);
+  if (!isAdmin) {
+    return React.createElement("div", {
+      className: "container",
+      style: {
+        padding: "80px 24px",
+        textAlign: "center"
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 34,
+        marginBottom: 10
+      }
+    }, "🔒"), React.createElement("h2", {
+      className: "h2"
+    }, "Restricted"), React.createElement("p", {
+      className: "small muted",
+      style: {
+        marginTop: 8
+      }
+    }, isLoggedIn ? "This account doesn't have admin access." : "Sign in with the admin account to view this page."));
+  }
+  return React.createElement(AdminDashboard, null);
+}
+function AdminDashboard() {
+  const {
+    notify,
+    authToken
+  } = useApp();
+  const [tab, setTab] = useState("questions");
+  const [adminQuestions, setAdminQuestions] = usePersistentState("pep_admin_questions", []);
+  const [form, setForm] = useState(emptyQForm);
+  const [search, setSearch] = useState("");
+  const allQuestions = [...adminQuestions, ...QUESTION_BANK];
+  const filtered = allQuestions.filter(q => q.question.toLowerCase().includes(search.toLowerCase()));
+  const [messages, setMessages] = useState(null);
+  const [messagesError, setMessagesError] = useState(null);
+  useEffect(() => {
+    if (tab !== "messages" || messages !== null || !AUTH_API) return;
+    fetch(`${AUTH_API}/api/contact`, {
+      headers: {
+        Authorization: `Bearer ${authToken}`
+      }
+    }).then(r => {
+      if (!r.ok) throw new Error("Could not load messages");
+      return r.json();
+    }).then(data => setMessages(data.messages || [])).catch(e => setMessagesError(e.message));
+  }, [tab, messages, authToken]);
+  function submitForm(e) {
+    e.preventDefault();
+    if (!form.question.trim()) {
+      notify("Question text is required");
+      return;
+    }
+    const newQ = {
+      id: "ADMIN-" + Date.now(),
+      exam: [form.exam],
+      subject: form.subject,
+      topic: form.topic || "General",
+      difficulty: form.difficulty,
+      type: "MCQ",
+      year: +form.year,
+      question: form.question,
+      options: [form.optionA, form.optionB, form.optionC, form.optionD],
+      correctIndex: {
+        A: 0,
+        B: 1,
+        C: 2,
+        D: 3
+      }[form.correct],
+      explanation: form.explanation,
+      source: form.source,
+      concept: {
+        title: form.topic || "Concept",
+        definition: form.explanation.slice(0, 140) || "—",
+        points: [],
+        memoryTrick: "—",
+        sportsRelevance: "—"
+      },
+      relatedIds: [],
+      tags: form.tags.split(",").map(t => t.trim()).filter(Boolean)
+    };
+    setAdminQuestions(prev => [newQ, ...prev]);
+    notify("Question added to the bank");
+    setForm(emptyQForm);
+  }
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "36px 24px 72px"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "Admin",
+    title: "Admin Dashboard",
+    lede: "Manage the question bank, exams, notes, and view content analytics. Demo scope: question CRUD is functional and stored locally in your browser."
+  }), React.createElement("div", {
+    className: "grid grid-4",
+    style: {
+      marginBottom: 24
+    }
+  }, React.createElement(StatTile, {
+    label: "Total Questions",
+    value: allQuestions.length
+  }), React.createElement(StatTile, {
+    label: "Exams",
+    value: EXAMS.length
+  }), React.createElement(StatTile, {
+    label: "Subjects",
+    value: SUBJECTS.length
+  }), React.createElement(StatTile, {
+    label: "Added This Session",
+    value: adminQuestions.length
+  })), React.createElement("div", {
+    className: "tabs",
+    style: {
+      marginBottom: 20
+    }
+  }, [["questions", "Manage Questions"], ["add", "Add Question"], ["content", "Notes & Current Affairs"], ["messages", "Contact Messages"]].map(([id, l]) => React.createElement("div", {
+    key: id,
+    className: "tab" + (tab === id ? " active" : ""),
+    onClick: () => setTab(id)
+  }, l))), tab === "questions" && React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("input", {
+    className: "input",
+    placeholder: "Search questions…",
+    value: search,
+    onChange: e => setSearch(e.target.value),
+    style: {
+      marginBottom: 16,
+      maxWidth: 340
+    }
+  }), React.createElement("div", {
+    className: "overflow-x"
+  }, React.createElement("table", {
+    className: "datatable"
+  }, React.createElement("thead", null, React.createElement("tr", null, ["Question", "Subject", "Difficulty", "Exam(s)", "Year", ""].map(h => React.createElement("th", {
+    key: h
+  }, h)))), React.createElement("tbody", null, filtered.slice(0, 30).map(q => React.createElement("tr", {
+    key: q.id
+  }, React.createElement("td", {
+    style: {
+      maxWidth: 340
+    }
+  }, q.question.split("\n")[0].slice(0, 70) + (q.question.length > 70 ? "…" : "")), React.createElement("td", null, q.subject), React.createElement("td", null, React.createElement(DifficultyPill, {
+    level: q.difficulty
+  })), React.createElement("td", null, q.exam.join(", ")), React.createElement("td", {
+    className: "num"
+  }, q.year), React.createElement("td", null, React.createElement("div", {
+    className: "flex gap-6"
+  }, React.createElement(Icon, {
+    name: "edit",
+    size: 15
+  }), React.createElement(Icon, {
+    name: "trash",
+    size: 15
+  }))))))))), tab === "add" && React.createElement("form", {
+    className: "card card-pad",
+    onSubmit: submitForm,
+    style: {
+      maxWidth: 720
+    }
+  }, React.createElement("div", {
+    className: "flex-col gap-14"
+  }, React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Question"), React.createElement("textarea", {
+    className: "input",
+    rows: 3,
+    value: form.question,
+    onChange: e => setForm({
+      ...form,
+      question: e.target.value
+    })
+  })), React.createElement("div", {
+    className: "grid grid-2"
+  }, ["A", "B", "C", "D"].map(l => React.createElement("div", {
+    key: l,
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Option " + l), React.createElement("input", {
+    className: "input",
+    value: form["option" + l],
+    onChange: e => setForm({
+      ...form,
+      ["option" + l]: e.target.value
+    })
+  })))), React.createElement("div", {
+    className: "grid grid-3"
+  }, React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Correct Answer"), React.createElement("select", {
+    className: "select",
+    value: form.correct,
+    onChange: e => setForm({
+      ...form,
+      correct: e.target.value
+    })
+  }, ["A", "B", "C", "D"].map(l => React.createElement("option", {
+    key: l,
+    value: l
+  }, l)))), React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Difficulty"), React.createElement("select", {
+    className: "select",
+    value: form.difficulty,
+    onChange: e => setForm({
+      ...form,
+      difficulty: e.target.value
+    })
+  }, DIFFICULTIES.map(d => React.createElement("option", {
+    key: d,
+    value: d
+  }, d)))), React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Year"), React.createElement("input", {
+    type: "number",
+    className: "input",
+    value: form.year,
+    onChange: e => setForm({
+      ...form,
+      year: e.target.value
+    })
+  }))), React.createElement("div", {
+    className: "grid grid-2"
+  }, React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Subject"), React.createElement("select", {
+    className: "select",
+    value: form.subject,
+    onChange: e => setForm({
+      ...form,
+      subject: e.target.value
+    })
+  }, SUBJECTS.map(s => React.createElement("option", {
+    key: s.id,
+    value: s.name
+  }, s.name)))), React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Topic"), React.createElement("input", {
+    className: "input",
+    value: form.topic,
+    onChange: e => setForm({
+      ...form,
+      topic: e.target.value
+    })
+  }))), React.createElement("div", {
+    className: "grid grid-2"
+  }, React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Exam"), React.createElement("select", {
+    className: "select",
+    value: form.exam,
+    onChange: e => setForm({
+      ...form,
+      exam: e.target.value
+    })
+  }, EXAMS.map(x => React.createElement("option", {
+    key: x.id,
+    value: x.name
+  }, x.name)))), React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Negative Marking"), React.createElement("input", {
+    type: "number",
+    step: "0.25",
+    className: "input",
+    value: form.negativeMarking,
+    onChange: e => setForm({
+      ...form,
+      negativeMarking: e.target.value
+    })
+  }))), React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Explanation"), React.createElement("textarea", {
+    className: "input",
+    rows: 2,
+    value: form.explanation,
+    onChange: e => setForm({
+      ...form,
+      explanation: e.target.value
+    })
+  })), React.createElement("div", {
+    className: "grid grid-2"
+  }, React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Source"), React.createElement("input", {
+    className: "input",
+    value: form.source,
+    onChange: e => setForm({
+      ...form,
+      source: e.target.value
+    })
+  })), React.createElement("div", {
+    className: "field"
+  }, React.createElement("span", {
+    className: "label"
+  }, "Tags (comma separated)"), React.createElement("input", {
+    className: "input",
+    value: form.tags,
+    onChange: e => setForm({
+      ...form,
+      tags: e.target.value
+    })
+  }))), React.createElement("button", {
+    className: "btn btn-primary",
+    type: "submit"
+  }, React.createElement(Icon, {
+    name: "plus",
+    size: 15
+  }), "Add Question to Bank"))), tab === "content" && React.createElement("div", {
+    className: "grid grid-2"
+  }, React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 10
+    }
+  }, "Study Notes"), React.createElement("p", {
+    className: "small muted"
+  }, STUDY_NOTES.length + " notes published across " + new Set(STUDY_NOTES.map(n => n.subject)).size + " subjects.")), React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 10
+    }
+  }, "Current Affairs"), React.createElement("p", {
+    className: "small muted"
+  }, CURRENT_AFFAIRS.length + " capsules published this month across " + new Set(CURRENT_AFFAIRS.map(n => n.category)).size + " categories."))), tab === "messages" && React.createElement("div", {
+    className: "card card-pad"
+  }, !AUTH_API && React.createElement("p", {
+    className: "small muted"
+  }, "No backend configured — contact messages have nowhere to be stored yet."), AUTH_API && messagesError && React.createElement("p", {
+    className: "small",
+    style: {
+      color: "var(--danger, #c0392b)"
+    }
+  }, messagesError), AUTH_API && !messagesError && messages === null && React.createElement("p", {
+    className: "small muted"
+  }, "Loading messages…"), AUTH_API && !messagesError && messages !== null && messages.length === 0 && React.createElement("p", {
+    className: "small muted"
+  }, "No messages yet."), AUTH_API && !messagesError && messages !== null && messages.length > 0 && React.createElement("div", {
+    className: "flex-col gap-12"
+  }, messages.map(m => React.createElement("div", {
+    key: m.id,
+    className: "card card-pad",
+    style: {
+      background: "var(--surface-2, #f7f7f8)"
+    }
+  }, React.createElement("div", {
+    className: "flex justify-between wrap gap-8",
+    style: {
+      marginBottom: 6
+    }
+  }, React.createElement("span", {
+    className: "small",
+    style: {
+      fontWeight: 700
+    }
+  }, m.name || "Anonymous"), React.createElement("span", {
+    className: "tiny muted"
+  }, new Date(m.createdAt).toLocaleString())), m.email && React.createElement("p", {
+    className: "tiny muted",
+    style: {
+      marginBottom: 6
+    }
+  }, m.email), React.createElement("p", {
+    className: "small"
+  }, m.message))))));
+}
+
+/* ---- app-12-school.jsx ---- */
+function SchoolPage() {
+  const {
+    goto
+  } = useApp();
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "40px 24px 64px"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "School Track · CBSE Skill Subject 845",
+    title: "Physical Activity Trainer — Class XI & XII",
+    lede: "Chapter-wise tests, full syllabus practice and PYQs for the CBSE Department of Skill Education subject — built unit-by-unit from the official textbooks, curriculum and Class XII Sample Question Paper."
+  }), React.createElement("div", {
+    className: "grid grid-2"
+  }, SCHOOL_CLASSES.map(cls => React.createElement("div", {
+    key: cls.id,
+    className: "card card-pad card-hover",
+    style: {
+      cursor: "pointer"
+    },
+    onClick: () => goto("/school-grade", {
+      classId: cls.id
+    })
+  }, React.createElement("div", {
+    className: "flex justify-between wrap gap-8",
+    style: {
+      marginBottom: 10
+    }
+  }, React.createElement("span", {
+    className: "pill pill-info"
+  }, cls.grade), React.createElement("span", {
+    className: "pill"
+  }, cls.totalMarks + " Marks")), React.createElement("h3", {
+    className: "h2",
+    style: {
+      marginBottom: 6
+    }
+  }, cls.jobRole), React.createElement("p", {
+    className: "small muted",
+    style: {
+      marginBottom: 16
+    }
+  }, cls.blurb), React.createElement("div", {
+    className: "chip-select",
+    style: {
+      marginBottom: 16
+    }
+  }, cls.units.map(u => React.createElement("span", {
+    key: u.id,
+    className: "chip"
+  }, u.name + " · " + u.marks + " marks"))), React.createElement("button", {
+    className: "btn btn-primary btn-block"
+  }, "Open " + cls.grade, React.createElement(Icon, {
+    name: "chevronRight",
+    size: 16
+  }))))), React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      marginTop: 28
+    }
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 8
+    }
+  }, "About this subject"), React.createElement("p", {
+    className: "small muted"
+  }, "“Physical Activity Trainer” (Subject Code 845) is a CBSE Skill Subject developed with PSSCIVE Bhopal and the Sports, Physical Education, Fitness & Leisure Sector Skill Council. Class XI trains a “Physical Education Assistant (Primary Years)” and Class XII a “Primary Years Physical Activity Facilitator” — both roles focused on coaching, assessing and keeping primary-years children (up to 12) safe during play.")));
+}
+function SchoolUnitCard({
+  cls,
+  unit,
+  onStart
+}) {
+  const liveCount = useMemo(() => QUESTION_BANK.filter(q => q.subject === unit.subject).length, [unit.subject]);
+  return React.createElement("div", {
+    className: "card card-pad card-hover",
+    style: {
+      cursor: "pointer"
+    },
+    onClick: onStart
+  }, React.createElement("div", {
+    className: "flex justify-between wrap gap-8",
+    style: {
+      marginBottom: 8
+    }
+  }, React.createElement("span", {
+    className: "pill pill-info"
+  }, unit.marks + " Marks"), React.createElement("span", {
+    className: "small muted"
+  }, liveCount + " question" + (liveCount === 1 ? "" : "s"))), React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 8
+    }
+  }, unit.name), React.createElement("ul", {
+    className: "small muted",
+    style: {
+      margin: "0 0 14px 18px",
+      padding: 0
+    }
+  }, unit.subtopics.map(st => React.createElement("li", {
+    key: st
+  }, st))), React.createElement("button", {
+    className: "btn btn-outline btn-block"
+  }, "Start Chapter Test", React.createElement(Icon, {
+    name: "chevronRight",
+    size: 14
+  })));
+}
+function SchoolGradePage() {
+  const {
+    routeParams,
+    goto
+  } = useApp();
+  const cls = SCHOOL_CLASSES.find(c => c.id === routeParams.classId) || SCHOOL_CLASSES[0];
+  const [engine, setEngine] = useState(null);
+  const unitQuestionsFor = unit => QUESTION_BANK.filter(q => q.subject === unit.subject);
+  const fullBankQuestions = useMemo(() => {
+    const subjects = cls.units.map(u => u.subject);
+    return QUESTION_BANK.filter(q => subjects.includes(q.subject));
+  }, [cls]);
+  const pyqQuestions = useMemo(() => QUESTION_BANK.filter(q => q.subject === cls.pyqSubject), [cls]);
+  if (engine) {
+    return React.createElement(TestEngine, {
+      mode: "practice",
+      questions: engine.questions,
+      title: engine.title,
+      onExit: () => setEngine(null)
+    });
+  }
+  return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: "40px 24px 64px"
+    }
+  }, React.createElement("button", {
+    className: "btn btn-ghost btn-sm",
+    onClick: () => goto("/school")
+  }, React.createElement(Icon, {
+    name: "chevronLeft",
+    size: 14
+  }), "School Track"), React.createElement("div", {
+    style: {
+      margin: "18px 0 28px"
+    }
+  }, React.createElement("div", {
+    className: "eyebrow",
+    style: {
+      marginBottom: 8
+    }
+  }, "CBSE Physical Activity Trainer · " + cls.grade), React.createElement("h1", {
+    className: "h1"
+  }, cls.jobRole), React.createElement("p", {
+    className: "lede",
+    style: {
+      marginTop: 8
+    }
+  }, cls.blurb)), React.createElement("h2", {
+    className: "h2",
+    style: {
+      marginBottom: 14
+    }
+  }, "Chapter-wise Tests"), React.createElement("div", {
+    className: "grid grid-4",
+    style: {
+      marginBottom: 32
+    }
+  }, cls.units.map(unit => React.createElement(SchoolUnitCard, {
+    key: unit.id,
+    cls,
+    unit,
+    onStart: () => setEngine({
+      questions: shuffle(unitQuestionsFor(unit)),
+      title: cls.grade + " — " + unit.name
+    })
+  }))), React.createElement("div", {
+    className: "grid grid-2"
+  }, React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 8
+    }
+  }, "Full Textbook MCQ Bank"), React.createElement("p", {
+    className: "small muted",
+    style: {
+      marginBottom: 16
+    }
+  }, "All " + fullBankQuestions.length + " questions across every unit of " + cls.grade + " — a complete syllabus sweep in one test."), React.createElement("button", {
+    className: "btn btn-primary btn-block",
+    disabled: fullBankQuestions.length === 0,
+    onClick: () => setEngine({
+      questions: shuffle(fullBankQuestions),
+      title: cls.grade + " — Full Syllabus Practice"
+    })
+  }, "Practice Full Bank (" + fullBankQuestions.length + ")", React.createElement(Icon, {
+    name: "chevronRight",
+    size: 14
+  }))), React.createElement("div", {
+    className: "card card-pad"
+  }, React.createElement("h3", {
+    className: "h3",
+    style: {
+      marginBottom: 8
+    }
+  }, cls.pyqSubject), React.createElement("p", {
+    className: "small muted",
+    style: {
+      marginBottom: 16
+    }
+  }, cls.pyqNote), React.createElement("button", {
+    className: "btn btn-outline btn-block",
+    disabled: pyqQuestions.length === 0,
+    onClick: () => setEngine({
+      questions: pyqQuestions,
+      title: cls.pyqSubject
+    })
+  }, "Practice " + (cls.id === "xii" ? "Board PYQs" : "Practice Set") + " (" + pyqQuestions.length + ")", React.createElement(Icon, {
+    name: "chevronRight",
+    size: 14
+  })))));
+}
+
+/* ---- app-14-auth.jsx ---- */
+function AuthPage() {
+  const {
+    route,
+    goto,
+    signup,
+    login,
+    googleSignIn,
+    authBusy
+  } = useApp();
+  const [mode, setMode] = useState(route === "/signup" ? "signup" : "login");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [preferredExam, setPreferredExam] = useState("");
+  const [error, setError] = useState("");
+  const googleBtnRef = useRef(null);
+  useEffect(() => {
+    setMode(route === "/signup" ? "signup" : "login");
+  }, [route]);
+  useEffect(() => {
+    if (!GOOGLE_CLIENT_ID) return;
+    let cancelled = false;
+    loadGoogleScript().then(() => {
+      if (cancelled || !window.google?.accounts?.id || !googleBtnRef.current) return;
+      window.google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: async resp => {
+          setError("");
+          try {
+            await googleSignIn(resp.credential);
+            goto("/dashboard");
+          } catch (e) {
+            setError(e.message || "Google sign-in failed");
+          }
+        }
+      });
+      window.google.accounts.id.renderButton(googleBtnRef.current, {
+        theme: "outline",
+        size: "large",
+        width: 320
+      });
+    }).catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [mode]);
+  const submit = async e => {
+    e.preventDefault();
+    setError("");
+    try {
+      if (mode === "signup") await signup(email, password, name, preferredExam);else await login(email, password);
+      goto("/dashboard");
+    } catch (err) {
+      setError(err.message || "Something went wrong — please try again.");
+    }
+  };
+  return React.createElement("div", {
+    className: "auth-shell"
+  }, React.createElement("div", {
+    className: "auth-card"
+  }, React.createElement("div", {
+    className: "auth-card-form"
+  }, React.createElement("a", {
+    href: "#/",
+    className: "brand",
+    style: {
+      marginBottom: 26
+    },
+    onClick: e => {
+      e.preventDefault();
+      goto("/");
+    }
+  }, React.createElement("span", {
+    className: "brand-mark"
+  }, "PE"), React.createElement("span", null, "PE Prep")), React.createElement("h1", {
+    className: "h2",
+    style: {
+      marginBottom: 6
+    }
+  }, mode === "signup" ? "Get started with PE Prep" : "Welcome back"), React.createElement("p", {
+    className: "small muted",
+    style: {
+      marginBottom: 22
+    }
+  }, mode === "signup" ? "Create a free account to save your XP, streak and progress so they follow you to any device." : "Sign in to pick up right where you left off."), GOOGLE_CLIENT_ID && React.createElement(React.Fragment, null, React.createElement("div", {
+    ref: googleBtnRef,
+    style: {
+      display: "flex",
+      justifyContent: "center",
+      marginBottom: 16
+    }
+  }), React.createElement("div", {
+    className: "small muted",
+    style: {
+      textAlign: "center",
+      margin: "4px 0 18px"
+    }
+  }, "or")), React.createElement("form", {
+    onSubmit: submit
+  }, mode === "signup" && React.createElement("input", {
+    className: "input",
+    placeholder: "Your name",
+    value: name,
+    onChange: e => setName(e.target.value),
+    style: {
+      marginBottom: 10,
+      width: "100%"
+    }
+  }), React.createElement("input", {
+    className: "input",
+    type: "email",
+    required: true,
+    placeholder: "Email",
+    value: email,
+    onChange: e => setEmail(e.target.value),
+    style: {
+      marginBottom: 10,
+      width: "100%"
+    }
+  }), React.createElement("input", {
+    className: "input",
+    type: "password",
+    required: true,
+    minLength: 6,
+    placeholder: "Password (min. 6 characters)",
+    value: password,
+    onChange: e => setPassword(e.target.value),
+    style: {
+      marginBottom: 14,
+      width: "100%"
+    }
+  }), mode === "signup" && React.createElement("div", {
+    style: {
+      marginBottom: 14
+    }
+  }, React.createElement("select", {
+    className: "select",
+    style: {
+      width: "100%"
+    },
+    value: preferredExam,
+    onChange: e => setPreferredExam(e.target.value)
+  }, React.createElement("option", {
+    value: ""
+  }, "Which exam are you preparing for? (optional)"), EXAMS.map(ex => React.createElement("option", {
+    key: ex.id,
+    value: ex.id
+  }, ex.short)))), error && React.createElement("p", {
+    className: "small",
+    style: {
+      color: "var(--danger)",
+      marginBottom: 12
+    }
+  }, error), React.createElement("button", {
+    className: "btn btn-primary",
+    type: "submit",
+    disabled: authBusy,
+    style: {
+      width: "100%"
+    }
+  }, authBusy ? "Please wait…" : mode === "signup" ? "Create account" : "Sign in")), React.createElement("p", {
+    className: "small muted",
+    style: {
+      marginTop: 18,
+      textAlign: "center"
+    }
+  }, mode === "signup" ? "Already have an account? " : "New here? ", React.createElement("a", {
+    href: "#",
+    onClick: e => {
+      e.preventDefault();
+      setError("");
+      goto(mode === "signup" ? "/login" : "/signup");
+    }
+  }, mode === "signup" ? "Sign in" : "Create one")), React.createElement("p", {
+    className: "small muted",
+    style: {
+      marginTop: 8,
+      textAlign: "center"
+    }
+  }, React.createElement("a", {
+    href: "#/",
+    onClick: e => {
+      e.preventDefault();
+      goto("/");
+    }
+  }, "Continue as guest"))), React.createElement("div", {
+    className: "auth-card-promo"
+  }, React.createElement(TrackCurves, null), React.createElement("div", {
+    className: "eyebrow",
+    style: {
+      color: "var(--gold)",
+      position: "relative"
+    }
+  }, "FOR PHYSICAL EDUCATION ASPIRANTS"), React.createElement("h2", {
+    className: "h2",
+    style: {
+      color: "#fff",
+      position: "relative"
+    }
+  }, "Everything you need to crack your PE exam"), React.createElement("div", {
+    className: "auth-bullets"
+  }, [QUESTION_BANK.length.toLocaleString() + " Physical Education practice questions", "13 exams covered — KVS, NET, DSSSB, NVS, PSC & more", "Full-length mock tests with detailed performance analysis", "Sports current affairs, updated every week"].map(t => React.createElement("div", {
+    key: t,
+    className: "auth-bullet"
+  }, React.createElement(Icon, {
+    name: "check",
+    size: 16
+  }), t))), React.createElement("div", {
+    className: "auth-stats"
+  }, [[QUESTION_BANK.length.toLocaleString(), "Questions"], [String(EXAMS.length), "Exams"], [String(SUBJECTS.length), "Subjects"]].map(([n, l]) => React.createElement("div", {
+    key: l
+  }, React.createElement("b", null, n), React.createElement("span", null, l)))))));
+}
+
+/* ---- app-13-root.jsx ---- */
+function QuestionDetailPage() {
+  const {
+    routeParams,
+    goto,
+    isPro,
+    hasExamAccess
+  } = useApp();
+  const q = QUESTIONS_BY_ID[routeParams.id];
+  if (!q) return React.createElement("div", {
+    className: "container",
+    style: {
+      padding: 60
+    }
+  }, "Question not found.");
+  const unlocked = isPro || (q.exam || []).some(n => hasExamAccess(examIdForName(n)));
+  if (!unlocked) {
+    return React.createElement("div", {
+      className: "container",
+      style: {
+        padding: "36px 24px 64px"
+      }
+    }, React.createElement(MockPaywall, {
+      title: "Practice is a Pro feature",
+      desc: "Upgrade to Pro for unlimited practice across every subject and exam, or grab a single-exam pass for just the exam you're preparing for. Mock tests remain free to try."
+    }));
+  }
+  return React.createElement(TestEngine, {
+    mode: "practice",
+    questions: [q],
+    title: q.subject + " · " + q.topic,
+    onExit: () => goto("/question-bank")
+  });
+}
+const ROUTES = {
+  "/": Home,
+  "/exams": ExamsPage,
+  "/exam-detail": ExamDetailPage,
+  "/subjects": SubjectsPage,
+  "/question-bank": QuestionBankPage,
+  "/practice": QuestionBankPage,
+  "/question-detail": QuestionDetailPage,
+  "/mock-tests": MockTestsPage,
+  "/mock-test-setup": MockTestSetupPage,
+  "/mock-result": MockResultPage,
+  "/study-material": StudyMaterialPage,
+  "/school": SchoolPage,
+  "/school-grade": SchoolGradePage,
+  "/current-affairs": CurrentAffairsPage,
+  "/previous-papers": PreviousYearPapersPage,
+  "/dashboard": DashboardPage,
+  "/dashboard-analytics": DashboardAnalyticsPage,
+  "/leaderboard": LeaderboardPage,
+  "/pricing": PricingPage,
+  "/daily-challenge": DailyChallengePage,
+  "/question-of-the-day": QuestionOfTheDayPage,
+  "/flashcards": FlashcardsPage,
+  "/quick-revision": QuickRevisionPage,
+  "/formula-hub": FormulaHubPage,
+  "/sports-rules": SportsRulesPage,
+  "/study-planner": StudyPlannerPage,
+  "/my-mistakes": MyMistakesPage,
+  "/bookmarks": BookmarksPage,
+  "/admin": AdminPage,
+  "/contact": ContactPage,
+  "/terms": TermsPage,
+  "/privacy": PrivacyPage,
+  "/refund-policy": RefundPolicyPage,
+  "/about": AboutPage,
+  "/login": AuthPage,
+  "/signup": AuthPage
+};
+function RouterView() {
+  const {
+    route
+  } = useApp();
+  const Comp = ROUTES[route] || Home;
+  return React.createElement(Comp, {
+    key: route
+  });
+}
+function App() {
+  return React.createElement(AppProvider, null, React.createElement(Layout, null, React.createElement(RouterView, null)));
+}
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(React.createElement(App));
