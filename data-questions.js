@@ -611,7 +611,7 @@ relatedIds:[],source:"Foundations of Physical Education - Bucher",tags:["definit
 
 {id:"FND-002",exam:["UGC NET","SET"],subject:"History of Physical Education",topic:"Indian PE History",difficulty:"Moderate",type:"MCQ",year:2022,
 question:"The YMCA College of Physical Education, one of India's earliest PE training institutions, was established in which city?",
-options:["Mumbai","Chennai","Madras (now Chennai)","Kolkata"],correctIndex:2,
+options:["Mumbai","Hyderabad","Madras (now Chennai)","Kolkata"],correctIndex:2,
 explanation:"The YMCA College of Physical Education was established in Madras (now Chennai) in 1920, and remains one of the oldest and most influential institutions for professional PE training in India.",
 concept:{title:"Milestones in Indian PE History",definition:"Institutional development shaped the growth of formal Physical Education in India.",points:["YMCA College of PE, Madras — established 1920","Lakshmibai National Institute of Physical Education (LNIPE), Gwalior — premier national institute","Sports Authority of India (SAI) — established 1984, promotes sports development nationally"],memoryTrick:"'YMCA in Madras started it all'.",sportsRelevance:"Institutional history is a recurring topic in UGC NET Paper 2 (Physical Education)."},
 relatedIds:["FND-001"],source:"History of Physical Education in India",tags:["history","india"]},

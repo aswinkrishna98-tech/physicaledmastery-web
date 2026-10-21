@@ -1,4 +1,4 @@
-/* src-hash:51296b37d32a5b23aa9397596aa30b23d424dceb791f7adc02fe3d14868a3093 */
+/* src-hash:1b3231b29b69bfdcdb194dc891d272ef913c177ff9dcc408f124e1667a86d574 */
 
 /* ---- data-questions.js ---- */
 const QUESTION_BANK = [{
@@ -1859,7 +1859,7 @@ QUESTION_BANK.push({
   type: "MCQ",
   year: 2022,
   question: "The YMCA College of Physical Education, one of India's earliest PE training institutions, was established in which city?",
-  options: ["Mumbai", "Chennai", "Madras (now Chennai)", "Kolkata"],
+  options: ["Mumbai", "Hyderabad", "Madras (now Chennai)", "Kolkata"],
   correctIndex: 2,
   explanation: "The YMCA College of Physical Education was established in Madras (now Chennai) in 1920, and remains one of the oldest and most influential institutions for professional PE training in India.",
   concept: {
@@ -12665,7 +12665,7 @@ function TestEngineInner({
     style: {
       marginTop: 8
     }
-  }, "Source: " + q.source)), React.createElement(ConceptBox, {
+  }, "Reference area: " + q.source + " · general reference, not a page-level citation · pending expert review")), React.createElement(ConceptBox, {
     concept: q.concept
   }), q.relatedIds?.length > 0 && React.createElement("div", {
     style: {

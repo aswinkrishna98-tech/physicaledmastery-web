@@ -1,32 +1,76 @@
-[
-  {
-    "questionId": "PHY-006",
-    "field": "relatedIds",
-    "change": "removed dangling reference FML-002 (no such question exists)",
-    "line": 180
-  },
-  {
-    "questionId": "PHY-012",
-    "field": "relatedIds",
-    "change": "removed dangling reference FML-003 (no such question exists)",
-    "line": 222
-  },
-  {
-    "questionId": "TRN-008",
-    "field": "relatedIds",
-    "change": "removed dangling reference FML-005 (no such question exists)",
-    "line": 293
-  },
-  {
-    "questionId": "TME-001",
-    "field": "relatedIds",
-    "change": "removed dangling reference FML-001 (no such question exists)",
-    "line": 393
-  },
-  {
-    "questionId": "OLY-004",
-    "field": "relatedIds",
-    "change": "removed dangling reference CA-003 (no such question exists)",
-    "line": 514
+{
+  "note": "Traceable record of every content change made in the Oct-2026 audit. Question IDs are unchanged; no correct answer was altered.",
+  "corrections": [
+    {
+      "questionId": "FND-002",
+      "field": "options",
+      "change": "Option B was 'Chennai' and option C (the correct answer) was 'Madras (now Chennai)' - the same city, so two options were correct. Option B replaced with 'Hyderabad'. Correct answer (index 2) and question text unchanged.",
+      "before": [
+        "Mumbai",
+        "Chennai",
+        "Madras (now Chennai)",
+        "Kolkata"
+      ],
+      "after": [
+        "Mumbai",
+        "Hyderabad",
+        "Madras (now Chennai)",
+        "Kolkata"
+      ],
+      "answerChanged": false
+    },
+    {
+      "questionId": "PHY-006",
+      "field": "relatedIds",
+      "change": "removed dangling reference FML-002 (no such question exists)",
+      "line": 180
+    },
+    {
+      "questionId": "PHY-012",
+      "field": "relatedIds",
+      "change": "removed dangling reference FML-003 (no such question exists)",
+      "line": 222
+    },
+    {
+      "questionId": "TRN-008",
+      "field": "relatedIds",
+      "change": "removed dangling reference FML-005 (no such question exists)",
+      "line": 293
+    },
+    {
+      "questionId": "TME-001",
+      "field": "relatedIds",
+      "change": "removed dangling reference FML-001 (no such question exists)",
+      "line": 393
+    },
+    {
+      "questionId": "OLY-004",
+      "field": "relatedIds",
+      "change": "removed dangling reference CA-003 (no such question exists)",
+      "line": 514
+    }
+  ],
+  "flaggedForExpertReview": {
+    "scope": "All 365 questions are unreviewed by a subject expert. 60 fact-heavy items (records, rules, dates, awards, institutions) were spot-checked from general knowledge only - not against primary sources - and 1 defect (FND-002) was found. Time-sensitive items need re-verification each cycle.",
+    "priority": [
+      "RUL-006",
+      "RUL-007",
+      "RUL-010",
+      "NSP-004",
+      "ASG-004",
+      "ASG-005",
+      "CWG-004",
+      "MSE-005",
+      "SAD-001",
+      "AWD-001",
+      "AWD-002"
+    ],
+    "structuralIssues": {
+      "answerPositionBias": "Stored bank: 230/365 correct answers are option B (63%), 12/365 option D (3%). Test flows now shuffle options; the stored data is unchanged.",
+      "longestOptionTell": "~30% of questions have the correct option as the clearly longest - authors should balance option lengths.",
+      "weakDistractors": "Several questions use absurd distractors (e.g. 'Ignoring venue safety', 'Only announcing the winner'); these test test-taking, not knowledge.",
+      "sourcesAreGenericTitles": "The 'source' field names a textbook/area, not an edition or page. Do not present it as a citation.",
+      "examCoverage": "Tagged per exam: UGC NET 195, SET 195, KVS PGT 127, EMRS/AWES/Sainik 141 each, DSSSB 45, NVS 14, CTET 14, State PSC 8, M.P.Ed 5, B.P.Ed 1. B.P.Ed/M.P.Ed/State PSC/NVS/CTET are too thin for a real mock."
+    }
   }
-]
+}
