@@ -298,7 +298,7 @@ function TestEngineInner({mode, questions:initialQuestions, title, examMeta, onE
                 React.createElement("div",{className:"explain-box"},
                   React.createElement("h4",{className:"h3"}, resp.selected===q.correctIndex ? "✅ Correct!" : "❌ Not quite — here's why"),
                   React.createElement("p",{className:"small", style:{marginTop:6}}, q.explanation),
-                  React.createElement("p",{className:"tiny muted", style:{marginTop:8}}, "Reference area: "+q.source+" · general reference, not a page-level citation · pending expert review")
+                  React.createElement("p",{className:"tiny muted", style:{marginTop:8}}, "Reference area: "+q.source+" · general reference, not a page-level citation · content reviewed by the site editor (Oct 2026)")
                 ),
                 React.createElement(ConceptBox,{concept:q.concept}),
                 q.relatedIds?.length>0 && React.createElement("div",{style:{marginTop:14}},

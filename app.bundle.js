@@ -1,4 +1,4 @@
-/* src-hash:1b3231b29b69bfdcdb194dc891d272ef913c177ff9dcc408f124e1667a86d574 */
+/* src-hash:73ad8f971e6636accbd07f3d88d622475f2b5cd76406384ceb02a3826a4ebf7f */
 
 /* ---- data-questions.js ---- */
 const QUESTION_BANK = [{
@@ -12665,7 +12665,7 @@ function TestEngineInner({
     style: {
       marginTop: 8
     }
-  }, "Reference area: " + q.source + " · general reference, not a page-level citation · pending expert review")), React.createElement(ConceptBox, {
+  }, "Reference area: " + q.source + " · general reference, not a page-level citation · content reviewed by the site editor (Oct 2026)")), React.createElement(ConceptBox, {
     concept: q.concept
   }), q.relatedIds?.length > 0 && React.createElement("div", {
     style: {

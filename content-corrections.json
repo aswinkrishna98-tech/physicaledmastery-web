@@ -51,7 +51,7 @@
     }
   ],
   "flaggedForExpertReview": {
-    "scope": "All 365 questions are unreviewed by a subject expert. 60 fact-heavy items (records, rules, dates, awards, institutions) were spot-checked from general knowledge only - not against primary sources - and 1 defect (FND-002) was found. Time-sensitive items need re-verification each cycle.",
+    "scope": "Owner sign-off received 2026-10-21 (see reviewLog). Items below remain structural/data issues, not accuracy doubts.",
     "priority": [
       "RUL-006",
       "RUL-007",
@@ -72,5 +72,14 @@
       "sourcesAreGenericTitles": "The 'source' field names a textbook/area, not an edition or page. Do not present it as a citation.",
       "examCoverage": "Tagged per exam: UGC NET 195, SET 195, KVS PGT 127, EMRS/AWES/Sainik 141 each, DSSSB 45, NVS 14, CTET 14, State PSC 8, M.P.Ed 5, B.P.Ed 1. B.P.Ed/M.P.Ed/State PSC/NVS/CTET are too thin for a real mock."
     }
-  }
+  },
+  "reviewLog": [
+    {
+      "date": "2026-10-21",
+      "reviewer": "Site owner (Physical Education subject expert)",
+      "scope": "All 245 PE questions in review sheet PE_Question_Review_Sheet.xlsx (and the 120-question school track)",
+      "outcome": "Reported 'all are correct' (blanket sign-off, no per-question notes returned). No answers changed.",
+      "caveat": "Sign-off is by the owner, not checked against primary sources; reference fields remain general reference areas, not page-level citations. Exam-pattern figures are separate and still need official-notification confirmation."
+    }
+  ]
 }
