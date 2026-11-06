@@ -168,6 +168,14 @@ const check = (name, ok, detail = "") => { results.push({ name, ok: !!ok, detail
   check("expired saved test auto-submits with its saved answers", /1(\.0+)?\s*\/\s*3|1 of 3/.test(await page.innerText("body")) || (await page.innerText("body")).includes("1 of 3"));
   check("no JS errors through resume flow", page.errors.length === 0, page.errors.join(" | "));
 
+  // ---- 6d. Backend warm-up ping on load -----------------------------------------
+  page = await newPage();
+  let warmHits = 0;
+  await page.route("https://pe-prep-payments.onrender.com/", (route) => { warmHits++; route.fulfill({ status: 200, contentType: "application/json", headers: { "access-control-allow-origin": "*" }, body: '{"status":"ok"}' }); });
+  await page.goto(BASE); await page.waitForSelector(".hero-stats"); await page.waitForTimeout(800);
+  check("site pings the backend once on load to wake it", warmHits === 1, "hits=" + warmHits);
+  check("no JS errors with warm-up", page.errors.length === 0, page.errors.join(" | "));
+
   // ---- 7. Mobile: no horizontal overflow ------------------------------------
   const mobile = await newPage({ viewport: { width: 375, height: 800 }, isMobile: true, hasTouch: true });
   for (const r of ["", "#/exams", "#/question-bank", "#/mock-tests", "#/mock-test-setup", "#/pricing", "#/dashboard", "#/previous-papers"]) {

@@ -393,6 +393,18 @@ function AppProvider({children}){
     if(user.revealedIds) setRevealedIds(user.revealedIds);
   },[setProfile,setRevealedIds]);
 
+  // Wake the backend early. The free Render instance sleeps after ~15 idle
+  // minutes and takes ~16 s to start, which would otherwise land on the first
+  // person to sign in or open checkout. A tiny GET on load (and every 9 minutes
+  // while a visible tab stays open) starts it in the background.
+  useEffect(()=>{
+    if(!paymentsLive) return;
+    const ping = ()=>{ if(document.visibilityState==="visible") fetch(`${AUTH_API}/`, {cache:"no-store"}).catch(()=>{}); };
+    ping();
+    const t = setInterval(ping, 9*60*1000);
+    return ()=>clearInterval(t);
+  },[paymentsLive]);
+
   // Restore the session on load / whenever the token changes (login, logout).
   useEffect(()=>{
     if(!paymentsLive || !authToken){ setAuthAccountId(null); setAuthEmail(null); return; }

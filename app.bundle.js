@@ -1,4 +1,4 @@
-/* src-hash:4bac397a4a3bbef4e0462b308bc8353ebd733359766e1fceb4d1f0a6cfc93fad */
+/* src-hash:ff999541a5f733ac46bc21d0011ff6722459cfe93989258195edcfd8bc5014d5 */
 
 /* ---- data-questions.js ---- */
 const QUESTION_BANK = [{
@@ -9786,6 +9786,17 @@ function AppProvider({
     }));
     if (user.revealedIds) setRevealedIds(user.revealedIds);
   }, [setProfile, setRevealedIds]);
+  useEffect(() => {
+    if (!paymentsLive) return;
+    const ping = () => {
+      if (document.visibilityState === "visible") fetch(`${AUTH_API}/`, {
+        cache: "no-store"
+      }).catch(() => {});
+    };
+    ping();
+    const t = setInterval(ping, 9 * 60 * 1000);
+    return () => clearInterval(t);
+  }, [paymentsLive]);
   useEffect(() => {
     if (!paymentsLive || !authToken) {
       setAuthAccountId(null);
