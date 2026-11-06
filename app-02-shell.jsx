@@ -107,7 +107,7 @@ function PromoBanner(){
 // with a small menu (Dashboard / Sign Out) so signing out is reachable from
 // any page, not just by opening the dashboard and finding the text link.
 function AccountMenu(){
-  const {isLoggedIn, profile, goto, logout} = useApp();
+  const {isLoggedIn, profile, goto, requestLogout} = useApp();
   const [open, setOpen] = useState(false);
   const boxRef = useRef(null);
 
@@ -133,7 +133,7 @@ function AccountMenu(){
       React.createElement("button",{className:"btn btn-ghost btn-sm btn-block", style:{justifyContent:"flex-start", gap:8},
         onClick:()=>{ setOpen(false); goto("/dashboard"); }}, React.createElement(Icon,{name:"performance",size:14}), "Dashboard"),
       React.createElement("button",{className:"btn btn-ghost btn-sm btn-block", style:{justifyContent:"flex-start", gap:8, color:"var(--danger)"},
-        onClick:()=>{ setOpen(false); logout(); }}, React.createElement(Icon,{name:"close",size:14}), "Sign Out")
+        onClick:()=>{ setOpen(false); requestLogout(); }}, React.createElement(Icon,{name:"close",size:14}), "Sign Out")
     )
   );
 }
@@ -178,7 +178,7 @@ function TopNav(){
 // that opens upward from the bar, so signing out doesn't require opening the
 // dashboard page first.
 function MobileAccountItem({item, active}){
-  const {goto, isLoggedIn, logout} = useApp();
+  const {goto, isLoggedIn, requestLogout} = useApp();
   const [open, setOpen] = useState(false);
   const boxRef = useRef(null);
 
@@ -203,7 +203,7 @@ function MobileAccountItem({item, active}){
       React.createElement("button",{className:"btn btn-ghost btn-sm btn-block", style:{justifyContent:"flex-start", gap:8},
         onClick:()=>{ setOpen(false); goto("/dashboard"); }}, React.createElement(Icon,{name:"performance",size:14}), "Dashboard"),
       React.createElement("button",{className:"btn btn-ghost btn-sm btn-block", style:{justifyContent:"flex-start", gap:8, color:"var(--danger)"},
-        onClick:()=>{ setOpen(false); logout(); }}, React.createElement(Icon,{name:"close",size:14}), "Sign Out")
+        onClick:()=>{ setOpen(false); requestLogout(); }}, React.createElement(Icon,{name:"close",size:14}), "Sign Out")
     )
   );
 }
@@ -268,8 +268,24 @@ function Layout({children}){
     React.createElement("main",{className:"app-main", style:{flex:1}}, children),
     React.createElement(Footer,null),
     React.createElement(MobileNav,null),
+    React.createElement(LogoutDialog,null),
     React.createElement(Toast,null)
   );
+}
+
+function LogoutDialog(){
+  const {logoutPrompt, setLogoutPrompt, logout} = useApp();
+  if(!logoutPrompt) return null;
+  return React.createElement("div",{className:"modal-backdrop", role:"dialog", "aria-modal":"true", "aria-label":"Confirm sign out",
+      style:{position:"fixed", inset:0, background:"rgba(0,0,0,.5)", display:"flex", alignItems:"center", justifyContent:"center", zIndex:1000, padding:16},
+      onKeyDown:(e)=>{ if(e.key==="Escape") setLogoutPrompt(false); }},
+    React.createElement("div",{className:"card card-pad", style:{maxWidth:440, width:"100%"}},
+      React.createElement("h3",{className:"h2"}, "Sign out?"),
+      React.createElement("p",{className:"small muted", style:{margin:"10px 0 16px"}},
+        "Practice history, bookmarks, your mistakes notebook and mock-test history are stored only on this device and will be removed when you sign out. Your XP, streak, plan and preferred exam stay with your account and return when you sign in."),
+      React.createElement("div",{className:"flex gap-10", style:{justifyContent:"flex-end"}},
+        React.createElement("button",{className:"btn btn-outline btn-sm", autoFocus:true, onClick:()=>setLogoutPrompt(false)}, "Stay signed in"),
+        React.createElement("button",{className:"btn btn-primary btn-sm", onClick:logout}, "Sign out"))));
 }
 
 /* ------------------------------ Reusable bits ----------------------------- */

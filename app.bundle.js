@@ -1,4 +1,4 @@
-/* src-hash:73ad8f971e6636accbd07f3d88d622475f2b5cd76406384ceb02a3826a4ebf7f */
+/* src-hash:cc6534c6b494a619c3ed219a9f69dd87dad8fc26c9b721945548ac7fb9ed4735 */
 
 /* ---- data-questions.js ---- */
 const QUESTION_BANK = [{
@@ -9896,13 +9896,32 @@ function AppProvider({
       setAuthBusy(false);
     }
   }, [authRequest, applyAccount, notify, setAuthToken]);
+  const [logoutPrompt, setLogoutPrompt] = useState(false);
+  const requestLogout = useCallback(() => setLogoutPrompt(true), []);
   const logout = useCallback(() => {
+    setLogoutPrompt(false);
     setAuthToken(null);
     setAuthAccountId(null);
     setAuthEmail(null);
     setProfile(DEFAULT_PROFILE);
-    notify("Signed out — your progress on this device is cleared. Sign in again anytime to get it back.", 3400);
-  }, [setAuthToken, setProfile, notify]);
+    setAttempts({});
+    setWrongLog({});
+    setMockHistory([]);
+    setBookmarks({
+      questions: [],
+      notes: [],
+      flashcards: [],
+      tests: []
+    });
+    setDailyState({
+      lastCompleted: null,
+      lastQOTD: null,
+      qotdAnswer: null
+    });
+    setStudyPlan(null);
+    setRevealedIds({});
+    notify("Signed out. Practice history, bookmarks and mistakes saved on this device were cleared; your XP, streak and plan come back when you sign in.", 4200);
+  }, [setAuthToken, setProfile, setAttempts, setWrongLog, setMockHistory, setBookmarks, setDailyState, setStudyPlan, setRevealedIds, notify]);
   const isLoggedIn = !!authToken;
   const isAdmin = !!authEmail && ADMIN_EMAILS.includes(authEmail.toLowerCase());
   const upgradePlanDemo = useCallback((plan, examId) => {
@@ -10083,6 +10102,9 @@ function AppProvider({
     login,
     googleSignIn,
     logout,
+    requestLogout,
+    logoutPrompt,
+    setLogoutPrompt,
     setPreferredExam,
     authEmail,
     isAdmin,
@@ -10350,7 +10372,7 @@ function AccountMenu() {
     isLoggedIn,
     profile,
     goto,
-    logout
+    requestLogout
   } = useApp();
   const [open, setOpen] = useState(false);
   const boxRef = useRef(null);
@@ -10429,7 +10451,7 @@ function AccountMenu() {
     },
     onClick: () => {
       setOpen(false);
-      logout();
+      requestLogout();
     }
   }, React.createElement(Icon, {
     name: "close",
@@ -10502,7 +10524,7 @@ function MobileAccountItem({
   const {
     goto,
     isLoggedIn,
-    logout
+    requestLogout
   } = useApp();
   const [open, setOpen] = useState(false);
   const boxRef = useRef(null);
@@ -10574,7 +10596,7 @@ function MobileAccountItem({
     },
     onClick: () => {
       setOpen(false);
-      logout();
+      requestLogout();
     }
   }, React.createElement(Icon, {
     name: "close",
@@ -10717,7 +10739,59 @@ function Layout({
     style: {
       flex: 1
     }
-  }, children), React.createElement(Footer, null), React.createElement(MobileNav, null), React.createElement(Toast, null));
+  }, children), React.createElement(Footer, null), React.createElement(MobileNav, null), React.createElement(LogoutDialog, null), React.createElement(Toast, null));
+}
+function LogoutDialog() {
+  const {
+    logoutPrompt,
+    setLogoutPrompt,
+    logout
+  } = useApp();
+  if (!logoutPrompt) return null;
+  return React.createElement("div", {
+    className: "modal-backdrop",
+    role: "dialog",
+    "aria-modal": "true",
+    "aria-label": "Confirm sign out",
+    style: {
+      position: "fixed",
+      inset: 0,
+      background: "rgba(0,0,0,.5)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 1000,
+      padding: 16
+    },
+    onKeyDown: e => {
+      if (e.key === "Escape") setLogoutPrompt(false);
+    }
+  }, React.createElement("div", {
+    className: "card card-pad",
+    style: {
+      maxWidth: 440,
+      width: "100%"
+    }
+  }, React.createElement("h3", {
+    className: "h2"
+  }, "Sign out?"), React.createElement("p", {
+    className: "small muted",
+    style: {
+      margin: "10px 0 16px"
+    }
+  }, "Practice history, bookmarks, your mistakes notebook and mock-test history are stored only on this device and will be removed when you sign out. Your XP, streak, plan and preferred exam stay with your account and return when you sign in."), React.createElement("div", {
+    className: "flex gap-10",
+    style: {
+      justifyContent: "flex-end"
+    }
+  }, React.createElement("button", {
+    className: "btn btn-outline btn-sm",
+    autoFocus: true,
+    onClick: () => setLogoutPrompt(false)
+  }, "Stay signed in"), React.createElement("button", {
+    className: "btn btn-primary btn-sm",
+    onClick: logout
+  }, "Sign out"))));
 }
 function StatTile({
   label,
@@ -13329,7 +13403,7 @@ function DashboardPage() {
     mockHistory,
     isPro,
     isLoggedIn,
-    logout
+    requestLogout
   } = useApp();
   const editName = () => {
     const next = window.prompt("What should we call you?", profile.name);
@@ -13404,11 +13478,11 @@ function DashboardPage() {
     style: {
       marginTop: 4
     }
-  }, "Signed in — your progress follows you to any device. ", React.createElement("a", {
+  }, "Signed in — your XP, streak and plan follow you to any device; practice history stays on this device. ", React.createElement("a", {
     href: "#",
     onClick: e => {
       e.preventDefault();
-      logout();
+      requestLogout();
     }
   }, "Sign out")) : React.createElement("p", {
     className: "small muted",

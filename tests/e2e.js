@@ -117,6 +117,30 @@ const check = (name, ok, detail = "") => { results.push({ name, ok: !!ok, detail
   }
   check("correct answers are spread across positions (max slot < 60% of " + seen + ")", Math.max(...positions) / seen < 0.6, JSON.stringify(positions));
 
+  // ---- 6b. Sign-out confirmation clears device-only data (backend stubbed) ------
+  page = await newPage();
+  await page.route("**/api/auth/me", (route) => route.fulfill({ status: 200, contentType: "application/json",
+    headers: { "access-control-allow-origin": "*" },
+    body: JSON.stringify({ user: { id: "acc-1", email: "t@example.invalid", name: "Tester", xp: 120, streak: 2, plan: "free", examPasses: [] } }) }));
+  await page.route("**/api/profile", (route) => route.fulfill({ status: 200, contentType: "application/json", headers: { "access-control-allow-origin": "*" }, body: "{}" }));
+  await page.addInitScript(() => {
+    localStorage.setItem("pep_auth_token", JSON.stringify("tok"));
+    localStorage.setItem("pep_attempts", JSON.stringify({ "FND-001": { correct: true, ts: 1, timeSpent: 5, count: 1 } }));
+    localStorage.setItem("pep_wrong", JSON.stringify({ "FND-002": 2 }));
+  });
+  await page.goto(BASE + "#/dashboard"); await page.waitForSelector("text=Signed in", { timeout: 10000 });
+  await page.getByText("Sign out", { exact: true }).first().click();
+  await page.waitForSelector("[aria-label='Confirm sign out']");
+  check("sign out asks for confirmation first", true);
+  await page.getByRole("button", { name: "Stay signed in" }).click();
+  check("'Stay signed in' keeps the device data", await page.evaluate(() => Object.keys(JSON.parse(localStorage.getItem("pep_attempts"))).length === 1));
+  await page.getByText("Sign out", { exact: true }).first().click();
+  await page.getByRole("dialog").getByRole("button", { name: "Sign out" }).click();
+  await page.waitForTimeout(500);
+  const after = await page.evaluate(() => ({ a: localStorage.getItem("pep_attempts"), w: localStorage.getItem("pep_wrong"), t: localStorage.getItem("pep_auth_token") }));
+  check("confirmed sign out clears attempts, mistakes log and token", after.a === "{}" && after.w === "{}" && (after.t === "null" || after.t === null), JSON.stringify(after));
+  check("no JS errors through sign-out", page.errors.length === 0, page.errors.join(" | "));
+
   // ---- 7. Mobile: no horizontal overflow ------------------------------------
   const mobile = await newPage({ viewport: { width: 375, height: 800 }, isMobile: true, hasTouch: true });
   for (const r of ["", "#/exams", "#/question-bank", "#/mock-tests", "#/mock-test-setup", "#/pricing", "#/dashboard", "#/previous-papers"]) {

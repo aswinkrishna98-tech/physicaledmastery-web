@@ -8,7 +8,7 @@ function greeting(){
 }
 
 function DashboardPage(){
-  const {profile, setProfile, setPreferredExam, accuracy, subjectStats, goto, wrongLog, bookmarks, mockHistory, isPro, isLoggedIn, logout} = useApp();
+  const {profile, setProfile, setPreferredExam, accuracy, subjectStats, goto, wrongLog, bookmarks, mockHistory, isPro, isLoggedIn, requestLogout} = useApp();
   const editName = ()=>{
     const next = window.prompt("What should we call you?", profile.name);
     if(next && next.trim()) setProfile(p=>({...p, name: next.trim().slice(0,40)}));
@@ -37,8 +37,8 @@ function DashboardPage(){
         React.createElement("p",{className:"small muted", style:{marginTop:6}}, "Your Preparation Overview"),
         isLoggedIn
           ? React.createElement("p",{className:"small muted", style:{marginTop:4}},
-              "Signed in — your progress follows you to any device. ",
-              React.createElement("a",{href:"#", onClick:e=>{e.preventDefault(); logout();}}, "Sign out"))
+              "Signed in — your XP, streak and plan follow you to any device; practice history stays on this device. ",
+              React.createElement("a",{href:"#", onClick:e=>{e.preventDefault(); requestLogout();}}, "Sign out"))
           : React.createElement("p",{className:"small muted", style:{marginTop:4}},
               "Browsing as a guest — progress stays on this device only. ",
               React.createElement("a",{href:"#/login", onClick:e=>{e.preventDefault(); goto("/login");}}, "Sign in to save it")),

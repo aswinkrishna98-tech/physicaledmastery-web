@@ -466,13 +466,27 @@ function AppProvider({children}){
     } finally { setAuthBusy(false); }
   },[authRequest,applyAccount,notify,setAuthToken]);
 
+  const [logoutPrompt, setLogoutPrompt] = useState(false);
+  const requestLogout = useCallback(()=>setLogoutPrompt(true),[]);
+  // Confirmed sign-out. Practice history, bookmarks, the mistakes notebook, mock
+  // history and the study plan live only in this browser, so they are removed so
+  // the next person on a shared device doesn't see them. XP, streak, plan,
+  // passes and preferred exam are kept on the server and return on sign-in.
   const logout = useCallback(()=>{
+    setLogoutPrompt(false);
     setAuthToken(null);
     setAuthAccountId(null);
     setAuthEmail(null);
     setProfile(DEFAULT_PROFILE);
-    notify("Signed out — your progress on this device is cleared. Sign in again anytime to get it back.", 3400);
-  },[setAuthToken,setProfile,notify]);
+    setAttempts({});
+    setWrongLog({});
+    setMockHistory([]);
+    setBookmarks({questions:[], notes:[], flashcards:[], tests:[]});
+    setDailyState({lastCompleted:null, lastQOTD:null, qotdAnswer:null});
+    setStudyPlan(null);
+    setRevealedIds({});
+    notify("Signed out. Practice history, bookmarks and mistakes saved on this device were cleared; your XP, streak and plan come back when you sign in.", 4200);
+  },[setAuthToken,setProfile,setAttempts,setWrongLog,setMockHistory,setBookmarks,setDailyState,setStudyPlan,setRevealedIds,notify]);
 
   const isLoggedIn = !!authToken;
   const isAdmin = !!authEmail && ADMIN_EMAILS.includes(authEmail.toLowerCase());
@@ -598,7 +612,7 @@ function AppProvider({children}){
     studyPlan, setStudyPlan,
     isPro, freeMocksUsed, mockLocked, upgradePlan, paymentsLive, checkoutBusy, hasExamAccess,
     FREE_PRACTICE_LIMIT_PER_SUBJECT, practicedBySubject, isSubjectLocked, freeQuestionsLeft, markRevealed,
-    isLoggedIn, authBusy, signup, login, googleSignIn, logout, setPreferredExam,
+    isLoggedIn, authBusy, signup, login, googleSignIn, logout, requestLogout, logoutPrompt, setLogoutPrompt, setPreferredExam,
     authEmail, isAdmin, authToken,
   };
   return React.createElement(AppCtx.Provider,{value}, children);
