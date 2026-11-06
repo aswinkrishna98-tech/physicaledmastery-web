@@ -141,6 +141,33 @@ const check = (name, ok, detail = "") => { results.push({ name, ok: !!ok, detail
   check("confirmed sign out clears attempts, mistakes log and token", after.a === "{}" && after.w === "{}" && (after.t === "null" || after.t === null), JSON.stringify(after));
   check("no JS errors through sign-out", page.errors.length === 0, page.errors.join(" | "));
 
+  // ---- 6c. Refresh mid-mock -> resume with answers + running clock -------------
+  page = await newPage();
+  await page.goto(BASE + "#/mock-test-setup"); await page.waitForSelector("text=Negative marking");
+  await page.getByRole("button", { name: /Begin Mock Test/ }).click(); await page.waitForSelector(".qtext");
+  await page.locator(".option").nth(1).click();
+  const qBefore = await page.locator(".qtext").textContent();
+  const optBefore = await page.evaluate(() => [...document.querySelectorAll(".option")].map((o) => o.textContent));
+  await page.waitForTimeout(1200);
+  const saved = await page.evaluate(() => JSON.parse(localStorage.getItem("pep_mock_session") || "null"));
+  check("running mock is autosaved", !!saved && saved.qs.length > 1 && Object.values(saved.responses).some((r) => r.selected === 1));
+  page.removeAllListeners("dialog"); page.on("dialog", (d) => d.accept());
+  await page.goto(BASE + "#/mock-tests"); await page.reload(); await page.waitForSelector("text=You have a test in progress");
+  check("mock-tests page offers to resume", true);
+  await page.getByRole("button", { name: "Resume test" }).click(); await page.waitForSelector(".qtext");
+  const qAfter = await page.locator(".qtext").textContent();
+  const optAfter = await page.evaluate(() => [...document.querySelectorAll(".option")].map((o) => o.textContent));
+  check("resume restores question, option order and the chosen answer", qAfter === qBefore && JSON.stringify(optAfter) === JSON.stringify(optBefore) && (await page.locator(".option").nth(1).getAttribute("aria-checked")) === "true");
+  await page.getByRole("button", { name: /Submit/ }).first().click();
+  await page.getByRole("dialog").getByRole("button", { name: /Submit now/ }).click(); await page.waitForTimeout(600);
+  check("submitting clears the saved session", await page.evaluate(() => localStorage.getItem("pep_mock_session") === null));
+  // expired session: resuming submits saved answers instead of starting a fresh clock
+  await page.evaluate(() => localStorage.setItem("pep_mock_session", JSON.stringify({ v: 1, title: "KVS Mock Test", examMeta: { duration: 1, negativeMarking: 0.25, examName: "KVS PGT PE", examId: "kvs-pgt" }, endsAt: Date.now() - 5000, savedAt: Date.now(), idx: 0, qs: QUESTION_BANK.slice(0, 3).map((q) => ({ id: q.id, options: q.options, correctIndex: q.correctIndex })), responses: { [QUESTION_BANK[0].id]: { selected: QUESTION_BANK[0].correctIndex, checked: false, marked: false, visited: true, timeSpent: 3 } } })));
+  await page.goto(BASE + "#/mock-tests"); await page.reload(); await page.waitForSelector("text=time is up");
+  await page.getByRole("button", { name: "Submit saved answers" }).click(); await page.waitForSelector("text=Your Score", { timeout: 8000 });
+  check("expired saved test auto-submits with its saved answers", /1(\.0+)?\s*\/\s*3|1 of 3/.test(await page.innerText("body")) || (await page.innerText("body")).includes("1 of 3"));
+  check("no JS errors through resume flow", page.errors.length === 0, page.errors.join(" | "));
+
   // ---- 7. Mobile: no horizontal overflow ------------------------------------
   const mobile = await newPage({ viewport: { width: 375, height: 800 }, isMobile: true, hasTouch: true });
   for (const r of ["", "#/exams", "#/question-bank", "#/mock-tests", "#/mock-test-setup", "#/pricing", "#/dashboard", "#/previous-papers"]) {

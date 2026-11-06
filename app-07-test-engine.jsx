@@ -64,17 +64,30 @@ function TestEngine(props){
   return React.createElement(TestEngineInner, props);
 }
 
-function TestEngineInner({mode, questions:initialQuestions, title, examMeta, onExit, onFinish}){
+const MOCK_SESSION_KEY = "pep_mock_session";
+function clearMockSession(){ try{ localStorage.removeItem(MOCK_SESSION_KEY); }catch(e){} }
+
+function TestEngineInner({mode, questions:initialQuestions, title, examMeta, onExit, onFinish, resumeState}){
   const {recordAttempt, notify, toggleBookmark, bookmarks, goto, isSubjectLocked, markRevealed} = useApp();
-  const [questions,setQuestions] = useState(()=>initialQuestions.map(shuffleQuestionOptions));
-  const [idx,setIdx] = useState(0);
+  const [questions,setQuestions] = useState(()=>{
+    if(resumeState){
+      const restored = resumeState.qs.map(r=>QUESTIONS_BY_ID[r.id] ? {...QUESTIONS_BY_ID[r.id], options:r.options, correctIndex:r.correctIndex} : null).filter(Boolean);
+      if(restored.length) return restored;
+    }
+    return initialQuestions.map(shuffleQuestionOptions);
+  });
+  const [idx,setIdx] = useState(()=> resumeState && resumeState.idx < resumeState.qs.length ? resumeState.idx : 0);
   const [responses,setResponses] = useState(()=>{
-    const r = {}; initialQuestions.forEach(q=>r[q.id]={selected:null, checked:false, marked:false, visited:false, timeSpent:0}); return r;
+    const r = {}; initialQuestions.forEach(q=>r[q.id]={selected:null, checked:false, marked:false, visited:false, timeSpent:0});
+    if(resumeState) Object.assign(r, resumeState.responses);
+    return r;
   });
   const [showSummary,setShowSummary] = useState(false);
   const isMock = mode==="mock";
   const durationSec = examMeta ? examMeta.duration*60 : null;
-  const [secondsLeft,setSecondsLeft] = useState(durationSec);
+  // Absolute deadline: a resumed test keeps counting while the page was closed.
+  const endsAtRef = useRef(resumeState ? resumeState.endsAt : (durationSec ? Date.now()+durationSec*1000 : null));
+  const [secondsLeft,setSecondsLeft] = useState(()=> resumeState ? Math.max(0, Math.ceil((resumeState.endsAt-Date.now())/1000)) : durationSec);
   const [secondsElapsed,setSecondsElapsed] = useState(0);
   const startRef = useRef(Date.now());
   const submittedRef = useRef(false);
@@ -116,6 +129,21 @@ function TestEngineInner({mode, questions:initialQuestions, title, examMeta, onE
     window.addEventListener("beforeunload", warn);
     return ()=>window.removeEventListener("beforeunload", warn);
   },[isMock]);
+
+  // Autosave a running mock so a refresh, crash or closed tab can be resumed.
+  useEffect(()=>{
+    if(!isMock || submittedRef.current) return;
+    const t = setTimeout(()=>{
+      if(submittedRef.current) return;
+      safeSet(MOCK_SESSION_KEY, {
+        v:1, title, examMeta, endsAt:endsAtRef.current, savedAt:Date.now(), idx,
+        qs: questions.map(x=>({id:x.id, options:x.options, correctIndex:x.correctIndex})),
+        responses,
+      });
+    }, 400);
+    return ()=>clearTimeout(t);
+    // eslint-disable-next-line
+  },[responses, idx, questions]);
 
   function touchTime(qid){
     const spent = (Date.now()-startRef.current)/1000;
@@ -165,6 +193,7 @@ function TestEngineInner({mode, questions:initialQuestions, title, examMeta, onE
   function handleSubmit(auto){
     if(submittedRef.current) return;          // idempotent: timer + button can't double-submit
     submittedRef.current = true;
+    clearMockSession();
     setConfirmSubmit(false);
     if(mode==="practice"){
       setShowSummary(true);

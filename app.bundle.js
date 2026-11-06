@@ -1,4 +1,4 @@
-/* src-hash:cc6534c6b494a619c3ed219a9f69dd87dad8fc26c9b721945548ac7fb9ed4735 */
+/* src-hash:4bac397a4a3bbef4e0462b308bc8353ebd733359766e1fceb4d1f0a6cfc93fad */
 
 /* ---- data-questions.js ---- */
 const QUESTION_BANK = [{
@@ -12255,13 +12255,20 @@ function TestEngine(props) {
   }
   return React.createElement(TestEngineInner, props);
 }
+const MOCK_SESSION_KEY = "pep_mock_session";
+function clearMockSession() {
+  try {
+    localStorage.removeItem(MOCK_SESSION_KEY);
+  } catch (e) {}
+}
 function TestEngineInner({
   mode,
   questions: initialQuestions,
   title,
   examMeta,
   onExit,
-  onFinish
+  onFinish,
+  resumeState
 }) {
   const {
     recordAttempt,
@@ -12272,8 +12279,18 @@ function TestEngineInner({
     isSubjectLocked,
     markRevealed
   } = useApp();
-  const [questions, setQuestions] = useState(() => initialQuestions.map(shuffleQuestionOptions));
-  const [idx, setIdx] = useState(0);
+  const [questions, setQuestions] = useState(() => {
+    if (resumeState) {
+      const restored = resumeState.qs.map(r => QUESTIONS_BY_ID[r.id] ? {
+        ...QUESTIONS_BY_ID[r.id],
+        options: r.options,
+        correctIndex: r.correctIndex
+      } : null).filter(Boolean);
+      if (restored.length) return restored;
+    }
+    return initialQuestions.map(shuffleQuestionOptions);
+  });
+  const [idx, setIdx] = useState(() => resumeState && resumeState.idx < resumeState.qs.length ? resumeState.idx : 0);
   const [responses, setResponses] = useState(() => {
     const r = {};
     initialQuestions.forEach(q => r[q.id] = {
@@ -12283,12 +12300,14 @@ function TestEngineInner({
       visited: false,
       timeSpent: 0
     });
+    if (resumeState) Object.assign(r, resumeState.responses);
     return r;
   });
   const [showSummary, setShowSummary] = useState(false);
   const isMock = mode === "mock";
   const durationSec = examMeta ? examMeta.duration * 60 : null;
-  const [secondsLeft, setSecondsLeft] = useState(durationSec);
+  const endsAtRef = useRef(resumeState ? resumeState.endsAt : durationSec ? Date.now() + durationSec * 1000 : null);
+  const [secondsLeft, setSecondsLeft] = useState(() => resumeState ? Math.max(0, Math.ceil((resumeState.endsAt - Date.now()) / 1000)) : durationSec);
   const [secondsElapsed, setSecondsElapsed] = useState(0);
   const startRef = useRef(Date.now());
   const submittedRef = useRef(false);
@@ -12349,6 +12368,27 @@ function TestEngineInner({
     window.addEventListener("beforeunload", warn);
     return () => window.removeEventListener("beforeunload", warn);
   }, [isMock]);
+  useEffect(() => {
+    if (!isMock || submittedRef.current) return;
+    const t = setTimeout(() => {
+      if (submittedRef.current) return;
+      safeSet(MOCK_SESSION_KEY, {
+        v: 1,
+        title,
+        examMeta,
+        endsAt: endsAtRef.current,
+        savedAt: Date.now(),
+        idx,
+        qs: questions.map(x => ({
+          id: x.id,
+          options: x.options,
+          correctIndex: x.correctIndex
+        })),
+        responses
+      });
+    }, 400);
+    return () => clearTimeout(t);
+  }, [responses, idx, questions]);
   function touchTime(qid) {
     const spent = (Date.now() - startRef.current) / 1000;
     setResponses(prev => ({
@@ -12445,6 +12485,7 @@ function TestEngineInner({
   function handleSubmit(auto) {
     if (submittedRef.current) return;
     submittedRef.current = true;
+    clearMockSession();
     setConfirmSubmit(false);
     if (mode === "practice") {
       setShowSummary(true);
@@ -12839,6 +12880,10 @@ function MockTestsPage() {
     isPro,
     profile
   } = useApp();
+  const savedSession = useMemo(() => {
+    const v = safeGet(MOCK_SESSION_KEY, null);
+    return v && v.v === 1 && v.examMeta && Array.isArray(v.qs) && v.qs.length ? v : null;
+  }, []);
   const examsSorted = useMemo(() => {
     if (!profile.preferredExam) return EXAMS;
     const idx = EXAMS.findIndex(e => e.id === profile.preferredExam);
@@ -12860,7 +12905,28 @@ function MockTestsPage() {
     right: !isPro && React.createElement("span", {
       className: "pill pill-warning"
     }, "Free Plan · full result analysis needs Pro")
-  }), React.createElement("div", {
+  }), savedSession && React.createElement("div", {
+    className: "card card-pad",
+    role: "region",
+    "aria-label": "Resume mock test",
+    style: {
+      marginBottom: 20,
+      borderColor: "var(--gold)"
+    }
+  }, React.createElement("h3", {
+    className: "h3"
+  }, "You have a test in progress"), React.createElement("p", {
+    className: "small muted",
+    style: {
+      margin: "6px 0 12px"
+    }
+  }, savedSession.title + " · " + (savedSession.endsAt > Date.now() ? Math.ceil((savedSession.endsAt - Date.now()) / 60000) + " min left on the clock." : "time is up; resuming submits your saved answers.")), React.createElement("button", {
+    className: "btn btn-primary btn-sm",
+    onClick: () => goto("/mock-test-setup", {
+      examId: savedSession.examMeta.examId,
+      resume: true
+    })
+  }, savedSession.endsAt > Date.now() ? "Resume test" : "Submit saved answers")), React.createElement("div", {
     className: "grid grid-4"
   }, examsSorted.map(ex => React.createElement("div", {
     key: ex.id,
@@ -12903,6 +12969,11 @@ function MockTestSetupPage() {
   const exam = EXAMS.find(e => e.id === routeParams.examId) || EXAMS[0];
   const [length, setLength] = useState(TEST_LENGTHS[1]);
   const [engineConfig, setEngineConfig] = useState(null);
+  const [savedSession, setSavedSession] = useState(() => {
+    const v = safeGet(MOCK_SESSION_KEY, null);
+    return v && v.v === 1 && v.examMeta && Array.isArray(v.qs) && v.qs.length ? v : null;
+  });
+  const [resuming, setResuming] = useState(() => routeParams.resume ? safeGet(MOCK_SESSION_KEY, null) : null);
   const cfg = EXAM_CONFIG[exam.id] || {
     negative: 0,
     negativeKnown: false
@@ -12915,6 +12986,25 @@ function MockTestSetupPage() {
   const taggedCount = examPool.length;
   const effectiveCount = Math.min(length.questions, generalPool.length);
   const topUp = Math.max(0, effectiveCount - taggedCount);
+  if (resuming) {
+    const qs = resuming.qs.map(r => QUESTIONS_BY_ID[r.id]).filter(Boolean);
+    const exId = resuming.examMeta.examId || exam.id;
+    const exName = resuming.examMeta.examName || exam.short;
+    return React.createElement(TestEngine, {
+      mode: "mock",
+      questions: qs,
+      title: resuming.title,
+      examMeta: resuming.examMeta,
+      resumeState: resuming,
+      onFinish: result => goto("/mock-result", {
+        result: {
+          ...result,
+          examShort: exName,
+          examId: exId
+        }
+      })
+    });
+  }
   if (engineConfig) {
     return React.createElement(TestEngine, {
       mode: "mock",
@@ -12923,7 +13013,8 @@ function MockTestSetupPage() {
       examMeta: {
         duration: length.minutes,
         negativeMarking: marking.negative,
-        examName: exam.short
+        examName: exam.short,
+        examId: exam.id
       },
       onFinish: result => goto("/mock-result", {
         result: {
@@ -12967,7 +13058,33 @@ function MockTestSetupPage() {
     className: "h1"
   }, exam.short + " Mock Test"), React.createElement("p", {
     className: "small muted"
-  }, exam.pattern))), !isPro && React.createElement("div", {
+  }, exam.pattern))), savedSession && React.createElement("div", {
+    className: "card card-pad",
+    role: "region",
+    "aria-label": "Resume mock test",
+    style: {
+      marginBottom: 18,
+      borderColor: "var(--gold)"
+    }
+  }, React.createElement("h3", {
+    className: "h3"
+  }, "You have a test in progress"), React.createElement("p", {
+    className: "small muted",
+    style: {
+      margin: "6px 0 12px"
+    }
+  }, savedSession.title + " · " + (savedSession.endsAt > Date.now() ? Math.ceil((savedSession.endsAt - Date.now()) / 60000) + " min left on the clock. The timer kept running while you were away." : "time is up. Resuming submits it with your saved answers.")), React.createElement("div", {
+    className: "flex gap-10"
+  }, React.createElement("button", {
+    className: "btn btn-primary btn-sm",
+    onClick: () => setResuming(savedSession)
+  }, savedSession.endsAt > Date.now() ? "Resume test" : "Submit saved answers"), React.createElement("button", {
+    className: "btn btn-outline btn-sm",
+    onClick: () => {
+      clearMockSession();
+      setSavedSession(null);
+    }
+  }, "Discard it"))), !isPro && React.createElement("div", {
     className: "pill pill-warning",
     style: {
       marginBottom: 18
