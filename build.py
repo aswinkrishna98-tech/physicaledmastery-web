@@ -104,3 +104,17 @@ with open(out_path, "w", encoding="utf-8") as f:
     f.write(html)
 
 print("Wrote", out_path, "-", len(html), "bytes")
+
+# Public output: only these files are meant to be served. Render's static site
+# publishes the "dist" folder, so build scripts, sources and internal notes in the
+# repo root are not downloadable.
+import shutil
+DIST = os.path.join(BASE, "dist")
+if os.path.isdir(DIST):
+    shutil.rmtree(DIST)
+os.makedirs(DIST)
+for name in ["index.html", "app.bundle.js", "robots.txt", "sitemap.xml"]:
+    src = os.path.join(BASE, name)
+    if os.path.exists(src):
+        shutil.copy(src, os.path.join(DIST, name))
+print("Wrote dist/:", ", ".join(sorted(os.listdir(DIST))))
