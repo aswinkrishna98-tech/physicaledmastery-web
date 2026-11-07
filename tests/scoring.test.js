@@ -7,11 +7,11 @@ const vm = require("vm");
 // Load the same data/config files the browser loads, in order, into one context.
 const ctx = { console };
 vm.createContext(ctx);
-for (const f of ["data-questions.js", "data-content.js", "data-school.js", "data-exam-config.js"]) {
+for (const f of ["data-questions.js", "data-content.js", "data-school.js", "data-exam-config.js", "data-pyq.js", "data-pyq-2.js", "data-pyq-3.js", "data-pyq-4.js"]) {
   const src = fs.readFileSync(path.join(__dirname, "..", f), "utf8").replace(/^(const|let) /gm, "var ");
   vm.runInContext(src, ctx, { filename: f });
 }
-const { computeMockScore, QUESTION_BANK, EXAMS, EXAM_CONFIG, MARKING_OPTIONS, questionsForExam, isSchoolQuestion } = ctx;
+const { OFFICIAL_PAPERS, computeMockScore, QUESTION_BANK, EXAMS, EXAM_CONFIG, MARKING_OPTIONS, questionsForExam, isSchoolQuestion } = ctx;
 
 const qs = [0, 1, 2, 3].map((i) => ({ id: "q" + i, correctIndex: 1 }));
 
@@ -74,3 +74,26 @@ test("relatedIds all resolve", () => {
 });
 
 function pick(r) { return { score: r.score, correct: r.correct, incorrect: r.incorrect, unattempted: r.unattempted }; }
+
+test("past papers: integrity, provisional-key labelling and honest counts", () => {
+  assert.equal(OFFICIAL_PAPERS.length, 2);
+  const seen = new Set();
+  for (const p of OFFICIAL_PAPERS) {
+    assert.equal(p.included, p.questions.length);
+    assert.ok(p.included > 0 && p.included <= p.originalQuestions, p.id + " included count");
+    assert.ok(EXAM_CONFIG[p.examId], p.id + " exam id");
+    const nums = new Set();
+    for (const q of p.questions) {
+      assert.ok(!seen.has(q.id), "duplicate id " + q.id); seen.add(q.id);
+      assert.ok(!nums.has(q.paperNo), "duplicate paper number " + q.paperNo); nums.add(q.paperNo);
+      assert.equal(q.options.length, 4, q.id + " options");
+      assert.equal(new Set(q.options.map((o) => o.trim().toLowerCase())).size, 4, q.id + " duplicate option text");
+      assert.ok(Number.isInteger(q.correctIndex) && q.correctIndex >= 0 && q.correctIndex < 4, q.id + " answer index");
+      assert.ok(q.question.length > 10 && q.explanation.length > 20, q.id + " text");
+      assert.ok(q.tags.includes("provisional-key"), q.id + " provisional tag");
+      assert.ok(q.subject && q.topic && q.difficulty && q.type, q.id + " fields");
+    }
+  }
+  // past-paper questions must not leak into the main bank counts
+  assert.ok(!QUESTION_BANK.some((q) => seen.has(q.id)));
+});

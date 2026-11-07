@@ -4,10 +4,10 @@
 // ============================================================================
 
 function PreviousYearPapersPage(){
-  // HONESTY NOTE: this bank does not (yet) contain verified official past
-  // papers, so this page offers exam-style practice sets built from the
-  // exam-tagged questions we do have, and says so. Official PYQ papers should
-  // only be added with their source/year verified (see CONTENT_AUDIT.md).
+  // HONESTY NOTE: the two past papers below were supplied as scans without
+  // official answer keys, so their keys are provisional (see data-pyq.js).
+  // The exam-style practice sets further down are built from the exam-tagged
+  // questions in our own bank and are labelled as such.
   const {routeParams, goto, mockLocked, isPro, hasExamAccess} = useApp();
   const [paywallExam,setPaywallExam] = useState(null);
   const [engine,setEngine] = useState(null);
@@ -15,13 +15,36 @@ function PreviousYearPapersPage(){
     examMeta:{duration:engine.duration, negativeMarking:engine.negative, examName:engine.title}, onFinish:(r)=>goto("/mock-result",{result:{...r, examShort:engine.short, examId:engine.examId}})});
   const general = QUESTION_BANK.filter(q=>!isSchoolQuestion(q));
   return React.createElement("div",{className:"container", style:{padding:"36px 24px 72px"}},
-    React.createElement(SectionHeading,{eyebrow:"Previous Year Papers", title:"Exam-style practice sets", lede:"Official past papers are not in the bank yet — we only publish a paper once its source and year are verified. Until then, attempt timed practice sets built from questions tagged for each exam.", right:
+    React.createElement(SectionHeading,{eyebrow:"Previous Year Papers", title:"Past papers and practice sets", lede:"Two past papers are available to attempt as timed tests. Answer keys were not supplied with them, so every answer is a provisional key compiled by us. Below them are exam-style practice sets built from our own question bank.", right:
       !isPro && React.createElement("span",{className:"pill "+(mockLocked?"pill-danger":"pill-warning")}, mockLocked?"Free mock test used":"Free Plan · 1 free attempt")
     }),
     paywallExam && !isPro && !hasExamAccess(paywallExam.id) && mockLocked &&
       React.createElement("div",{style:{marginBottom:24}}, React.createElement(MockPaywall,{
         title:"Unlock unlimited practice sets", examId: paywallExam.id, examShort: paywallExam.short,
       })),
+    React.createElement("h2",{className:"h2", style:{margin:"4px 0 6px"}}, "Past papers"),
+    React.createElement("div",{className:"card card-pad", style:{marginBottom:16, borderColor:"var(--warning, #d9a400)"}},
+      React.createElement("p",{className:"small"}, React.createElement("b",null,"Provisional answer key. "),
+        "The official answer keys were not available, so the answers and explanations here were compiled by us from standard textbooks and have not yet been reviewed by a subject expert. Where one disagrees with the official key, trust the official key. Questions whose answer we could not settle are left out. Timer: 1 minute per question (our default); no negative marking.")),
+    React.createElement("div",{className:"grid grid-3", style:{marginBottom:32}},
+      OFFICIAL_PAPERS.map(pp=>{
+        const exam = EXAMS.find(e=>e.id===pp.examId);
+        const unlocked = isPro || hasExamAccess(pp.examId) || !mockLocked;
+        return React.createElement("div",{key:pp.id, className:"card card-pad"},
+          React.createElement("div",{className:"flex justify-between", style:{marginBottom:8}},
+            React.createElement("span",{className:"pill pill-info"}, pp.examTag),
+            React.createElement("span",{className:"pill pill-warning"}, "Provisional key")),
+          React.createElement("h3",{className:"h3"}, pp.title),
+          React.createElement("p",{className:"tiny muted", style:{margin:"6px 0 6px"}}, pp.included+" of "+pp.originalQuestions+" questions included · "+pp.included+" minutes · "+pp.scope),
+          React.createElement("p",{className:"tiny muted", style:{margin:"0 0 14px"}}, (pp.year?("Year: "+pp.year+" · "):"Year not shown on the pages supplied · ")+pp.code+". "+pp.note),
+          React.createElement("button",{className:"btn btn-primary btn-sm", onClick:()=>{
+            if(!unlocked){ setPaywallExam(exam); window.scrollTo({top:0,behavior:"smooth"}); return; }
+            setEngine({questions:pp.questions, title:pp.title, short:pp.short, examId:pp.examId, duration:pp.included, negative:0});
+          }}, unlocked ? "Attempt Online" : "Unlock to Attempt", !unlocked && React.createElement(Icon,{name:"lock",size:13}))
+        );
+      })
+    ),
+    React.createElement("h2",{className:"h2", style:{margin:"4px 0 14px"}}, "Exam-style practice sets"),
     React.createElement("div",{className:"grid grid-3"},
       EXAMS.map(ex=>{
         const tagged = questionsForExam(ex.id);
