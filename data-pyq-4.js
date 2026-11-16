@@ -34,5 +34,7 @@ const OFFICIAL_PAPERS = [
     note: "Answers follow the published final answer key. Five questions the key marks as cancelled are left out. The key has no explanations, so each explanation only states the keyed answer. Duration and marking scheme were not on the pages supplied.",
     questions: PYQ_PAPER_QUESTIONS.C,
   },
+  // UGC NET Paper II booklets (2009–2013), defined in data-pyq-6.js
+  ...NET_PAPER_ENTRIES,
 ];
 OFFICIAL_PAPERS.forEach(p => { p.included = p.questions.length; });
