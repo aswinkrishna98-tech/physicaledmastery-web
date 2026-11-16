@@ -7,7 +7,7 @@ const vm = require("vm");
 // Load the same data/config files the browser loads, in order, into one context.
 const ctx = { console };
 vm.createContext(ctx);
-for (const f of ["data-questions.js", "data-content.js", "data-school.js", "data-exam-config.js", "data-pyq.js", "data-pyq-2.js", "data-pyq-3.js", "data-pyq-4.js"]) {
+for (const f of ["data-questions.js", "data-content.js", "data-school.js", "data-exam-config.js", "data-pyq.js", "data-pyq-2.js", "data-pyq-3.js", "data-pyq-5.js", "data-pyq-4.js"]) {
   const src = fs.readFileSync(path.join(__dirname, "..", f), "utf8").replace(/^(const|let) /gm, "var ");
   vm.runInContext(src, ctx, { filename: f });
 }
@@ -75,8 +75,8 @@ test("relatedIds all resolve", () => {
 
 function pick(r) { return { score: r.score, correct: r.correct, incorrect: r.incorrect, unattempted: r.unattempted }; }
 
-test("past papers: integrity, provisional-key labelling and honest counts", () => {
-  assert.equal(OFFICIAL_PAPERS.length, 2);
+test("past papers: integrity, key-type labelling and honest counts", () => {
+  assert.equal(OFFICIAL_PAPERS.length, 3);
   const seen = new Set();
   for (const p of OFFICIAL_PAPERS) {
     assert.equal(p.included, p.questions.length);
@@ -90,7 +90,7 @@ test("past papers: integrity, provisional-key labelling and honest counts", () =
       assert.equal(new Set(q.options.map((o) => o.trim().toLowerCase())).size, 4, q.id + " duplicate option text");
       assert.ok(Number.isInteger(q.correctIndex) && q.correctIndex >= 0 && q.correctIndex < 4, q.id + " answer index");
       assert.ok(q.question.length > 10 && q.explanation.length > 20, q.id + " text");
-      assert.ok(q.tags.includes("provisional-key"), q.id + " provisional tag");
+      assert.ok(q.tags.includes(p.keyType === "official" ? "official-key" : "provisional-key"), q.id + " key-type tag");
       assert.ok(q.subject && q.topic && q.difficulty && q.type, q.id + " fields");
     }
   }
