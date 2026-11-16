@@ -4,8 +4,9 @@
 // ============================================================================
 
 function PreviousYearPapersPage(){
-  // HONESTY NOTE: the two past papers below were supplied as scans without
-  // official answer keys, so their keys are provisional (see data-pyq.js).
+  // HONESTY NOTE: papers A and B were supplied as scans without official answer
+  // keys, so their keys are provisional (see data-pyq.js). Paper C comes with the
+  // published final answer key and is labelled "Official key".
   // The exam-style practice sets further down are built from the exam-tagged
   // questions in our own bank and are labelled as such.
   const {routeParams, goto, mockLocked, isPro, hasExamAccess} = useApp();
@@ -15,7 +16,7 @@ function PreviousYearPapersPage(){
     examMeta:{duration:engine.duration, negativeMarking:engine.negative, examName:engine.title}, onFinish:(r)=>goto("/mock-result",{result:{...r, examShort:engine.short, examId:engine.examId}})});
   const general = QUESTION_BANK.filter(q=>!isSchoolQuestion(q));
   return React.createElement("div",{className:"container", style:{padding:"36px 24px 72px"}},
-    React.createElement(SectionHeading,{eyebrow:"Previous Year Papers", title:"Past papers and practice sets", lede:"Two past papers are available to attempt as timed tests. Answer keys were not supplied with them, so every answer is a provisional key compiled by us. Below them are exam-style practice sets built from our own question bank.", right:
+    React.createElement(SectionHeading,{eyebrow:"Previous Year Papers", title:"Past papers and practice sets", lede:OFFICIAL_PAPERS.length+" past papers are available to attempt as timed tests. One uses a published official answer key; the others have provisional keys compiled by us and are labelled. Below them are exam-style practice sets built from our own question bank.", right:
       !isPro && React.createElement("span",{className:"pill "+(mockLocked?"pill-danger":"pill-warning")}, mockLocked?"Free mock test used":"Free Plan · 1 free attempt")
     }),
     paywallExam && !isPro && !hasExamAccess(paywallExam.id) && mockLocked &&
@@ -24,8 +25,8 @@ function PreviousYearPapersPage(){
       })),
     React.createElement("h2",{className:"h2", style:{margin:"4px 0 6px"}}, "Past papers"),
     React.createElement("div",{className:"card card-pad", style:{marginBottom:16, borderColor:"var(--warning, #d9a400)"}},
-      React.createElement("p",{className:"small"}, React.createElement("b",null,"Provisional answer key. "),
-        "The official answer keys were not available, so the answers and explanations here were compiled by us from standard textbooks and have not yet been reviewed by a subject expert. Where one disagrees with the official key, trust the official key. Questions whose answer we could not settle are left out. Timer: 1 minute per question (our default); no negative marking.")),
+      React.createElement("p",{className:"small"}, React.createElement("b",null,"Answer keys. "),
+        "Papers marked \"Official key\" use the published final answer key (questions the key cancels are left out). For papers marked \"Provisional key\", the official key was not available, so the answers and explanations were compiled by us from standard textbooks and have not yet been reviewed by a subject expert; where one disagrees with the official key, trust the official key. Questions whose answer we could not settle are left out. Timer: 1 minute per question (our default); no negative marking.")),
     React.createElement("div",{className:"grid grid-3", style:{marginBottom:32}},
       OFFICIAL_PAPERS.map(pp=>{
         const exam = EXAMS.find(e=>e.id===pp.examId);
@@ -33,7 +34,7 @@ function PreviousYearPapersPage(){
         return React.createElement("div",{key:pp.id, className:"card card-pad"},
           React.createElement("div",{className:"flex justify-between", style:{marginBottom:8}},
             React.createElement("span",{className:"pill pill-info"}, pp.examTag),
-            React.createElement("span",{className:"pill pill-warning"}, "Provisional key")),
+            pp.keyType==="official" ? React.createElement("span",{className:"pill pill-success"}, "Official key") : React.createElement("span",{className:"pill pill-warning"}, "Provisional key")),
           React.createElement("h3",{className:"h3"}, pp.title),
           React.createElement("p",{className:"tiny muted", style:{margin:"6px 0 6px"}}, pp.included+" of "+pp.originalQuestions+" questions included · "+pp.included+" minutes · "+pp.scope),
           React.createElement("p",{className:"tiny muted", style:{margin:"0 0 14px"}}, (pp.year?("Year: "+pp.year+" · "):"Year not shown on the pages supplied · ")+pp.code+". "+pp.note),
