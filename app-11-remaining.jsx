@@ -237,14 +237,16 @@ function BookmarksPage(){
 
 /* --------------------------------- Pricing --------------------------------- */
 function PricingPage(){
-  const {notify, profile, isPro, upgradePlan, freeMocksUsed, paymentsLive, checkoutBusy, hasExamAccess} = useApp();
+  const {notify, profile, isPro, upgradePlan, freeMocksUsed, paymentsLive, checkoutBusy, hasExamAccess, inPlayApp} = useApp();
   const plan = profile.plan||"free";
   const tiers = [
     {id:"free",name:"Free",price:"₹0",period:"forever",features:["5 free explanations per subject","1 full mock test, then upgrade for more","Basic short notes","Limited analytics","Or buy a single-exam Pass below — cheaper than full Pro"],highlight:false},
     {id:"pro",name:"Pro",price:"₹499",period:"one-time",features:["Unlimited practice questions","Unlimited mock tests","Detailed performance analytics & answer review","Exam-style practice sets for every exam","Full study material & flashcards","Study planner"],highlight:true},
     {id:"proplus",name:"Pro+",price:"₹899",period:"one-time",features:["Everything in Pro today","Supporter tier: also gets upcoming features as they ship (AI coach, adaptive plans, live classes) — these are in development and not available yet"],highlight:false},
   ];
-  const lede = paymentsLive
+  const lede = inPlayApp
+    ? "Take one full mock test free. Upgrade to Pro for unlimited mock tests and full analytics. Purchases are made through Google Play and saved to your account — sign in first so they follow you to any device."
+    : paymentsLive
     ? "Take one full mock test free. Upgrade to Pro for unlimited mock tests and full analytics. Payments are processed securely via Razorpay — your plan unlocks the moment payment is verified."
     : "Take one full mock test free. Upgrade to Pro for unlimited mock tests and full analytics. (Payment processing is not wired up in this prototype — upgrading here applies the plan instantly so you can see what unlocks.)";
   return React.createElement("div",{className:"container", style:{padding:"40px 24px 72px"}},
@@ -275,7 +277,7 @@ function PricingPage(){
       })
     ),
     React.createElement("p",{className:"tiny muted", style:{marginTop:18, textAlign:"center"}},
-      paymentsLive ? "Secured by Razorpay. One-time payment, no subscription — see the Refund Policy." : "Real payment gateway not connected in this deployment — see server/README.md to enable one."),
+      inPlayApp ? "Purchases are processed by Google Play. One-time payment, no subscription — see the Refund Policy." : paymentsLive ? "Secured by Razorpay. One-time payment, no subscription — see the Refund Policy." : "Real payment gateway not connected in this deployment — see server/README.md to enable one."),
 
     React.createElement("div",{style:{marginTop:56}},
       React.createElement(SectionHeading,{eyebrow:"Prepare For Just One Exam?", title:"Single-exam passes", lede:"Most aspirants only prepare for one exam at a time. A Pass unlocks unlimited mock tests, full result analysis and practice sets for that one exam only — at a fraction of full Pro's price."}),
@@ -341,7 +343,7 @@ function TermsPage(){
       ]},
       {h:"5. Plans and payments", body:[
         "PE Prep offers a Free plan and paid upgrades: Pro, Pro+, and single-exam passes scoped to one exam. All paid plans are one-time purchases that unlock access — they are not recurring subscriptions, and you will not be auto-charged again for the same plan.",
-        "Prices are shown in Indian Rupees (INR) and are inclusive of applicable taxes unless stated otherwise. Payments are processed by Razorpay; see our Refund & Cancellation Policy for how refunds are handled."
+        "Prices are shown in Indian Rupees (INR) and are inclusive of applicable taxes unless stated otherwise. Payments are processed by Razorpay on the website and by Google Play in the Android app; see our Refund & Cancellation Policy for how refunds are handled."
       ]},
       {h:"6. Acceptable use", body:[
         [
@@ -386,7 +388,7 @@ function PrivacyPage(){
       {h:"2. Information we collect", body:[
         "Account information: your name, email address and a securely hashed password (we never store your password in plain text) when you sign up.",
         "Usage and progress data: mock test scores, accuracy, streaks, bookmarks, and the questions you've attempted, so the Platform can show your progress and unlock free-tier previews correctly.",
-        "Payment information: handled entirely by Razorpay, our payment processor. PE Prep never sees or stores your card, UPI or bank account details — we only receive confirmation that a payment succeeded and a reference ID.",
+        "Payment information: handled entirely by Razorpay (website) or Google Play (Android app), our payment processors. PE Prep never sees or stores your card, UPI or bank account details — we only receive confirmation that a payment succeeded and a reference ID.",
         "Standard technical logs (such as IP address and browser type) generated automatically by our hosting provider."
       ]},
       {h:"3. How we use this information", body:[
@@ -401,7 +403,7 @@ function PrivacyPage(){
         "PE Prep uses your browser's local storage to keep you signed in and to remember preferences (such as theme and dismissed banners) on your device. We do not use this for cross-site advertising tracking."
       ]},
       {h:"5. Third-party services", body:[
-        "Razorpay processes all payments under its own privacy policy and PCI-compliant security standards.",
+        "Razorpay (website) and Google Play (Android app) process all payments under their own privacy policies and PCI-compliant security standards.",
         "Render hosts our servers and database. Google sign-in, where used, is handled directly by Google's own authentication flow."
       ]},
       {h:"6. Data retention", body:[
@@ -442,7 +444,7 @@ function RefundPolicyPage(){
         ]
       ]},
       {h:"4. How to request a refund", body:[
-        "Contact us through the Contact page within 7 days of the transaction, including your registered email, the approximate date of payment, and (if available) the payment/order ID from your Razorpay receipt or bank/UPI app."
+        "Bought on the website: contact us through the Contact page within 7 days of the transaction, including your registered email, the approximate date of payment, and (if available) the payment/order ID from your Razorpay receipt or bank/UPI app. Bought in the Android app: Google Play handles those payments, so request the refund from Google Play (Play Store → Profile → Payments & subscriptions → Budget & history, or via Google Play support); you can also contact us and we will help."
       ]},
       {h:"5. Refund timeline", body:[
         "Approved refunds are processed within 5–7 business days back to the original payment method, though your bank or UPI app may take a few additional days to reflect it."

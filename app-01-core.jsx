@@ -144,6 +144,25 @@ const PLAN_LABELS = {pro:"Pro", proplus:"Pro+"};
 const EXAM_PASS_PRICE_INR = 149;
 
 // ---------------------------------------------------------------------------
+// Android app (Google Play). The Play Store build is a Trusted Web Activity
+// that opens this same site; Google requires digital purchases made inside it
+// to go through Google Play Billing, not Razorpay. We detect the app by the
+// "android-app://" referrer Chrome sends on launch (remembered for the rest
+// of the session in sessionStorage) or an explicit ?app=play launch flag.
+// ---------------------------------------------------------------------------
+const IN_PLAY_APP = (()=>{
+  try{
+    if(sessionStorage.getItem("pep_in_play_app")==="1") return true;
+    const hit = (document.referrer||"").startsWith("android-app://") || /[?&]app=play\b/.test(location.search+location.hash);
+    if(hit) sessionStorage.setItem("pep_in_play_app","1");
+    return hit;
+  }catch(e){ return false; }
+})();
+const PLAY_BILLING_URL = "https://play.google.com/billing";
+// Play product ids cannot contain hyphens: exam ids use underscores here.
+const playSku = (plan, examId)=> plan==="exampass" ? "pass_"+String(examId).replace(/-/g,"_") : plan;
+
+// ---------------------------------------------------------------------------
 // Real accounts config. AUTH_API reuses the same backend as payments (it now
 // also serves /api/auth/*). Set GOOGLE_CLIENT_ID to a Google OAuth Web
 // Client ID (from Google Cloud Console) to turn on "Continue with Google" on
@@ -584,7 +603,81 @@ function AppProvider({children}){
     }
   },[setProfile,notify,profile.name,authAccountId,authToken]);
 
-  const upgradePlan = paymentsLive ? upgradePlanReal : upgradePlanDemo;
+  // ---- Google Play Billing (Android app only) ----
+  const verifyPlayPurchase = useCallback(async (productId, purchaseToken)=>{
+    const r = await fetch(`${PAYMENTS.backendUrl}/api/play/verify`,{
+      method:"POST", headers:{"Content-Type":"application/json", Authorization:"Bearer "+authToken},
+      body: JSON.stringify({productId, purchaseToken}),
+    });
+    const data = await r.json().catch(()=>({}));
+    if(!r.ok) throw new Error(data.error || "Could not verify your purchase");
+    return data;
+  },[authToken]);
+
+  const upgradePlanPlay = useCallback(async (plan, examId)=>{
+    if(!authToken){
+      notify("Please sign in first — purchases are saved to your account so they follow you to any device.", 4500);
+      window.location.hash = "#/login";
+      return;
+    }
+    if(!("getDigitalGoodsService" in window) || !window.PaymentRequest){
+      notify("Purchases aren't available on this device. Update Chrome and Google Play, or buy on physicaledmastery.com.", 5500);
+      return;
+    }
+    const examShort = examId ? (EXAMS.find(e=>e.id===examId)?.short || "Exam") : null;
+    const sku = playSku(plan, examId);
+    setCheckoutBusy(true);
+    try{
+      const service = await window.getDigitalGoodsService(PLAY_BILLING_URL);
+      const req = new PaymentRequest(
+        [{supportedMethods: PLAY_BILLING_URL, data:{sku}}],
+        {total:{label:"Total", amount:{currency:"INR", value:"0"}}}
+      );
+      const resp = await req.show();
+      const purchaseToken = resp.details && resp.details.purchaseToken;
+      try{
+        const result = await verifyPlayPurchase(sku, purchaseToken);
+        await resp.complete("success");
+        if(plan==="exampass"){
+          setProfile(p=>({...p, examPasses: result.examPasses || p.examPasses || []}));
+          notify(examShort+" Pass unlocked — thank you!", 3600);
+        } else {
+          setProfile(p=>({...p, plan: result.plan}));
+          notify((PLAN_LABELS[plan]||plan)+" unlocked — thank you!", 3600);
+        }
+      }catch(e){
+        await resp.complete("fail").catch(()=>{});
+        notify((e.message||"Verification failed")+" — if you were charged, contact support and we'll sort it out.", 6000);
+      }
+    }catch(e){
+      if(e && e.name!=="AbortError") notify("Purchase didn't go through — you haven't been charged.", 4000);
+    }finally{
+      setCheckoutBusy(false);
+    }
+  },[authToken,setProfile,notify,verifyPlayPurchase]);
+
+  // Restore earlier Play purchases (new phone, reinstall) once the user is signed in.
+  useEffect(()=>{
+    if(!IN_PLAY_APP || !authToken || !("getDigitalGoodsService" in window)) return;
+    let cancelled=false;
+    (async()=>{
+      try{
+        const service = await window.getDigitalGoodsService(PLAY_BILLING_URL);
+        const owned = await service.listPurchases();
+        for(const item of owned){
+          if(cancelled) return;
+          try{
+            const result = await verifyPlayPurchase(item.itemId, item.purchaseToken);
+            if(result.plan) setProfile(p=>({...p, plan: result.plan}));
+            if(result.examPasses) setProfile(p=>({...p, examPasses: result.examPasses}));
+          }catch(e){ /* skip a purchase that can't be verified */ }
+        }
+      }catch(e){ /* Digital Goods API unavailable - nothing to restore */ }
+    })();
+    return ()=>{ cancelled=true; };
+  },[authToken,setProfile,verifyPlayPurchase]);
+
+  const upgradePlan = IN_PLAY_APP ? upgradePlanPlay : (paymentsLive ? upgradePlanReal : upgradePlanDemo);
 
   // derived accuracy across attempts — an honest null (not a fabricated
   // baseline) until the user has actually attempted something, so a brand
@@ -622,7 +715,7 @@ function AppProvider({children}){
     toast, notify,
     dailyState, setDailyState,
     studyPlan, setStudyPlan,
-    isPro, freeMocksUsed, mockLocked, upgradePlan, paymentsLive, checkoutBusy, hasExamAccess,
+    isPro, freeMocksUsed, mockLocked, upgradePlan, paymentsLive, checkoutBusy, hasExamAccess, inPlayApp: IN_PLAY_APP,
     FREE_PRACTICE_LIMIT_PER_SUBJECT, practicedBySubject, isSubjectLocked, freeQuestionsLeft, markRevealed,
     isLoggedIn, authBusy, signup, login, googleSignIn, logout, requestLogout, logoutPrompt, setLogoutPrompt, setPreferredExam,
     authEmail, isAdmin, authToken,

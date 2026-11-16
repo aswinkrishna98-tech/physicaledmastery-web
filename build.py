@@ -73,6 +73,9 @@ html = f"""<!DOCTYPE html>
 <title>Physical Ed Mastery - Physical Education Exam Preparation</title>
 <meta name="description" content="{DESC}">
 <meta name="theme-color" content="#0B1F3A">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" type="image/png" href="/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
 <link rel="canonical" href="{SITE}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Physical Ed Mastery">
@@ -95,6 +98,7 @@ html = f"""<!DOCTYPE html>
 {babel_tag}
 
 {scripts_html}
+<script>if("serviceWorker" in navigator){{window.addEventListener("load",function(){{navigator.serviceWorker.register("/sw.js").catch(function(){{}});}});}}</script>
 </body>
 </html>
 """
@@ -113,8 +117,14 @@ DIST = os.path.join(BASE, "dist")
 if os.path.isdir(DIST):
     shutil.rmtree(DIST)
 os.makedirs(DIST)
-for name in ["index.html", "app.bundle.js", "robots.txt", "sitemap.xml"]:
+for name in ["index.html", "app.bundle.js", "robots.txt", "sitemap.xml", "manifest.webmanifest", "sw.js"]:
     src = os.path.join(BASE, name)
     if os.path.exists(src):
         shutil.copy(src, os.path.join(DIST, name))
+# PWA / Play Store support: icons and the Digital Asset Links file that ties
+# the Android app to this domain (written once the app's signing fingerprint is known).
+for folder in ["icons", ".well-known"]:
+    src = os.path.join(BASE, folder)
+    if os.path.isdir(src):
+        shutil.copytree(src, os.path.join(DIST, folder))
 print("Wrote dist/:", ", ".join(sorted(os.listdir(DIST))))

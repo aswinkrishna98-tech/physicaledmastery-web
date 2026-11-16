@@ -1,0 +1,19 @@
+{
+  "name": "Physical Ed Mastery",
+  "short_name": "PE Mastery",
+  "description": "Physical Education exam preparation for KVS, NVS, DSSSB, UGC NET, SET, State PSC, B.P.Ed and M.P.Ed: practice, mock tests, past papers and analytics.",
+  "id": "/",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#15213b",
+  "theme_color": "#0B1F3A",
+  "lang": "en-IN",
+  "categories": ["education"],
+  "icons": [
+    {"src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

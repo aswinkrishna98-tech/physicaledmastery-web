@@ -1,4 +1,4 @@
-/* src-hash:96f3af203e6e60e7aab22fd300656e4784e4234dc01e52391f69db7fe48d949a */
+/* src-hash:9a3973238cdc03488fa57aa1152285dc45eae3472cbfcebff1907ba3f6521c52 */
 
 /* ---- data-questions.js ---- */
 const QUESTION_BANK = [{
@@ -10238,6 +10238,18 @@ const PLAN_LABELS = {
   proplus: "Pro+"
 };
 const EXAM_PASS_PRICE_INR = 149;
+const IN_PLAY_APP = (() => {
+  try {
+    if (sessionStorage.getItem("pep_in_play_app") === "1") return true;
+    const hit = (document.referrer || "").startsWith("android-app://") || /[?&]app=play\b/.test(location.search + location.hash);
+    if (hit) sessionStorage.setItem("pep_in_play_app", "1");
+    return hit;
+  } catch (e) {
+    return false;
+  }
+})();
+const PLAY_BILLING_URL = "https://play.google.com/billing";
+const playSku = (plan, examId) => plan === "exampass" ? "pass_" + String(examId).replace(/-/g, "_") : plan;
 const AUTH_API = PAYMENTS.backendUrl;
 const GOOGLE_CLIENT_ID = "";
 const GOOGLE_GSI_SRC = "https://accounts.google.com/gsi/client";
@@ -10758,7 +10770,107 @@ function AppProvider({
       }
     }
   }, [setProfile, notify, profile.name, authAccountId, authToken]);
-  const upgradePlan = paymentsLive ? upgradePlanReal : upgradePlanDemo;
+  const verifyPlayPurchase = useCallback(async (productId, purchaseToken) => {
+    const r = await fetch(`${PAYMENTS.backendUrl}/api/play/verify`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authToken
+      },
+      body: JSON.stringify({
+        productId,
+        purchaseToken
+      })
+    });
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(data.error || "Could not verify your purchase");
+    return data;
+  }, [authToken]);
+  const upgradePlanPlay = useCallback(async (plan, examId) => {
+    if (!authToken) {
+      notify("Please sign in first — purchases are saved to your account so they follow you to any device.", 4500);
+      window.location.hash = "#/login";
+      return;
+    }
+    if (!("getDigitalGoodsService" in window) || !window.PaymentRequest) {
+      notify("Purchases aren't available on this device. Update Chrome and Google Play, or buy on physicaledmastery.com.", 5500);
+      return;
+    }
+    const examShort = examId ? EXAMS.find(e => e.id === examId)?.short || "Exam" : null;
+    const sku = playSku(plan, examId);
+    setCheckoutBusy(true);
+    try {
+      const service = await window.getDigitalGoodsService(PLAY_BILLING_URL);
+      const req = new PaymentRequest([{
+        supportedMethods: PLAY_BILLING_URL,
+        data: {
+          sku
+        }
+      }], {
+        total: {
+          label: "Total",
+          amount: {
+            currency: "INR",
+            value: "0"
+          }
+        }
+      });
+      const resp = await req.show();
+      const purchaseToken = resp.details && resp.details.purchaseToken;
+      try {
+        const result = await verifyPlayPurchase(sku, purchaseToken);
+        await resp.complete("success");
+        if (plan === "exampass") {
+          setProfile(p => ({
+            ...p,
+            examPasses: result.examPasses || p.examPasses || []
+          }));
+          notify(examShort + " Pass unlocked — thank you!", 3600);
+        } else {
+          setProfile(p => ({
+            ...p,
+            plan: result.plan
+          }));
+          notify((PLAN_LABELS[plan] || plan) + " unlocked — thank you!", 3600);
+        }
+      } catch (e) {
+        await resp.complete("fail").catch(() => {});
+        notify((e.message || "Verification failed") + " — if you were charged, contact support and we'll sort it out.", 6000);
+      }
+    } catch (e) {
+      if (e && e.name !== "AbortError") notify("Purchase didn't go through — you haven't been charged.", 4000);
+    } finally {
+      setCheckoutBusy(false);
+    }
+  }, [authToken, setProfile, notify, verifyPlayPurchase]);
+  useEffect(() => {
+    if (!IN_PLAY_APP || !authToken || !("getDigitalGoodsService" in window)) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const service = await window.getDigitalGoodsService(PLAY_BILLING_URL);
+        const owned = await service.listPurchases();
+        for (const item of owned) {
+          if (cancelled) return;
+          try {
+            const result = await verifyPlayPurchase(item.itemId, item.purchaseToken);
+            if (result.plan) setProfile(p => ({
+              ...p,
+              plan: result.plan
+            }));
+            if (result.examPasses) setProfile(p => ({
+              ...p,
+              examPasses: result.examPasses
+            }));
+          } catch (e) {}
+        }
+      } catch (e) {}
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [authToken, setProfile, verifyPlayPurchase]);
+  const upgradePlan = IN_PLAY_APP ? upgradePlanPlay : paymentsLive ? upgradePlanReal : upgradePlanDemo;
   const accuracy = useMemo(() => {
     const list = Object.values(attempts);
     if (list.length === 0) return null;
@@ -10816,6 +10928,7 @@ function AppProvider({
     paymentsLive,
     checkoutBusy,
     hasExamAccess,
+    inPlayApp: IN_PLAY_APP,
     FREE_PRACTICE_LIMIT_PER_SUBJECT,
     practicedBySubject,
     isSubjectLocked,
@@ -15808,7 +15921,8 @@ function PricingPage() {
     freeMocksUsed,
     paymentsLive,
     checkoutBusy,
-    hasExamAccess
+    hasExamAccess,
+    inPlayApp
   } = useApp();
   const plan = profile.plan || "free";
   const tiers = [{
@@ -15833,7 +15947,7 @@ function PricingPage() {
     features: ["Everything in Pro today", "Supporter tier: also gets upcoming features as they ship (AI coach, adaptive plans, live classes) — these are in development and not available yet"],
     highlight: false
   }];
-  const lede = paymentsLive ? "Take one full mock test free. Upgrade to Pro for unlimited mock tests and full analytics. Payments are processed securely via Razorpay — your plan unlocks the moment payment is verified." : "Take one full mock test free. Upgrade to Pro for unlimited mock tests and full analytics. (Payment processing is not wired up in this prototype — upgrading here applies the plan instantly so you can see what unlocks.)";
+  const lede = inPlayApp ? "Take one full mock test free. Upgrade to Pro for unlimited mock tests and full analytics. Purchases are made through Google Play and saved to your account — sign in first so they follow you to any device." : paymentsLive ? "Take one full mock test free. Upgrade to Pro for unlimited mock tests and full analytics. Payments are processed securely via Razorpay — your plan unlocks the moment payment is verified." : "Take one full mock test free. Upgrade to Pro for unlimited mock tests and full analytics. (Payment processing is not wired up in this prototype — upgrading here applies the plan instantly so you can see what unlocks.)";
   return React.createElement("div", {
     className: "container",
     style: {
@@ -15919,7 +16033,7 @@ function PricingPage() {
       marginTop: 18,
       textAlign: "center"
     }
-  }, paymentsLive ? "Secured by Razorpay. One-time payment, no subscription — see the Refund Policy." : "Real payment gateway not connected in this deployment — see server/README.md to enable one."), React.createElement("div", {
+  }, inPlayApp ? "Purchases are processed by Google Play. One-time payment, no subscription — see the Refund Policy." : paymentsLive ? "Secured by Razorpay. One-time payment, no subscription — see the Refund Policy." : "Real payment gateway not connected in this deployment — see server/README.md to enable one."), React.createElement("div", {
     style: {
       marginTop: 56
     }
@@ -16041,7 +16155,7 @@ function TermsPage() {
       body: ["You are responsible for keeping your login credentials confidential and for all activity under your account. Let us know immediately via the Contact page if you suspect unauthorised access.", "You agree to provide accurate information when creating an account and to keep it up to date."]
     }, {
       h: "5. Plans and payments",
-      body: ["PE Prep offers a Free plan and paid upgrades: Pro, Pro+, and single-exam passes scoped to one exam. All paid plans are one-time purchases that unlock access — they are not recurring subscriptions, and you will not be auto-charged again for the same plan.", "Prices are shown in Indian Rupees (INR) and are inclusive of applicable taxes unless stated otherwise. Payments are processed by Razorpay; see our Refund & Cancellation Policy for how refunds are handled."]
+      body: ["PE Prep offers a Free plan and paid upgrades: Pro, Pro+, and single-exam passes scoped to one exam. All paid plans are one-time purchases that unlock access — they are not recurring subscriptions, and you will not be auto-charged again for the same plan.", "Prices are shown in Indian Rupees (INR) and are inclusive of applicable taxes unless stated otherwise. Payments are processed by Razorpay on the website and by Google Play in the Android app; see our Refund & Cancellation Policy for how refunds are handled."]
     }, {
       h: "6. Acceptable use",
       body: [["Share your account credentials with others, or access an account that isn't yours", "Copy, scrape, redistribute or resell PE Prep's question bank, mock tests or study material", "Use automated tools to extract content from the Platform", "Attempt to disrupt, reverse-engineer or gain unauthorised access to the Platform's systems"]]
@@ -16079,7 +16193,7 @@ function PrivacyPage() {
       body: ["This Privacy Policy explains what information PE Prep collects, how it's used, and the choices you have. Using the Platform means you agree to this Policy."]
     }, {
       h: "2. Information we collect",
-      body: ["Account information: your name, email address and a securely hashed password (we never store your password in plain text) when you sign up.", "Usage and progress data: mock test scores, accuracy, streaks, bookmarks, and the questions you've attempted, so the Platform can show your progress and unlock free-tier previews correctly.", "Payment information: handled entirely by Razorpay, our payment processor. PE Prep never sees or stores your card, UPI or bank account details — we only receive confirmation that a payment succeeded and a reference ID.", "Standard technical logs (such as IP address and browser type) generated automatically by our hosting provider."]
+      body: ["Account information: your name, email address and a securely hashed password (we never store your password in plain text) when you sign up.", "Usage and progress data: mock test scores, accuracy, streaks, bookmarks, and the questions you've attempted, so the Platform can show your progress and unlock free-tier previews correctly.", "Payment information: handled entirely by Razorpay (website) or Google Play (Android app), our payment processors. PE Prep never sees or stores your card, UPI or bank account details — we only receive confirmation that a payment succeeded and a reference ID.", "Standard technical logs (such as IP address and browser type) generated automatically by our hosting provider."]
     }, {
       h: "3. How we use this information",
       body: [["To provide your account, track your progress, and apply the correct plan/entitlements", "To respond to messages sent via the Contact page", "To maintain and improve the Platform's reliability and content", "To meet legal or tax obligations where applicable"]]
@@ -16088,7 +16202,7 @@ function PrivacyPage() {
       body: ["PE Prep uses your browser's local storage to keep you signed in and to remember preferences (such as theme and dismissed banners) on your device. We do not use this for cross-site advertising tracking."]
     }, {
       h: "5. Third-party services",
-      body: ["Razorpay processes all payments under its own privacy policy and PCI-compliant security standards.", "Render hosts our servers and database. Google sign-in, where used, is handled directly by Google's own authentication flow."]
+      body: ["Razorpay (website) and Google Play (Android app) process all payments under their own privacy policies and PCI-compliant security standards.", "Render hosts our servers and database. Google sign-in, where used, is handled directly by Google's own authentication flow."]
     }, {
       h: "6. Data retention",
       body: ["We keep your account and progress data for as long as your account is active. If you ask us to delete your account via the Contact page, we will delete your personal information within a reasonable time, except where we're required to keep transaction records for legal or tax reasons."]
@@ -16123,7 +16237,7 @@ function RefundPolicyPage() {
       body: ["We will refund a payment if:", ["You were charged more than once for the same purchase (a duplicate charge)", "Your payment was debited but your plan or exam pass was not activated within 24 hours due to a technical error on our end", "The transaction was unauthorised or fraudulent"]]
     }, {
       h: "4. How to request a refund",
-      body: ["Contact us through the Contact page within 7 days of the transaction, including your registered email, the approximate date of payment, and (if available) the payment/order ID from your Razorpay receipt or bank/UPI app."]
+      body: ["Bought on the website: contact us through the Contact page within 7 days of the transaction, including your registered email, the approximate date of payment, and (if available) the payment/order ID from your Razorpay receipt or bank/UPI app. Bought in the Android app: Google Play handles those payments, so request the refund from Google Play (Play Store → Profile → Payments & subscriptions → Budget & history, or via Google Play support); you can also contact us and we will help."]
     }, {
       h: "5. Refund timeline",
       body: ["Approved refunds are processed within 5–7 business days back to the original payment method, though your bank or UPI app may take a few additional days to reflect it."]
