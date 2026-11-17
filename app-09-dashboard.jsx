@@ -181,23 +181,147 @@ function LeaderboardPage(){
 }
 
 /* ---------------------------- Daily Challenge ------------------------------ */
-function DailyChallengePage(){
-  const {dailyState, setDailyState, notify, goto} = useApp();
-  const [engine,setEngine] = useState(null);
-  const already = dailyState.lastCompleted === todayStr();
-
-  if(engine) return React.createElement(TestEngine,{mode:"practice", questions:engine, title:"Daily PE Challenge",
-    onExit:()=>{ setDailyState(s=>({...s,lastCompleted:todayStr()})); notify("Daily streak updated! 🔥"); goto("/dashboard"); }});
-
-  return React.createElement("div",{className:"container", style:{padding:"48px 24px 72px", maxWidth:640}},
-    React.createElement("div",{className:"card card-pad", style:{textAlign:"center"}},
-      React.createElement("div",{style:{fontSize:40}}, "🔥"),
-      React.createElement("h2",{className:"h1", style:{margin:"12px 0 6px"}}, "Today's PE Challenge"),
-      React.createElement("p",{className:"muted small"}, "10 Questions · 5 Minutes · Mixed Difficulty"),
-      already ? React.createElement("div",{className:"pill pill-success", style:{margin:"18px auto"}}, "Completed today — come back tomorrow!") :
-      React.createElement("button",{className:"btn btn-primary", style:{marginTop:22}, onClick:()=>setEngine(pick(QUESTION_BANK,10))}, "Start Challenge")
-    )
+// ---- Daily challenge: the same 10 questions for everyone on a given day, 5 minutes,
+// a day streak, and a shareable result card. Uses the user's LOCAL date so the
+// day rolls over at midnight in India, not at 05:30. State lives in dailyState.challenge.
+const DAILY_QUESTIONS = 10;
+const DAILY_SECONDS = 300;
+function localDayStr(d=new Date()){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function yesterdayStr(){ const d=new Date(); d.setDate(d.getDate()-1); return localDayStr(d); }
+function seededRandom(seedStr){ let h=1779033703^seedStr.length; for(let i=0;i<seedStr.length;i++){ h=Math.imul(h^seedStr.charCodeAt(i),3432918353); h=(h<<13)|(h>>>19); } let a=h>>>0; return ()=>{ a|=0; a=(a+0x6D2B79F5)|0; let t=Math.imul(a^(a>>>15),1|a); t=(t+Math.imul(t^(t>>>7),61|t))^t; return ((t^(t>>>14))>>>0)/4294967296; }; }
+function dailyQuestionSet(day){
+  const pool = QUESTION_BANK.filter(q=>!isSchoolQuestion(q)).slice().sort((x,y)=>x.id<y.id?-1:1);
+  const rnd = seededRandom("pe-daily-"+day);
+  for(let i=pool.length-1;i>0;i--){ const j=Math.floor(rnd()*(i+1)); [pool[i],pool[j]]=[pool[j],pool[i]]; }
+  return pool.slice(0, DAILY_QUESTIONS);
+}
+function challengeStreak(ch, day){
+  // A streak is alive if the last completion was today or yesterday.
+  if(!ch || !ch.streak) return 0;
+  return (ch.lastDay===day || ch.lastDay===yesterdayStr()) ? ch.streak : 0;
+}
+function drawResultCard({score,total,streak,day,seconds}){
+  const c = document.createElement("canvas"); c.width=1080; c.height=1080; const g=c.getContext("2d");
+  const grad=g.createLinearGradient(0,0,1080,1080); grad.addColorStop(0,"#0b1f3a"); grad.addColorStop(1,"#1d2f5c");
+  g.fillStyle=grad; g.fillRect(0,0,1080,1080);
+  g.fillStyle="#fff"; g.font="bold 54px system-ui,Arial,sans-serif"; g.fillText("PE Prep",90,130);
+  g.fillStyle="#ffb703"; g.font="bold 44px system-ui,Arial,sans-serif"; g.fillText("Today's PE Challenge",90,260);
+  g.fillStyle="#cfd8ee"; g.font="36px system-ui,Arial,sans-serif"; g.fillText(day,90,320);
+  g.fillStyle="#fff"; g.font="bold 260px system-ui,Arial,sans-serif"; g.fillText(score+"/"+total,90,600);
+  g.fillStyle="#cfd8ee"; g.font="40px system-ui,Arial,sans-serif";
+  g.fillText("Finished in "+Math.floor(seconds/60)+"m "+String(seconds%60).padStart(2,"0")+"s",90,690);
+  g.fillStyle="#ff6b35"; g.font="bold 64px system-ui,Arial,sans-serif"; g.fillText(streak+"-day streak",90,820);
+  g.fillStyle="#cfd8ee"; g.font="38px system-ui,Arial,sans-serif"; g.fillText("Can you beat my score?",90,930);
+  g.fillStyle="#fff"; g.font="bold 42px system-ui,Arial,sans-serif"; g.fillText("physicaledmastery.com",90,1000);
+  return c;
+}
+function ChallengeShare({result, streak}){
+  const {notify} = useApp();
+  const text = "I scored "+result.score+"/"+result.total+" on today's PE Challenge on PE Prep ("+streak+"-day streak). Can you beat it? https://physicaledmastery.com/#/daily-challenge";
+  async function share(){
+    trackEvent("share_challenge_result",{score:result.score});
+    try{
+      const canvas = drawResultCard({...result, streak});
+      const blob = await new Promise(r=>canvas.toBlob(r,"image/png"));
+      const file = new File([blob],"pe-challenge.png",{type:"image/png"});
+      if(navigator.canShare && navigator.canShare({files:[file]})){ await navigator.share({files:[file], text}); return; }
+      if(navigator.share){ await navigator.share({text}); return; }
+      const url = URL.createObjectURL(blob); const a=document.createElement("a"); a.href=url; a.download="pe-challenge.png"; a.click(); setTimeout(()=>URL.revokeObjectURL(url),2000);
+      try{ await navigator.clipboard.writeText(text); notify("Result card saved. Caption copied - paste it with the image."); }catch(e){ notify("Result card saved."); }
+    }catch(e){ if(e && e.name==="AbortError") return; notify("Could not share from this browser."); }
+  }
+  return React.createElement("div",{className:"flex gap-10 wrap", style:{justifyContent:"center", marginTop:16}},
+    React.createElement("button",{className:"btn btn-primary", onClick:share}, "Share result card"),
+    React.createElement("a",{className:"btn btn-outline", href:"https://wa.me/?text="+encodeURIComponent(text), target:"_blank", rel:"noopener noreferrer", onClick:()=>trackEvent("share_challenge_result",{via:"whatsapp"})}, "WhatsApp")
   );
+}
+
+function DailyChallengePage(){
+  const {dailyState, setDailyState, recordAttempt, notify, goto} = useApp();
+  const day = localDayStr();
+  const ch = dailyState.challenge || {};
+  const questions = useMemo(()=>dailyQuestionSet(day),[day]);
+  const [now,setNow] = useState(()=>Date.now());
+  const run = ch.run && ch.run.day===day ? ch.run : null;
+  const doneToday = ch.lastDay===day && ch.last && ch.last.day===day;
+  const streak = challengeStreak(ch, day);
+
+  function start(){
+    setDailyState(s=>({...s, challenge:{...(s.challenge||{}), run:{day, idx:0, answers:[], endsAt:Date.now()+DAILY_SECONDS*1000}}}));
+    trackEvent("start_daily_challenge");
+  }
+  function finish(answers, endsAt){
+    const score = questions.reduce((n,q,i)=>n+(answers[i]===q.correctIndex?1:0),0);
+    const used = Math.min(DAILY_SECONDS, Math.max(1, DAILY_SECONDS - Math.max(0, Math.round((endsAt-Date.now())/1000))));
+    setDailyState(s=>{
+      const c = s.challenge||{};
+      const newStreak = c.lastDay===day ? (c.streak||1) : (c.lastDay===yesterdayStr() ? (c.streak||0)+1 : 1);
+      return {...s, lastCompleted: todayStr(), challenge:{...c, run:null, lastDay:day, streak:newStreak, best:Math.max(c.best||0,newStreak), last:{day, score, total:questions.length, seconds:used}}};
+    });
+    trackEvent("complete_daily_challenge",{score});
+    notify("Daily challenge complete!");
+  }
+  // countdown + auto-finish
+  useEffect(()=>{
+    if(!run) return;
+    const t = setInterval(()=>{ setNow(Date.now()); if(Date.now()>=run.endsAt) finish(run.answers, run.endsAt); },500);
+    return ()=>clearInterval(t);
+    // eslint-disable-next-line
+  },[run && run.endsAt, run && run.answers.length]);
+
+  function answer(i){
+    if(!run || run.answers[run.idx]!==undefined) return;
+    const q = questions[run.idx];
+    recordAttempt(q, i, 0);
+    const answers = [...run.answers]; answers[run.idx]=i;
+    setDailyState(s=>({...s, challenge:{...s.challenge, run:{...run, answers}}}));
+  }
+  function next(){
+    if(run.idx+1>=questions.length){ finish(run.answers, run.endsAt); return; }
+    setDailyState(s=>({...s, challenge:{...s.challenge, run:{...run, idx:run.idx+1}}}));
+  }
+
+  const wrap = (children)=>React.createElement("div",{className:"container", style:{padding:"36px 24px 72px", maxWidth:680}}, children);
+
+  if(run){
+    const q = questions[run.idx]; const picked = run.answers[run.idx]; const left = Math.max(0, Math.ceil((run.endsAt-now)/1000));
+    return wrap(React.createElement("div",{className:"card card-pad"},
+      React.createElement("div",{className:"flex justify-between items-center", style:{marginBottom:14}},
+        React.createElement("span",{className:"pill pill-info"}, "Question "+(run.idx+1)+"/"+questions.length),
+        React.createElement("span",{className:"timer-badge"+(left<60?" low":"")}, React.createElement(Icon,{name:"clock",size:14}), fmtTime(left))),
+      React.createElement("p",{className:"qtext"}, q.question),
+      React.createElement("div",{className:"options", role:"radiogroup", "aria-label":"Answer options"},
+        q.options.map((opt,i)=>{
+          let cls="option";
+          if(picked!==undefined){ if(i===q.correctIndex) cls+=" correct"; else if(i===picked) cls+=" wrong"; }
+          return React.createElement("div",{key:i, className:cls, role:"radio", "aria-checked":picked===i, tabIndex:0, onClick:()=>answer(i), onKeyDown:e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); answer(i); } }},
+            React.createElement("span",{className:"option-letter"}, letters(i)), React.createElement("span",null, opt));
+        })),
+      picked!==undefined && React.createElement("div",{style:{marginTop:16, textAlign:"right"}},
+        React.createElement("button",{className:"btn btn-primary", onClick:next}, run.idx+1>=questions.length ? "Finish" : "Next question"))
+    ));
+  }
+
+  if(doneToday){
+    const r = ch.last;
+    return wrap(React.createElement("div",{className:"card card-pad", style:{textAlign:"center"}},
+      React.createElement("div",{style:{fontSize:40}}, "🔥"),
+      React.createElement("h2",{className:"h1", style:{margin:"12px 0 6px"}}, "You scored "+r.score+" / "+r.total),
+      React.createElement("p",{className:"muted small"}, "Finished in "+Math.floor(r.seconds/60)+"m "+String(r.seconds%60).padStart(2,"0")+"s · "+streak+"-day streak"+((ch.best||0)>streak?" · best "+ch.best:"")),
+      React.createElement("p",{className:"small", style:{marginTop:12}}, "Come back tomorrow for a new set. Missed questions are saved in My Mistakes."),
+      React.createElement(ChallengeShare,{result:r, streak}),
+      React.createElement("div",{className:"flex gap-10 wrap", style:{justifyContent:"center", marginTop:12}},
+        React.createElement("button",{className:"btn btn-ghost", onClick:()=>goto("/my-mistakes")}, "Review my mistakes"))
+    ));
+  }
+
+  return wrap(React.createElement("div",{className:"card card-pad", style:{textAlign:"center"}},
+    React.createElement("div",{style:{fontSize:40}}, "🔥"),
+    React.createElement("h2",{className:"h1", style:{margin:"12px 0 6px"}}, "Today's PE Challenge"),
+    React.createElement("p",{className:"muted small"}, DAILY_QUESTIONS+" Questions · 5 Minutes · same set for everyone today"),
+    streak>0 && React.createElement("div",{className:"pill pill-gold", style:{margin:"14px auto 0"}}, streak+"-day streak"),
+    React.createElement("button",{className:"btn btn-primary", style:{marginTop:22}, onClick:start}, "Start Challenge")
+  ));
 }
 
 /* --------------------------- Question of the Day --------------------------- */

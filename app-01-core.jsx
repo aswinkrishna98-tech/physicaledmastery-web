@@ -136,7 +136,7 @@ const PAYMENTS = {
   backendUrl: "https://pe-prep-payments.onrender.com", // e.g. "https://pe-prep-api.onrender.com"
 };
 const RAZORPAY_CHECKOUT_SRC = "https://checkout.razorpay.com/v1/checkout.js";
-const PLAN_LABELS = {pro:"Pro", proplus:"Pro+"};
+const PLAN_LABELS = {pro:"Pro", proplus:"Founding Supporter"};
 // A single-exam pass — full Pro-level access (unlimited mock tests, full
 // result analysis, previous year papers) for ONE exam only, priced well
 // below the flat Pro tier. Display-only on the frontend; the backend's own
@@ -171,6 +171,25 @@ const playSku = (plan, examId)=> plan==="exampass" ? "pass_"+String(examId).repl
 // with progress kept in this browser only.
 // ---------------------------------------------------------------------------
 const AUTH_API = PAYMENTS.backendUrl;
+
+// Referral stub: remember a ?ref=CODE from the URL so it can travel with email sign-ups and
+// the account form. There is no reward logic yet - see README ("Referrals").
+(function captureReferral(){
+  try{
+    const m = /[?&]ref=([A-Za-z0-9_-]{2,40})/.exec(location.search+"&"+location.hash.replace("#","?"));
+    if(m) localStorage.setItem("pep_ref", m[1]);
+  }catch(e){}
+})();
+
+// Privacy-respecting analytics hook. Does nothing unless an analytics script
+// (Plausible or Umami) is loaded on the page - see ANALYTICS in build.py.
+// No cookies, no personal data: only an event name and small props.
+function trackEvent(name, props){
+  try{
+    if(typeof window.plausible === "function") window.plausible(name, props ? {props} : undefined);
+    else if(window.umami && typeof window.umami.track === "function") window.umami.track(name, props);
+  }catch(e){}
+}
 const GOOGLE_CLIENT_ID = ""; // e.g. "1234567890-abc...apps.googleusercontent.com"
 const GOOGLE_GSI_SRC = "https://accounts.google.com/gsi/client";
 
@@ -228,6 +247,7 @@ function AppProvider({children}){
   const [route, setRoute] = useState(()=> (location.hash||"#/").replace(/^#/,"") || "/");
   const [routeParams, setRouteParams] = useState({});
   const [theme, setTheme] = usePersistentState("pep_theme","system");
+  const [lang, setLang] = usePersistentState("pep_lang","en"); // "en" | "hi"; the toggle only appears on content that has Hindi
   const [profile, setProfile] = usePersistentState("pep_profile", DEFAULT_PROFILE);
   const [attempts, setAttempts] = usePersistentState("pep_attempts", {}); // qid -> {correct, ts, timeSpent, count}
   const attemptsRef = useRef(attempts); attemptsRef.current = attempts;
@@ -575,9 +595,11 @@ function AppProvider({children}){
             const result = await verifyRes.json();
             if(plan === "exampass"){
               setProfile(p=>({...p, examPasses: result.examPasses || p.examPasses || []}));
+              trackEvent("purchase_success",{plan:"exampass"});
               notify(examShort+" Pass unlocked — payment verified.", 3600);
             } else {
               setProfile(p=>({...p, plan: result.plan}));
+              trackEvent("purchase_success",{plan});
               notify((PLAN_LABELS[plan]||plan)+" unlocked — payment verified.", 3600);
             }
           }catch(e){
@@ -640,9 +662,11 @@ function AppProvider({children}){
         await resp.complete("success");
         if(plan==="exampass"){
           setProfile(p=>({...p, examPasses: result.examPasses || p.examPasses || []}));
+          trackEvent("purchase_success",{plan:"exampass"});
           notify(examShort+" Pass unlocked — thank you!", 3600);
         } else {
           setProfile(p=>({...p, plan: result.plan}));
+          trackEvent("purchase_success",{plan});
           notify((PLAN_LABELS[plan]||plan)+" unlocked — thank you!", 3600);
         }
       }catch(e){
@@ -677,7 +701,9 @@ function AppProvider({children}){
     return ()=>{ cancelled=true; };
   },[authToken,setProfile,verifyPlayPurchase]);
 
-  const upgradePlan = IN_PLAY_APP ? upgradePlanPlay : (paymentsLive ? upgradePlanReal : upgradePlanDemo);
+  const upgradePlanBase = IN_PLAY_APP ? upgradePlanPlay : (paymentsLive ? upgradePlanReal : upgradePlanDemo);
+  // Same function as before, plus an analytics event when someone clicks a buy button.
+  const upgradePlan = useCallback((plan, examId)=>{ trackEvent("click_buy",{plan}); return upgradePlanBase(plan, examId); },[upgradePlanBase]);
 
   // derived accuracy across attempts — an honest null (not a fabricated
   // baseline) until the user has actually attempted something, so a brand
@@ -715,7 +741,7 @@ function AppProvider({children}){
     toast, notify,
     dailyState, setDailyState,
     studyPlan, setStudyPlan,
-    isPro, freeMocksUsed, mockLocked, upgradePlan, paymentsLive, checkoutBusy, hasExamAccess, inPlayApp: IN_PLAY_APP,
+    lang, setLang, isPro, freeMocksUsed, mockLocked, upgradePlan, paymentsLive, checkoutBusy, hasExamAccess, inPlayApp: IN_PLAY_APP,
     FREE_PRACTICE_LIMIT_PER_SUBJECT, practicedBySubject, isSubjectLocked, freeQuestionsLeft, markRevealed,
     isLoggedIn, authBusy, signup, login, googleSignIn, logout, requestLogout, logoutPrompt, setLogoutPrompt, setPreferredExam,
     authEmail, isAdmin, authToken,

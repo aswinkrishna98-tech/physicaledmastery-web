@@ -2,36 +2,55 @@
 // PE PREP — REVISION TOOLS: Flashcards, Quick Revision, Formula Hub, Sports Rules
 // ============================================================================
 
+// Leitner-style scheduling: "I Know This" moves a card up one box and pushes its
+// next review further out; "Need Revision" drops it to box 0 and brings it back
+// within minutes. Cards due for review are always shown first, then new cards.
+const FLASHCARD_INTERVAL_DAYS = [0, 1, 3, 7, 14, 30];
+const FLASHCARD_RETRY_MS = 10*60*1000;
+function flashcardState(raw){
+  if(!raw) return null;
+  if(typeof raw === "string") return {box: raw==="know" ? 1 : 0, due: 0}; // older saved format
+  return raw;
+}
 function FlashcardsPage(){
   const {toggleBookmark, bookmarks, notify} = useApp();
-  const [idx,setIdx] = useState(0);
   const [flipped,setFlipped] = useState(false);
   const [status,setStatus] = usePersistentState("pep_flashcard_status", {});
   const [subjectFilter,setSubjectFilter] = useState("All");
+  const [now,setNow] = useState(()=>Date.now());
   const subjects = ["All", ...new Set(FLASHCARDS.map(f=>f.subject))];
-  // spaced-repetition-lite: cards needing revision surface first
   const deck = useMemo(()=>{
-    let d = subjectFilter==="All" ? FLASHCARDS : FLASHCARDS.filter(f=>f.subject===subjectFilter);
-    return [...d].sort((a,b)=>(status[b.id]==="revise"?1:0)-(status[a.id]==="revise"?1:0));
-  },[subjectFilter,status]);
-  const card = deck[idx % deck.length] || deck[0];
+    const d = subjectFilter==="All" ? FLASHCARDS : FLASHCARDS.filter(f=>f.subject===subjectFilter);
+    const rank = f=>{ const st = flashcardState(status[f.id]); if(!st) return [1,0,0]; return st.due<=now ? [0,st.box,st.due] : [2,st.due,0]; };
+    return [...d].sort((a,b)=>{ const ra=rank(a), rb=rank(b); return ra[0]-rb[0] || ra[1]-rb[1] || ra[2]-rb[2]; });
+  },[subjectFilter,status,now]);
+  const card = deck[0];
   if(!card) return null;
+  const states = FLASHCARDS.map(f=>flashcardState(status[f.id]));
+  const dueNow = deck.filter(f=>{ const st = flashcardState(status[f.id]); return st && st.due<=now; }).length;
+  const fresh = deck.filter(f=>!status[f.id]).length;
+  const learned = states.filter(st=>st && st.box>=3).length;
 
-  function mark(s){
-    setStatus(prev=>({...prev,[card.id]:s}));
+  function mark(kind){
+    const prev = flashcardState(status[card.id]) || {box:0, due:0};
+    const t = Date.now();
+    const next = kind==="know"
+      ? {box:Math.min(prev.box+1, FLASHCARD_INTERVAL_DAYS.length-1), due:0}
+      : {box:0, due:t+FLASHCARD_RETRY_MS};
+    if(kind==="know") next.due = t + FLASHCARD_INTERVAL_DAYS[next.box]*86400000;
+    setStatus(p=>({...p,[card.id]:next}));
     setFlipped(false);
-    setTimeout(()=>setIdx(i=>(i+1)%deck.length),150);
+    setNow(t);
   }
-  const known = Object.values(status).filter(s=>s==="know").length;
 
   return React.createElement("div",{className:"container", style:{padding:"36px 24px 72px", maxWidth:680}},
-    React.createElement(SectionHeading,{eyebrow:"Flashcards", title:"PE Flashcards", lede:"Flip, self-assess, and let cards you find hard resurface automatically — a simple spaced-repetition loop."}),
+    React.createElement(SectionHeading,{eyebrow:"Flashcards", title:"PE Flashcards", lede:"Flip, self-assess, and let the scheduler bring cards back at growing intervals: missed cards return within minutes, known cards come back after 1, 3, 7, 14 and 30 days."}),
     React.createElement("div",{className:"chip-select", style:{marginBottom:18}},
-      subjects.map(s=>React.createElement("button",{key:s, className:"chip"+(subjectFilter===s?" active":""), onClick:()=>{setSubjectFilter(s);setIdx(0);setFlipped(false);}}, s))
+      subjects.map(s=>React.createElement("button",{key:s, className:"chip"+(subjectFilter===s?" active":""), onClick:()=>{setSubjectFilter(s);setFlipped(false);}}, s))
     ),
     React.createElement("div",{className:"flex justify-between small muted", style:{marginBottom:10}},
-      React.createElement("span",null, "Card "+((idx%deck.length)+1)+" of "+deck.length),
-      React.createElement("span",null, known+" known · "+Object.values(status).filter(s=>s==="revise").length+" need revision")
+      React.createElement("span",null, dueNow>0 ? dueNow+" due for review" : fresh>0 ? "No reviews due — showing new cards" : "All caught up — showing the next card due"),
+      React.createElement("span",null, fresh+" new · "+learned+" learned")
     ),
     React.createElement("div",{className:"flip-card"+(flipped?" flipped":""), onClick:()=>setFlipped(f=>!f)},
       React.createElement("div",{className:"flip-inner"},

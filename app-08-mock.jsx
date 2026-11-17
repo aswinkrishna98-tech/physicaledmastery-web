@@ -218,7 +218,9 @@ function MockResultPage(){
       ? React.createElement("div",{style:{marginBottom:24}},
           React.createElement(MockPaywall,{
             title:"Unlock Your Full Result Analysis",
-            desc:"Your score is always free to see. Upgrade to Pro (unlocks every exam) or get the "+examShort+" Pass — ₹"+EXAM_PASS_PRICE_INR+" for unlimited "+examShort+" mock tests, answer review, subject/difficulty breakdowns, accuracy trend and coaching insights for this exam only.",
+            desc: examPassAvailable(result.examId)
+              ? "Your score is always free to see. Upgrade to Pro (unlocks every exam) or get the "+examShort+" Pass — ₹"+EXAM_PASS_PRICE_INR+" for unlimited "+examShort+" mock tests, answer review, subject/difficulty breakdowns, accuracy trend and coaching insights for this exam only."
+              : "Your score is always free to see. Upgrade to Pro to unlock the full result analysis: answer review, subject/difficulty breakdowns, accuracy trend and coaching insights. A single-exam "+examShort+" Pass is launching soon.",
             examId: result.examId, examShort,
           })
         )

@@ -5,6 +5,7 @@
 
 function AuthPage(){
   const {route, goto, signup, login, googleSignIn, authBusy} = useApp();
+  const [referral, setReferral] = useState(()=>{ try{ return localStorage.getItem("pep_ref")||""; }catch(e){ return ""; } });
   const [mode, setMode] = useState(route === "/signup" ? "signup" : "login");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -75,6 +76,9 @@ function AuthPage(){
               EXAMS.map(ex=>React.createElement("option",{key:ex.id, value:ex.id}, ex.short))
             )
           ),
+          mode==="signup" && React.createElement("input",{className:"input", placeholder:"Referral code (optional)", maxLength:40, value:referral,
+            onChange:e=>{ const v=e.target.value.replace(/[^A-Za-z0-9_-]/g,""); setReferral(v); try{ if(v) localStorage.setItem("pep_ref",v); else localStorage.removeItem("pep_ref"); }catch(err){} },
+            style:{marginBottom:14, width:"100%"}, "aria-label":"Referral code"}),
           error && React.createElement("p",{className:"small", style:{color:"var(--danger)", marginBottom:12}}, error),
           React.createElement("button",{className:"btn btn-primary", type:"submit", disabled:authBusy, style:{width:"100%"}},
             authBusy ? "Please wait…" : (mode==="signup" ? "Create account" : "Sign in"))

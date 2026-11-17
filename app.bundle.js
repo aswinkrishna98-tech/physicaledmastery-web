@@ -1,4 +1,4 @@
-/* src-hash:9a3973238cdc03488fa57aa1152285dc45eae3472cbfcebff1907ba3f6521c52 */
+/* src-hash:af233263ae4bdaa387e6e8e110dacaf6933083f2b276c1b007a97c6fa20d169d */
 
 /* ---- data-questions.js ---- */
 const QUESTION_BANK = [{
@@ -9340,6 +9340,41 @@ if (typeof module !== "undefined" && module.exports) {
     computeMockScore
   };
 }
+const MIN_QUESTIONS_FOR_PASS = 100;
+function examQuestionCount(examId) {
+  const tag = EXAM_CONFIG[examId] && EXAM_CONFIG[examId].tag;
+  if (!tag) return 0;
+  return QUESTION_BANK.filter(q => (q.exam || []).includes(tag)).length;
+}
+function examPassAvailable(examId) {
+  return examQuestionCount(examId) >= MIN_QUESTIONS_FOR_PASS;
+}
+
+/* ---- data-i18n.js ---- */
+const HINDI_TRANSLATIONS = {};
+const UI_STRINGS = {
+  hi: {}
+};
+function hindiFor(q) {
+  const h = HINDI_TRANSLATIONS[q.id];
+  if (!h || !h.question || !Array.isArray(h.options) || h.options.length !== q.options.length) return null;
+  return h;
+}
+function hasHindi(q) {
+  return !!hindiFor(q);
+}
+function localizeQ(q, lang) {
+  const h = lang === "hi" ? hindiFor(q) : null;
+  return h ? {
+    ...q,
+    question: h.question,
+    options: h.options,
+    explanation: h.explanation || q.explanation
+  } : q;
+}
+function tr(lang, text) {
+  return lang === "hi" && UI_STRINGS.hi[text] || text;
+}
 
 /* ---- data-pyq.js ---- */
 const PYQ_PAPER_QUESTIONS = {
@@ -10235,7 +10270,7 @@ const PAYMENTS = {
 const RAZORPAY_CHECKOUT_SRC = "https://checkout.razorpay.com/v1/checkout.js";
 const PLAN_LABELS = {
   pro: "Pro",
-  proplus: "Pro+"
+  proplus: "Founding Supporter"
 };
 const EXAM_PASS_PRICE_INR = 149;
 const IN_PLAY_APP = (() => {
@@ -10251,6 +10286,19 @@ const IN_PLAY_APP = (() => {
 const PLAY_BILLING_URL = "https://play.google.com/billing";
 const playSku = (plan, examId) => plan === "exampass" ? "pass_" + String(examId).replace(/-/g, "_") : plan;
 const AUTH_API = PAYMENTS.backendUrl;
+(function captureReferral() {
+  try {
+    const m = /[?&]ref=([A-Za-z0-9_-]{2,40})/.exec(location.search + "&" + location.hash.replace("#", "?"));
+    if (m) localStorage.setItem("pep_ref", m[1]);
+  } catch (e) {}
+})();
+function trackEvent(name, props) {
+  try {
+    if (typeof window.plausible === "function") window.plausible(name, props ? {
+      props
+    } : undefined);else if (window.umami && typeof window.umami.track === "function") window.umami.track(name, props);
+  } catch (e) {}
+}
 const GOOGLE_CLIENT_ID = "";
 const GOOGLE_GSI_SRC = "https://accounts.google.com/gsi/client";
 function loadGoogleScript() {
@@ -10314,6 +10362,7 @@ function AppProvider({
   const [route, setRoute] = useState(() => (location.hash || "#/").replace(/^#/, "") || "/");
   const [routeParams, setRouteParams] = useState({});
   const [theme, setTheme] = usePersistentState("pep_theme", "system");
+  const [lang, setLang] = usePersistentState("pep_lang", "en");
   const [profile, setProfile] = usePersistentState("pep_profile", DEFAULT_PROFILE);
   const [attempts, setAttempts] = usePersistentState("pep_attempts", {});
   const attemptsRef = useRef(attempts);
@@ -10738,12 +10787,18 @@ function AppProvider({
                 ...p,
                 examPasses: result.examPasses || p.examPasses || []
               }));
+              trackEvent("purchase_success", {
+                plan: "exampass"
+              });
               notify(examShort + " Pass unlocked — payment verified.", 3600);
             } else {
               setProfile(p => ({
                 ...p,
                 plan: result.plan
               }));
+              trackEvent("purchase_success", {
+                plan
+              });
               notify((PLAN_LABELS[plan] || plan) + " unlocked — payment verified.", 3600);
             }
           } catch (e) {
@@ -10825,12 +10880,18 @@ function AppProvider({
             ...p,
             examPasses: result.examPasses || p.examPasses || []
           }));
+          trackEvent("purchase_success", {
+            plan: "exampass"
+          });
           notify(examShort + " Pass unlocked — thank you!", 3600);
         } else {
           setProfile(p => ({
             ...p,
             plan: result.plan
           }));
+          trackEvent("purchase_success", {
+            plan
+          });
           notify((PLAN_LABELS[plan] || plan) + " unlocked — thank you!", 3600);
         }
       } catch (e) {
@@ -10870,7 +10931,13 @@ function AppProvider({
       cancelled = true;
     };
   }, [authToken, setProfile, verifyPlayPurchase]);
-  const upgradePlan = IN_PLAY_APP ? upgradePlanPlay : paymentsLive ? upgradePlanReal : upgradePlanDemo;
+  const upgradePlanBase = IN_PLAY_APP ? upgradePlanPlay : paymentsLive ? upgradePlanReal : upgradePlanDemo;
+  const upgradePlan = useCallback((plan, examId) => {
+    trackEvent("click_buy", {
+      plan
+    });
+    return upgradePlanBase(plan, examId);
+  }, [upgradePlanBase]);
   const accuracy = useMemo(() => {
     const list = Object.values(attempts);
     if (list.length === 0) return null;
@@ -10921,6 +10988,8 @@ function AppProvider({
     setDailyState,
     studyPlan,
     setStudyPlan,
+    lang,
+    setLang,
     isPro,
     freeMocksUsed,
     mockLocked,
@@ -10990,6 +11059,10 @@ const NAV_ITEMS = [{
   path: "/pricing",
   label: "Pricing",
   icon: "pricing"
+}, {
+  path: "/about",
+  label: "About",
+  icon: "home"
 }];
 const MOBILE_NAV = [{
   path: "/",
@@ -11338,7 +11411,16 @@ function TopNav() {
     }
   }, item.label))), React.createElement("div", {
     className: "navcta"
-  }, React.createElement("button", {
+  }, channelLinks().slice(0, 1).map(c => React.createElement("a", {
+    key: c.label,
+    className: "btn btn-ghost btn-sm",
+    href: c.url,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    onClick: () => trackEvent("click_channel", {
+      channel: c.label
+    })
+  }, "Join " + c.label)), React.createElement("button", {
     className: "btn btn-ghost btn-icon",
     title: "Search (Ctrl+K)",
     onClick: () => setSearchOpen(true)
@@ -11556,6 +11638,53 @@ function Footer() {
   }, t))))), React.createElement("div", {
     className: "container",
     style: {
+      marginTop: 24
+    }
+  }, React.createElement("div", {
+    className: "flex gap-24 wrap",
+    style: {
+      alignItems: "flex-start"
+    }
+  }, React.createElement("div", {
+    style: {
+      flex: "1 1 280px",
+      maxWidth: 420
+    }
+  }, React.createElement("span", {
+    className: "small",
+    style: {
+      fontWeight: 700
+    }
+  }, "Get alerts for new tests and exam notifications"), React.createElement("div", {
+    style: {
+      marginTop: 8
+    }
+  }, React.createElement(NotifyMeForm, {
+    topic: "alerts",
+    buttonText: "Notify me",
+    label: "Email for alerts"
+  }))), React.createElement("div", {
+    className: "flex-col gap-8"
+  }, React.createElement("span", {
+    className: "small",
+    style: {
+      fontWeight: 700
+    }
+  }, "Community"), React.createElement("a", {
+    className: "small muted",
+    href: "/updates/"
+  }, "Exam updates"), channelLinks().map(c => React.createElement("a", {
+    key: c.label,
+    className: "small muted",
+    href: c.url,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    onClick: () => trackEvent("click_channel", {
+      channel: c.label
+    })
+  }, c.label + " channel"))))), React.createElement("div", {
+    className: "container",
+    style: {
       marginTop: 28
     }
   }, React.createElement("div", {
@@ -11566,6 +11695,13 @@ function Footer() {
   }), React.createElement("p", {
     className: "tiny muted"
   }, "PE Prep is an independent practice platform. Exam patterns are indicative — always confirm against the official notification. © 2026 PE Prep.")));
+}
+function channelLinks() {
+  const c = window.PE_CONFIG || {};
+  return [["WhatsApp", c.whatsapp], ["Telegram", c.telegram]].filter(([l, u]) => u && /^https:\/\//.test(u)).map(([label, url]) => ({
+    label,
+    url
+  }));
 }
 function Layout({
   children
@@ -11718,7 +11854,120 @@ function PlanBadge() {
   }, "Free Plan");
   return React.createElement("span", {
     className: "pill pill-gold"
-  }, (profile.plan === "proplus" ? "Pro+" : "Pro") + " Member");
+  }, (profile.plan === "proplus" ? "Founding Supporter" : "Pro") + " Member");
+}
+function Testimonials({
+  title
+}) {
+  const items = (window.TESTIMONIALS || []).filter(t => t && t.consent === true && t.text && t.name);
+  if (items.length === 0) return null;
+  return React.createElement("section", {
+    className: "container",
+    style: {
+      padding: "36px 24px"
+    }
+  }, React.createElement(SectionHeading, {
+    eyebrow: "What aspirants say",
+    title: title || "Feedback from PE aspirants"
+  }), React.createElement("div", {
+    className: "grid grid-3"
+  }, items.map((t, i) => React.createElement("figure", {
+    key: i,
+    className: "card card-pad",
+    style: {
+      margin: 0
+    }
+  }, React.createElement("blockquote", {
+    className: "small",
+    style: {
+      margin: "0 0 12px"
+    }
+  }, "“" + t.text + "”"), React.createElement("figcaption", {
+    className: "tiny muted"
+  }, t.name + (t.role ? " · " + t.role : "") + (t.date ? " · " + t.date : ""))))));
+}
+function NotifyMeForm({
+  topic,
+  label,
+  buttonText,
+  compact,
+  dark
+}) {
+  const {
+    notify
+  } = useApp();
+  const [email, setEmail] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [done, setDone] = useState(false);
+  function submit(e) {
+    e.preventDefault();
+    const clean = email.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clean)) {
+      notify("Please enter a valid email address.");
+      return;
+    }
+    if (!AUTH_API) {
+      notify("Sign-ups are not connected to a backend in this environment.");
+      return;
+    }
+    setBusy(true);
+    fetch(AUTH_API + "/api/subscribe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: clean,
+        topic,
+        referralCode: function () {
+          try {
+            return localStorage.getItem("pep_ref") || undefined;
+          } catch (e) {
+            return undefined;
+          }
+        }()
+      })
+    }).then(r => {
+      if (!r.ok) throw new Error();
+      setDone(true);
+      trackEvent("notify_signup", {
+        topic
+      });
+    }).catch(() => notify("Could not save your email right now - please try again.")).finally(() => setBusy(false));
+  }
+  if (done) return React.createElement("p", {
+    className: "small",
+    style: {
+      color: dark ? "#fff" : "var(--success)",
+      fontWeight: 600
+    }
+  }, "Thanks - we'll email you when there is news.");
+  return React.createElement("form", {
+    onSubmit: submit,
+    className: compact ? "flex-col gap-8" : "flex gap-8 wrap",
+    style: {
+      alignItems: "stretch"
+    }
+  }, React.createElement("input", {
+    type: "email",
+    required: true,
+    value: email,
+    onChange: e => setEmail(e.target.value),
+    placeholder: "you@example.com",
+    "aria-label": label || "Email address",
+    style: {
+      flex: 1,
+      minWidth: 160,
+      padding: "8px 12px",
+      borderRadius: 8,
+      border: "1px solid var(--border)",
+      font: "inherit"
+    }
+  }), React.createElement("button", {
+    type: "submit",
+    className: "btn btn-outline btn-sm",
+    disabled: busy
+  }, busy ? "Saving…" : buttonText || "Notify me"));
 }
 function MockPaywall({
   title,
@@ -11766,7 +12015,7 @@ function MockPaywall({
     className: "btn btn-primary",
     disabled: checkoutBusy,
     onClick: () => upgradePlan("pro")
-  }, checkoutBusy ? "Opening secure checkout…" : "Upgrade to Pro"), examId && React.createElement("button", {
+  }, checkoutBusy ? "Opening secure checkout…" : "Upgrade to Pro"), examId && examPassAvailable(examId) && React.createElement("button", {
     className: "btn btn-outline",
     style: {
       borderColor: "rgba(255,255,255,.5)",
@@ -12130,7 +12379,7 @@ function HeroPreviewCard() {
     }
   }, React.createElement("span", {
     className: "pill pill-info"
-  }, "Question 7/50"), React.createElement("span", {
+  }, "Sample report · Question 7/50"), React.createElement("span", {
     className: "timer-badge"
   }, React.createElement(Icon, {
     name: "clock",
@@ -12154,6 +12403,14 @@ function HeroPreviewCard() {
       margin: "16px 0"
     }
   }), React.createElement("div", {
+    className: "tiny muted",
+    style: {
+      marginBottom: 8,
+      fontWeight: 600,
+      textTransform: "uppercase",
+      letterSpacing: ".04em"
+    }
+  }, "Sample report — example numbers, not a real user"), React.createElement("div", {
     className: "grid grid-3"
   }, React.createElement(StatTile, {
     label: "Accuracy",
@@ -12173,7 +12430,8 @@ function HeroPreviewCard() {
 function Home() {
   const {
     goto,
-    profile
+    profile,
+    dailyState
   } = useApp();
   const preferredExam = EXAMS.find(e => e.id === profile.preferredExam) || null;
   const featuredExams = useMemo(() => {
@@ -12197,7 +12455,7 @@ function Home() {
       marginTop: 18,
       fontSize: 18
     }
-  }, "Practice thousands of Physical Education questions, attempt realistic mock tests, revise important concepts and track your preparation — all in one place."), React.createElement("div", {
+  }, "Practice " + QUESTION_BANK.length.toLocaleString() + " Physical Education questions with explanations, attempt " + OFFICIAL_PAPERS.length + " past papers and timed mock tests, revise key concepts and track your preparation — all in one place."), React.createElement("div", {
     className: "flex gap-16 wrap",
     style: {
       marginTop: 28
@@ -12395,10 +12653,13 @@ function Home() {
       color: "rgba(255,255,255,.75)",
       marginTop: 6
     }
-  }, "Keep your streak alive with a quick daily practice habit.")), React.createElement("button", {
+  }, function () {
+    const n = challengeStreak((dailyState || {}).challenge, localDayStr());
+    return n > 0 ? "🔥 " + n + "-day challenge streak. Keep it alive today." : "Keep your streak alive with a quick daily practice habit.";
+  }())), React.createElement("button", {
     className: "btn btn-primary",
     onClick: () => goto("/daily-challenge")
-  }, "Start Challenge"))), React.createElement("section", {
+  }, "Start Challenge"))), React.createElement(Testimonials, null), React.createElement("section", {
     className: "container",
     style: {
       padding: "48px 24px 72px"
@@ -13115,7 +13376,10 @@ function TestEngineInner({
     bookmarks,
     goto,
     isSubjectLocked,
-    markRevealed
+    markRevealed,
+    lang,
+    setLang,
+    isPro
   } = useApp();
   const [questions, setQuestions] = useState(() => {
     if (resumeState) {
@@ -13143,6 +13407,9 @@ function TestEngineInner({
   });
   const [showSummary, setShowSummary] = useState(false);
   const isMock = mode === "mock";
+  useEffect(() => {
+    if (isMock && !resumeState) trackEvent(isPro ? "start_test" : "start_free_test");
+  }, []);
   const durationSec = examMeta ? examMeta.duration * 60 : null;
   const endsAtRef = useRef(resumeState ? resumeState.endsAt : durationSec ? Date.now() + durationSec * 1000 : null);
   const [secondsLeft, setSecondsLeft] = useState(() => resumeState ? Math.max(0, Math.ceil((resumeState.endsAt - Date.now()) / 1000)) : durationSec);
@@ -13151,7 +13418,8 @@ function TestEngineInner({
   const submittedRef = useRef(false);
   const [confirmSubmit, setConfirmSubmit] = useState(false);
   const submitRef = useRef(null);
-  const q = questions[idx];
+  const qEn = questions[idx];
+  const q = localizeQ(qEn, lang);
   const resp = responses[q.id] || {
     selected: null,
     checked: false,
@@ -13395,6 +13663,9 @@ function TestEngineInner({
       auto: !!auto,
       review
     };
+    trackEvent("complete_test", {
+      auto: !!auto
+    });
     onFinish(result);
   }
   submitRef.current = handleSubmit;
@@ -13535,7 +13806,20 @@ function TestEngineInner({
   }, React.createElement(BookmarkButton, {
     type: "questions",
     id: q.id
-  }))), React.createElement("p", {
+  }))), hasHindi(qEn) && React.createElement("div", {
+    className: "flex gap-8",
+    style: {
+      marginBottom: 8
+    },
+    role: "group",
+    "aria-label": "Question language"
+  }, [["en", "English"], ["hi", "हिन्दी"]].map(([code, label]) => React.createElement("button", {
+    key: code,
+    type: "button",
+    className: "chip" + (lang === code ? " active" : ""),
+    "aria-pressed": lang === code,
+    onClick: () => setLang(code)
+  }, label))), React.createElement("p", {
     className: "qtext"
   }, q.question), React.createElement("div", {
     className: "options",
@@ -14178,7 +14462,7 @@ function MockResultPage() {
     }
   }, React.createElement(MockPaywall, {
     title: "Unlock Your Full Result Analysis",
-    desc: "Your score is always free to see. Upgrade to Pro (unlocks every exam) or get the " + examShort + " Pass — ₹" + EXAM_PASS_PRICE_INR + " for unlimited " + examShort + " mock tests, answer review, subject/difficulty breakdowns, accuracy trend and coaching insights for this exam only.",
+    desc: examPassAvailable(result.examId) ? "Your score is always free to see. Upgrade to Pro (unlocks every exam) or get the " + examShort + " Pass — ₹" + EXAM_PASS_PRICE_INR + " for unlimited " + examShort + " mock tests, answer review, subject/difficulty breakdowns, accuracy trend and coaching insights for this exam only." : "Your score is always free to see. Upgrade to Pro to unlock the full result analysis: answer review, subject/difficulty breakdowns, accuracy trend and coaching insights. A single-exam " + examShort + " Pass is launching soon.",
     examId: result.examId,
     examShort
   })) : React.createElement(React.Fragment, null, React.createElement("div", {
@@ -14799,35 +15083,358 @@ function LeaderboardPage() {
     onClick: () => goto("/login")
   }, "Sign in")));
 }
+const DAILY_QUESTIONS = 10;
+const DAILY_SECONDS = 300;
+function localDayStr(d = new Date()) {
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+}
+function yesterdayStr() {
+  const d = new Date();
+  d.setDate(d.getDate() - 1);
+  return localDayStr(d);
+}
+function seededRandom(seedStr) {
+  let h = 1779033703 ^ seedStr.length;
+  for (let i = 0; i < seedStr.length; i++) {
+    h = Math.imul(h ^ seedStr.charCodeAt(i), 3432918353);
+    h = h << 13 | h >>> 19;
+  }
+  let a = h >>> 0;
+  return () => {
+    a |= 0;
+    a = a + 0x6D2B79F5 | 0;
+    let t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+function dailyQuestionSet(day) {
+  const pool = QUESTION_BANK.filter(q => !isSchoolQuestion(q)).slice().sort((x, y) => x.id < y.id ? -1 : 1);
+  const rnd = seededRandom("pe-daily-" + day);
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(rnd() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  return pool.slice(0, DAILY_QUESTIONS);
+}
+function challengeStreak(ch, day) {
+  if (!ch || !ch.streak) return 0;
+  return ch.lastDay === day || ch.lastDay === yesterdayStr() ? ch.streak : 0;
+}
+function drawResultCard({
+  score,
+  total,
+  streak,
+  day,
+  seconds
+}) {
+  const c = document.createElement("canvas");
+  c.width = 1080;
+  c.height = 1080;
+  const g = c.getContext("2d");
+  const grad = g.createLinearGradient(0, 0, 1080, 1080);
+  grad.addColorStop(0, "#0b1f3a");
+  grad.addColorStop(1, "#1d2f5c");
+  g.fillStyle = grad;
+  g.fillRect(0, 0, 1080, 1080);
+  g.fillStyle = "#fff";
+  g.font = "bold 54px system-ui,Arial,sans-serif";
+  g.fillText("PE Prep", 90, 130);
+  g.fillStyle = "#ffb703";
+  g.font = "bold 44px system-ui,Arial,sans-serif";
+  g.fillText("Today's PE Challenge", 90, 260);
+  g.fillStyle = "#cfd8ee";
+  g.font = "36px system-ui,Arial,sans-serif";
+  g.fillText(day, 90, 320);
+  g.fillStyle = "#fff";
+  g.font = "bold 260px system-ui,Arial,sans-serif";
+  g.fillText(score + "/" + total, 90, 600);
+  g.fillStyle = "#cfd8ee";
+  g.font = "40px system-ui,Arial,sans-serif";
+  g.fillText("Finished in " + Math.floor(seconds / 60) + "m " + String(seconds % 60).padStart(2, "0") + "s", 90, 690);
+  g.fillStyle = "#ff6b35";
+  g.font = "bold 64px system-ui,Arial,sans-serif";
+  g.fillText(streak + "-day streak", 90, 820);
+  g.fillStyle = "#cfd8ee";
+  g.font = "38px system-ui,Arial,sans-serif";
+  g.fillText("Can you beat my score?", 90, 930);
+  g.fillStyle = "#fff";
+  g.font = "bold 42px system-ui,Arial,sans-serif";
+  g.fillText("physicaledmastery.com", 90, 1000);
+  return c;
+}
+function ChallengeShare({
+  result,
+  streak
+}) {
+  const {
+    notify
+  } = useApp();
+  const text = "I scored " + result.score + "/" + result.total + " on today's PE Challenge on PE Prep (" + streak + "-day streak). Can you beat it? https://physicaledmastery.com/#/daily-challenge";
+  async function share() {
+    trackEvent("share_challenge_result", {
+      score: result.score
+    });
+    try {
+      const canvas = drawResultCard({
+        ...result,
+        streak
+      });
+      const blob = await new Promise(r => canvas.toBlob(r, "image/png"));
+      const file = new File([blob], "pe-challenge.png", {
+        type: "image/png"
+      });
+      if (navigator.canShare && navigator.canShare({
+        files: [file]
+      })) {
+        await navigator.share({
+          files: [file],
+          text
+        });
+        return;
+      }
+      if (navigator.share) {
+        await navigator.share({
+          text
+        });
+        return;
+      }
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "pe-challenge.png";
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      try {
+        await navigator.clipboard.writeText(text);
+        notify("Result card saved. Caption copied - paste it with the image.");
+      } catch (e) {
+        notify("Result card saved.");
+      }
+    } catch (e) {
+      if (e && e.name === "AbortError") return;
+      notify("Could not share from this browser.");
+    }
+  }
+  return React.createElement("div", {
+    className: "flex gap-10 wrap",
+    style: {
+      justifyContent: "center",
+      marginTop: 16
+    }
+  }, React.createElement("button", {
+    className: "btn btn-primary",
+    onClick: share
+  }, "Share result card"), React.createElement("a", {
+    className: "btn btn-outline",
+    href: "https://wa.me/?text=" + encodeURIComponent(text),
+    target: "_blank",
+    rel: "noopener noreferrer",
+    onClick: () => trackEvent("share_challenge_result", {
+      via: "whatsapp"
+    })
+  }, "WhatsApp"));
+}
 function DailyChallengePage() {
   const {
     dailyState,
     setDailyState,
+    recordAttempt,
     notify,
     goto
   } = useApp();
-  const [engine, setEngine] = useState(null);
-  const already = dailyState.lastCompleted === todayStr();
-  if (engine) return React.createElement(TestEngine, {
-    mode: "practice",
-    questions: engine,
-    title: "Daily PE Challenge",
-    onExit: () => {
-      setDailyState(s => ({
+  const day = localDayStr();
+  const ch = dailyState.challenge || {};
+  const questions = useMemo(() => dailyQuestionSet(day), [day]);
+  const [now, setNow] = useState(() => Date.now());
+  const run = ch.run && ch.run.day === day ? ch.run : null;
+  const doneToday = ch.lastDay === day && ch.last && ch.last.day === day;
+  const streak = challengeStreak(ch, day);
+  function start() {
+    setDailyState(s => ({
+      ...s,
+      challenge: {
+        ...(s.challenge || {}),
+        run: {
+          day,
+          idx: 0,
+          answers: [],
+          endsAt: Date.now() + DAILY_SECONDS * 1000
+        }
+      }
+    }));
+    trackEvent("start_daily_challenge");
+  }
+  function finish(answers, endsAt) {
+    const score = questions.reduce((n, q, i) => n + (answers[i] === q.correctIndex ? 1 : 0), 0);
+    const used = Math.min(DAILY_SECONDS, Math.max(1, DAILY_SECONDS - Math.max(0, Math.round((endsAt - Date.now()) / 1000))));
+    setDailyState(s => {
+      const c = s.challenge || {};
+      const newStreak = c.lastDay === day ? c.streak || 1 : c.lastDay === yesterdayStr() ? (c.streak || 0) + 1 : 1;
+      return {
         ...s,
-        lastCompleted: todayStr()
-      }));
-      notify("Daily streak updated! 🔥");
-      goto("/dashboard");
+        lastCompleted: todayStr(),
+        challenge: {
+          ...c,
+          run: null,
+          lastDay: day,
+          streak: newStreak,
+          best: Math.max(c.best || 0, newStreak),
+          last: {
+            day,
+            score,
+            total: questions.length,
+            seconds: used
+          }
+        }
+      };
+    });
+    trackEvent("complete_daily_challenge", {
+      score
+    });
+    notify("Daily challenge complete!");
+  }
+  useEffect(() => {
+    if (!run) return;
+    const t = setInterval(() => {
+      setNow(Date.now());
+      if (Date.now() >= run.endsAt) finish(run.answers, run.endsAt);
+    }, 500);
+    return () => clearInterval(t);
+  }, [run && run.endsAt, run && run.answers.length]);
+  function answer(i) {
+    if (!run || run.answers[run.idx] !== undefined) return;
+    const q = questions[run.idx];
+    recordAttempt(q, i, 0);
+    const answers = [...run.answers];
+    answers[run.idx] = i;
+    setDailyState(s => ({
+      ...s,
+      challenge: {
+        ...s.challenge,
+        run: {
+          ...run,
+          answers
+        }
+      }
+    }));
+  }
+  function next() {
+    if (run.idx + 1 >= questions.length) {
+      finish(run.answers, run.endsAt);
+      return;
     }
-  });
-  return React.createElement("div", {
+    setDailyState(s => ({
+      ...s,
+      challenge: {
+        ...s.challenge,
+        run: {
+          ...run,
+          idx: run.idx + 1
+        }
+      }
+    }));
+  }
+  const wrap = children => React.createElement("div", {
     className: "container",
     style: {
-      padding: "48px 24px 72px",
-      maxWidth: 640
+      padding: "36px 24px 72px",
+      maxWidth: 680
     }
-  }, React.createElement("div", {
+  }, children);
+  if (run) {
+    const q = questions[run.idx];
+    const picked = run.answers[run.idx];
+    const left = Math.max(0, Math.ceil((run.endsAt - now) / 1000));
+    return wrap(React.createElement("div", {
+      className: "card card-pad"
+    }, React.createElement("div", {
+      className: "flex justify-between items-center",
+      style: {
+        marginBottom: 14
+      }
+    }, React.createElement("span", {
+      className: "pill pill-info"
+    }, "Question " + (run.idx + 1) + "/" + questions.length), React.createElement("span", {
+      className: "timer-badge" + (left < 60 ? " low" : "")
+    }, React.createElement(Icon, {
+      name: "clock",
+      size: 14
+    }), fmtTime(left))), React.createElement("p", {
+      className: "qtext"
+    }, q.question), React.createElement("div", {
+      className: "options",
+      role: "radiogroup",
+      "aria-label": "Answer options"
+    }, q.options.map((opt, i) => {
+      let cls = "option";
+      if (picked !== undefined) {
+        if (i === q.correctIndex) cls += " correct";else if (i === picked) cls += " wrong";
+      }
+      return React.createElement("div", {
+        key: i,
+        className: cls,
+        role: "radio",
+        "aria-checked": picked === i,
+        tabIndex: 0,
+        onClick: () => answer(i),
+        onKeyDown: e => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            answer(i);
+          }
+        }
+      }, React.createElement("span", {
+        className: "option-letter"
+      }, letters(i)), React.createElement("span", null, opt));
+    })), picked !== undefined && React.createElement("div", {
+      style: {
+        marginTop: 16,
+        textAlign: "right"
+      }
+    }, React.createElement("button", {
+      className: "btn btn-primary",
+      onClick: next
+    }, run.idx + 1 >= questions.length ? "Finish" : "Next question"))));
+  }
+  if (doneToday) {
+    const r = ch.last;
+    return wrap(React.createElement("div", {
+      className: "card card-pad",
+      style: {
+        textAlign: "center"
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 40
+      }
+    }, "🔥"), React.createElement("h2", {
+      className: "h1",
+      style: {
+        margin: "12px 0 6px"
+      }
+    }, "You scored " + r.score + " / " + r.total), React.createElement("p", {
+      className: "muted small"
+    }, "Finished in " + Math.floor(r.seconds / 60) + "m " + String(r.seconds % 60).padStart(2, "0") + "s · " + streak + "-day streak" + ((ch.best || 0) > streak ? " · best " + ch.best : "")), React.createElement("p", {
+      className: "small",
+      style: {
+        marginTop: 12
+      }
+    }, "Come back tomorrow for a new set. Missed questions are saved in My Mistakes."), React.createElement(ChallengeShare, {
+      result: r,
+      streak
+    }), React.createElement("div", {
+      className: "flex gap-10 wrap",
+      style: {
+        justifyContent: "center",
+        marginTop: 12
+      }
+    }, React.createElement("button", {
+      className: "btn btn-ghost",
+      onClick: () => goto("/my-mistakes")
+    }, "Review my mistakes"))));
+  }
+  return wrap(React.createElement("div", {
     className: "card card-pad",
     style: {
       textAlign: "center"
@@ -14843,17 +15450,17 @@ function DailyChallengePage() {
     }
   }, "Today's PE Challenge"), React.createElement("p", {
     className: "muted small"
-  }, "10 Questions · 5 Minutes · Mixed Difficulty"), already ? React.createElement("div", {
-    className: "pill pill-success",
+  }, DAILY_QUESTIONS + " Questions · 5 Minutes · same set for everyone today"), streak > 0 && React.createElement("div", {
+    className: "pill pill-gold",
     style: {
-      margin: "18px auto"
+      margin: "14px auto 0"
     }
-  }, "Completed today — come back tomorrow!") : React.createElement("button", {
+  }, streak + "-day streak"), React.createElement("button", {
     className: "btn btn-primary",
     style: {
       marginTop: 22
     },
-    onClick: () => setEngine(pick(QUESTION_BANK, 10))
+    onClick: start
   }, "Start Challenge")));
 }
 function seedIndexForDate(len) {
@@ -14940,32 +15547,70 @@ function QuestionOfTheDayPage() {
 }
 
 /* ---- app-10-revision.jsx ---- */
+const FLASHCARD_INTERVAL_DAYS = [0, 1, 3, 7, 14, 30];
+const FLASHCARD_RETRY_MS = 10 * 60 * 1000;
+function flashcardState(raw) {
+  if (!raw) return null;
+  if (typeof raw === "string") return {
+    box: raw === "know" ? 1 : 0,
+    due: 0
+  };
+  return raw;
+}
 function FlashcardsPage() {
   const {
     toggleBookmark,
     bookmarks,
     notify
   } = useApp();
-  const [idx, setIdx] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [status, setStatus] = usePersistentState("pep_flashcard_status", {});
   const [subjectFilter, setSubjectFilter] = useState("All");
+  const [now, setNow] = useState(() => Date.now());
   const subjects = ["All", ...new Set(FLASHCARDS.map(f => f.subject))];
   const deck = useMemo(() => {
-    let d = subjectFilter === "All" ? FLASHCARDS : FLASHCARDS.filter(f => f.subject === subjectFilter);
-    return [...d].sort((a, b) => (status[b.id] === "revise" ? 1 : 0) - (status[a.id] === "revise" ? 1 : 0));
-  }, [subjectFilter, status]);
-  const card = deck[idx % deck.length] || deck[0];
+    const d = subjectFilter === "All" ? FLASHCARDS : FLASHCARDS.filter(f => f.subject === subjectFilter);
+    const rank = f => {
+      const st = flashcardState(status[f.id]);
+      if (!st) return [1, 0, 0];
+      return st.due <= now ? [0, st.box, st.due] : [2, st.due, 0];
+    };
+    return [...d].sort((a, b) => {
+      const ra = rank(a),
+        rb = rank(b);
+      return ra[0] - rb[0] || ra[1] - rb[1] || ra[2] - rb[2];
+    });
+  }, [subjectFilter, status, now]);
+  const card = deck[0];
   if (!card) return null;
-  function mark(s) {
-    setStatus(prev => ({
-      ...prev,
-      [card.id]: s
+  const states = FLASHCARDS.map(f => flashcardState(status[f.id]));
+  const dueNow = deck.filter(f => {
+    const st = flashcardState(status[f.id]);
+    return st && st.due <= now;
+  }).length;
+  const fresh = deck.filter(f => !status[f.id]).length;
+  const learned = states.filter(st => st && st.box >= 3).length;
+  function mark(kind) {
+    const prev = flashcardState(status[card.id]) || {
+      box: 0,
+      due: 0
+    };
+    const t = Date.now();
+    const next = kind === "know" ? {
+      box: Math.min(prev.box + 1, FLASHCARD_INTERVAL_DAYS.length - 1),
+      due: 0
+    } : {
+      box: 0,
+      due: t + FLASHCARD_RETRY_MS
+    };
+    if (kind === "know") next.due = t + FLASHCARD_INTERVAL_DAYS[next.box] * 86400000;
+    setStatus(p => ({
+      ...p,
+      [card.id]: next
     }));
     setFlipped(false);
-    setTimeout(() => setIdx(i => (i + 1) % deck.length), 150);
+    setNow(t);
   }
-  const known = Object.values(status).filter(s => s === "know").length;
   return React.createElement("div", {
     className: "container",
     style: {
@@ -14975,7 +15620,7 @@ function FlashcardsPage() {
   }, React.createElement(SectionHeading, {
     eyebrow: "Flashcards",
     title: "PE Flashcards",
-    lede: "Flip, self-assess, and let cards you find hard resurface automatically — a simple spaced-repetition loop."
+    lede: "Flip, self-assess, and let the scheduler bring cards back at growing intervals: missed cards return within minutes, known cards come back after 1, 3, 7, 14 and 30 days."
   }), React.createElement("div", {
     className: "chip-select",
     style: {
@@ -14986,7 +15631,6 @@ function FlashcardsPage() {
     className: "chip" + (subjectFilter === s ? " active" : ""),
     onClick: () => {
       setSubjectFilter(s);
-      setIdx(0);
       setFlipped(false);
     }
   }, s))), React.createElement("div", {
@@ -14994,7 +15638,7 @@ function FlashcardsPage() {
     style: {
       marginBottom: 10
     }
-  }, React.createElement("span", null, "Card " + (idx % deck.length + 1) + " of " + deck.length), React.createElement("span", null, known + " known · " + Object.values(status).filter(s => s === "revise").length + " need revision")), React.createElement("div", {
+  }, React.createElement("span", null, dueNow > 0 ? dueNow + " due for review" : fresh > 0 ? "No reviews due — showing new cards" : "All caught up — showing the next card due"), React.createElement("span", null, fresh + " new · " + learned + " learned")), React.createElement("div", {
     className: "flip-card" + (flipped ? " flipped" : ""),
     onClick: () => setFlipped(f => !f)
   }, React.createElement("div", {
@@ -15333,6 +15977,8 @@ function PreviousYearPapersPage() {
   } = useApp();
   const [paywallExam, setPaywallExam] = useState(null);
   const [engine, setEngine] = useState(null);
+  const [paperExam, setPaperExam] = useState(routeParams && routeParams.exam || "all");
+  const paperExams = [...new Set(OFFICIAL_PAPERS.map(p => p.examId))];
   if (engine) return React.createElement(TestEngine, {
     mode: "mock",
     questions: engine.questions,
@@ -15385,11 +16031,28 @@ function PreviousYearPapersPage() {
   }, React.createElement("p", {
     className: "small"
   }, React.createElement("b", null, "Answer keys. "), "Papers marked \"Official key\" use the published final answer key (questions the key cancels are left out). For papers marked \"Provisional key\", the official key was not available, so the answers and explanations were compiled by us from standard textbooks and have not yet been reviewed by a subject expert; where one disagrees with the official key, trust the official key. Questions whose answer we could not settle are left out. Timer: 1 minute per question (our default); no negative marking.")), React.createElement("div", {
+    className: "flex gap-8 wrap",
+    style: {
+      marginBottom: 14
+    },
+    role: "tablist",
+    "aria-label": "Filter past papers by exam"
+  }, ["all", ...paperExams].map(id => {
+    const ex = EXAMS.find(e => e.id === id);
+    const n = id === "all" ? OFFICIAL_PAPERS.length : OFFICIAL_PAPERS.filter(p => p.examId === id).length;
+    return React.createElement("button", {
+      key: id,
+      role: "tab",
+      "aria-selected": paperExam === id,
+      className: "chip" + (paperExam === id ? " active" : ""),
+      onClick: () => setPaperExam(id)
+    }, (ex ? ex.short : "All exams") + " (" + n + ")");
+  })), React.createElement("div", {
     className: "grid grid-3",
     style: {
       marginBottom: 32
     }
-  }, OFFICIAL_PAPERS.map(pp => {
+  }, OFFICIAL_PAPERS.filter(pp => paperExam === "all" || pp.examId === paperExam).map(pp => {
     const exam = EXAMS.find(e => e.id === pp.examId);
     const unlocked = isPro || hasExamAccess(pp.examId) || !mockLocked;
     return React.createElement("div", {
@@ -15418,7 +16081,7 @@ function PreviousYearPapersPage() {
       style: {
         margin: "0 0 14px"
       }
-    }, (pp.year ? "Year: " + pp.year + " · " : "Year not shown on the pages supplied · ") + pp.code + ". " + pp.note), React.createElement("button", {
+    }, (pp.year ? "Year: " + pp.year + " · " : "Year not shown on the pages supplied · ") + (pp.shift ? "Shift: " + pp.shift + " · " : "") + pp.code + ". " + pp.note), React.createElement("button", {
       className: "btn btn-primary btn-sm",
       onClick: () => {
         if (!unlocked) {
@@ -15924,6 +16587,9 @@ function PricingPage() {
     hasExamAccess,
     inPlayApp
   } = useApp();
+  useEffect(() => {
+    trackEvent("view_pricing");
+  }, []);
   const plan = profile.plan || "free";
   const tiers = [{
     id: "free",
@@ -15941,10 +16607,11 @@ function PricingPage() {
     highlight: true
   }, {
     id: "proplus",
-    name: "Pro+",
+    name: "Founding Supporter",
     price: "₹899",
     period: "one-time",
-    features: ["Everything in Pro today", "Supporter tier: also gets upcoming features as they ship (AI coach, adaptive plans, live classes) — these are in development and not available yet"],
+    notice: "Not yet available: the extras below are planned, not built. You get everything in Pro today. No delivery date is promised. See the Refund Policy.",
+    features: ["Everything in Pro today", "Helps fund the next features (AI coach, adaptive study plans, live classes)", "Early access to those features if and when they ship"],
     highlight: false
   }];
   const lede = inPlayApp ? "Take one full mock test free. Upgrade to Pro for unlimited mock tests and full analytics. Purchases are made through Google Play and saved to your account — sign in first so they follow you to any device." : paymentsLive ? "Take one full mock test free. Upgrade to Pro for unlimited mock tests and full analytics. Payments are processed securely via Razorpay — your plan unlocks the moment payment is verified." : "Take one full mock test free. Upgrade to Pro for unlimited mock tests and full analytics. (Payment processing is not wired up in this prototype — upgrading here applies the plan instantly so you can see what unlocks.)";
@@ -16004,7 +16671,16 @@ function PricingPage() {
       className: "display-2 num"
     }, t.price), React.createElement("span", {
       className: "small muted"
-    }, " " + t.period)), React.createElement("div", {
+    }, " " + t.period)), t.notice && React.createElement("p", {
+      className: "tiny",
+      style: {
+        margin: "-6px 0 14px",
+        padding: "8px 10px",
+        borderRadius: 8,
+        background: "var(--warning-bg, #fff6e0)",
+        border: "1px solid var(--warning)"
+      }
+    }, t.notice), React.createElement("div", {
       className: "flex-col gap-10",
       style: {
         marginBottom: 22
@@ -16026,14 +16702,16 @@ function PricingPage() {
         if (t.id === "free") return;
         upgradePlan(t.id);
       }
-    }, isCurrent ? "Current Plan" : busyThisCard ? "Opening secure checkout…" : t.id === "free" ? "Downgrade" : "Upgrade to " + t.name));
+    }, isCurrent ? "Current Plan" : busyThisCard ? "Opening secure checkout…" : t.id === "free" ? "Downgrade" : t.id === "proplus" ? "Become a Founding Supporter" : "Upgrade to " + t.name));
   })), React.createElement("p", {
     className: "tiny muted",
     style: {
       marginTop: 18,
       textAlign: "center"
     }
-  }, inPlayApp ? "Purchases are processed by Google Play. One-time payment, no subscription — see the Refund Policy." : paymentsLive ? "Secured by Razorpay. One-time payment, no subscription — see the Refund Policy." : "Real payment gateway not connected in this deployment — see server/README.md to enable one."), React.createElement("div", {
+  }, inPlayApp ? "Purchases are processed by Google Play. One-time payment, no subscription — see the Refund Policy." : paymentsLive ? "Secured by Razorpay. One-time payment, no subscription — see the Refund Policy." : "Real payment gateway not connected in this deployment — see server/README.md to enable one."), React.createElement(Testimonials, {
+    title: "What aspirants say about PE Prep"
+  }), React.createElement("div", {
     style: {
       marginTop: 56
     }
@@ -16045,6 +16723,8 @@ function PricingPage() {
     className: "grid grid-4"
   }, EXAMS.map(ex => {
     const owned = isPro || hasExamAccess(ex.id);
+    const available = examPassAvailable(ex.id);
+    const count = examQuestionCount(ex.id);
     return React.createElement("div", {
       key: ex.id,
       className: "card card-pad"
@@ -16058,16 +16738,23 @@ function PricingPage() {
       style: {
         background: "var(--ink)"
       }
-    }, ex.short.slice(0, 2)), owned && React.createElement("span", {
+    }, ex.short.slice(0, 2)), owned ? React.createElement("span", {
       className: "pill pill-success"
-    }, "Owned")), React.createElement("h3", {
+    }, "Owned") : !available && React.createElement("span", {
+      className: "pill pill-warning"
+    }, "Launching soon")), React.createElement("h3", {
       className: "h3"
     }, ex.short), React.createElement("p", {
       className: "tiny muted",
       style: {
-        margin: "6px 0 14px"
+        margin: "6px 0 10px"
       }
-    }, ex.body), React.createElement("div", {
+    }, ex.body), React.createElement("p", {
+      className: "tiny muted",
+      style: {
+        margin: "0 0 14px"
+      }
+    }, count + " tagged questions"), available || owned ? React.createElement(React.Fragment, null, React.createElement("div", {
       style: {
         margin: "0 0 14px"
       }
@@ -16079,7 +16766,16 @@ function PricingPage() {
       className: "btn btn-outline btn-sm btn-block",
       disabled: owned || checkoutBusy,
       onClick: () => upgradePlan("exampass", ex.id)
-    }, owned ? "Unlocked" : checkoutBusy ? "Opening secure checkout…" : "Get " + ex.short + " Pass"));
+    }, owned ? "Unlocked" : checkoutBusy ? "Opening secure checkout…" : "Get " + ex.short + " Pass")) : React.createElement(React.Fragment, null, React.createElement("p", {
+      className: "tiny",
+      style: {
+        margin: "0 0 10px"
+      }
+    }, "The " + ex.short + " Pass opens once its question set reaches " + MIN_QUESTIONS_FOR_PASS + " questions. Leave your email and we'll tell you when it does."), React.createElement(NotifyMeForm, {
+      topic: "exam:" + ex.id,
+      compact: true,
+      buttonText: "Notify me"
+    })));
   }))));
 }
 function LegalPage({
@@ -16155,7 +16851,7 @@ function TermsPage() {
       body: ["You are responsible for keeping your login credentials confidential and for all activity under your account. Let us know immediately via the Contact page if you suspect unauthorised access.", "You agree to provide accurate information when creating an account and to keep it up to date."]
     }, {
       h: "5. Plans and payments",
-      body: ["PE Prep offers a Free plan and paid upgrades: Pro, Pro+, and single-exam passes scoped to one exam. All paid plans are one-time purchases that unlock access — they are not recurring subscriptions, and you will not be auto-charged again for the same plan.", "Prices are shown in Indian Rupees (INR) and are inclusive of applicable taxes unless stated otherwise. Payments are processed by Razorpay on the website and by Google Play in the Android app; see our Refund & Cancellation Policy for how refunds are handled."]
+      body: ["PE Prep offers a Free plan and paid upgrades: Pro, Founding Supporter (formerly Pro+; the extra features are planned and not yet available), and single-exam passes scoped to one exam. All paid plans are one-time purchases that unlock access — they are not recurring subscriptions, and you will not be auto-charged again for the same plan.", "Prices are shown in Indian Rupees (INR) and are inclusive of applicable taxes unless stated otherwise. Payments are processed by Razorpay on the website and by Google Play in the Android app; see our Refund & Cancellation Policy for how refunds are handled."]
     }, {
       h: "6. Acceptable use",
       body: [["Share your account credentials with others, or access an account that isn't yours", "Copy, scrape, redistribute or resell PE Prep's question bank, mock tests or study material", "Use automated tools to extract content from the Platform", "Attempt to disrupt, reverse-engineer or gain unauthorised access to the Platform's systems"]]
@@ -16228,7 +16924,7 @@ function RefundPolicyPage() {
     updated: LEGAL_UPDATED,
     sections: [{
       h: "1. One-time purchases, not subscriptions",
-      body: ["PE Prep's Pro, Pro+ and single-exam pass plans are one-time payments that unlock access immediately — none of them auto-renew or charge you again, so there is nothing to \"cancel\" in the subscription sense."]
+      body: ["PE Prep's Pro, Founding Supporter and single-exam pass plans are one-time payments that unlock access immediately — none of them auto-renew or charge you again, so there is nothing to \"cancel\" in the subscription sense."]
     }, {
       h: "2. General policy",
       body: ["Because paid plans unlock digital content and access immediately on successful payment, purchases are generally non-refundable once access has been granted — this is standard practice for digital educational products."]
@@ -16259,8 +16955,14 @@ function AboutPage() {
       h: "What we're building",
       body: ["PE Prep is India's dedicated exam-preparation platform for Physical Education — built for aspirants preparing for KVS, NVS, DSSSB, UGC NET, SET, State PSC, B.P.Ed, M.P.Ed and other PE-specific exams.", "Every other major exam-prep platform treats Physical Education as one subject among dozens. PE Prep exists because this syllabus — Kinesiology, Biomechanics, Sports Psychology, Sports Training, Yoga, Olympic Movement and more — deserves the same depth of practice questions, mock tests, previous year papers and analytics that a full syllabus gets everywhere else."]
     }, {
+      h: "Where the content comes from",
+      body: ["Practice questions and explanations are written and compiled by the PE Prep editorial team from the standard Physical Education syllabi and textbooks for each exam. Each explanation names its reference area, but not a page-level citation.", "Previous-year papers are transcribed from publicly available question papers. Every paper is labelled \"Official key\" when it follows a published answer key, or \"Provisional key\" when we worked out the answers ourselves. Treat provisional keys as study aids, not as the official result.", "Right now the question bank holds " + QUESTION_BANK.length + " practice questions across " + EXAMS.length + " exams, plus " + OFFICIAL_PAPERS.length + " past papers. It is growing, and some exams are much further along than others — which is why single-exam passes only go on sale once an exam has enough questions."]
+    }, {
+      h: "What we promise — and what we don't",
+      body: ["We do not publish invented reviews, fake toppers or guaranteed ranks. Example reports on the site are labelled as samples. Exam patterns change between recruitment cycles, so the pattern notes are marked to be confirmed against the official notification.", "Features that are planned but not built are never sold as included. If you spot a wrong answer or an unclear explanation, tell us through the Contact page and we will correct it."]
+    }, {
       h: "How it works",
-      body: ["Learn through structured study material, practice topic-wise questions with instant explanations, take full-length mock tests under real exam conditions, and track accuracy and progress over time — all built around one continuous loop: Learn, Practice, Test, Analyze, Revise, Improve."]
+      body: ["Learn through structured study material, practice topic-wise questions with instant explanations, take full-length mock tests under exam-style conditions, and track accuracy and progress over time."]
     }, {
       h: "Get in touch",
       body: ["Questions, feedback, or a correction to report on a question? Reach us through the Contact page — we read every message."]
@@ -17050,6 +17752,13 @@ function AuthPage() {
     googleSignIn,
     authBusy
   } = useApp();
+  const [referral, setReferral] = useState(() => {
+    try {
+      return localStorage.getItem("pep_ref") || "";
+    } catch (e) {
+      return "";
+    }
+  });
   const [mode, setMode] = useState(route === "/signup" ? "signup" : "login");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -17188,7 +17897,24 @@ function AuthPage() {
   }, "Which exam are you preparing for? (optional)"), EXAMS.map(ex => React.createElement("option", {
     key: ex.id,
     value: ex.id
-  }, ex.short)))), error && React.createElement("p", {
+  }, ex.short)))), mode === "signup" && React.createElement("input", {
+    className: "input",
+    placeholder: "Referral code (optional)",
+    maxLength: 40,
+    value: referral,
+    onChange: e => {
+      const v = e.target.value.replace(/[^A-Za-z0-9_-]/g, "");
+      setReferral(v);
+      try {
+        if (v) localStorage.setItem("pep_ref", v);else localStorage.removeItem("pep_ref");
+      } catch (err) {}
+    },
+    style: {
+      marginBottom: 14,
+      width: "100%"
+    },
+    "aria-label": "Referral code"
+  }), error && React.createElement("p", {
     className: "small",
     style: {
       color: "var(--danger)",

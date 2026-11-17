@@ -11,7 +11,7 @@ def read(name):
 
 styles = read("styles.css")
 
-data_files = ["data-questions.js", "data-content.js", "data-school.js", "data-exam-config.js", "data-pyq.js", "data-pyq-2.js", "data-pyq-3.js", "data-pyq-5.js", "data-pyq-6.js", "data-pyq-4.js"]
+data_files = ["data-questions.js", "data-content.js", "data-school.js", "data-exam-config.js", "data-i18n.js", "data-pyq.js", "data-pyq-2.js", "data-pyq-3.js", "data-pyq-5.js", "data-pyq-6.js", "data-pyq-4.js"]
 app_files = [
     "app-01-core.jsx",
     "app-02-shell.jsx",
@@ -50,6 +50,9 @@ if os.path.exists(bundle_path):
         first = f.readline().strip()
     use_bundle = first == "/* src-hash:%s */" % source_hash()
 
+# With the precompiled bundle every script is deferred (parallel download, no render blocking).
+# The in-browser-Babel fallback needs React loaded before its inline scripts, so it stays synchronous.
+DEFER = " defer" if use_bundle else ""
 if use_bundle:
     babel_tag = ""
     scripts_html = '<script src="app.bundle.js" defer></script>'
@@ -61,6 +64,21 @@ else:
         blocks.append('<script type="text/babel" data-presets="react">\n%s\n</script>' % read(name))
     scripts_html = "\n\n".join(blocks)
     print("Bundle missing or stale - using in-browser Babel")
+
+# Real reviews live in testimonials.json (starts empty; the site renders nothing
+# for an empty list). They are inlined here so no extra request is needed.
+with open(os.path.join(BASE, "testimonials.json"), "r", encoding="utf-8") as f:
+    TESTIMONIALS_JSON = json.dumps(json.load(f)).replace("</", "<\\/")
+
+import seo_pages
+with open(os.path.join(BASE, "seo-data.json"), "r", encoding="utf-8") as f:
+    SEO_DATA = json.load(f)
+HOME_FALLBACK = seo_pages.home_fallback(SEO_DATA)
+HOME_LD = "".join(seo_pages.jld(x) for x in seo_pages.website_ld())
+ANALYTICS = seo_pages.analytics_tag()
+# Community channel links are configured with environment variables at build time (set on Render):
+#   WHATSAPP_CHANNEL_URL, TELEGRAM_CHANNEL_URL  (https:// links). Empty = no link is shown.
+PE_CONFIG_JSON = json.dumps({l.lower(): u for l, u in seo_pages.channel_links()}).replace("</", "<\\/")
 
 SITE = "https://physicaledmastery.com/"
 DESC = "Physical Education exam preparation for KVS, NVS, DSSSB, UGC NET, SET, State PSC, B.P.Ed and M.P.Ed: topic-wise practice, timed mock tests with detailed explanations, and performance tracking."
@@ -82,19 +100,28 @@ html = f"""<!DOCTYPE html>
 <meta property="og:title" content="Physical Ed Mastery - Physical Education Exam Preparation">
 <meta property="og:description" content="{DESC}">
 <meta property="og:url" content="{SITE}">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="{SITE}og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Physical Ed Mastery - Physical Education Exam Preparation">
+<meta name="twitter:description" content="{DESC}">
+<meta name="twitter:image" content="{SITE}og-image.png">
+{HOME_LD}
+{ANALYTICS}
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders:wght@400;500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders:wght@400;500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders:wght@400;500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"></noscript>
 <style>
 {styles}
 </style>
 </head>
 <body>
-<div id="root"></div>
-<noscript>Physical Ed Mastery needs JavaScript enabled. It is a practice platform for Physical Education exams (KVS, NVS, DSSSB, UGC NET, SET and more).</noscript>
+<div id="root">{HOME_FALLBACK}</div>
+<noscript><p style="max-width:860px;margin:0 auto;padding:0 18px">The interactive practice app needs JavaScript. The exam guides and free sample quizzes above and at <a href="/exams/">/exams/</a> work without it.</p></noscript>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script{DEFER} src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script{DEFER} src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script>window.TESTIMONIALS = {TESTIMONIALS_JSON}; window.PE_CONFIG = {PE_CONFIG_JSON};</script>
 {babel_tag}
 
 {scripts_html}
@@ -117,7 +144,7 @@ DIST = os.path.join(BASE, "dist")
 if os.path.isdir(DIST):
     shutil.rmtree(DIST)
 os.makedirs(DIST)
-for name in ["index.html", "app.bundle.js", "robots.txt", "sitemap.xml", "manifest.webmanifest", "sw.js"]:
+for name in ["index.html", "app.bundle.js", "robots.txt", "sitemap.xml", "manifest.webmanifest", "sw.js", "static.css", "quiz.js", "og-image.png"]:
     src = os.path.join(BASE, name)
     if os.path.exists(src):
         shutil.copy(src, os.path.join(DIST, name))
@@ -128,3 +155,7 @@ for folder in ["icons", ".well-known"]:
     if os.path.isdir(src):
         shutil.copytree(src, os.path.join(DIST, folder))
 print("Wrote dist/:", ", ".join(sorted(os.listdir(DIST))))
+
+# Static, crawlable pages (exam / subject / topic guides) + sitemap.xml, rendered from seo-data.json
+n_pages, _ = seo_pages.render_all(DIST, os.path.join(BASE, "seo-data.json"))
+print("Wrote", n_pages, "static SEO pages + sitemap.xml")

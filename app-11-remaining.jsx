@@ -12,6 +12,8 @@ function PreviousYearPapersPage(){
   const {routeParams, goto, mockLocked, isPro, hasExamAccess} = useApp();
   const [paywallExam,setPaywallExam] = useState(null);
   const [engine,setEngine] = useState(null);
+  const [paperExam,setPaperExam] = useState(routeParams && routeParams.exam || "all");
+  const paperExams = [...new Set(OFFICIAL_PAPERS.map(p=>p.examId))];
   if(engine) return React.createElement(TestEngine,{mode:"mock", questions:engine.questions, title:engine.title,
     examMeta:{duration:engine.duration, negativeMarking:engine.negative, examName:engine.title}, onFinish:(r)=>goto("/mock-result",{result:{...r, examShort:engine.short, examId:engine.examId}})});
   const general = QUESTION_BANK.filter(q=>!isSchoolQuestion(q));
@@ -27,8 +29,15 @@ function PreviousYearPapersPage(){
     React.createElement("div",{className:"card card-pad", style:{marginBottom:16, borderColor:"var(--warning, #d9a400)"}},
       React.createElement("p",{className:"small"}, React.createElement("b",null,"Answer keys. "),
         "Papers marked \"Official key\" use the published final answer key (questions the key cancels are left out). For papers marked \"Provisional key\", the official key was not available, so the answers and explanations were compiled by us from standard textbooks and have not yet been reviewed by a subject expert; where one disagrees with the official key, trust the official key. Questions whose answer we could not settle are left out. Timer: 1 minute per question (our default); no negative marking.")),
+    React.createElement("div",{className:"flex gap-8 wrap", style:{marginBottom:14}, role:"tablist", "aria-label":"Filter past papers by exam"},
+      ["all",...paperExams].map(id=>{
+        const ex = EXAMS.find(e=>e.id===id);
+        const n = id==="all" ? OFFICIAL_PAPERS.length : OFFICIAL_PAPERS.filter(p=>p.examId===id).length;
+        return React.createElement("button",{key:id, role:"tab", "aria-selected":paperExam===id, className:"chip"+(paperExam===id?" active":""), onClick:()=>setPaperExam(id)}, (ex?ex.short:"All exams")+" ("+n+")");
+      })
+    ),
     React.createElement("div",{className:"grid grid-3", style:{marginBottom:32}},
-      OFFICIAL_PAPERS.map(pp=>{
+      OFFICIAL_PAPERS.filter(pp=>paperExam==="all"||pp.examId===paperExam).map(pp=>{
         const exam = EXAMS.find(e=>e.id===pp.examId);
         const unlocked = isPro || hasExamAccess(pp.examId) || !mockLocked;
         return React.createElement("div",{key:pp.id, className:"card card-pad"},
@@ -37,7 +46,7 @@ function PreviousYearPapersPage(){
             pp.keyType==="official" ? React.createElement("span",{className:"pill pill-success"}, "Official key") : React.createElement("span",{className:"pill pill-warning"}, "Provisional key")),
           React.createElement("h3",{className:"h3"}, pp.title),
           React.createElement("p",{className:"tiny muted", style:{margin:"6px 0 6px"}}, pp.included+" of "+pp.originalQuestions+" questions included · "+pp.included+" minutes · "+pp.scope),
-          React.createElement("p",{className:"tiny muted", style:{margin:"0 0 14px"}}, (pp.year?("Year: "+pp.year+" · "):"Year not shown on the pages supplied · ")+pp.code+". "+pp.note),
+          React.createElement("p",{className:"tiny muted", style:{margin:"0 0 14px"}}, (pp.year?("Year: "+pp.year+" · "):"Year not shown on the pages supplied · ")+(pp.shift?("Shift: "+pp.shift+" · "):"")+pp.code+". "+pp.note),
           React.createElement("button",{className:"btn btn-primary btn-sm", onClick:()=>{
             if(!unlocked){ setPaywallExam(exam); window.scrollTo({top:0,behavior:"smooth"}); return; }
             setEngine({questions:pp.questions, title:pp.title, short:pp.short, examId:pp.examId, duration:pp.included, negative:0});
@@ -238,11 +247,12 @@ function BookmarksPage(){
 /* --------------------------------- Pricing --------------------------------- */
 function PricingPage(){
   const {notify, profile, isPro, upgradePlan, freeMocksUsed, paymentsLive, checkoutBusy, hasExamAccess, inPlayApp} = useApp();
+  useEffect(()=>{ trackEvent("view_pricing"); },[]);
   const plan = profile.plan||"free";
   const tiers = [
     {id:"free",name:"Free",price:"₹0",period:"forever",features:["5 free explanations per subject","1 full mock test, then upgrade for more","Basic short notes","Limited analytics","Or buy a single-exam Pass below — cheaper than full Pro"],highlight:false},
     {id:"pro",name:"Pro",price:"₹499",period:"one-time",features:["Unlimited practice questions","Unlimited mock tests","Detailed performance analytics & answer review","Exam-style practice sets for every exam","Full study material & flashcards","Study planner"],highlight:true},
-    {id:"proplus",name:"Pro+",price:"₹899",period:"one-time",features:["Everything in Pro today","Supporter tier: also gets upcoming features as they ship (AI coach, adaptive plans, live classes) — these are in development and not available yet"],highlight:false},
+    {id:"proplus",name:"Founding Supporter",price:"₹899",period:"one-time",notice:"Not yet available: the extras below are planned, not built. You get everything in Pro today. No delivery date is promised. See the Refund Policy.",features:["Everything in Pro today","Helps fund the next features (AI coach, adaptive study plans, live classes)","Early access to those features if and when they ship"],highlight:false},
   ];
   const lede = inPlayApp
     ? "Take one full mock test free. Upgrade to Pro for unlimited mock tests and full analytics. Purchases are made through Google Play and saved to your account — sign in first so they follow you to any device."
@@ -266,34 +276,45 @@ function PricingPage(){
             isCurrent && React.createElement("span",{className:"pill pill-success"}, "Your Plan")
           ),
           React.createElement("div",{style:{margin:"10px 0 18px"}}, React.createElement("span",{className:"display-2 num"}, t.price), React.createElement("span",{className:"small muted"}, " "+t.period)),
+          t.notice && React.createElement("p",{className:"tiny", style:{margin:"-6px 0 14px", padding:"8px 10px", borderRadius:8, background:"var(--warning-bg, #fff6e0)", border:"1px solid var(--warning)"}}, t.notice),
           React.createElement("div",{className:"flex-col gap-10", style:{marginBottom:22}},
             t.features.map(f=>React.createElement("div",{key:f, className:"flex items-center gap-8 small"}, React.createElement(Icon,{name:"check",size:15,style:{color:"var(--success)",flex:"none"}}), f))
           ),
           React.createElement("button",{className:"btn "+(isCurrent?"btn-outline":t.highlight?"btn-primary":"btn-outline")+" btn-block", disabled:isCurrent||checkoutBusy, onClick:()=>{
             if(t.id==="free") return;
             upgradePlan(t.id);
-          }}, isCurrent ? "Current Plan" : busyThisCard ? "Opening secure checkout…" : t.id==="free" ? "Downgrade" : "Upgrade to "+t.name)
+          }}, isCurrent ? "Current Plan" : busyThisCard ? "Opening secure checkout…" : t.id==="free" ? "Downgrade" : t.id==="proplus" ? "Become a Founding Supporter" : "Upgrade to "+t.name)
         );
       })
     ),
     React.createElement("p",{className:"tiny muted", style:{marginTop:18, textAlign:"center"}},
       inPlayApp ? "Purchases are processed by Google Play. One-time payment, no subscription — see the Refund Policy." : paymentsLive ? "Secured by Razorpay. One-time payment, no subscription — see the Refund Policy." : "Real payment gateway not connected in this deployment — see server/README.md to enable one."),
 
+    React.createElement(Testimonials,{title:"What aspirants say about PE Prep"}),
+
     React.createElement("div",{style:{marginTop:56}},
       React.createElement(SectionHeading,{eyebrow:"Prepare For Just One Exam?", title:"Single-exam passes", lede:"Most aspirants only prepare for one exam at a time. A Pass unlocks unlimited mock tests, full result analysis and practice sets for that one exam only — at a fraction of full Pro's price."}),
       React.createElement("div",{className:"grid grid-4"},
         EXAMS.map(ex=>{
           const owned = isPro || hasExamAccess(ex.id);
+          const available = examPassAvailable(ex.id);
+          const count = examQuestionCount(ex.id);
           return React.createElement("div",{key:ex.id, className:"card card-pad"},
             React.createElement("div",{className:"flex justify-between items-center", style:{marginBottom:12}},
               React.createElement("div",{className:"exam-swatch", style:{background:"var(--ink)"}}, ex.short.slice(0,2)),
-              owned && React.createElement("span",{className:"pill pill-success"}, "Owned")
+              owned ? React.createElement("span",{className:"pill pill-success"}, "Owned") : !available && React.createElement("span",{className:"pill pill-warning"}, "Launching soon")
             ),
             React.createElement("h3",{className:"h3"}, ex.short),
-            React.createElement("p",{className:"tiny muted", style:{margin:"6px 0 14px"}}, ex.body),
-            React.createElement("div",{style:{margin:"0 0 14px"}}, React.createElement("span",{className:"h1 num"}, "₹"+EXAM_PASS_PRICE_INR), React.createElement("span",{className:"small muted"}, " one-time")),
-            React.createElement("button",{className:"btn btn-outline btn-sm btn-block", disabled:owned||checkoutBusy, onClick:()=>upgradePlan("exampass", ex.id)},
-              owned ? "Unlocked" : checkoutBusy ? "Opening secure checkout…" : "Get "+ex.short+" Pass")
+            React.createElement("p",{className:"tiny muted", style:{margin:"6px 0 10px"}}, ex.body),
+            React.createElement("p",{className:"tiny muted", style:{margin:"0 0 14px"}}, count+" tagged questions"),
+            available || owned
+              ? React.createElement(React.Fragment,null,
+                  React.createElement("div",{style:{margin:"0 0 14px"}}, React.createElement("span",{className:"h1 num"}, "₹"+EXAM_PASS_PRICE_INR), React.createElement("span",{className:"small muted"}, " one-time")),
+                  React.createElement("button",{className:"btn btn-outline btn-sm btn-block", disabled:owned||checkoutBusy, onClick:()=>upgradePlan("exampass", ex.id)},
+                    owned ? "Unlocked" : checkoutBusy ? "Opening secure checkout…" : "Get "+ex.short+" Pass"))
+              : React.createElement(React.Fragment,null,
+                  React.createElement("p",{className:"tiny", style:{margin:"0 0 10px"}}, "The "+ex.short+" Pass opens once its question set reaches "+MIN_QUESTIONS_FOR_PASS+" questions. Leave your email and we'll tell you when it does."),
+                  React.createElement(NotifyMeForm,{topic:"exam:"+ex.id, compact:true, buttonText:"Notify me"}))
           );
         })
       )
@@ -342,7 +363,7 @@ function TermsPage(){
         "You agree to provide accurate information when creating an account and to keep it up to date."
       ]},
       {h:"5. Plans and payments", body:[
-        "PE Prep offers a Free plan and paid upgrades: Pro, Pro+, and single-exam passes scoped to one exam. All paid plans are one-time purchases that unlock access — they are not recurring subscriptions, and you will not be auto-charged again for the same plan.",
+        "PE Prep offers a Free plan and paid upgrades: Pro, Founding Supporter (formerly Pro+; the extra features are planned and not yet available), and single-exam passes scoped to one exam. All paid plans are one-time purchases that unlock access — they are not recurring subscriptions, and you will not be auto-charged again for the same plan.",
         "Prices are shown in Indian Rupees (INR) and are inclusive of applicable taxes unless stated otherwise. Payments are processed by Razorpay on the website and by Google Play in the Android app; see our Refund & Cancellation Policy for how refunds are handled."
       ]},
       {h:"6. Acceptable use", body:[
@@ -430,7 +451,7 @@ function RefundPolicyPage(){
     eyebrow:"Legal", title:"Refund & Cancellation Policy", updated:LEGAL_UPDATED,
     sections:[
       {h:"1. One-time purchases, not subscriptions", body:[
-        "PE Prep's Pro, Pro+ and single-exam pass plans are one-time payments that unlock access immediately — none of them auto-renew or charge you again, so there is nothing to \"cancel\" in the subscription sense."
+        "PE Prep's Pro, Founding Supporter and single-exam pass plans are one-time payments that unlock access immediately — none of them auto-renew or charge you again, so there is nothing to \"cancel\" in the subscription sense."
       ]},
       {h:"2. General policy", body:[
         "Because paid plans unlock digital content and access immediately on successful payment, purchases are generally non-refundable once access has been granted — this is standard practice for digital educational products."
@@ -467,8 +488,17 @@ function AboutPage(){
         "PE Prep is India's dedicated exam-preparation platform for Physical Education — built for aspirants preparing for KVS, NVS, DSSSB, UGC NET, SET, State PSC, B.P.Ed, M.P.Ed and other PE-specific exams.",
         "Every other major exam-prep platform treats Physical Education as one subject among dozens. PE Prep exists because this syllabus — Kinesiology, Biomechanics, Sports Psychology, Sports Training, Yoga, Olympic Movement and more — deserves the same depth of practice questions, mock tests, previous year papers and analytics that a full syllabus gets everywhere else."
       ]},
+      {h:"Where the content comes from", body:[
+        "Practice questions and explanations are written and compiled by the PE Prep editorial team from the standard Physical Education syllabi and textbooks for each exam. Each explanation names its reference area, but not a page-level citation.",
+        "Previous-year papers are transcribed from publicly available question papers. Every paper is labelled \"Official key\" when it follows a published answer key, or \"Provisional key\" when we worked out the answers ourselves. Treat provisional keys as study aids, not as the official result.",
+        "Right now the question bank holds "+QUESTION_BANK.length+" practice questions across "+EXAMS.length+" exams, plus "+OFFICIAL_PAPERS.length+" past papers. It is growing, and some exams are much further along than others — which is why single-exam passes only go on sale once an exam has enough questions.",
+      ]},
+      {h:"What we promise — and what we don't", body:[
+        "We do not publish invented reviews, fake toppers or guaranteed ranks. Example reports on the site are labelled as samples. Exam patterns change between recruitment cycles, so the pattern notes are marked to be confirmed against the official notification.",
+        "Features that are planned but not built are never sold as included. If you spot a wrong answer or an unclear explanation, tell us through the Contact page and we will correct it.",
+      ]},
       {h:"How it works", body:[
-        "Learn through structured study material, practice topic-wise questions with instant explanations, take full-length mock tests under real exam conditions, and track accuracy and progress over time — all built around one continuous loop: Learn, Practice, Test, Analyze, Revise, Improve."
+        "Learn through structured study material, practice topic-wise questions with instant explanations, take full-length mock tests under exam-style conditions, and track accuracy and progress over time.",
       ]},
       {h:"Get in touch", body:[
         "Questions, feedback, or a correction to report on a question? Reach us through the Contact page — we read every message."

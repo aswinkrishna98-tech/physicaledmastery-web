@@ -6,7 +6,8 @@
   "scripts": {
     "bundle": "node scripts/compile-bundle.js",
     "build": "python3 build.py",
-    "test": "node --test tests/scoring.test.js"
+    "test": "node --test tests/scoring.test.js",
+    "seo-data": "node scripts/export-seo-data.js"
   },
   "keywords": [],
   "author": "",

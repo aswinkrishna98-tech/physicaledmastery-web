@@ -15,7 +15,7 @@ function HeroPreviewCard(){
   const q = QUESTION_BANK[1];
   return React.createElement("div",{className:"card card-pad", style:{position:"relative"}},
     React.createElement("div",{className:"flex justify-between items-center", style:{marginBottom:14}},
-      React.createElement("span",{className:"pill pill-info"},"Question 7/50"),
+      React.createElement("span",{className:"pill pill-info"},"Sample report · Question 7/50"),
       React.createElement("span",{className:"timer-badge"}, React.createElement(Icon,{name:"clock",size:14}), "18:42")
     ),
     React.createElement("p",{className:"small", style:{fontWeight:600, marginBottom:14}}, q.question),
@@ -26,6 +26,7 @@ function HeroPreviewCard(){
       ))
     ),
     React.createElement("div",{className:"lane-divider", style:{margin:"16px 0"}}),
+    React.createElement("div",{className:"tiny muted", style:{marginBottom:8, fontWeight:600, textTransform:"uppercase", letterSpacing:".04em"}}, "Sample report — example numbers, not a real user"),
     React.createElement("div",{className:"grid grid-3"},
       React.createElement(StatTile,{label:"Accuracy", value:"84%", sub:"+6% this week", subClass:"pill-success"}),
       React.createElement(StatTile,{label:"Avg Time/Q", value:"38s"}),
@@ -35,7 +36,7 @@ function HeroPreviewCard(){
 }
 
 function Home(){
-  const {goto, profile} = useApp();
+  const {goto, profile, dailyState} = useApp();
   const preferredExam = EXAMS.find(e=>e.id===profile.preferredExam) || null;
   const featuredExams = useMemo(()=>{
     if(!preferredExam) return EXAMS.slice(0,4);
@@ -50,7 +51,7 @@ function Home(){
           React.createElement("div",{className:"eyebrow", style:{marginBottom:14}},"PREPARE · PRACTICE · PERFORM"),
           React.createElement("h1",{className:"display-1"}, "Master Physical Education. Crack Your Exam."),
           React.createElement("p",{className:"lede", style:{marginTop:18, fontSize:18}},
-            "Practice thousands of Physical Education questions, attempt realistic mock tests, revise important concepts and track your preparation — all in one place."),
+            "Practice "+QUESTION_BANK.length.toLocaleString()+" Physical Education questions with explanations, attempt "+OFFICIAL_PAPERS.length+" past papers and timed mock tests, revise key concepts and track your preparation — all in one place."),
           React.createElement("div",{className:"flex gap-16 wrap", style:{marginTop:28}},
             React.createElement("button",{className:"btn btn-primary", onClick:()=>goto("/question-bank")}, "Start Practising", React.createElement(Icon,{name:"chevronRight",size:16})),
             React.createElement("button",{className:"btn btn-outline", onClick:()=>goto("/mock-tests")}, "Take a Free Mock Test")
@@ -133,11 +134,14 @@ function Home(){
         React.createElement("div",null,
           React.createElement("div",{className:"eyebrow", style:{color:"var(--gold)"}},"🔥 Today's PE Challenge"),
           React.createElement("h3",{className:"h1", style:{color:"#fff", marginTop:6}}, "10 Questions · 5 Minutes · Mixed Difficulty"),
-          React.createElement("p",{className:"small", style:{color:"rgba(255,255,255,.75)", marginTop:6}}, "Keep your streak alive with a quick daily practice habit.")
+          React.createElement("p",{className:"small", style:{color:"rgba(255,255,255,.75)", marginTop:6}}, (function(){ const n=challengeStreak((dailyState||{}).challenge, localDayStr()); return n>0 ? "🔥 "+n+"-day challenge streak. Keep it alive today." : "Keep your streak alive with a quick daily practice habit."; })())
         ),
         React.createElement("button",{className:"btn btn-primary", onClick:()=>goto("/daily-challenge")}, "Start Challenge")
       )
     ),
+
+    // ---- TESTIMONIALS (renders nothing until testimonials.json has real, consented entries) ----
+    React.createElement(Testimonials,null),
 
     // ---- SOCIAL PROOF / FINAL CTA ----
     React.createElement("section",{className:"container", style:{padding:"48px 24px 72px"}},

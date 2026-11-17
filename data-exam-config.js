@@ -83,3 +83,17 @@ function computeMockScore(questions, responses, negative){
   };
 }
 if(typeof module !== "undefined" && module.exports){ module.exports = { computeMockScore }; }
+
+// ============================================================================
+// Exam-pass availability. A single-exam Pass is only sold for an exam once its
+// tagged question set reaches MIN_QUESTIONS_FOR_PASS; below that the exam shows
+// "Launching soon" with an email-capture button instead. Change the number here
+// (and only here). Counts are read live from QUESTION_BANK, never hard-coded.
+// ============================================================================
+const MIN_QUESTIONS_FOR_PASS = 100;
+function examQuestionCount(examId){
+  const tag = EXAM_CONFIG[examId] && EXAM_CONFIG[examId].tag;
+  if(!tag) return 0;
+  return QUESTION_BANK.filter(q=>(q.exam||[]).includes(tag)).length;
+}
+function examPassAvailable(examId){ return examQuestionCount(examId) >= MIN_QUESTIONS_FOR_PASS; }

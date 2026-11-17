@@ -68,7 +68,7 @@ const MOCK_SESSION_KEY = "pep_mock_session";
 function clearMockSession(){ try{ localStorage.removeItem(MOCK_SESSION_KEY); }catch(e){} }
 
 function TestEngineInner({mode, questions:initialQuestions, title, examMeta, onExit, onFinish, resumeState}){
-  const {recordAttempt, notify, toggleBookmark, bookmarks, goto, isSubjectLocked, markRevealed} = useApp();
+  const {recordAttempt, notify, toggleBookmark, bookmarks, goto, isSubjectLocked, markRevealed, lang, setLang, isPro} = useApp();
   const [questions,setQuestions] = useState(()=>{
     if(resumeState){
       const restored = resumeState.qs.map(r=>QUESTIONS_BY_ID[r.id] ? {...QUESTIONS_BY_ID[r.id], options:r.options, correctIndex:r.correctIndex} : null).filter(Boolean);
@@ -84,6 +84,8 @@ function TestEngineInner({mode, questions:initialQuestions, title, examMeta, onE
   });
   const [showSummary,setShowSummary] = useState(false);
   const isMock = mode==="mock";
+  useEffect(()=>{ if(isMock && !resumeState) trackEvent(isPro ? "start_test" : "start_free_test"); // eslint-disable-next-line
+  },[]);
   const durationSec = examMeta ? examMeta.duration*60 : null;
   // Absolute deadline: a resumed test keeps counting while the page was closed.
   const endsAtRef = useRef(resumeState ? resumeState.endsAt : (durationSec ? Date.now()+durationSec*1000 : null));
@@ -98,7 +100,8 @@ function TestEngineInner({mode, questions:initialQuestions, title, examMeta, onE
   // unanswered. Going through this ref fixes that.
   const submitRef = useRef(null);
 
-  const q = questions[idx];
+  const qEn = questions[idx];
+  const q = localizeQ(qEn, lang); // Hindi text when the user chose Hindi AND this question has a translation
   const resp = responses[q.id] || {selected:null, checked:false, marked:false, visited:false, timeSpent:0};
 
   useEffect(()=>{
@@ -231,6 +234,7 @@ function TestEngineInner({mode, questions:initialQuestions, title, examMeta, onE
       accuracy, totalTime: Math.round(totalTime), avgTimePerQ: tally.attempted? Math.round(totalTime/tally.attempted):0,
       subjectPerf, diffPerf, negativeMarking:neg, auto: !!auto, review,
     };
+    trackEvent("complete_test",{auto:!!auto});
     onFinish(result);
   }
   submitRef.current = handleSubmit;
@@ -291,6 +295,9 @@ function TestEngineInner({mode, questions:initialQuestions, title, examMeta, onE
           React.createElement(DifficultyPill,{level:q.difficulty}),
           React.createElement("span",{className:"pill"}, q.type),
           !isMock && React.createElement("span",{style:{marginLeft:"auto"}}, React.createElement(BookmarkButton,{type:"questions",id:q.id}))
+        ),
+        hasHindi(qEn) && React.createElement("div",{className:"flex gap-8", style:{marginBottom:8}, role:"group", "aria-label":"Question language"},
+          [["en","English"],["hi","हिन्दी"]].map(([code,label])=>React.createElement("button",{key:code, type:"button", className:"chip"+(lang===code?" active":""), "aria-pressed":lang===code, onClick:()=>setLang(code)}, label))
         ),
         React.createElement("p",{className:"qtext"}, q.question),
         React.createElement("div",{className:"options", role:"radiogroup", "aria-label":"Answer options"},

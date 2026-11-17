@@ -12,6 +12,7 @@ const NAV_ITEMS = [
   {path:"/current-affairs", label:"Current Affairs", icon:"affairs"},
   {path:"/dashboard", label:"Performance", icon:"performance"},
   {path:"/pricing", label:"Pricing", icon:"pricing"},
+  {path:"/about", label:"About", icon:"home"},
 ];
 const MOBILE_NAV = [
   {path:"/", label:"Home", icon:"home"},
@@ -161,6 +162,7 @@ function TopNav(){
             onClick:e=>{e.preventDefault(); goto(item.path);}}, item.label))
         ),
         React.createElement("div",{className:"navcta"},
+          channelLinks().slice(0,1).map(c=>React.createElement("a",{key:c.label, className:"btn btn-ghost btn-sm", href:c.url, target:"_blank", rel:"noopener noreferrer", onClick:()=>trackEvent("click_channel",{channel:c.label})}, "Join "+c.label)),
           React.createElement("button",{className:"btn btn-ghost btn-icon", title:"Search (Ctrl+K)", onClick:()=>setSearchOpen(true)}, React.createElement(Icon,{name:"search"})),
           React.createElement(ThemeToggle,null),
           React.createElement("button",{className:"btn btn-ghost btn-icon", title:"Bookmarks", onClick:()=>goto("/bookmarks")}, React.createElement(Icon,{name:"bookmark"})),
@@ -254,11 +256,29 @@ function Footer(){
         )
       )
     ),
+    React.createElement("div",{className:"container",style:{marginTop:24}},
+      React.createElement("div",{className:"flex gap-24 wrap", style:{alignItems:"flex-start"}},
+        React.createElement("div",{style:{flex:"1 1 280px", maxWidth:420}},
+          React.createElement("span",{className:"small",style:{fontWeight:700}},"Get alerts for new tests and exam notifications"),
+          React.createElement("div",{style:{marginTop:8}}, React.createElement(NotifyMeForm,{topic:"alerts", buttonText:"Notify me", label:"Email for alerts"}))),
+        React.createElement("div",{className:"flex-col gap-8"},
+          React.createElement("span",{className:"small",style:{fontWeight:700}},"Community"),
+          React.createElement("a",{className:"small muted", href:"/updates/"}, "Exam updates"),
+          channelLinks().map(c=>React.createElement("a",{key:c.label, className:"small muted", href:c.url, target:"_blank", rel:"noopener noreferrer", onClick:()=>trackEvent("click_channel",{channel:c.label})}, c.label+" channel")))
+      ),
+    ),
     React.createElement("div",{className:"container",style:{marginTop:28}},
       React.createElement("div",{className:"lane-divider",style:{marginBottom:18}}),
       React.createElement("p",{className:"tiny muted"}, "PE Prep is an independent practice platform. Exam patterns are indicative — always confirm against the official notification. © 2026 PE Prep.")
     )
   );
+}
+
+// Channel links come from build-time environment variables (WHATSAPP_CHANNEL_URL, TELEGRAM_CHANNEL_URL)
+// via window.PE_CONFIG. Nothing is shown unless a link is configured.
+function channelLinks(){
+  const c = window.PE_CONFIG || {};
+  return [["WhatsApp",c.whatsapp],["Telegram",c.telegram]].filter(([l,u])=>u && /^https:\/\//.test(u)).map(([label,url])=>({label,url}));
 }
 
 function Layout({children}){
@@ -320,7 +340,7 @@ function BookmarkButton({type,id}){
 function PlanBadge(){
   const {isPro, profile} = useApp();
   if(!isPro) return React.createElement("span",{className:"pill pill-warning"}, "Free Plan");
-  return React.createElement("span",{className:"pill pill-gold"}, (profile.plan==="proplus"?"Pro+":"Pro")+" Member");
+  return React.createElement("span",{className:"pill pill-gold"}, (profile.plan==="proplus"?"Founding Supporter":"Pro")+" Member");
 }
 
 // Shown in place of a mock-test / full-paper attempt once a free-plan aspirant
@@ -333,6 +353,49 @@ function PlanBadge(){
 // `examId`/`examShort` are optional — when passed (e.g. from the mock-results
 // page), the paywall offers a cheaper single-exam Pass as an alternative to
 // full Pro, alongside the existing "Upgrade to Pro" / "Compare Plans" pair.
+// Testimonials: driven by testimonials.json (inlined as window.TESTIMONIALS by
+// build.py). Renders NOTHING until real reviews are added - never placeholders.
+// Entry format: {"name":"First name + initial","role":"e.g. KVS PGT aspirant","text":"...","exam":"optional","date":"2026-11","consent":true}
+// Only entries with consent:true and non-empty text are shown.
+function Testimonials({title}){
+  const items = (window.TESTIMONIALS||[]).filter(t=>t && t.consent===true && t.text && t.name);
+  if(items.length===0) return null;
+  return React.createElement("section",{className:"container", style:{padding:"36px 24px"}},
+    React.createElement(SectionHeading,{eyebrow:"What aspirants say", title:title||"Feedback from PE aspirants"}),
+    React.createElement("div",{className:"grid grid-3"},
+      items.map((t,i)=>React.createElement("figure",{key:i,className:"card card-pad", style:{margin:0}},
+        React.createElement("blockquote",{className:"small", style:{margin:"0 0 12px"}}, "“"+t.text+"”"),
+        React.createElement("figcaption",{className:"tiny muted"}, t.name+(t.role?" · "+t.role:"")+(t.date?" · "+t.date:""))
+      ))
+    )
+  );
+}
+
+// Email capture used by "Launching soon" exam passes, the alerts sign-up in the
+// footer and the updates page. Posts to POST /api/subscribe on the backend.
+function NotifyMeForm({topic, label, buttonText, compact, dark}){
+  const {notify} = useApp();
+  const [email,setEmail] = useState("");
+  const [busy,setBusy] = useState(false);
+  const [done,setDone] = useState(false);
+  function submit(e){
+    e.preventDefault();
+    const clean = email.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clean)){ notify("Please enter a valid email address."); return; }
+    if(!AUTH_API){ notify("Sign-ups are not connected to a backend in this environment."); return; }
+    setBusy(true);
+    fetch(AUTH_API+"/api/subscribe",{method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({email:clean, topic, referralCode: (function(){ try{ return localStorage.getItem("pep_ref")||undefined; }catch(e){ return undefined; } })()})})
+      .then(r=>{ if(!r.ok) throw new Error(); setDone(true); trackEvent("notify_signup",{topic}); })
+      .catch(()=>notify("Could not save your email right now - please try again."))
+      .finally(()=>setBusy(false));
+  }
+  if(done) return React.createElement("p",{className:"small", style:{color:dark?"#fff":"var(--success)", fontWeight:600}}, "Thanks - we'll email you when there is news.");
+  return React.createElement("form",{onSubmit:submit, className:compact?"flex-col gap-8":"flex gap-8 wrap", style:{alignItems:"stretch"}},
+    React.createElement("input",{type:"email", required:true, value:email, onChange:e=>setEmail(e.target.value), placeholder:"you@example.com", "aria-label":label||"Email address", style:{flex:1, minWidth:160, padding:"8px 12px", borderRadius:8, border:"1px solid var(--border)", font:"inherit"}}),
+    React.createElement("button",{type:"submit", className:"btn btn-outline btn-sm", disabled:busy}, busy?"Saving…":(buttonText||"Notify me"))
+  );
+}
+
 function MockPaywall({title, desc, examId, examShort}){
   const {goto, upgradePlan, paymentsLive, checkoutBusy} = useApp();
   return React.createElement("div",{className:"card card-pad", style:{textAlign:"center", padding:"48px 28px", background:"linear-gradient(150deg, var(--ink) 0%, var(--info) 160%)", color:"#fff"}},
@@ -342,7 +405,7 @@ function MockPaywall({title, desc, examId, examShort}){
       desc || "Free plan includes one full-length mock test to try the experience. Upgrade to Pro for unlimited mock tests, practice sets, and full performance analytics."),
     React.createElement("div",{className:"flex gap-12 wrap", style:{justifyContent:"center"}},
       React.createElement("button",{className:"btn btn-primary", disabled:checkoutBusy, onClick:()=>upgradePlan("pro")}, checkoutBusy?"Opening secure checkout…":"Upgrade to Pro"),
-      examId && React.createElement("button",{className:"btn btn-outline", style:{borderColor:"rgba(255,255,255,.5)", color:"#fff"}, disabled:checkoutBusy,
+      examId && examPassAvailable(examId) && React.createElement("button",{className:"btn btn-outline", style:{borderColor:"rgba(255,255,255,.5)", color:"#fff"}, disabled:checkoutBusy,
         onClick:()=>upgradePlan("exampass", examId)}, "Get "+(examShort||"this")+" Pass · ₹"+EXAM_PASS_PRICE_INR),
       React.createElement("button",{className:"btn btn-outline", style:{borderColor:"rgba(255,255,255,.5)", color:"#fff"}, onClick:()=>goto("/pricing")}, "Compare Plans")
     ),
