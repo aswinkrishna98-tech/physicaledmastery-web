@@ -3,7 +3,7 @@ the sitemap and the homepage's server-rendered fallback from seo-data.json.
 build.py calls render_all(dist, site). Nothing here is typed by hand: counts,
 topics, concepts and questions all come from the real data (see
 scripts/export-seo-data.js)."""
-import html, json, os
+import html, json, os, re
 
 SITE = "https://physicaledmastery.com"
 BRAND = "PE Prep"
@@ -25,6 +25,11 @@ def analytics_tag():
     if uid and usrc:
         return '<script defer src="%s" data-website-id="%s"></script>' % (esc(usrc), esc(uid))
     return ""
+
+def adsense_client():
+    """AdSense publisher id (ca-pub-123...) from the ADSENSE_CLIENT env var; anything else disables ads."""
+    c = os.environ.get("ADSENSE_CLIENT", "").strip()
+    return c if re.fullmatch(r"ca-pub-\d{6,20}", c) else ""
 
 def head(title, desc, path, extra_ld=()):
     url = SITE + path
@@ -52,6 +57,7 @@ def head(title, desc, path, extra_ld=()):
 <link rel="stylesheet" href="/static.css">
 {''.join(jld(x) for x in extra_ld)}
 {analytics_tag()}
+{('<meta name="google-adsense-account" content="%s">' % adsense_client()) if adsense_client() else ''}
 </head>
 <body>
 <header class="site-h"><div class="wrap">
@@ -70,6 +76,7 @@ def foot(data):
 <p class="links">{''.join(f'<a href="{esc(u)}" rel="noopener">{l} channel</a>' for l, u in channel_links())}<a href="/updates/">Updates</a><a href="/#/about">About</a><a href="/#/contact">Contact</a><a href="/#/terms">Terms</a><a href="/#/privacy">Privacy</a><a href="/#/refund-policy">Refund policy</a></p>
 </div></footer>
 <script src="/quiz.js" defer></script>
+{('<script src="/ads.js" data-client="%s" defer></script>' % adsense_client()) if adsense_client() else ''}
 </body></html>
 """
 

@@ -1,4 +1,4 @@
-/* src-hash:af233263ae4bdaa387e6e8e110dacaf6933083f2b276c1b007a97c6fa20d169d */
+/* src-hash:3b5c988295f21b276b02c74e4130e6500ba55304c05d0397679cf1f4c777e0bb */
 
 /* ---- data-questions.js ---- */
 const QUESTION_BANK = [{
@@ -16895,7 +16895,7 @@ function PrivacyPage() {
       body: [["To provide your account, track your progress, and apply the correct plan/entitlements", "To respond to messages sent via the Contact page", "To maintain and improve the Platform's reliability and content", "To meet legal or tax obligations where applicable"]]
     }, {
       h: "4. Cookies and local storage",
-      body: ["PE Prep uses your browser's local storage to keep you signed in and to remember preferences (such as theme and dismissed banners) on your device. We do not use this for cross-site advertising tracking."]
+      body: ["PE Prep uses your browser's local storage to keep you signed in and to remember preferences (such as theme and dismissed banners) on your device. Our public study pages (exam and subject guides) may show Google AdSense ads, but only if you choose \"Allow ads\" in the prompt on those pages; ads and their cookies never load if you decline. Ads are not shown inside mock tests, practice sessions or checkout. You can change your choice by clearing this site's data in your browser."]
     }, {
       h: "5. Third-party services",
       body: ["Razorpay (website) and Google Play (Android app) process all payments under their own privacy policies and PCI-compliant security standards.", "Render hosts our servers and database. Google sign-in, where used, is handled directly by Google's own authentication flow."]

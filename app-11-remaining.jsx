@@ -421,7 +421,7 @@ function PrivacyPage(){
         ]
       ]},
       {h:"4. Cookies and local storage", body:[
-        "PE Prep uses your browser's local storage to keep you signed in and to remember preferences (such as theme and dismissed banners) on your device. We do not use this for cross-site advertising tracking."
+        "PE Prep uses your browser's local storage to keep you signed in and to remember preferences (such as theme and dismissed banners) on your device. Our public study pages (exam and subject guides) may show Google AdSense ads, but only if you choose \"Allow ads\" in the prompt on those pages; ads and their cookies never load if you decline. Ads are not shown inside mock tests, practice sessions or checkout. You can change your choice by clearing this site's data in your browser."
       ]},
       {h:"5. Third-party services", body:[
         "Razorpay (website) and Google Play (Android app) process all payments under their own privacy policies and PCI-compliant security standards.",

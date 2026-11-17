@@ -67,3 +67,10 @@ the Android app keep working. Set `PLAUSIBLE_DOMAIN` (and optionally `PLAUSIBLE_
 - **Referrals (stub)**: `?ref=CODE` in any link, or the optional signup field, is saved in the browser (`pep_ref`) and sent along with email sign-ups. There is no reward logic yet; to add it, store the code against the new account in the backend and credit the referrer after their first paid purchase.
 - **Updates** (`/updates/`): add a Markdown file to `updates/` (copy `updates/_TEMPLATE.md`; front matter needs `title` and `date`), then build. Files starting with `_` are never published, and the index stays `noindex` until the first post exists.
 - **Analytics**: set `PLAUSIBLE_DOMAIN` (or `UMAMI_WEBSITE_ID` + `UMAMI_SRC`) in the build environment. No cookies. Events sent: `start_free_test`, `complete_test`, `view_pricing`, `click_buy`, `purchase_success`, plus `start_sample_quiz`, `complete_sample_quiz`, `notify_signup`, `start_daily_challenge`, `complete_daily_challenge`, `share_challenge_result`, `click_channel`.
+
+## Ads (Google AdSense) — optional, off by default
+Set `ADSENSE_CLIENT` (for example `ca-pub-1234567890123456`) on the Render static site and redeploy. The build then:
+- adds the `google-adsense-account` meta tag and `/ads.js` to the static study pages only (exam/subject/topic guides). The app, mock tests, practice and checkout never show ads, and ads are skipped inside the Play/PWA app;
+- writes `dist/ads.txt` for the publisher id;
+- shows a prompt on those pages; the AdSense script loads only after the visitor taps "Allow ads" (stored as `pep_ads_consent` in localStorage). Declining keeps pages ad-free.
+Leave the variable unset and nothing ad-related is emitted. Turn on Auto ads for the site in the AdSense dashboard after approval.

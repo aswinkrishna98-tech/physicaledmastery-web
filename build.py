@@ -144,7 +144,7 @@ DIST = os.path.join(BASE, "dist")
 if os.path.isdir(DIST):
     shutil.rmtree(DIST)
 os.makedirs(DIST)
-for name in ["index.html", "app.bundle.js", "robots.txt", "sitemap.xml", "manifest.webmanifest", "sw.js", "static.css", "quiz.js", "og-image.png"]:
+for name in ["index.html", "app.bundle.js", "robots.txt", "sitemap.xml", "manifest.webmanifest", "sw.js", "static.css", "quiz.js", "ads.js", "og-image.png"]:
     src = os.path.join(BASE, name)
     if os.path.exists(src):
         shutil.copy(src, os.path.join(DIST, name))
@@ -154,6 +154,11 @@ for folder in ["icons", ".well-known"]:
     src = os.path.join(BASE, folder)
     if os.path.isdir(src):
         shutil.copytree(src, os.path.join(DIST, folder))
+_ads = seo_pages.adsense_client()
+if _ads:
+    # ads.txt tells ad buyers who may sell this site's inventory (required by AdSense).
+    with open(os.path.join(DIST, "ads.txt"), "w") as _f:
+        _f.write("google.com, pub-%s, DIRECT, f08c47fec0942fa0\n" % _ads.split("ca-pub-")[1])
 print("Wrote dist/:", ", ".join(sorted(os.listdir(DIST))))
 
 # Static, crawlable pages (exam / subject / topic guides) + sitemap.xml, rendered from seo-data.json
