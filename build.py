@@ -74,6 +74,9 @@ import seo_pages
 with open(os.path.join(BASE, "seo-data.json"), "r", encoding="utf-8") as f:
     SEO_DATA = json.load(f)
 HOME_FALLBACK = seo_pages.home_fallback(SEO_DATA)
+# AdSense site-ownership meta tag on the home page (only when ADSENSE_CLIENT is set; the ad script itself never loads here).
+_ac = seo_pages.adsense_client()
+ADSENSE_META = ('<meta name="google-adsense-account" content="%s">' % _ac) if _ac else ""
 HOME_LD = "".join(seo_pages.jld(x) for x in seo_pages.website_ld())
 ANALYTICS = seo_pages.analytics_tag()
 # Community channel links are configured with environment variables at build time (set on Render):
@@ -105,6 +108,7 @@ html = f"""<!DOCTYPE html>
 <meta name="twitter:title" content="Physical Ed Mastery - Physical Education Exam Preparation">
 <meta name="twitter:description" content="{DESC}">
 <meta name="twitter:image" content="{SITE}og-image.png">
+{ADSENSE_META}
 {HOME_LD}
 {ANALYTICS}
 <link rel="preconnect" href="https://fonts.googleapis.com">
