@@ -34,6 +34,17 @@ const OFFICIAL_PAPERS = [
     note: "Answers follow the published final answer key. Five questions the key marks as cancelled are left out. The key has no explanations, so each explanation only states the keyed answer. Duration and marking scheme were not on the pages supplied.",
     questions: PYQ_PAPER_QUESTIONS.C,
   },
+  {
+    id: "paper-d", keyType: "provisional", examId: "state-psc", examTag: "State PSC",
+    title: "UP Assistant Professor (Pre) 2026 — Physical Education section",
+    short: "UP Asst. Prof. 2026 PE section",
+    year: 2026,
+    code: "Questions 31–120 of the booklet",
+    originalQuestions: 90,
+    scope: "Physical Education section, Q31–120",
+    note: "Only the Physical Education section of the booklet is included (Q1–30 are general knowledge and are not). One question (Q55, a current-affairs item) is left out because it could not be checked. Marking scheme and duration were not on the pages supplied.",
+    questions: PYQ_PAPER_QUESTIONS.D,
+  },
   // UGC NET Paper II booklets (2009–2013), defined in data-pyq-6.js
   ...NET_PAPER_ENTRIES,
 ];
