@@ -1,4 +1,4 @@
-/* src-hash:178444172825c7017753a4619f236e5ac6ef75da7f746223b66e445402c79d29 */
+/* src-hash:9b7d10c2f8fd9960e27a245dcd744090a56240c690bb7b51c3acf9d0857267c3 */
 
 /* ---- data-questions.js ---- */
 const QUESTION_BANK = [{
@@ -10212,6 +10212,8 @@ const OFFICIAL_PAPERS = [{
 OFFICIAL_PAPERS.forEach(p => {
   p.included = p.questions.length;
 });
+const PAST_PAPER_QUESTION_COUNT = OFFICIAL_PAPERS.reduce((n, p) => n + p.included, 0);
+const TOTAL_QUESTION_COUNT = QUESTION_BANK.length + PAST_PAPER_QUESTION_COUNT;
 
 /* ---- app-01-core.jsx ---- */
 const {
@@ -12578,7 +12580,7 @@ function Home() {
       marginTop: 18,
       fontSize: 18
     }
-  }, "Practice " + QUESTION_BANK.length.toLocaleString() + " Physical Education questions with explanations, attempt " + OFFICIAL_PAPERS.length + " past papers and timed mock tests, revise key concepts and track your preparation — all in one place."), React.createElement("div", {
+  }, "Practice " + TOTAL_QUESTION_COUNT.toLocaleString() + " Physical Education questions (practice bank plus past papers), attempt " + OFFICIAL_PAPERS.length + " past papers and timed mock tests, revise key concepts and track your preparation — all in one place."), React.createElement("div", {
     className: "flex gap-16 wrap",
     style: {
       marginTop: 28
@@ -12607,7 +12609,7 @@ function Home() {
     }
   }, "jump into a mock test")), React.createElement("div", {
     className: "hero-stats"
-  }, [[QUESTION_BANK.length.toLocaleString(), "Practice questions (and growing)"], [String(EXAMS.length), "Exams covered"], [String(SUBJECTS.length), "Subjects & units mapped"], ["Free", "First full mock test"]].map(([n, l]) => React.createElement("div", {
+  }, [[TOTAL_QUESTION_COUNT.toLocaleString(), "Questions incl. past papers"], [String(EXAMS.length), "Exams covered"], [String(SUBJECTS.length), "Subjects & units mapped"], ["Free", "First full mock test"]].map(([n, l]) => React.createElement("div", {
     key: l,
     className: "hero-stat"
   }, React.createElement("b", null, n), React.createElement("span", {
@@ -12625,8 +12627,8 @@ function Home() {
     className: "grid grid-4"
   }, [{
     icon: "bank",
-    t: QUESTION_BANK.length.toLocaleString() + " Questions",
-    d: "PE-only question bank, tagged by exam, subject, topic and difficulty — growing steadily, with explanations on every question."
+    t: TOTAL_QUESTION_COUNT.toLocaleString() + " Questions",
+    d: "PE-only question bank plus past-paper questions, tagged by exam, subject, topic and difficulty — growing steadily, with explanations on every question."
   }, {
     icon: "target",
     t: "Exam-Focused Content",
@@ -17079,7 +17081,7 @@ function AboutPage() {
       body: ["PE Prep is India's dedicated exam-preparation platform for Physical Education — built for aspirants preparing for KVS, NVS, DSSSB, UGC NET, SET, State PSC, B.P.Ed, M.P.Ed and other PE-specific exams.", "Every other major exam-prep platform treats Physical Education as one subject among dozens. PE Prep exists because this syllabus — Kinesiology, Biomechanics, Sports Psychology, Sports Training, Yoga, Olympic Movement and more — deserves the same depth of practice questions, mock tests, previous year papers and analytics that a full syllabus gets everywhere else."]
     }, {
       h: "Where the content comes from",
-      body: ["Practice questions and explanations are written and compiled by the PE Prep editorial team from the standard Physical Education syllabi and textbooks for each exam. Each explanation names its reference area, but not a page-level citation.", "Previous-year papers are transcribed from publicly available question papers. Every paper is labelled \"Official key\" when it follows a published answer key, or \"Provisional key\" when we worked out the answers ourselves. Treat provisional keys as study aids, not as the official result.", "Right now the question bank holds " + QUESTION_BANK.length + " practice questions across " + EXAMS.length + " exams, plus " + OFFICIAL_PAPERS.length + " past papers. It is growing, and some exams are much further along than others — which is why single-exam passes only go on sale once an exam has enough questions."]
+      body: ["Practice questions and explanations are written and compiled by the PE Prep editorial team from the standard Physical Education syllabi and textbooks for each exam. Each explanation names its reference area, but not a page-level citation.", "Previous-year papers are transcribed from publicly available question papers. Every paper is labelled \"Official key\" when it follows a published answer key, or \"Provisional key\" when we worked out the answers ourselves. Treat provisional keys as study aids, not as the official result.", "Right now the question bank holds " + QUESTION_BANK.length + " practice questions across " + EXAMS.length + " exams, plus " + OFFICIAL_PAPERS.length + " past papers with " + PAST_PAPER_QUESTION_COUNT + " more questions (" + TOTAL_QUESTION_COUNT + " in total). It is growing, and some exams are much further along than others — which is why single-exam passes only go on sale once an exam has enough questions."]
     }, {
       h: "What we promise — and what we don't",
       body: ["We do not publish invented reviews, fake toppers or guaranteed ranks. Example reports on the site are labelled as samples. Exam patterns change between recruitment cycles, so the pattern notes are marked to be confirmed against the official notification.", "Features that are planned but not built are never sold as included. If you spot a wrong answer or an unclear explanation, tell us through the Contact page and we will correct it."]
@@ -18091,7 +18093,7 @@ function AuthPage() {
     }
   }, "Everything you need to crack your PE exam"), React.createElement("div", {
     className: "auth-bullets"
-  }, [QUESTION_BANK.length.toLocaleString() + " Physical Education practice questions", "13 exams covered — KVS, NET, DSSSB, NVS, PSC & more", "Full-length mock tests with detailed performance analysis", "Sports current affairs, updated every week"].map(t => React.createElement("div", {
+  }, [TOTAL_QUESTION_COUNT.toLocaleString() + " Physical Education questions incl. past papers", "13 exams covered — KVS, NET, DSSSB, NVS, PSC & more", "Full-length mock tests with detailed performance analysis", "Sports current affairs, updated every week"].map(t => React.createElement("div", {
     key: t,
     className: "auth-bullet"
   }, React.createElement(Icon, {
@@ -18099,7 +18101,7 @@ function AuthPage() {
     size: 16
   }), t))), React.createElement("div", {
     className: "auth-stats"
-  }, [[QUESTION_BANK.length.toLocaleString(), "Questions"], [String(EXAMS.length), "Exams"], [String(SUBJECTS.length), "Subjects"]].map(([n, l]) => React.createElement("div", {
+  }, [[TOTAL_QUESTION_COUNT.toLocaleString(), "Questions"], [String(EXAMS.length), "Exams"], [String(SUBJECTS.length), "Subjects"]].map(([n, l]) => React.createElement("div", {
     key: l
   }, React.createElement("b", null, n), React.createElement("span", null, l)))))));
 }

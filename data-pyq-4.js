@@ -49,3 +49,6 @@ const OFFICIAL_PAPERS = [
   ...NET_PAPER_ENTRIES,
 ];
 OFFICIAL_PAPERS.forEach(p => { p.included = p.questions.length; });
+// Total questions on the site = practice bank + every past-paper question included. Computed, never typed.
+const PAST_PAPER_QUESTION_COUNT = OFFICIAL_PAPERS.reduce((n, p) => n + p.included, 0);
+const TOTAL_QUESTION_COUNT = QUESTION_BANK.length + PAST_PAPER_QUESTION_COUNT;

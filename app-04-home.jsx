@@ -51,7 +51,7 @@ function Home(){
           React.createElement("div",{className:"eyebrow", style:{marginBottom:14}},"PREPARE · PRACTICE · PERFORM"),
           React.createElement("h1",{className:"display-1"}, "Master Physical Education. Crack Your Exam."),
           React.createElement("p",{className:"lede", style:{marginTop:18, fontSize:18}},
-            "Practice "+QUESTION_BANK.length.toLocaleString()+" Physical Education questions with explanations, attempt "+OFFICIAL_PAPERS.length+" past papers and timed mock tests, revise key concepts and track your preparation — all in one place."),
+            "Practice "+TOTAL_QUESTION_COUNT.toLocaleString()+" Physical Education questions (practice bank plus past papers), attempt "+OFFICIAL_PAPERS.length+" past papers and timed mock tests, revise key concepts and track your preparation — all in one place."),
           React.createElement("div",{className:"flex gap-16 wrap", style:{marginTop:28}},
             React.createElement("button",{className:"btn btn-primary", onClick:()=>goto("/question-bank")}, "Start Practising", React.createElement(Icon,{name:"chevronRight",size:16})),
             React.createElement("button",{className:"btn btn-outline", onClick:()=>goto("/mock-tests")}, "Take a Free Mock Test")
@@ -60,7 +60,7 @@ function Home(){
             "🎯 Preparing for ", React.createElement("b",null, preferredExam.short), " — ",
             React.createElement("a",{href:"#", onClick:e=>{e.preventDefault(); goto("/mock-test-setup",{examId:preferredExam.id});}}, "jump into a mock test")),
           React.createElement("div",{className:"hero-stats"},
-            [[QUESTION_BANK.length.toLocaleString(),"Practice questions (and growing)"],[String(EXAMS.length),"Exams covered"],[String(SUBJECTS.length),"Subjects & units mapped"],["Free","First full mock test"]].map(([n,l])=>
+            [[TOTAL_QUESTION_COUNT.toLocaleString(),"Questions incl. past papers"],[String(EXAMS.length),"Exams covered"],[String(SUBJECTS.length),"Subjects & units mapped"],["Free","First full mock test"]].map(([n,l])=>
               React.createElement("div",{key:l,className:"hero-stat"}, React.createElement("b",null,n), React.createElement("span",{className:"small muted"},l))
             )
           )
@@ -74,7 +74,7 @@ function Home(){
       React.createElement(SectionHeading,{eyebrow:"Why PE Aspirants Choose Us", title:"Built exclusively for Physical Education exams", lede:"Not a generic quiz app — focused entirely on Physical Education competitive exams in India."}),
       React.createElement("div",{className:"grid grid-4"},
         [
-          {icon:"bank", t:QUESTION_BANK.length.toLocaleString()+" Questions", d:"PE-only question bank, tagged by exam, subject, topic and difficulty — growing steadily, with explanations on every question."},
+          {icon:"bank", t:TOTAL_QUESTION_COUNT.toLocaleString()+" Questions", d:"PE-only question bank plus past-paper questions, tagged by exam, subject, topic and difficulty — growing steadily, with explanations on every question."},
           {icon:"target", t:"Exam-Focused Content", d:"Every module maps directly to KVS, NET, DSSSB, NVS, PSC and university syllabi."},
           {icon:"brain", t:"Detailed Explanations", d:"Concept breakdowns, memory tricks and sports relevance for every question."},
           {icon:"performance", t:"Smart Analytics", d:"Track accuracy, speed, and topic-wise strength with your Preparation Coach."},

@@ -491,7 +491,7 @@ function AboutPage(){
       {h:"Where the content comes from", body:[
         "Practice questions and explanations are written and compiled by the PE Prep editorial team from the standard Physical Education syllabi and textbooks for each exam. Each explanation names its reference area, but not a page-level citation.",
         "Previous-year papers are transcribed from publicly available question papers. Every paper is labelled \"Official key\" when it follows a published answer key, or \"Provisional key\" when we worked out the answers ourselves. Treat provisional keys as study aids, not as the official result.",
-        "Right now the question bank holds "+QUESTION_BANK.length+" practice questions across "+EXAMS.length+" exams, plus "+OFFICIAL_PAPERS.length+" past papers. It is growing, and some exams are much further along than others — which is why single-exam passes only go on sale once an exam has enough questions.",
+        "Right now the question bank holds "+QUESTION_BANK.length+" practice questions across "+EXAMS.length+" exams, plus "+OFFICIAL_PAPERS.length+" past papers with "+PAST_PAPER_QUESTION_COUNT+" more questions ("+TOTAL_QUESTION_COUNT+" in total). It is growing, and some exams are much further along than others — which is why single-exam passes only go on sale once an exam has enough questions.",
       ]},
       {h:"What we promise — and what we don't", body:[
         "We do not publish invented reviews, fake toppers or guaranteed ranks. Example reports on the site are labelled as samples. Exam patterns change between recruitment cycles, so the pattern notes are marked to be confirmed against the official notification.",

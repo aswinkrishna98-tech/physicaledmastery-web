@@ -99,14 +99,14 @@ function AuthPage(){
         React.createElement("h2",{className:"h2", style:{color:"#fff", position:"relative"}}, "Everything you need to crack your PE exam"),
         React.createElement("div",{className:"auth-bullets"},
           [
-            QUESTION_BANK.length.toLocaleString()+" Physical Education practice questions",
+            TOTAL_QUESTION_COUNT.toLocaleString()+" Physical Education questions incl. past papers",
             "13 exams covered — KVS, NET, DSSSB, NVS, PSC & more",
             "Full-length mock tests with detailed performance analysis",
             "Sports current affairs, updated every week",
           ].map(t=>React.createElement("div",{key:t, className:"auth-bullet"}, React.createElement(Icon,{name:"check", size:16}), t))
         ),
         React.createElement("div",{className:"auth-stats"},
-          [[QUESTION_BANK.length.toLocaleString(),"Questions"],[String(EXAMS.length),"Exams"],[String(SUBJECTS.length),"Subjects"]].map(([n,l])=>
+          [[TOTAL_QUESTION_COUNT.toLocaleString(),"Questions"],[String(EXAMS.length),"Exams"],[String(SUBJECTS.length),"Subjects"]].map(([n,l])=>
             React.createElement("div",{key:l}, React.createElement("b",null,n), React.createElement("span",null,l)))
         )
       )
